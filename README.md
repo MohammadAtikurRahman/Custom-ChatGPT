@@ -6,7 +6,7 @@ The repository contains code for a Custom ChatGPT built using React, Express, an
 
 ### Web Version
 
-[![Deploy the chatgpt](https://vercel.com/button)](https://vercel-frontend-six.vercel.app//)
+[![Deploy the chatgpt](https://vercel.com/button)](https://vercel-frontend-six.vercel.app/)
 
 
 <img src="/screenshot/ss.png" alt="Alt text" title="Optional title">
