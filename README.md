@@ -2,8 +2,18 @@
 
 The repository contains code for a Custom ChatGPT built using React, Express, and Node.js. The chatbot is powered by OpenAI's text-davinci-003 language model and Custom dataset.
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world)
+
+### Web Version
+
+
 
 <img src="/screenshot/ss.png" alt="Alt text" title="Optional title">
+
+
+
+### Web ChatBot Version 
+
 
 <img src="/screenshot/ss2.png" alt="Alt text" title="Optional title">
 
