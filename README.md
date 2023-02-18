@@ -110,14 +110,4 @@ Runs just the server app. Open [http://localhost:5000]
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder. It correctly bundles React in production mode and optimizes the build for the best performance. If deploying to Heroku, this does not need to be run since it is handled by the `heroku-postbuild` script.
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn how to set up a local MongoDB instance for testing, check out how to [Connect to MongoDB](https://docs.mongodb.com/guides/server/drivers/).
-
-To learn how
+Runs just for the production
