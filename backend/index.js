@@ -80,7 +80,33 @@ app.post("/api/", async (req, res) => {
   } catch (error) {
     res.status(500).send({ error: "Could not generate text completion" });
   }
-});
+
+
+
+
+
+
+
+
+  
+}
+
+
+
+
+
+
+
+
+
+);
+
+
+
+
+
+
+
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {

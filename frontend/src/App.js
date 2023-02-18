@@ -12,6 +12,7 @@ import IntroSection from "./components/IntroSection";
 import { useSpeechRecognition } from "react-speech-kit";
 import { default as Speak } from "react-text-to-speech";
 import { BsMic } from "react-icons/bs";
+import axios from 'axios';
 
 import { BsMicFill } from "react-icons/bs";
 import { BsMicMuteFill } from "react-icons/bs";
@@ -69,30 +70,38 @@ function App() {
     callAPI();
     setInputPrompt("");
   };
-  // const x = 700;
-  // const y = 1;
-  // const customStartBtnStyles = {
-  //   // borderRadius: '30%',
-  //   padding: "4px",
-  //   backgroundColor: "#444654",
-  //   color: "white",
-  //   // borderRadius: "50px",
-  //   border: 0,
-  //   transform: `translate(${x}px, ${y}px)` 
-  
-  
+  const API_KEY = process.env.REACT_APP_IMAGES_KEY;
+  // const [text, setText] = useState('');
+  const [imageURL, setImageURL] = useState('');
+
+  // const handleTextChange = (event) => {
+  //   setText(event.target.value);
   // };
-
-  // const customStopBtnStyles = {
-  //   backgroundColor: "#444654",
-  //   // borderRadius: '30%',
-  //   padding: "4px",
-
-  //   color: "white",
-  //   border: 0,
-  //   transform: `translate(${x}px, ${y}px)` 
-
-  // };
+  const generateImage = async () => {
+    if (inputPrompt.startsWith('/draw')) {
+      try {
+        const response = await axios({
+          method: 'post',
+          url: 'https://api.openai.com/v1/images/generations',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${API_KEY}`,
+          },
+          data: {
+            model: 'image-alpha-001',
+            prompt: inputPrompt,
+            num_images: 1,
+            size: '512x512',
+            response_format: 'url',
+          },
+        });
+        setImageURL(response.data.data[0].url);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+  
 
   return (
     <div className="App">
@@ -293,7 +302,12 @@ function App() {
                         </svg>
                       </Avatar>
                       {chat.botMessage ? (
+
+
+
                         <div id="botMessage" ref={messagesEndRef}>
+                                {imageURL && <img src={imageURL} alt="Generated cat on a couch" />}
+
                           <BotResponse response={chat.botMessage} />
                           <Speak
                             text={chat.botMessage}
@@ -309,6 +323,10 @@ function App() {
                             }
                           />
                         </div>
+
+
+
+
                       ) : err ? (
                         <Error err={err} />
                       ) : (
@@ -364,6 +382,9 @@ function App() {
         <form onSubmit={handleSubmit}>
           <div className="inputPromptWrapper">
             <input
+
+
+
               name="inputPrompt"
               autocomplete="off"
               id=""
@@ -393,6 +414,7 @@ function App() {
               <BsMic />
             </button>
             <button
+             onClick={generateImage}
               className="send-button"
               type="submit"
               style={{
