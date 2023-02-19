@@ -160,7 +160,7 @@ nav svg {
 .chatLogWrapper {
   height: 77vh;
   overflow-y: auto;
-
+  overflow-x: hidden;
   
 }
 
