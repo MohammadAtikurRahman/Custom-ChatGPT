@@ -25,8 +25,6 @@ const processData = (data) => {
 };
 
 app.post("/api/", async (req, res) => {
-
-
   const message = req.body.message;
 
   const properties = [
@@ -45,15 +43,34 @@ app.post("/api/", async (req, res) => {
 
   for (const prop of properties) {
     const matchingData = dataArray.find(
-      (d) => message.includes(d.name) && message.includes(prop.name)
+      (d) =>
+        (message.includes(d.name) && message.includes(prop.name)) ||
+        message.includes(d.sku) ||
+        message.includes(d.name) 
     );
 
     if (matchingData) {
-      res.json({
-        botResponse: `\n\n${matchingData.name} of ${prop.name}: ${
-          matchingData[prop.property]
-        }`,
-      });
+      if (message.includes(matchingData.name)) {
+        res.json({
+          botResponse: `\n\nDescription of ${matchingData.name}: ${matchingData.description}`,
+        });
+      }
+      
+      
+      else if (message.includes(matchingData.sku)) {
+        res.json({
+          botResponse: `\n\nDescription of ${matchingData.name}: ${matchingData.description}`,
+        });
+      }
+      
+      
+      else {
+        res.json({
+          botResponse: `\n\n${matchingData.name} of ${prop.name}: ${
+            matchingData[prop.property]
+          }`,
+        });
+      }
       return;
     }
   }
@@ -80,33 +97,7 @@ app.post("/api/", async (req, res) => {
   } catch (error) {
     res.status(500).send({ error: "Could not generate text completion" });
   }
-
-
-
-
-
-
-
-
-  
-}
-
-
-
-
-
-
-
-
-
-);
-
-
-
-
-
-
-
+});
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {

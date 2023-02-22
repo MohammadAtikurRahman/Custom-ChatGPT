@@ -4,7 +4,6 @@ import axios from 'axios';
 function GenerateImage() {
   const [inputPrompt, setInputPrompt] = useState("");
   const API_KEY = process.env.REACT_APP_IMAGES_KEY;
-  // const [text, setText] = useState('');
   const [imageURL, setImageURL] = useState("");
   const [setIsImageGenerated] = useState(false);
 
@@ -38,7 +37,7 @@ function GenerateImage() {
     <div>
       <input type="text" value={inputPrompt} onChange={(e) => setInputPrompt(e.target.value)} />
       <button onClick={generateImage}>Generate Image</button>
-      {imageURL && <img src={imageURL} alt="Generated Image" />}
+      {imageURL && <image src={imageURL} alt="Generated Image" />}
     </div>
   );
 }
