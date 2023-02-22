@@ -46,15 +46,30 @@ app.post("/api/", async (req, res) => {
       (d) =>
         (message.includes(d.name) && message.includes(prop.name)) ||
         message.includes(d.sku) ||
-        message.includes(d.name) 
+        message.includes(d.name) ||
+        (message.includes("dimension") && message.includes(d.name))
     );
 
+
     if (matchingData) {
-      if (message.includes(matchingData.name)) {
+
+
+
+      if (
+        message.includes("dimension") &&
+        message.includes(matchingData.name)
+      ) {
+        res.json({
+          botResponse: `\n\nWidth: ${matchingData.width}, Height: ${matchingData.height}, Length: ${matchingData.length}, Weight: ${matchingData.weight}`,
+        });
+      } 
+      
+      
+      else if (message.includes(matchingData.name)) {
         res.json({
           botResponse: `\n\nDescription of ${matchingData.name}: ${matchingData.description}`,
         });
-      }
+      } 
       
       
       else if (message.includes(matchingData.sku)) {
