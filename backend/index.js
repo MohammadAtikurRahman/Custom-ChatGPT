@@ -245,9 +245,10 @@ app.post("/api/", async (req, res) => {
   }
   
   // No matching data found
-  res.status(404).json({
-    botResponse: "No matching data found.",
-  });
+  
+  
+  
+
   
 
  
