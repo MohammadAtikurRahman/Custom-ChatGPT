@@ -269,7 +269,7 @@ app.post("/api/", async (req, res) => {
       return prev + ` ${Object.keys(curr)[0]}: ${curr[Object.keys(curr)[0]]} `;
     }, '');
   
-    res.json({ botResponse: response });
+    return res.json({ botResponse: `\n\n`+ response  });
 
 
 
