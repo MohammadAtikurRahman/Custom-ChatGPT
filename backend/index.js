@@ -242,6 +242,43 @@ app.post("/api/", async (req, res) => {
 
 
 
+    const itemName = dataArray.find(d => message.includes(d.name));
+    if (!itemName) {
+      return res.status(400).json({ error: "Could not find item name" });
+    }
+  
+    const queries = properties.filter(p => message.includes(p.name));
+    if (queries.length === 0) {
+      return res.status(400).json({ error: "No valid query found" });
+    }
+  
+    const result = queries.map(q => {
+      const data = dataArray.find(d => d.name === itemName.name);
+      if (!data || !data[q.property]) {
+        return null;
+      }
+  
+      return { [q.name]: data[q.property] };
+    }).filter(r => r !== null);
+  
+    if (result.length === 0) {
+      return res.status(400).json({ error: "No matching data found" });
+    }
+  
+    const response = result.reduce((prev, curr) => {
+      return prev + ` ${Object.keys(curr)[0]}: ${curr[Object.keys(curr)[0]]} `;
+    }, '');
+  
+    res.json({ botResponse: response });
+
+
+
+
+
+
+
+
+
   }
   
   // No matching data found
