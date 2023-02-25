@@ -25,139 +25,7 @@ const processData = (data) => {
 };
 
 app.post("/api/", async (req, res) => {
-  // const message = req.body.message;
-
-  // const matchingSkuData = dataArray.find(
-  //   (d) => message.includes(d.name) && message.includes("sku")
-  // );
-
-  // if (matchingSkuData) {
-  //   res.json({
-  //     botResponse:
-  //       "\n\n" + matchingSkuData.name + " of sku: " + matchingSkuData.sku,
-  //   });
-  //   return;
-  // }
-
-  // const matchingPriceData = dataArray.find(
-  //   (d) => message.includes(d.name) && message.includes("price")
-  // );
-
-  // if (matchingPriceData) {
-  //   res.json({
-  //     botResponse:
-  //       "\n\n" +
-  //       matchingPriceData.name +
-  //       " of price: " +
-  //       matchingPriceData.price,
-  //   });
-  //   return;
-  // }
-
-  // const matchingBrandData = dataArray.find(
-  //   (d) => message.includes(d.name) && message.includes("brand")
-  // );
-
-  // if (matchingBrandData) {
-  //   res.json({
-  //     botResponse:
-  //       "\n\n" +
-  //       matchingBrandData.name +
-  //       " of brand: " +
-  //       matchingBrandData.brand,
-  //   });
-  //   return;
-  // }
-
-  // const matchingQuantityData = dataArray.find(
-  //   (d) => message.includes(d.name) && message.includes("quantity")
-  // );
-
-  // if (matchingQuantityData) {
-  //   res.json({
-  //     botResponse:
-  //       "\n\n" +
-  //       matchingQuantityData.name +
-  //       " of quantity: " +
-  //       matchingQuantityData.quantity,
-  //   });
-  //   return;
-  // }
-
-  // const matchingWidthData = dataArray.find(
-  //   (d) => message.includes(d.name) && message.includes("width")
-  // );
-
-  // if (matchingWidthData) {
-  //   res.json({
-  //     botResponse:
-  //       "\n\n" +
-  //       matchingWidthData.name +
-  //       " of width: " +
-  //       matchingWidthData.width,
-  //   });
-  //   return;
-  // }
-
-  // const matchingHeightData = dataArray.find(
-  //   (d) => message.includes(d.name) && message.includes("height")
-  // );
-
-  // if (matchingHeightData) {
-  //   res.json({
-  //     botResponse:
-  //       "\n\n" +
-  //       matchingHeightData.name +
-  //       " of height: " +
-  //       matchingHeightData.height,
-  //   });
-  //   return;
-  // }
-
-  // const matchingLengthData = dataArray.find(
-  //   (d) => message.includes(d.name) && message.includes("length")
-  // );
-
-  // if (matchingLengthData) {
-  //   res.json({
-  //     botResponse:
-  //       "\n\n" +
-  //       matchingLengthData.name +
-  //       " of length: " +
-  //       matchingLengthData.length,
-  //   });
-  //   return;
-  // }
-
-  // const matchingWeightData = dataArray.find(
-  //   (d) => message.includes(d.name) && message.includes("Weight")
-  // );
-
-  // if (matchingWeightData) {
-  //   res.json({
-  //     botResponse:
-  //       "\n\n" +
-  //       matchingWeightData.name +
-  //       " of weight: " +
-  //       matchingWeightData.Weight,
-  //   });
-  //   return;
-  // }
-  // const matchingdescriptionData = dataArray.find(
-  //   (d) => message.includes(d.name) && message.includes("description")
-  // );
-
-  // if (matchingdescriptionData) {
-  //   res.json({
-  //     botResponse:
-  //       "\n\n" +
-  //       matchingdescriptionData.name +
-  //       " of description: " +
-  //       matchingdescriptionData.description,
-  //   });
-  //   return;
-  // }
-
+  
   const message = req.body.message;
 
   const properties = [
@@ -178,18 +46,11 @@ app.post("/api/", async (req, res) => {
     const matchingData = dataArray.find(
       (d) => message.includes(d.name) && message.includes(prop.name)
     );
-  
     const matchingData1 = dataArray.find(
       (d) => message.includes(d.name) && message.includes("dimension")
     );
-  
-  
-    const matchingData2 = dataArray.find(d => d.name === message);
-
-    const matchingData3 = dataArray.find(d => d.sku === message);
-
-
-  
+    const matchingData2 = dataArray.find((d) => d.name === message);
+    const matchingData3 = dataArray.find((d) => d.sku === message);
     if (matchingData) {
       res.json({
         botResponse: `\n\n${matchingData.name} of ${prop.name}: ${
@@ -197,98 +58,65 @@ app.post("/api/", async (req, res) => {
         }`,
       });
       return;
-    } 
-
-
-
-    else  if  (matchingData2) {
+    }
+     else if (matchingData2) {
       res.json({
         botResponse: `\n\n${matchingData2.name} of : ${matchingData2.description}
         }`,
       });
       return;
     } 
-
-
-
-    else  if  (matchingData3) {
+    else if (matchingData3) {
       res.json({
         botResponse: `\n\n${matchingData3.name} of : ${matchingData3.description}
         }`,
       });
       return;
-    } 
-
-
-
-
-
-
-
-
-    else if (matchingData1) {
+    }
+     else if (matchingData1) {
       const dimensions = {
         width: matchingData1.width,
         height: matchingData1.height,
         length: matchingData1.length,
       };
-  
-      // Send the response only once
       res.status(200).json({
         botResponse: `\n\nWidth: ${dimensions.width}, Height: ${dimensions.height}, Length: ${dimensions.length}`,
       });
       return;
     }
 
-
-
-    const itemName = dataArray.find(d => message.includes(d.name));
+    
+    const itemName = dataArray.find((d) => message.includes(d.name));
     if (!itemName) {
       return res.status(400).json({ error: "Could not find item name" });
     }
-  
-    const queries = properties.filter(p => message.includes(p.name));
+    const queries = properties.filter((p) => message.includes(p.name));
     if (queries.length === 0) {
       return res.status(400).json({ error: "No valid query found" });
     }
-  
-    const result = queries.map(q => {
-      const data = dataArray.find(d => d.name === itemName.name);
-      if (!data || !data[q.property]) {
-        return null;
-      }
-  
-      return { [q.name]: data[q.property] };
-    }).filter(r => r !== null);
-  
+
+    const result = queries
+      .map((q) => {
+        const data = dataArray.find((d) => d.name === itemName.name);
+        if (!data || !data[q.property]) {
+          return null;
+        }
+
+        return { [q.name]: data[q.property] };
+      })
+      .filter((r) => r !== null);
+
     if (result.length === 0) {
       return res.status(400).json({ error: "No matching data found" });
     }
-  
+
     const response = result.reduce((prev, curr) => {
       return prev + ` ${Object.keys(curr)[0]}: ${curr[Object.keys(curr)[0]]} `;
-    }, '');
-  
-    return res.json({ botResponse: `\n\n`+ response  });
+    }, "");
 
-
-
-
-
-
-
-
-
+    return res.json({ botResponse: `\n\n` + response });
   }
-  
-  // No matching data found
-  
-  
-  
 
-  
-
- 
 
   const API_KEY = process.env.OPENAI_API_KEY;
 
