@@ -1,5 +1,5 @@
-Display Name,Pricing Rules/Name,Pricing Rules/Maximum Value,Pricing Rules/Operator,Pricing Rules/Sale Base Price
-Shipping - Bay of Plenty,if weight < 5.00 then fixed price 22.00,5,<,22
+location,Pricing Rules/Name,weight-dl,Pricing Rules/Operator,deliveryPrice
+Shipping - Bay of Plenty1,if weight < 5.00 then fixed price 22.00,5,<,22
 Shipping - Bay of Plenty,if weight == 5.00 then fixed price 40.00,5,'==,40
 Shipping - Bay of Plenty,if weight < 10.00 then fixed price 40.00,10,<,40
 Shipping - Bay of Plenty,if weight == 10.00 then fixed price 45.00,10,'==,45

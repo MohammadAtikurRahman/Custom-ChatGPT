@@ -23,9 +23,41 @@ fs.createReadStream("idiya.csv")
 const processData = (data) => {
   // console.log(data);
 };
+let deliveryDataArray = [];
+
+fs.createReadStream("delivery.csv")
+  .pipe(csv())
+  .on("data", (data) => {
+    deliveryDataArray.push(data);
+  })
+  .on("end", () => {
+    console.log("Delivery CSV file processed.");
+    processData(deliveryDataArray);
+    // console.log(deliveryDataArray); // Print the deliveryDataArray here
+  });
+
+
 
 app.post("/api/", async (req, res) => {
   const message = req.body.message;
+
+
+
+
+
+
+ const deliveryData = deliveryDataArray.find(
+    (d) => message.includes(d.location)
+  );
+
+
+ if (deliveryData) {
+    res.json({
+      botResponse:
+        "\n\n" + deliveryData.location + " of " + deliveryData.deliveryPrice,
+    });
+    return;
+  }
 
   const properties = [
     { name: "name", property: "name" },
@@ -137,6 +169,14 @@ app.post("/api/", async (req, res) => {
 
     return res.json({ botResponse: `\n\n` + response });
   }
+
+
+
+
+
+
+
+
 });
 
 const port = process.env.PORT || 5000;
