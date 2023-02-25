@@ -25,7 +25,6 @@ const processData = (data) => {
 };
 
 app.post("/api/", async (req, res) => {
-  
   const message = req.body.message;
 
   const properties = [
@@ -58,22 +57,19 @@ app.post("/api/", async (req, res) => {
         }`,
       });
       return;
-    }
-     else if (matchingData2) {
+    } else if (matchingData2) {
       res.json({
         botResponse: `\n\n${matchingData2.name} of : ${matchingData2.description}
         }`,
       });
       return;
-    } 
-    else if (matchingData3) {
+    } else if (matchingData3) {
       res.json({
         botResponse: `\n\n${matchingData3.name} of : ${matchingData3.description}
         }`,
       });
       return;
-    }
-     else if (matchingData1) {
+    } else if (matchingData1) {
       const dimensions = {
         width: matchingData1.width,
         height: matchingData1.height,
@@ -85,11 +81,36 @@ app.post("/api/", async (req, res) => {
       return;
     }
 
-    
     const itemName = dataArray.find((d) => message.includes(d.name));
+
     if (!itemName) {
-      return res.status(400).json({ error: "Could not find item name" });
+      try {
+        const API_KEY = process.env.OPENAI_API_KEY;
+        const response = await axios({
+          method: "post",
+          url: "https://api.openai.com/v1/engines/text-davinci-003/completions",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${API_KEY}`,
+          },
+          data: {
+            prompt: message,
+            max_tokens: 100,
+            n: 1,
+            stop: "",
+            temperature: 0.5,
+          },
+        });
+        return res.json({ botResponse: "\n" + response.data.choices[0].text });
+      } catch (error) {
+        return res
+          .status(500)
+          .send({ error: "Could not generate text completion" });
+      }
     }
+
+
+    
     const queries = properties.filter((p) => message.includes(p.name));
     if (queries.length === 0) {
       return res.status(400).json({ error: "No valid query found" });
@@ -115,30 +136,6 @@ app.post("/api/", async (req, res) => {
     }, "");
 
     return res.json({ botResponse: `\n\n` + response });
-  }
-
-
-  const API_KEY = process.env.OPENAI_API_KEY;
-
-  try {
-    const response = await axios({
-      method: "post",
-      url: "https://api.openai.com/v1/engines/text-davinci-003/completions",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${API_KEY}`,
-      },
-      data: {
-        prompt: message,
-        max_tokens: 100,
-        n: 1,
-        stop: "",
-        temperature: 0.5,
-      },
-    });
-    res.json({ botResponse: "\n" + response.data.choices[0].text });
-  } catch (error) {
-    res.status(500).send({ error: "Could not generate text completion" });
   }
 });
 
