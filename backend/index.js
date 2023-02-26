@@ -46,18 +46,35 @@ app.post("/api/", async (req, res) => {
 
 
 
- const deliveryData = deliveryDataArray.find(
-    (d) => message.includes(d.location)
-  );
+// Filter deliveryDataArray to only include objects with location = "Shipping - Bay of Plenty"
+const bayOfPlentyData = deliveryDataArray.filter((d) => d.location === "Shipping - Bay of Plenty"     
 
 
- if (deliveryData) {
-    res.json({
-      botResponse:
-        "\n\n" + deliveryData.location + " of " + deliveryData.deliveryPrice,
-    });
-    return;
-  }
+);
+
+// Find the minimum and maximum values of the deliveryPrice property
+const deliveryPrices = bayOfPlentyData.reduce(
+  (acc, d) => {
+    const price = parseFloat(d.deliveryPrice);
+    if (!isNaN(price)) { // check if price is a valid number
+      if (price < acc.minPrice) {
+        acc.minPrice = price;
+      }
+      if (price > acc.maxPrice) {
+        acc.maxPrice = price;
+      }
+    }
+    return acc;
+  },
+  { minPrice: Infinity, maxPrice: -Infinity }
+);
+
+// Return bot response with highest and lowest deliveryPrice
+return res.json({
+  botResponse:
+    "\n\n"+"Shipping Charge depends on product weight and whether it is heavy/fragile. For _" +bayOfPlentyData[0].location+    "  the lowest shipping charge is " + deliveryPrices.minPrice 
+    + " and the highest shipping charge is " + deliveryPrices.maxPrice + ".",
+});
 
   const properties = [
     { name: "name", property: "name" },

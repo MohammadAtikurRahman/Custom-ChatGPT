@@ -1,5 +1,5 @@
 location,Pricing Rules/Name,weight-dl,Pricing Rules/Operator,deliveryPrice
-Shipping - Bay of Plenty1,if weight < 5.00 then fixed price 22.00,5,<,22
+Shipping - Bay of Plenty,if weight < 5.00 then fixed price 22.00,5,<,22
 Shipping - Bay of Plenty,if weight == 5.00 then fixed price 40.00,5,'==,40
 Shipping - Bay of Plenty,if weight < 10.00 then fixed price 40.00,10,<,40
 Shipping - Bay of Plenty,if weight == 10.00 then fixed price 45.00,10,'==,45
@@ -12,7 +12,7 @@ Shipping - Bay of Plenty,if weight == 80.00 then fixed price 180.00,80,'==,180
 Shipping - Bay of Plenty,if weight < 120.00 then fixed price 180.00,120,<,180
 Shipping - Bay of Plenty,if weight == 120.00 then fixed price 290.00,120,'==,290
 Shipping - Bay of Plenty,if weight < 240.00 then fixed price 290.00,240,<,290
-Shipping - Waikato,if weight < 5.00 then fixed price 22.00,5,<,22
+Shipping – Waikato,if weight < 5.00 then fixed price 22.00,5,<,22
 Shipping - Waikato,if weight == 5.00 then fixed price 40.00,5,'==,40
 Shipping - Waikato,if weight < 10.00 then fixed price 40.00,10,<,40
 Shipping - Waikato,if weight == 10.00 then fixed price 45.00,10,'==,45
