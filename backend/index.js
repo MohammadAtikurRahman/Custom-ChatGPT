@@ -36,45 +36,47 @@ fs.createReadStream("delivery.csv")
     // console.log(deliveryDataArray); // Print the deliveryDataArray here
   });
 
-
-
 app.post("/api/", async (req, res) => {
   const message = req.body.message;
 
+  function Delivery() {
+    const bayOfPlentyData = deliveryDataArray.filter(
+      (d) => d.location === message
+    );
 
+    // Find the minimum and maximum values of the deliveryPrice property
+    const deliveryPrices = bayOfPlentyData.reduce(
+      (acc, d) => {
+        const price = parseFloat(d.deliveryPrice);
+        if (!isNaN(price)) {
+          // check if price is a valid number
+          if (price < acc.minPrice) {
+            acc.minPrice = price;
+          }
+          if (price > acc.maxPrice) {
+            acc.maxPrice = price;
+          }
+        }
+        return acc;
+      },
+      { minPrice: Infinity, maxPrice: -Infinity }
+    );
 
-
-
-
-// Filter deliveryDataArray to only include objects with location = "Shipping - Bay of Plenty"
-const bayOfPlentyData = deliveryDataArray.filter((d) => d.location === message     
-
-
-);
-
-// Find the minimum and maximum values of the deliveryPrice property
-const deliveryPrices = bayOfPlentyData.reduce(
-  (acc, d) => {
-    const price = parseFloat(d.deliveryPrice);
-    if (!isNaN(price)) { // check if price is a valid number
-      if (price < acc.minPrice) {
-        acc.minPrice = price;
-      }
-      if (price > acc.maxPrice) {
-        acc.maxPrice = price;
-      }
-    }
-    return acc;
-  },
-  { minPrice: Infinity, maxPrice: -Infinity }
-);
-
-// Return bot response with highest and lowest deliveryPrice
-return res.json({
-  botResponse:
-    "\n\n"+"Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For _" +bayOfPlentyData[0].location+    "  the lowest shipping charge is " + deliveryPrices.minPrice 
-    + " and the Highest Shipping charge is " + deliveryPrices.maxPrice + ".",
-});
+    // Return bot response with highest and lowest deliveryPrice
+    return res.json({
+      botResponse:
+        "\n\n" +
+        "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For _" +
+        bayOfPlentyData[0].location +
+        "  the lowest shipping charge is " +
+        deliveryPrices.minPrice +
+        " and the Highest Shipping charge is " +
+        deliveryPrices.maxPrice +
+        ".  what is your area code ?",
+    });
+  }
+  Delivery();
+  // Filter deliveryDataArray to only include objects with location = "Shipping - Bay of Plenty"
 
   const properties = [
     { name: "name", property: "name" },
@@ -158,8 +160,6 @@ return res.json({
       }
     }
 
-
-    
     const queries = properties.filter((p) => message.includes(p.name));
     if (queries.length === 0) {
       return res.status(400).json({ error: "No valid query found" });
@@ -186,14 +186,6 @@ return res.json({
 
     return res.json({ botResponse: `\n\n` + response });
   }
-
-
-
-
-
-
-
-
 });
 
 const port = process.env.PORT || 5000;
