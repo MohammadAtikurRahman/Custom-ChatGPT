@@ -1,7 +1,5 @@
 require("dotenv").config();
 const express = require("express");
-const router = express.Router();
-
 const app = express();
 const cors = require("cors");
 app.use(cors());
@@ -9,9 +7,12 @@ app.use(express.json());
 const fs = require("fs");
 const csv = require("csv-parser");
 
-const { getInformation } = require("./controllers/InformationController");
+const { getInformation } = require("./InformationController");
 
 let deliveryDataArray = [];
+
+
+
 fs.createReadStream("delivery.csv")
   .pipe(csv())
   .on("data", (data) => {
@@ -26,21 +27,16 @@ const processData = (data) => {
   // console.log(data);
 };
 
-function delivery() {
-  console.log("function calling");
 
-  router.post("/", async (req, res) => {
-    console.log("api calling");
-
+async function getDeliveryInformation(req, res){
     const message = req.body.message;
-
     const bayOfPlentyData = deliveryDataArray.filter(
       (d) => d.location === message
     );
     if (bayOfPlentyData.length === 0) {
-return;      
+        return getInformation(req, res);
     }
-
+    
     // Find the minimum and maximum values of the deliveryPrice property
     const deliveryPrices = bayOfPlentyData.reduce(
       (acc, d) => {
@@ -71,11 +67,8 @@ return;
         deliveryPrices.maxPrice +
         ".  what is your area code ?",
     });
-  });
-
-  return router;
-}
-
-module.exports = {
-  delivery,
-};
+  };
+  module.exports = {
+    getDeliveryInformation,
+  };
+  
