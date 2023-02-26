@@ -47,7 +47,7 @@ app.post("/api/", async (req, res) => {
 
 
 // Filter deliveryDataArray to only include objects with location = "Shipping - Bay of Plenty"
-const bayOfPlentyData = deliveryDataArray.filter((d) => d.location === "Shipping - Bay of Plenty"     
+const bayOfPlentyData = deliveryDataArray.filter((d) => d.location === message     
 
 
 );
@@ -72,8 +72,8 @@ const deliveryPrices = bayOfPlentyData.reduce(
 // Return bot response with highest and lowest deliveryPrice
 return res.json({
   botResponse:
-    "\n\n"+"Shipping Charge depends on product weight and whether it is heavy/fragile. For _" +bayOfPlentyData[0].location+    "  the lowest shipping charge is " + deliveryPrices.minPrice 
-    + " and the highest shipping charge is " + deliveryPrices.maxPrice + ".",
+    "\n\n"+"Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For _" +bayOfPlentyData[0].location+    "  the lowest shipping charge is " + deliveryPrices.minPrice 
+    + " and the Highest Shipping charge is " + deliveryPrices.maxPrice + ".",
 });
 
   const properties = [
