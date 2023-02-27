@@ -17,6 +17,8 @@ const processData = (data) => {
 };
 
 async function getInformation(req, res) {
+ 
+ 
   const message = req.body.message;
   const properties = [
     { name: "name", property: "name" },
