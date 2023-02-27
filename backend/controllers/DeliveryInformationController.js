@@ -36,6 +36,7 @@ async function getDeliveryInformation(req, res){
     if (bayOfPlentyData.length === 0) {
         return getInformation(req, res);
     }
+    
     // Find the minimum and maximum values of the deliveryPrice property
     const deliveryPrices = bayOfPlentyData.reduce(
       (acc, d) => {
