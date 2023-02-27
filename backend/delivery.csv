@@ -1,323 +1,323 @@
 location,rules,weight-dl,operator,deliveryPrice
 Shipping - Bay of Plenty,if weight < 5.00 then fixed price 22.00,5,<,22
-Shipping - Bay of Plenty,if weight == 5.00 then fixed price 40.00,5,'==,40
+Shipping - Bay of Plenty,if weight == 5.00 then fixed price 40.00,5,=,40
 Shipping - Bay of Plenty,if weight < 10.00 then fixed price 40.00,10,<,40
-Shipping - Bay of Plenty,if weight == 10.00 then fixed price 45.00,10,'==,45
+Shipping - Bay of Plenty,if weight == 10.00 then fixed price 45.00,10,=,45
 Shipping - Bay of Plenty,if weight < 20.00 then fixed price 45.00,20,<,45
-Shipping - Bay of Plenty,if weight == 20.00 then fixed price 50.00,20,'==,50
+Shipping - Bay of Plenty,if weight == 20.00 then fixed price 50.00,20,=,50
 Shipping - Bay of Plenty,if weight < 25.00 then fixed price 50.00,25,<,50
-Shipping - Bay of Plenty,if weight == 25.00 then fixed price 120.00,25,'==,120
+Shipping - Bay of Plenty,if weight == 25.00 then fixed price 120.00,25,=,120
 Shipping - Bay of Plenty,if weight < 80.00 then fixed price 120.00,80,<,120
-Shipping - Bay of Plenty,if weight == 80.00 then fixed price 180.00,80,'==,180
+Shipping - Bay of Plenty,if weight == 80.00 then fixed price 180.00,80,=,180
 Shipping - Bay of Plenty,if weight < 120.00 then fixed price 180.00,120,<,180
-Shipping - Bay of Plenty,if weight == 120.00 then fixed price 290.00,120,'==,290
+Shipping - Bay of Plenty,if weight == 120.00 then fixed price 290.00,120,=,290
 Shipping - Bay of Plenty,if weight < 240.00 then fixed price 290.00,240,<,290
 Shipping - Waikato,if weight < 5.00 then fixed price 22.00,5,<,22
-Shipping - Waikato,if weight == 5.00 then fixed price 40.00,5,'==,40
+Shipping - Waikato,if weight == 5.00 then fixed price 40.00,5,=,40
 Shipping - Waikato,if weight < 10.00 then fixed price 40.00,10,<,40
-Shipping - Waikato,if weight == 10.00 then fixed price 45.00,10,'==,45
+Shipping - Waikato,if weight == 10.00 then fixed price 45.00,10,=,45
 Shipping - Waikato,if weight < 20.00 then fixed price 45.00,20,<,45
-Shipping - Waikato,if weight == 20.00 then fixed price 50.00,20,'==,50
+Shipping - Waikato,if weight == 20.00 then fixed price 50.00,20,=,50
 Shipping - Waikato,if weight < 25.00 then fixed price 50.00,25,<,50
-Shipping - Waikato,if weight == 25.00 then fixed price 80.00,25,'==,80
+Shipping - Waikato,if weight == 25.00 then fixed price 80.00,25,=,80
 Shipping - Waikato,if weight < 80.00 then fixed price 80.00,80,<,80
-Shipping - Waikato,if weight == 80.00 then fixed price 110.00,80,'==,110
+Shipping - Waikato,if weight == 80.00 then fixed price 110.00,80,=,110
 Shipping - Waikato,if weight < 120.00 then fixed price 110.00,120,<,110
-Shipping - Waikato,if weight == 120.00 then fixed price 200.00,120,'==,200
+Shipping - Waikato,if weight == 120.00 then fixed price 200.00,120,=,200
 Shipping - Waikato,if weight < 180.00 then fixed price 200.00,180,<,200
-Shipping - Waikato,if weight == 180.00 then fixed price 280.00,180,'==,280
+Shipping - Waikato,if weight == 180.00 then fixed price 280.00,180,=,280
 Shipping - Waikato,if weight < 240.00 then fixed price 280.00,240,<,280
 Shipping - Hawke's Bay,if weight < 5.00 then fixed price 22.00,5,<,22
-Shipping - Hawke's Bay,if weight == 5.00 then fixed price 40.00,5,'==,40
+Shipping - Hawke's Bay,if weight == 5.00 then fixed price 40.00,5,=,40
 Shipping - Hawke's Bay,if weight < 10.00 then fixed price 40.00,10,<,40
-Shipping - Hawke's Bay,if weight == 10.00 then fixed price 45.00,10,'==,45
+Shipping - Hawke's Bay,if weight == 10.00 then fixed price 45.00,10,=,45
 Shipping - Hawke's Bay,if weight < 20.00 then fixed price 45.00,20,<,45
-Shipping - Hawke's Bay,if weight == 20.00 then fixed price 50.00,20,'==,50
+Shipping - Hawke's Bay,if weight == 20.00 then fixed price 50.00,20,=,50
 Shipping - Hawke's Bay,if weight < 25.00 then fixed price 50.00,25,<,50
-Shipping - Hawke's Bay,if weight == 25.00 then fixed price 120.00,25,'==,120
+Shipping - Hawke's Bay,if weight == 25.00 then fixed price 120.00,25,=,120
 Shipping - Hawke's Bay,if weight < 80.00 then fixed price 120.00,80,<,120
-Shipping - Hawke's Bay,if weight == 80.00 then fixed price 200.00,80,'==,200
+Shipping - Hawke's Bay,if weight == 80.00 then fixed price 200.00,80,=,200
 Shipping - Hawke's Bay,if weight < 120.00 then fixed price 200.00,120,<,200
-Shipping - Hawke's Bay,if weight == 120.00 then fixed price 300.00,120,'==,300
+Shipping - Hawke's Bay,if weight == 120.00 then fixed price 300.00,120,=,300
 Shipping - Hawke's Bay,if weight < 180.00 then fixed price 300.00,180,<,300
-Shipping - Hawke's Bay,if weight == 180.00 then fixed price 350.00,180,'==,350
+Shipping - Hawke's Bay,if weight == 180.00 then fixed price 350.00,180,=,350
 Shipping - Hawke's Bay,if weight < 240.00 then fixed price 350.00,240,<,350
 Shipping - Taranaki,if weight < 5.00 then fixed price 22.00,5,<,22
-Shipping - Taranaki,if weight == 5.00 then fixed price 40.00,5,'==,40
+Shipping - Taranaki,if weight == 5.00 then fixed price 40.00,5,=,40
 Shipping - Taranaki,if weight < 10.00 then fixed price 40.00,10,<,40
-Shipping - Taranaki,if weight == 10.00 then fixed price 45.00,10,'==,45
+Shipping - Taranaki,if weight == 10.00 then fixed price 45.00,10,=,45
 Shipping - Taranaki,if weight < 20.00 then fixed price 45.00,20,<,45
-Shipping - Taranaki,if weight == 20.00 then fixed price 50.00,20,'==,50
+Shipping - Taranaki,if weight == 20.00 then fixed price 50.00,20,=,50
 Shipping - Taranaki,if weight < 25.00 then fixed price 50.00,25,<,50
-Shipping - Taranaki,if weight == 25.00 then fixed price 120.00,25,'==,120
+Shipping - Taranaki,if weight == 25.00 then fixed price 120.00,25,=,120
 Shipping - Taranaki,if weight < 80.00 then fixed price 120.00,80,<,120
-Shipping - Taranaki,if weight == 80.00 then fixed price 200.00,80,'==,200
+Shipping - Taranaki,if weight == 80.00 then fixed price 200.00,80,=,200
 Shipping - Taranaki,if weight < 120.00 then fixed price 200.00,120,<,200
-Shipping - Taranaki,if weight == 120.00 then fixed price 300.00,120,'==,300
+Shipping - Taranaki,if weight == 120.00 then fixed price 300.00,120,=,300
 Shipping - Taranaki,if weight < 180.00 then fixed price 300.00,180,<,300
-Shipping - Taranaki,if weight == 180.00 then fixed price 350.00,180,'==,350
+Shipping - Taranaki,if weight == 180.00 then fixed price 350.00,180,=,350
 Shipping - Taranaki,if weight < 240.00 then fixed price 350.00,240,<,350
 "Shipping - Thames, Coromandel",if weight < 5.00 then fixed price 22.00,5,<,22
-"Shipping - Thames, Coromandel",if weight == 5.00 then fixed price 40.00,5,'==,40
+"Shipping - Thames, Coromandel",if weight == 5.00 then fixed price 40.00,5,=,40
 "Shipping - Thames, Coromandel",if weight < 10.00 then fixed price 40.00,10,<,40
-"Shipping - Thames, Coromandel",if weight == 10.00 then fixed price 45.00,10,'==,45
+"Shipping - Thames, Coromandel",if weight == 10.00 then fixed price 45.00,10,=,45
 "Shipping - Thames, Coromandel",if weight < 20.00 then fixed price 45.00,20,<,45
-"Shipping - Thames, Coromandel",if weight == 20.00 then fixed price 100.00,20,'==,100
+"Shipping - Thames, Coromandel",if weight == 20.00 then fixed price 100.00,20,=,100
 "Shipping - Thames, Coromandel",if weight < 25.00 then fixed price 100.00,25,<,100
-"Shipping - Thames, Coromandel",if weight == 25.00 then fixed price 150.00,25,'==,150
+"Shipping - Thames, Coromandel",if weight == 25.00 then fixed price 150.00,25,=,150
 "Shipping - Thames, Coromandel",if weight < 80.00 then fixed price 150.00,80,<,150
-"Shipping - Thames, Coromandel",if weight == 80.00 then fixed price 200.00,80,'==,200
+"Shipping - Thames, Coromandel",if weight == 80.00 then fixed price 200.00,80,=,200
 "Shipping - Thames, Coromandel",if weight < 120.00 then fixed price 200.00,120,<,200
-"Shipping - Thames, Coromandel",if weight == 120.00 then fixed price 300.00,120,'==,300
+"Shipping - Thames, Coromandel",if weight == 120.00 then fixed price 300.00,120,=,300
 "Shipping - Thames, Coromandel",if weight < 180.00 then fixed price 300.00,180,<,300
-"Shipping - Thames, Coromandel",if weight == 180.00 then fixed price 350.00,180,'==,350
+"Shipping - Thames, Coromandel",if weight == 180.00 then fixed price 350.00,180,=,350
 "Shipping - Thames, Coromandel",if weight < 240.00 then fixed price 350.00,240,<,350
 Shipping - Auckland (From Silverdale to Pokeno),if weight < 5.00 then fixed price 6.00,5,<,6
-Shipping - Auckland (From Silverdale to Pokeno),if weight == 5.00 then fixed price 8.00,5,'==,8
+Shipping - Auckland (From Silverdale to Pokeno),if weight == 5.00 then fixed price 8.00,5,=,8
 Shipping - Auckland (From Silverdale to Pokeno),if weight < 10.00 then fixed price 8.00,10,<,8
-Shipping - Auckland (From Silverdale to Pokeno),if weight == 10.00 then fixed price 12.00,10,'==,12
+Shipping - Auckland (From Silverdale to Pokeno),if weight == 10.00 then fixed price 12.00,10,=,12
 Shipping - Auckland (From Silverdale to Pokeno),if weight < 15.00 then fixed price 12.00,15,<,12
-Shipping - Auckland (From Silverdale to Pokeno),if weight == 15.00 then fixed price 20.00,15,'==,20
+Shipping - Auckland (From Silverdale to Pokeno),if weight == 15.00 then fixed price 20.00,15,=,20
 Shipping - Auckland (From Silverdale to Pokeno),if weight < 20.00 then fixed price 20.00,20,<,20
-Shipping - Auckland (From Silverdale to Pokeno),if weight == 20.00 then fixed price 35.00,20,'==,35
+Shipping - Auckland (From Silverdale to Pokeno),if weight == 20.00 then fixed price 35.00,20,=,35
 Shipping - Auckland (From Silverdale to Pokeno),if weight < 25.00 then fixed price 35.00,25,<,35
-Shipping - Auckland (From Silverdale to Pokeno),if weight == 25.00 then fixed price 55.00,25,'==,55
+Shipping - Auckland (From Silverdale to Pokeno),if weight == 25.00 then fixed price 55.00,25,=,55
 Shipping - Auckland (From Silverdale to Pokeno),if weight < 80.00 then fixed price 55.00,80,<,55
-Shipping - Auckland (From Silverdale to Pokeno),if weight == 80.00 then fixed price 90.00,80,'==,90
+Shipping - Auckland (From Silverdale to Pokeno),if weight == 80.00 then fixed price 90.00,80,=,90
 Shipping - Auckland (From Silverdale to Pokeno),if weight < 240.00 then fixed price 90.00,240,<,90
 Shipping - Waiheke,if weight < 5.00 then fixed price 15.00,5,<,15
-Shipping - Waiheke,if weight == 5.00 then fixed price 15.00,5,'==,15
+Shipping - Waiheke,if weight == 5.00 then fixed price 15.00,5,=,15
 Shipping - Waiheke,if weight < 10.00 then fixed price 15.00,10,<,15
-Shipping - Waiheke,if weight == 10.00 then fixed price 20.00,10,'==,20
+Shipping - Waiheke,if weight == 10.00 then fixed price 20.00,10,=,20
 Shipping - Waiheke,if weight < 15.00 then fixed price 20.00,15,<,20
-Shipping - Waiheke,if weight == 15.00 then fixed price 25.00,15,'==,25
+Shipping - Waiheke,if weight == 15.00 then fixed price 25.00,15,=,25
 Shipping - Waiheke,if weight < 20.00 then fixed price 25.00,20,<,25
-Shipping - Waiheke,if weight == 20.00 then fixed price 35.00,20,'==,35
+Shipping - Waiheke,if weight == 20.00 then fixed price 35.00,20,=,35
 Shipping - Waiheke,if weight < 25.00 then fixed price 35.00,25,<,35
-Shipping - Waiheke,if weight == 25.00 then fixed price 100.00,25,'==,100
+Shipping - Waiheke,if weight == 25.00 then fixed price 100.00,25,=,100
 Shipping - Waiheke,if weight < 80.00 then fixed price 100.00,80,<,100
-Shipping - Waiheke,if weight == 80.00 then fixed price 150.00,80,'==,150
+Shipping - Waiheke,if weight == 80.00 then fixed price 150.00,80,=,150
 Shipping - Waiheke,if weight < 120.00 then fixed price 150.00,120,<,150
-Shipping - Waiheke,if weight == 120.00 then fixed price 250.00,120,'==,250
+Shipping - Waiheke,if weight == 120.00 then fixed price 250.00,120,=,250
 Shipping - Waiheke,if weight < 180.00 then fixed price 250.00,180,<,250
-Shipping - Waiheke,if weight == 180.00 then fixed price 300.00,180,'==,300
+Shipping - Waiheke,if weight == 180.00 then fixed price 300.00,180,=,300
 Shipping - Waiheke,if weight < 240.00 then fixed price 300.00,240,<,300
 Shipping - Northland (Others),if weight < 5.00 then fixed price 22.00,5,<,22
-Shipping - Northland (Others),if weight == 5.00 then fixed price 40.00,5,'==,40
+Shipping - Northland (Others),if weight == 5.00 then fixed price 40.00,5,=,40
 Shipping - Northland (Others),if weight < 10.00 then fixed price 40.00,10,<,40
-Shipping - Northland (Others),if weight == 10.00 then fixed price 45.00,10,'==,45
+Shipping - Northland (Others),if weight == 10.00 then fixed price 45.00,10,=,45
 Shipping - Northland (Others),if weight < 20.00 then fixed price 45.00,20,<,45
-Shipping - Northland (Others),if weight == 20.00 then fixed price 100.00,20,'==,100
+Shipping - Northland (Others),if weight == 20.00 then fixed price 100.00,20,=,100
 Shipping - Northland (Others),if weight < 240.00 then fixed price 100.00,240,<,100
 "Shipping -  Northland (Mangawhai, Whangarei)",if weight < 5.00 then fixed price 22.00,5,<,22
-"Shipping -  Northland (Mangawhai, Whangarei)",if weight == 5.00 then fixed price 40.00,5,'==,40
+"Shipping -  Northland (Mangawhai, Whangarei)",if weight == 5.00 then fixed price 40.00,5,=,40
 "Shipping -  Northland (Mangawhai, Whangarei)",if weight < 10.00 then fixed price 40.00,10,<,40
-"Shipping -  Northland (Mangawhai, Whangarei)",if weight == 10.00 then fixed price 45.00,10,'==,45
+"Shipping -  Northland (Mangawhai, Whangarei)",if weight == 10.00 then fixed price 45.00,10,=,45
 "Shipping -  Northland (Mangawhai, Whangarei)",if weight < 20.00 then fixed price 45.00,20,<,45
-"Shipping -  Northland (Mangawhai, Whangarei)",if weight == 20.00 then fixed price 55.00,20,'==,55
+"Shipping -  Northland (Mangawhai, Whangarei)",if weight == 20.00 then fixed price 55.00,20,=,55
 "Shipping -  Northland (Mangawhai, Whangarei)",if weight < 80.00 then fixed price 55.00,80,<,55
-"Shipping -  Northland (Mangawhai, Whangarei)",if weight == 80.00 then fixed price 90.00,80,'==,90
+"Shipping -  Northland (Mangawhai, Whangarei)",if weight == 80.00 then fixed price 90.00,80,=,90
 "Shipping -  Northland (Mangawhai, Whangarei)",if weight < 240.00 then fixed price 90.00,240,<,90
-Shipping Fragile/Bulk Surcharge,,,,
-Normal Delivery Charges,,,,
+Shipping Fragile/Bulk Surcharge,=,=,=,=
+Normal Delivery Charges,=,=,=,=
 Shipping - Northland (Warkworth),if weight < 5.00 then fixed price 22.00,5,<,22
-Shipping - Northland (Warkworth),if weight == 5.00 then fixed price 40.00,5,'==,40
+Shipping - Northland (Warkworth),if weight == 5.00 then fixed price 40.00,5,=,40
 Shipping - Northland (Warkworth),if weight < 10.00 then fixed price 40.00,10,<,40
-Shipping - Northland (Warkworth),if weight == 10.00 then fixed price 45.00,10,'==,45
+Shipping - Northland (Warkworth),if weight == 10.00 then fixed price 45.00,10,=,45
 Shipping - Northland (Warkworth),if weight < 20.00 then fixed price 45.00,20,<,45
-Shipping - Northland (Warkworth),if weight == 20.00 then fixed price 55.00,20,'==,55
+Shipping - Northland (Warkworth),if weight == 20.00 then fixed price 55.00,20,=,55
 Shipping - Northland (Warkworth),if weight < 80.00 then fixed price 55.00,80,<,55
-Shipping - Northland (Warkworth),if weight == 80.00 then fixed price 55.00,80,'==,55
+Shipping - Northland (Warkworth),if weight == 80.00 then fixed price 55.00,80,=,55
 Shipping - Northland (Warkworth),if weight < 240.00 then fixed price 90.00,240,<,90
 Shipping -  Gisborne,if weight < 5.00 then fixed price 22.00,5,<,22
-Shipping -  Gisborne,if weight == 5.00 then fixed price 40.00,5,'==,40
+Shipping -  Gisborne,if weight == 5.00 then fixed price 40.00,5,=,40
 Shipping -  Gisborne,if weight < 10.00 then fixed price 40.00,10,<,40
-Shipping -  Gisborne,if weight == 10.00 then fixed price 45.00,10,'==,45
+Shipping -  Gisborne,if weight == 10.00 then fixed price 45.00,10,=,45
 Shipping -  Gisborne,if weight < 20.00 then fixed price 45.00,20,<,45
-Shipping -  Gisborne,if weight == 20.00 then fixed price 100.00,20,'==,100
+Shipping -  Gisborne,if weight == 20.00 then fixed price 100.00,20,=,100
 Shipping -  Gisborne,if weight < 25.00 then fixed price 100.00,25,<,100
-Shipping -  Gisborne,if weight == 25.00 then fixed price 150.00,25,'==,150
+Shipping -  Gisborne,if weight == 25.00 then fixed price 150.00,25,=,150
 Shipping -  Gisborne,if weight < 80.00 then fixed price 150.00,80,<,150
-Shipping -  Gisborne,if weight == 80.00 then fixed price 200.00,80,'==,200
+Shipping -  Gisborne,if weight == 80.00 then fixed price 200.00,80,=,200
 Shipping -  Gisborne,if weight < 120.00 then fixed price 200.00,120,<,200
-Shipping -  Gisborne,if weight == 120.00 then fixed price 300.00,120,'==,300
+Shipping -  Gisborne,if weight == 120.00 then fixed price 300.00,120,=,300
 Shipping -  Gisborne,if weight < 180.00 then fixed price 300.00,180,<,300
-Shipping -  Gisborne,if weight == 180.00 then fixed price 350.00,180,'==,350
+Shipping -  Gisborne,if weight == 180.00 then fixed price 350.00,180,=,350
 Shipping -  Gisborne,if weight < 240.00 then fixed price 350.00,240,<,350
 Shipping -  Manawatu- Wanganui,if weight < 5.00 then fixed price 22.00,5,<,22
-Shipping -  Manawatu- Wanganui,if weight == 5.00 then fixed price 40.00,5,'==,40
+Shipping -  Manawatu- Wanganui,if weight == 5.00 then fixed price 40.00,5,=,40
 Shipping -  Manawatu- Wanganui,if weight < 10.00 then fixed price 40.00,10,<,40
-Shipping -  Manawatu- Wanganui,if weight == 10.00 then fixed price 45.00,10,'==,45
+Shipping -  Manawatu- Wanganui,if weight == 10.00 then fixed price 45.00,10,=,45
 Shipping -  Manawatu- Wanganui,if weight < 20.00 then fixed price 45.00,20,<,45
-Shipping -  Manawatu- Wanganui,if weight == 20.00 then fixed price 50.00,20,'==,50
+Shipping -  Manawatu- Wanganui,if weight == 20.00 then fixed price 50.00,20,=,50
 Shipping -  Manawatu- Wanganui,if weight < 25.00 then fixed price 50.00,25,<,50
-Shipping -  Manawatu- Wanganui,if weight == 25.00 then fixed price 120.00,25,'==,120
+Shipping -  Manawatu- Wanganui,if weight == 25.00 then fixed price 120.00,25,=,120
 Shipping -  Manawatu- Wanganui,if weight < 80.00 then fixed price 120.00,80,<,120
-Shipping -  Manawatu- Wanganui,if weight == 80.00 then fixed price 200.00,80,'==,200
+Shipping -  Manawatu- Wanganui,if weight == 80.00 then fixed price 200.00,80,=,200
 Shipping -  Manawatu- Wanganui,if weight < 120.00 then fixed price 200.00,120,<,200
-Shipping -  Manawatu- Wanganui,if weight == 120.00 then fixed price 300.00,120,'==,300
+Shipping -  Manawatu- Wanganui,if weight == 120.00 then fixed price 300.00,120,=,300
 Shipping -  Manawatu- Wanganui,if weight < 180.00 then fixed price 300.00,180,<,300
-Shipping -  Manawatu- Wanganui,if weight == 180.00 then fixed price 350.00,180,'==,350
+Shipping -  Manawatu- Wanganui,if weight == 180.00 then fixed price 350.00,180,=,350
 Shipping -  Manawatu- Wanganui,if weight < 240.00 then fixed price 350.00,240,<,350
 Shipping -  Wellington,if weight < 5.00 then fixed price 22.00,5,<,22
-Shipping -  Wellington,if weight == 5.00 then fixed price 40.00,5,'==,40
+Shipping -  Wellington,if weight == 5.00 then fixed price 40.00,5,=,40
 Shipping -  Wellington,if weight < 10.00 then fixed price 40.00,10,<,40
-Shipping -  Wellington,if weight == 10.00 then fixed price 45.00,10,'==,45
+Shipping -  Wellington,if weight == 10.00 then fixed price 45.00,10,=,45
 Shipping -  Wellington,if weight < 20.00 then fixed price 45.00,20,<,45
-Shipping -  Wellington,if weight == 20.00 then fixed price 50.00,20,'==,50
+Shipping -  Wellington,if weight == 20.00 then fixed price 50.00,20,=,50
 Shipping -  Wellington,if weight < 25.00 then fixed price 50.00,25,<,50
-Shipping -  Wellington,if weight == 25.00 then fixed price 120.00,25,'==,120
+Shipping -  Wellington,if weight == 25.00 then fixed price 120.00,25,=,120
 Shipping -  Wellington,if weight < 80.00 then fixed price 120.00,80,<,120
-Shipping -  Wellington,if weight == 80.00 then fixed price 200.00,80,'==,200
+Shipping -  Wellington,if weight == 80.00 then fixed price 200.00,80,=,200
 Shipping -  Wellington,if weight < 120.00 then fixed price 200.00,120,<,200
-Shipping -  Wellington,if weight == 120.00 then fixed price 300.00,120,'==,300
+Shipping -  Wellington,if weight == 120.00 then fixed price 300.00,120,=,300
 Shipping -  Wellington,if weight < 180.00 then fixed price 300.00,180,<,300
-Shipping -  Wellington,if weight == 180.00 then fixed price 350.00,180,'==,350
+Shipping -  Wellington,if weight == 180.00 then fixed price 350.00,180,=,350
 Shipping -  Wellington,if weight < 240.00 then fixed price 300.00,240,<,300
 "Shipping -  Cantebury Zone 1 (Kaikoura, Cheviot, Amberley, Woodend, Rangiora, Kaiapoi)",if weight < 5.00 then fixed price 20.00,5,<,20
-"Shipping -  Cantebury Zone 1 (Kaikoura, Cheviot, Amberley, Woodend, Rangiora, Kaiapoi)",if weight == 5.00 then fixed price 28.00,5,'==,28
+"Shipping -  Cantebury Zone 1 (Kaikoura, Cheviot, Amberley, Woodend, Rangiora, Kaiapoi)",if weight == 5.00 then fixed price 28.00,5,=,28
 "Shipping -  Cantebury Zone 1 (Kaikoura, Cheviot, Amberley, Woodend, Rangiora, Kaiapoi)",if weight < 10.00 then fixed price 28.00,10,<,28
-"Shipping -  Cantebury Zone 1 (Kaikoura, Cheviot, Amberley, Woodend, Rangiora, Kaiapoi)",if weight == 10.00 then fixed price 40.00,10,'==,40
+"Shipping -  Cantebury Zone 1 (Kaikoura, Cheviot, Amberley, Woodend, Rangiora, Kaiapoi)",if weight == 10.00 then fixed price 40.00,10,=,40
 "Shipping -  Cantebury Zone 1 (Kaikoura, Cheviot, Amberley, Woodend, Rangiora, Kaiapoi)",if weight < 20.00 then fixed price 40.00,20,<,40
-"Shipping -  Cantebury Zone 1 (Kaikoura, Cheviot, Amberley, Woodend, Rangiora, Kaiapoi)",if weight == 20.00 then fixed price 60.00,20,'==,60
+"Shipping -  Cantebury Zone 1 (Kaikoura, Cheviot, Amberley, Woodend, Rangiora, Kaiapoi)",if weight == 20.00 then fixed price 60.00,20,=,60
 "Shipping -  Cantebury Zone 1 (Kaikoura, Cheviot, Amberley, Woodend, Rangiora, Kaiapoi)",if weight < 25.00 then fixed price 60.00,25,<,60
-"Shipping -  Cantebury Zone 1 (Kaikoura, Cheviot, Amberley, Woodend, Rangiora, Kaiapoi)",if weight == 25.00 then fixed price 100.00,25,'==,100
+"Shipping -  Cantebury Zone 1 (Kaikoura, Cheviot, Amberley, Woodend, Rangiora, Kaiapoi)",if weight == 25.00 then fixed price 100.00,25,=,100
 "Shipping -  Cantebury Zone 1 (Kaikoura, Cheviot, Amberley, Woodend, Rangiora, Kaiapoi)",if weight < 80.00 then fixed price 100.00,80,<,100
-"Shipping -  Cantebury Zone 1 (Kaikoura, Cheviot, Amberley, Woodend, Rangiora, Kaiapoi)",if weight == 80.00 then fixed price 200.00,80,'==,200
+"Shipping -  Cantebury Zone 1 (Kaikoura, Cheviot, Amberley, Woodend, Rangiora, Kaiapoi)",if weight == 80.00 then fixed price 200.00,80,=,200
 "Shipping -  Cantebury Zone 1 (Kaikoura, Cheviot, Amberley, Woodend, Rangiora, Kaiapoi)",if weight < 120.00 then fixed price 200.00,120,<,200
-"Shipping -  Cantebury Zone 1 (Kaikoura, Cheviot, Amberley, Woodend, Rangiora, Kaiapoi)",if weight == 120.00 then fixed price 300.00,120,'==,300
+"Shipping -  Cantebury Zone 1 (Kaikoura, Cheviot, Amberley, Woodend, Rangiora, Kaiapoi)",if weight == 120.00 then fixed price 300.00,120,=,300
 "Shipping -  Cantebury Zone 1 (Kaikoura, Cheviot, Amberley, Woodend, Rangiora, Kaiapoi)",if weight < 180.00 then fixed price 300.00,180,<,300
-"Shipping -  Cantebury Zone 1 (Kaikoura, Cheviot, Amberley, Woodend, Rangiora, Kaiapoi)",if weight == 180.00 then fixed price 400.00,180,'==,400
+"Shipping -  Cantebury Zone 1 (Kaikoura, Cheviot, Amberley, Woodend, Rangiora, Kaiapoi)",if weight == 180.00 then fixed price 400.00,180,=,400
 "Shipping -  Cantebury Zone 1 (Kaikoura, Cheviot, Amberley, Woodend, Rangiora, Kaiapoi)",if weight < 240.00 then fixed price 400.00,240,<,400
 "Shipping -  Cantebury Zone 2 (Hanmer Springs, Temuka, Ashburton,Timaru, Waimate, Temuka)",if weight < 5.00 then fixed price 20.00,5,<,20
-"Shipping -  Cantebury Zone 2 (Hanmer Springs, Temuka, Ashburton,Timaru, Waimate, Temuka)",if weight == 5.00 then fixed price 28.00,5,'==,28
+"Shipping -  Cantebury Zone 2 (Hanmer Springs, Temuka, Ashburton,Timaru, Waimate, Temuka)",if weight == 5.00 then fixed price 28.00,5,=,28
 "Shipping -  Cantebury Zone 2 (Hanmer Springs, Temuka, Ashburton,Timaru, Waimate, Temuka)",if weight < 10.00 then fixed price 28.00,10,<,28
-"Shipping -  Cantebury Zone 2 (Hanmer Springs, Temuka, Ashburton,Timaru, Waimate, Temuka)",if weight == 10.00 then fixed price 40.00,10,'==,40
+"Shipping -  Cantebury Zone 2 (Hanmer Springs, Temuka, Ashburton,Timaru, Waimate, Temuka)",if weight == 10.00 then fixed price 40.00,10,=,40
 "Shipping -  Cantebury Zone 2 (Hanmer Springs, Temuka, Ashburton,Timaru, Waimate, Temuka)",if weight < 20.00 then fixed price 40.00,20,<,40
-"Shipping -  Cantebury Zone 2 (Hanmer Springs, Temuka, Ashburton,Timaru, Waimate, Temuka)",if weight == 20.00 then fixed price 60.00,20,'==,60
+"Shipping -  Cantebury Zone 2 (Hanmer Springs, Temuka, Ashburton,Timaru, Waimate, Temuka)",if weight == 20.00 then fixed price 60.00,20,=,60
 "Shipping -  Cantebury Zone 2 (Hanmer Springs, Temuka, Ashburton,Timaru, Waimate, Temuka)",if weight < 25.00 then fixed price 60.00,25,<,60
-"Shipping -  Cantebury Zone 2 (Hanmer Springs, Temuka, Ashburton,Timaru, Waimate, Temuka)",if weight == 25.00 then fixed price 100.00,25,'==,100
+"Shipping -  Cantebury Zone 2 (Hanmer Springs, Temuka, Ashburton,Timaru, Waimate, Temuka)",if weight == 25.00 then fixed price 100.00,25,=,100
 "Shipping -  Cantebury Zone 2 (Hanmer Springs, Temuka, Ashburton,Timaru, Waimate, Temuka)",if weight < 80.00 then fixed price 100.00,80,<,100
-"Shipping -  Cantebury Zone 2 (Hanmer Springs, Temuka, Ashburton,Timaru, Waimate, Temuka)",if weight == 80.00 then fixed price 200.00,80,'==,200
+"Shipping -  Cantebury Zone 2 (Hanmer Springs, Temuka, Ashburton,Timaru, Waimate, Temuka)",if weight == 80.00 then fixed price 200.00,80,=,200
 "Shipping -  Cantebury Zone 2 (Hanmer Springs, Temuka, Ashburton,Timaru, Waimate, Temuka)",if weight < 120.00 then fixed price 200.00,120,<,200
-"Shipping -  Cantebury Zone 2 (Hanmer Springs, Temuka, Ashburton,Timaru, Waimate, Temuka)",if weight == 120.00 then fixed price 300.00,120,'==,300
+"Shipping -  Cantebury Zone 2 (Hanmer Springs, Temuka, Ashburton,Timaru, Waimate, Temuka)",if weight == 120.00 then fixed price 300.00,120,=,300
 "Shipping -  Cantebury Zone 2 (Hanmer Springs, Temuka, Ashburton,Timaru, Waimate, Temuka)",if weight < 180.00 then fixed price 300.00,180,<,300
-"Shipping -  Cantebury Zone 2 (Hanmer Springs, Temuka, Ashburton,Timaru, Waimate, Temuka)",if weight == 180.00 then fixed price 400.00,180,'==,400
+"Shipping -  Cantebury Zone 2 (Hanmer Springs, Temuka, Ashburton,Timaru, Waimate, Temuka)",if weight == 180.00 then fixed price 400.00,180,=,400
 "Shipping -  Cantebury Zone 2 (Hanmer Springs, Temuka, Ashburton,Timaru, Waimate, Temuka)",if weight < 240.00 then fixed price 400.00,240,<,400
 "Shipping -  Christchurch (Cantebury) incl. Prebbleton, Lincoln, Rolleston",if weight < 5.00 then fixed price 20.00,5,<,20
-"Shipping -  Christchurch (Cantebury) incl. Prebbleton, Lincoln, Rolleston",if weight == 5.00 then fixed price 28.00,5,'==,28
+"Shipping -  Christchurch (Cantebury) incl. Prebbleton, Lincoln, Rolleston",if weight == 5.00 then fixed price 28.00,5,=,28
 "Shipping -  Christchurch (Cantebury) incl. Prebbleton, Lincoln, Rolleston",if weight < 10.00 then fixed price 28.00,10,<,28
-"Shipping -  Christchurch (Cantebury) incl. Prebbleton, Lincoln, Rolleston",if weight == 10.00 then fixed price 40.00,10,'==,40
+"Shipping -  Christchurch (Cantebury) incl. Prebbleton, Lincoln, Rolleston",if weight == 10.00 then fixed price 40.00,10,=,40
 "Shipping -  Christchurch (Cantebury) incl. Prebbleton, Lincoln, Rolleston",if weight < 20.00 then fixed price 40.00,20,<,40
-"Shipping -  Christchurch (Cantebury) incl. Prebbleton, Lincoln, Rolleston",if weight == 20.00 then fixed price 60.00,20,'==,60
+"Shipping -  Christchurch (Cantebury) incl. Prebbleton, Lincoln, Rolleston",if weight == 20.00 then fixed price 60.00,20,=,60
 "Shipping -  Christchurch (Cantebury) incl. Prebbleton, Lincoln, Rolleston",if weight < 25.00 then fixed price 60.00,25,<,60
-"Shipping -  Christchurch (Cantebury) incl. Prebbleton, Lincoln, Rolleston",if weight == 25.00 then fixed price 100.00,25,'==,100
+"Shipping -  Christchurch (Cantebury) incl. Prebbleton, Lincoln, Rolleston",if weight == 25.00 then fixed price 100.00,25,=,100
 "Shipping -  Christchurch (Cantebury) incl. Prebbleton, Lincoln, Rolleston",if weight < 80.00 then fixed price 100.00,80,<,100
-"Shipping -  Christchurch (Cantebury) incl. Prebbleton, Lincoln, Rolleston",if weight == 80.00 then fixed price 200.00,80,'==,200
+"Shipping -  Christchurch (Cantebury) incl. Prebbleton, Lincoln, Rolleston",if weight == 80.00 then fixed price 200.00,80,=,200
 "Shipping -  Christchurch (Cantebury) incl. Prebbleton, Lincoln, Rolleston",if weight < 120.00 then fixed price 200.00,120,<,200
-"Shipping -  Christchurch (Cantebury) incl. Prebbleton, Lincoln, Rolleston",if weight == 120.00 then fixed price 300.00,120,'==,300
+"Shipping -  Christchurch (Cantebury) incl. Prebbleton, Lincoln, Rolleston",if weight == 120.00 then fixed price 300.00,120,=,300
 "Shipping -  Christchurch (Cantebury) incl. Prebbleton, Lincoln, Rolleston",if weight < 180.00 then fixed price 300.00,180,<,300
-"Shipping -  Christchurch (Cantebury) incl. Prebbleton, Lincoln, Rolleston",if weight == 180.00 then fixed price 400.00,180,'==,400
+"Shipping -  Christchurch (Cantebury) incl. Prebbleton, Lincoln, Rolleston",if weight == 180.00 then fixed price 400.00,180,=,400
 "Shipping -  Christchurch (Cantebury) incl. Prebbleton, Lincoln, Rolleston",if weight < 240.00 then fixed price 400.00,240,<,400
 "Shipping -  Southland (Invercargill, Gore, Winton, Te Anau)",if weight < 5.00 then fixed price 18.00,5,<,18
-"Shipping -  Southland (Invercargill, Gore, Winton, Te Anau)",if weight == 5.00 then fixed price 35.00,5,'==,35
+"Shipping -  Southland (Invercargill, Gore, Winton, Te Anau)",if weight == 5.00 then fixed price 35.00,5,=,35
 "Shipping -  Southland (Invercargill, Gore, Winton, Te Anau)",if weight < 10.00 then fixed price 35.00,10,<,35
-"Shipping -  Southland (Invercargill, Gore, Winton, Te Anau)",if weight == 10.00 then fixed price 50.00,10,'==,50
+"Shipping -  Southland (Invercargill, Gore, Winton, Te Anau)",if weight == 10.00 then fixed price 50.00,10,=,50
 "Shipping -  Southland (Invercargill, Gore, Winton, Te Anau)",if weight < 15.00 then fixed price 50.00,15,<,50
-"Shipping -  Southland (Invercargill, Gore, Winton, Te Anau)",if weight == 15.00 then fixed price 65.00,15,'==,65
+"Shipping -  Southland (Invercargill, Gore, Winton, Te Anau)",if weight == 15.00 then fixed price 65.00,15,=,65
 "Shipping -  Southland (Invercargill, Gore, Winton, Te Anau)",if weight < 20.00 then fixed price 65.00,20,<,65
-"Shipping -  Southland (Invercargill, Gore, Winton, Te Anau)",if weight == 20.00 then fixed price 80.00,20,'==,80
+"Shipping -  Southland (Invercargill, Gore, Winton, Te Anau)",if weight == 20.00 then fixed price 80.00,20,=,80
 "Shipping -  Southland (Invercargill, Gore, Winton, Te Anau)",if weight < 25.00 then fixed price 80.00,25,<,80
-"Shipping -  Southland (Invercargill, Gore, Winton, Te Anau)",if weight == 25.00 then fixed price 140.00,25,'==,140
+"Shipping -  Southland (Invercargill, Gore, Winton, Te Anau)",if weight == 25.00 then fixed price 140.00,25,=,140
 "Shipping -  Southland (Invercargill, Gore, Winton, Te Anau)",if weight < 80.00 then fixed price 140.00,80,<,140
-"Shipping -  Southland (Invercargill, Gore, Winton, Te Anau)",if weight == 80.00 then fixed price 280.00,80,'==,280
+"Shipping -  Southland (Invercargill, Gore, Winton, Te Anau)",if weight == 80.00 then fixed price 280.00,80,=,280
 "Shipping -  Southland (Invercargill, Gore, Winton, Te Anau)",if weight < 120.00 then fixed price 280.00,120,<,280
-"Shipping -  Southland (Invercargill, Gore, Winton, Te Anau)",if weight == 120.00 then fixed price 420.00,120,'==,420
+"Shipping -  Southland (Invercargill, Gore, Winton, Te Anau)",if weight == 120.00 then fixed price 420.00,120,=,420
 "Shipping -  Southland (Invercargill, Gore, Winton, Te Anau)",if weight < 180.00 then fixed price 420.00,180,<,420
-"Shipping -  Southland (Invercargill, Gore, Winton, Te Anau)",if weight == 180.00 then fixed price 560.00,180,'==,560
+"Shipping -  Southland (Invercargill, Gore, Winton, Te Anau)",if weight == 180.00 then fixed price 560.00,180,=,560
 "Shipping -  Southland (Invercargill, Gore, Winton, Te Anau)",if weight < 240.00 then fixed price 560.00,240,<,560
 Shipping -  West Coast (Springs Junction),if weight < 5.00 then fixed price 20.00,5,<,20
-Shipping -  West Coast (Springs Junction),if weight == 5.00 then fixed price 28.00,5,'==,28
+Shipping -  West Coast (Springs Junction),if weight == 5.00 then fixed price 28.00,5,=,28
 Shipping -  West Coast (Springs Junction),if weight < 10.00 then fixed price 28.00,10,<,28
-Shipping -  West Coast (Springs Junction),if weight == 10.00 then fixed price 40.00,10,'==,40
+Shipping -  West Coast (Springs Junction),if weight == 10.00 then fixed price 40.00,10,=,40
 Shipping -  West Coast (Springs Junction),if weight < 20.00 then fixed price 40.00,20,<,40
-Shipping -  West Coast (Springs Junction),if weight == 20.00 then fixed price 60.00,20,'==,60
+Shipping -  West Coast (Springs Junction),if weight == 20.00 then fixed price 60.00,20,=,60
 Shipping -  West Coast (Springs Junction),if weight < 25.00 then fixed price 60.00,25,<,60
-Shipping -  West Coast (Springs Junction),if weight == 25.00 then fixed price 100.00,25,'==,100
+Shipping -  West Coast (Springs Junction),if weight == 25.00 then fixed price 100.00,25,=,100
 Shipping -  West Coast (Springs Junction),if weight < 80.00 then fixed price 100.00,80,<,100
-Shipping -  West Coast (Springs Junction),if weight == 80.00 then fixed price 200.00,80,'==,200
+Shipping -  West Coast (Springs Junction),if weight == 80.00 then fixed price 200.00,80,=,200
 Shipping -  West Coast (Springs Junction),if weight < 120.00 then fixed price 200.00,120,<,200
-Shipping -  West Coast (Springs Junction),if weight == 120.00 then fixed price 300.00,120,'==,300
+Shipping -  West Coast (Springs Junction),if weight == 120.00 then fixed price 300.00,120,=,300
 Shipping -  West Coast (Springs Junction),if weight < 180.00 then fixed price 300.00,180,<,300
-Shipping -  West Coast (Springs Junction),if weight == 180.00 then fixed price 400.00,180,'==,400
+Shipping -  West Coast (Springs Junction),if weight == 180.00 then fixed price 400.00,180,=,400
 Shipping -  West Coast (Springs Junction),if weight < 240.00 then fixed price 400.00,240,<,400
 Shipping -  West Coast (Others),if weight < 5.00 then fixed price 20.00,5,<,20
-Shipping -  West Coast (Others),if weight == 5.00 then fixed price 35.00,5,'==,35
+Shipping -  West Coast (Others),if weight == 5.00 then fixed price 35.00,5,=,35
 Shipping -  West Coast (Others),if weight < 10.00 then fixed price 35.00,10,<,35
-Shipping -  West Coast (Others),if weight == 10.00 then fixed price 50.00,10,'==,50
+Shipping -  West Coast (Others),if weight == 10.00 then fixed price 50.00,10,=,50
 Shipping -  West Coast (Others),if weight < 15.00 then fixed price 50.00,15,<,50
-Shipping -  West Coast (Others),if weight == 15.00 then fixed price 65.00,15,'==,65
+Shipping -  West Coast (Others),if weight == 15.00 then fixed price 65.00,15,=,65
 Shipping -  West Coast (Others),if weight < 20.00 then fixed price 65.00,20,<,65
-Shipping -  West Coast (Others),if weight == 20.00 then fixed price 80.00,20,'==,80
+Shipping -  West Coast (Others),if weight == 20.00 then fixed price 80.00,20,=,80
 Shipping -  West Coast (Others),if weight < 25.00 then fixed price 80.00,25,<,80
-Shipping -  West Coast (Others),if weight == 25.00 then fixed price 140.00,25,'==,140
+Shipping -  West Coast (Others),if weight == 25.00 then fixed price 140.00,25,=,140
 Shipping -  West Coast (Others),if weight < 80.00 then fixed price 140.00,80,<,140
-Shipping -  West Coast (Others),if weight == 80.00 then fixed price 280.00,80,'==,280
+Shipping -  West Coast (Others),if weight == 80.00 then fixed price 280.00,80,=,280
 Shipping -  West Coast (Others),if weight < 120.00 then fixed price 280.00,120,<,280
-Shipping -  West Coast (Others),if weight == 120.00 then fixed price 420.00,120,'==,420
+Shipping -  West Coast (Others),if weight == 120.00 then fixed price 420.00,120,=,420
 Shipping -  West Coast (Others),if weight < 180.00 then fixed price 420.00,180,<,420
-Shipping -  West Coast (Others),if weight == 180.00 then fixed price 560.00,180,'==,560
+Shipping -  West Coast (Others),if weight == 180.00 then fixed price 560.00,180,=,560
 Shipping -  West Coast (Others),if weight < 240.00 then fixed price 560.00,240,<,560
 "Shipping -  Otago (Oamaru, Lake Hayes , Waimate, Palmerston, Dunedin, Mosgiel, Milton , Alexandra, Cromwell, Arrowtown, Queenstown, Wanaka)",if weight < 5.00 then fixed price 20.00,5,<,20
-"Shipping -  Otago (Oamaru, Lake Hayes , Waimate, Palmerston, Dunedin, Mosgiel, Milton , Alexandra, Cromwell, Arrowtown, Queenstown, Wanaka)",if weight == 5.00 then fixed price 35.00,5,'==,35
+"Shipping -  Otago (Oamaru, Lake Hayes , Waimate, Palmerston, Dunedin, Mosgiel, Milton , Alexandra, Cromwell, Arrowtown, Queenstown, Wanaka)",if weight == 5.00 then fixed price 35.00,5,=,35
 "Shipping -  Otago (Oamaru, Lake Hayes , Waimate, Palmerston, Dunedin, Mosgiel, Milton , Alexandra, Cromwell, Arrowtown, Queenstown, Wanaka)",if weight < 10.00 then fixed price 35.00,10,<,35
-"Shipping -  Otago (Oamaru, Lake Hayes , Waimate, Palmerston, Dunedin, Mosgiel, Milton , Alexandra, Cromwell, Arrowtown, Queenstown, Wanaka)",if weight == 10.00 then fixed price 50.00,10,'==,50
+"Shipping -  Otago (Oamaru, Lake Hayes , Waimate, Palmerston, Dunedin, Mosgiel, Milton , Alexandra, Cromwell, Arrowtown, Queenstown, Wanaka)",if weight == 10.00 then fixed price 50.00,10,=,50
 "Shipping -  Otago (Oamaru, Lake Hayes , Waimate, Palmerston, Dunedin, Mosgiel, Milton , Alexandra, Cromwell, Arrowtown, Queenstown, Wanaka)",if weight < 15.00 then fixed price 50.00,15,<,50
-"Shipping -  Otago (Oamaru, Lake Hayes , Waimate, Palmerston, Dunedin, Mosgiel, Milton , Alexandra, Cromwell, Arrowtown, Queenstown, Wanaka)",if weight == 15.00 then fixed price 65.00,15,'==,65
+"Shipping -  Otago (Oamaru, Lake Hayes , Waimate, Palmerston, Dunedin, Mosgiel, Milton , Alexandra, Cromwell, Arrowtown, Queenstown, Wanaka)",if weight == 15.00 then fixed price 65.00,15,=,65
 "Shipping -  Otago (Oamaru, Lake Hayes , Waimate, Palmerston, Dunedin, Mosgiel, Milton , Alexandra, Cromwell, Arrowtown, Queenstown, Wanaka)",if weight < 20.00 then fixed price 65.00,20,<,65
-"Shipping -  Otago (Oamaru, Lake Hayes , Waimate, Palmerston, Dunedin, Mosgiel, Milton , Alexandra, Cromwell, Arrowtown, Queenstown, Wanaka)",if weight == 20.00 then fixed price 80.00,20,'==,80
+"Shipping -  Otago (Oamaru, Lake Hayes , Waimate, Palmerston, Dunedin, Mosgiel, Milton , Alexandra, Cromwell, Arrowtown, Queenstown, Wanaka)",if weight == 20.00 then fixed price 80.00,20,=,80
 "Shipping -  Otago (Oamaru, Lake Hayes , Waimate, Palmerston, Dunedin, Mosgiel, Milton , Alexandra, Cromwell, Arrowtown, Queenstown, Wanaka)",if weight < 25.00 then fixed price 80.00,25,<,80
-"Shipping -  Otago (Oamaru, Lake Hayes , Waimate, Palmerston, Dunedin, Mosgiel, Milton , Alexandra, Cromwell, Arrowtown, Queenstown, Wanaka)",if weight == 25.00 then fixed price 140.00,25,'==,140
+"Shipping -  Otago (Oamaru, Lake Hayes , Waimate, Palmerston, Dunedin, Mosgiel, Milton , Alexandra, Cromwell, Arrowtown, Queenstown, Wanaka)",if weight == 25.00 then fixed price 140.00,25,=,140
 "Shipping -  Otago (Oamaru, Lake Hayes , Waimate, Palmerston, Dunedin, Mosgiel, Milton , Alexandra, Cromwell, Arrowtown, Queenstown, Wanaka)",if weight < 80.00 then fixed price 140.00,80,<,140
-"Shipping -  Otago (Oamaru, Lake Hayes , Waimate, Palmerston, Dunedin, Mosgiel, Milton , Alexandra, Cromwell, Arrowtown, Queenstown, Wanaka)",if weight == 80.00 then fixed price 280.00,80,'==,280
+"Shipping -  Otago (Oamaru, Lake Hayes , Waimate, Palmerston, Dunedin, Mosgiel, Milton , Alexandra, Cromwell, Arrowtown, Queenstown, Wanaka)",if weight == 80.00 then fixed price 280.00,80,=,280
 "Shipping -  Otago (Oamaru, Lake Hayes , Waimate, Palmerston, Dunedin, Mosgiel, Milton , Alexandra, Cromwell, Arrowtown, Queenstown, Wanaka)",if weight < 120.00 then fixed price 280.00,120,<,280
-"Shipping -  Otago (Oamaru, Lake Hayes , Waimate, Palmerston, Dunedin, Mosgiel, Milton , Alexandra, Cromwell, Arrowtown, Queenstown, Wanaka)",if weight == 120.00 then fixed price 420.00,120,'==,420
+"Shipping -  Otago (Oamaru, Lake Hayes , Waimate, Palmerston, Dunedin, Mosgiel, Milton , Alexandra, Cromwell, Arrowtown, Queenstown, Wanaka)",if weight == 120.00 then fixed price 420.00,120,=,420
 "Shipping -  Otago (Oamaru, Lake Hayes , Waimate, Palmerston, Dunedin, Mosgiel, Milton , Alexandra, Cromwell, Arrowtown, Queenstown, Wanaka)",if weight < 180.00 then fixed price 420.00,180,<,420
-"Shipping -  Otago (Oamaru, Lake Hayes , Waimate, Palmerston, Dunedin, Mosgiel, Milton , Alexandra, Cromwell, Arrowtown, Queenstown, Wanaka)",if weight == 180.00 then fixed price 560.00,180,'==,560
+"Shipping -  Otago (Oamaru, Lake Hayes , Waimate, Palmerston, Dunedin, Mosgiel, Milton , Alexandra, Cromwell, Arrowtown, Queenstown, Wanaka)",if weight == 180.00 then fixed price 560.00,180,=,560
 "Shipping -  Otago (Oamaru, Lake Hayes , Waimate, Palmerston, Dunedin, Mosgiel, Milton , Alexandra, Cromwell, Arrowtown, Queenstown, Wanaka)",if weight < 240.00 then fixed price 560.00,240,<,560
 "Shipping -  Tasman, Nelson (Richmond, Tasman, Wakefield, Murchison, Nelson)",if weight < 5.00 then fixed price 20.00,5,<,20
-"Shipping -  Tasman, Nelson (Richmond, Tasman, Wakefield, Murchison, Nelson)",if weight == 5.00 then fixed price 25.00,5,'==,25
+"Shipping -  Tasman, Nelson (Richmond, Tasman, Wakefield, Murchison, Nelson)",if weight == 5.00 then fixed price 25.00,5,=,25
 "Shipping -  Tasman, Nelson (Richmond, Tasman, Wakefield, Murchison, Nelson)",if weight < 10.00 then fixed price 25.00,10,<,25
-"Shipping -  Tasman, Nelson (Richmond, Tasman, Wakefield, Murchison, Nelson)",if weight == 10.00 then fixed price 30.00,10,'==,30
+"Shipping -  Tasman, Nelson (Richmond, Tasman, Wakefield, Murchison, Nelson)",if weight == 10.00 then fixed price 30.00,10,=,30
 "Shipping -  Tasman, Nelson (Richmond, Tasman, Wakefield, Murchison, Nelson)",if weight < 15.00 then fixed price 30.00,15,<,30
-"Shipping -  Tasman, Nelson (Richmond, Tasman, Wakefield, Murchison, Nelson)",if weight == 15.00 then fixed price 40.00,15,'==,40
+"Shipping -  Tasman, Nelson (Richmond, Tasman, Wakefield, Murchison, Nelson)",if weight == 15.00 then fixed price 40.00,15,=,40
 "Shipping -  Tasman, Nelson (Richmond, Tasman, Wakefield, Murchison, Nelson)",if weight < 20.00 then fixed price 40.00,20,<,40
-"Shipping -  Tasman, Nelson (Richmond, Tasman, Wakefield, Murchison, Nelson)",if weight == 20.00 then fixed price 50.00,20,'==,50
+"Shipping -  Tasman, Nelson (Richmond, Tasman, Wakefield, Murchison, Nelson)",if weight == 20.00 then fixed price 50.00,20,=,50
 "Shipping -  Tasman, Nelson (Richmond, Tasman, Wakefield, Murchison, Nelson)",if weight < 25.00 then fixed price 50.00,25,<,50
-"Shipping -  Tasman, Nelson (Richmond, Tasman, Wakefield, Murchison, Nelson)",if weight == 25.00 then fixed price 100.00,25,'==,100
+"Shipping -  Tasman, Nelson (Richmond, Tasman, Wakefield, Murchison, Nelson)",if weight == 25.00 then fixed price 100.00,25,=,100
 "Shipping -  Tasman, Nelson (Richmond, Tasman, Wakefield, Murchison, Nelson)",if weight < 80.00 then fixed price 100.00,80,<,100
-"Shipping -  Tasman, Nelson (Richmond, Tasman, Wakefield, Murchison, Nelson)",if weight == 80.00 then fixed price 200.00,80,'==,200
+"Shipping -  Tasman, Nelson (Richmond, Tasman, Wakefield, Murchison, Nelson)",if weight == 80.00 then fixed price 200.00,80,=,200
 "Shipping -  Tasman, Nelson (Richmond, Tasman, Wakefield, Murchison, Nelson)",if weight < 120.00 then fixed price 200.00,120,<,200
-"Shipping -  Tasman, Nelson (Richmond, Tasman, Wakefield, Murchison, Nelson)",if weight == 120.00 then fixed price 300.00,120,'==,300
+"Shipping -  Tasman, Nelson (Richmond, Tasman, Wakefield, Murchison, Nelson)",if weight == 120.00 then fixed price 300.00,120,=,300
 "Shipping -  Tasman, Nelson (Richmond, Tasman, Wakefield, Murchison, Nelson)",if weight < 180.00 then fixed price 300.00,180,<,300
-"Shipping -  Tasman, Nelson (Richmond, Tasman, Wakefield, Murchison, Nelson)",if weight == 180.00 then fixed price 400.00,180,'==,400
+"Shipping -  Tasman, Nelson (Richmond, Tasman, Wakefield, Murchison, Nelson)",if weight == 180.00 then fixed price 400.00,180,=,400
 "Shipping -  Tasman, Nelson (Richmond, Tasman, Wakefield, Murchison, Nelson)",if weight < 240.00 then fixed price 400.00,240,<,400
 "Shipping -  Marlborough (Picton, Blenheim, Seddon, Ward)",if weight < 5.00 then fixed price 20.00,5,<,20
-"Shipping -  Marlborough (Picton, Blenheim, Seddon, Ward)",if weight == 5.00 then fixed price 25.00,5,'==,25
+"Shipping -  Marlborough (Picton, Blenheim, Seddon, Ward)",if weight == 5.00 then fixed price 25.00,5,=,25
 "Shipping -  Marlborough (Picton, Blenheim, Seddon, Ward)",if weight < 10.00 then fixed price 25.00,10,<,25
-"Shipping -  Marlborough (Picton, Blenheim, Seddon, Ward)",if weight == 10.00 then fixed price 30.00,10,'==,30
+"Shipping -  Marlborough (Picton, Blenheim, Seddon, Ward)",if weight == 10.00 then fixed price 30.00,10,=,30
 "Shipping -  Marlborough (Picton, Blenheim, Seddon, Ward)",if weight < 15.00 then fixed price 30.00,15,<,30
-"Shipping -  Marlborough (Picton, Blenheim, Seddon, Ward)",if weight == 15.00 then fixed price 40.00,15,'==,40
+"Shipping -  Marlborough (Picton, Blenheim, Seddon, Ward)",if weight == 15.00 then fixed price 40.00,15,=,40
 "Shipping -  Marlborough (Picton, Blenheim, Seddon, Ward)",if weight < 20.00 then fixed price 40.00,20,<,40
-"Shipping -  Marlborough (Picton, Blenheim, Seddon, Ward)",if weight == 20.00 then fixed price 50.00,20,'==,50
+"Shipping -  Marlborough (Picton, Blenheim, Seddon, Ward)",if weight == 20.00 then fixed price 50.00,20,=,50
 "Shipping -  Marlborough (Picton, Blenheim, Seddon, Ward)",if weight < 25.00 then fixed price 50.00,25,<,50
-"Shipping -  Marlborough (Picton, Blenheim, Seddon, Ward)",if weight == 25.00 then fixed price 100.00,25,'==,100
+"Shipping -  Marlborough (Picton, Blenheim, Seddon, Ward)",if weight == 25.00 then fixed price 100.00,25,=,100
 "Shipping -  Marlborough (Picton, Blenheim, Seddon, Ward)",if weight < 80.00 then fixed price 100.00,80,<,100
-"Shipping -  Marlborough (Picton, Blenheim, Seddon, Ward)",if weight == 80.00 then fixed price 200.00,80,'==,200
+"Shipping -  Marlborough (Picton, Blenheim, Seddon, Ward)",if weight == 80.00 then fixed price 200.00,80,=,200
 "Shipping -  Marlborough (Picton, Blenheim, Seddon, Ward)",if weight < 120.00 then fixed price 200.00,120,<,200
-"Shipping -  Marlborough (Picton, Blenheim, Seddon, Ward)",if weight == 120.00 then fixed price 300.00,120,'==,300
+"Shipping -  Marlborough (Picton, Blenheim, Seddon, Ward)",if weight == 120.00 then fixed price 300.00,120,=,300
 "Shipping -  Marlborough (Picton, Blenheim, Seddon, Ward)",if weight < 180.00 then fixed price 300.00,180,<,300
-"Shipping -  Marlborough (Picton, Blenheim, Seddon, Ward)",if weight == 180.00 then fixed price 400.00,180,'==,400
+"Shipping -  Marlborough (Picton, Blenheim, Seddon, Ward)",if weight == 180.00 then fixed price 400.00,180,=,400
 "Shipping -  Marlborough (Picton, Blenheim, Seddon, Ward)",if weight < 240.00 then fixed price 400.00,240,<,400
-Applicable Shipping Charge: Our Customer Support will Contact you to Confirm Shipping Charge,,,,
-Click & Collect,,,,
+Applicable Shipping Charge: Our Customer Support will Contact you to Confirm Shipping Charge,=,=,=,=
+Click & Collect,=,=,=,=
