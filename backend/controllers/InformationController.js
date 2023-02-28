@@ -16,7 +16,6 @@ const processData = (data) => {
   // console.log(data);
 };
 
-// const {getDeliveryInformation} = require("./DeliveryInformationController")
 
 
 
@@ -139,10 +138,12 @@ async function getInformation(req, res) {
 
 
     const queries = properties.filter((p) => message.includes(p.name));
+   
+   
     if (queries.length === 0) {
 
       console.log("kissu pacchi na")
-      return getDeliveryInformation(req,res)
+      // return getDeliveryInformation(req,res)
       // return res.status(400).json({ error: "No valid query found" });
 
     }
@@ -166,7 +167,7 @@ async function getInformation(req, res) {
       var prop_weight=itemName.weight
 
       module.exports = { prop_weight };
-     const {getDeliveryInformation} = require("./DeliveryInformationController")
+      const {getDeliveryInformation} = require("./DeliveryInformationController")
   
   
   
