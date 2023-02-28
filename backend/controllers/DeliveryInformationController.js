@@ -34,6 +34,7 @@ const processData = (data) => {
 
 async function getDeliveryInformation(req, res){
     const message = req.body.message;
+    
     const bayOfPlentyData = deliveryDataArray.filter(
       (d) => d.location === message
     );

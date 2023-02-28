@@ -159,7 +159,6 @@ async function getInformation(req, res) {
 
       module.exports = { prop_weight };
       const {getDeliveryInformation} = require("./DeliveryInformationController")
-
     }      
  
     
