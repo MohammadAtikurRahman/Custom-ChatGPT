@@ -54,32 +54,17 @@ async function getInformation(req, res) {
 
 
     /* my main matching code and never deleted" */
-    // if (matchingData) {
-    //   res.json({
-    //     botResponse: `\n\n${matchingData.name} of ${prop.name}: ${
-    //       matchingData[prop.property]
-    //     }`,
-    //   });
-    //   return;
-    // } 
-
-
     if (matchingData) {
-
-      console.log("inside main if")
-      if (matchingData.price) {
-        console.log("data will go another page"+weight)
-
-        weight = matchingData.weight;
-      }
       res.json({
         botResponse: `\n\n${matchingData.name} of ${prop.name}: ${
           matchingData[prop.property]
         }`,
       });
       return;
-    }
-    
+    } 
+
+
+  
     
 
 
