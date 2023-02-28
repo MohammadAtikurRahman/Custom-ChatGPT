@@ -151,6 +151,7 @@ async function getInformation(req, res) {
       console.log(itemName.weight);
       var prop_weight=itemName.weight
 
+      module.exports = { prop_weight };
 
 
     }      
@@ -167,6 +168,5 @@ async function getInformation(req, res) {
 }
 
 module.exports = {
-  getInformation,
-  prop_weight,
+  getInformation
 };

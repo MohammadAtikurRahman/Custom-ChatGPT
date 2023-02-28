@@ -7,8 +7,11 @@ app.use(express.json());
 const fs = require("fs");
 const csv = require("csv-parser");
 
-import { prop_weight } from './InformationController';
+const { prop_weight } = require("./InformationController");
 const { getInformation } = require("./InformationController");
+
+
+console.log("inside delivery information"+prop_weight);
 
 let deliveryDataArray = [];
 
@@ -34,6 +37,8 @@ async function getDeliveryInformation(req, res){
     const bayOfPlentyData = deliveryDataArray.filter(
       (d) => d.location === message
     );
+
+    
     if (bayOfPlentyData.length === 0) {
         return getInformation(req, res);
     }
