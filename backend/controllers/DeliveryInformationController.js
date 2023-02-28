@@ -11,7 +11,7 @@ const { prop_weight } = require("./InformationController");
 const { getInformation } = require("./InformationController");
 
 
-console.log("inside delivery information"+prop_weight);
+console.log("inside delivery information  "+prop_weight);
 
 let deliveryDataArray = [];
 
@@ -38,10 +38,10 @@ async function getDeliveryInformation(req, res){
       (d) => d.location === message
     );
 
-    
-    if (bayOfPlentyData.length === 0) {
-        return getInformation(req, res);
-    }
+
+    // if (bayOfPlentyData.length === 0) {
+    //     // return getInformation(req, res);
+    // }
     
     // Find the minimum and maximum values of the deliveryPrice property
     const deliveryPrices = bayOfPlentyData.reduce(

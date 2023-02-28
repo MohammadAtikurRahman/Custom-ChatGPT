@@ -16,6 +16,11 @@ const processData = (data) => {
   // console.log(data);
 };
 
+
+
+
+
+
 async function getInformation(req, res) {
  
  
@@ -99,6 +104,7 @@ async function getInformation(req, res) {
     }
 
     const itemName = dataArray.find((d) => message.includes(d.name));
+   
 
     if (!itemName) {
       try {
@@ -152,10 +158,10 @@ async function getInformation(req, res) {
       var prop_weight=itemName.weight
 
       module.exports = { prop_weight };
-
+      const {getDeliveryInformation} = require("./DeliveryInformationController")
 
     }      
-    
+ 
     
 
 
