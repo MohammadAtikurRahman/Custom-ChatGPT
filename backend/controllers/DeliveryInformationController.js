@@ -6,14 +6,6 @@ app.use(cors());
 app.use(express.json());
 const fs = require("fs");
 const csv = require("csv-parser");
-const { prop_weight } = require("./InformationController");
-
-
-
-
-
-
-console.log("outside delivery information  "+prop_weight);
 
 
 
@@ -39,19 +31,12 @@ const processData = (data) => {
 async function getDeliveryInformation(req, res){
 
 
-  console.log("insider "+prop_weight)
     const message = req.body.message;
     
     const bayOfPlentyData = deliveryDataArray.filter(
       (d) => d.location === message
     );
 
-
-    // if (bayOfPlentyData.length === 0) {
-    //     // return getInformation(req, res);
-    // }
-    
-    // Find the minimum and maximum values of the deliveryPrice property
     const deliveryPrices = bayOfPlentyData.reduce(
       (acc, d) => {
         const price = parseFloat(d.deliveryPrice);
@@ -69,7 +54,6 @@ async function getDeliveryInformation(req, res){
       { minPrice: Infinity, maxPrice: -Infinity }
     );
 
-    // Return bot response with highest and lowest deliveryPrice
     return res.json({
       botResponse:
         "\n\n" +

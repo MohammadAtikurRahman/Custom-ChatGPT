@@ -1,6 +1,7 @@
 const fs = require("fs");
 const csv = require("csv-parser");
 const axios = require("axios");
+const { getDeliveryInformation } = require("./DeliveryInformationController");
 
 let dataArray = [];
 fs.createReadStream("idiya.csv")
@@ -16,18 +17,13 @@ const processData = (data) => {
   // console.log(data);
 };
 
-
-
-
-
-
 async function getInformation(req, res) {
- 
- 
   const message = req.body.message;
+ 
+ 
+ 
   const properties = [
     { name: "name", property: "name" },
-
     { name: "sku", property: "sku" },
     { name: "price", property: "price" },
     { name: "brand", property: "brand" },
@@ -40,46 +36,13 @@ async function getInformation(req, res) {
   ];
 
   for (const prop of properties) {
-
-
-
-    const matchingData = dataArray.find(
-      (d) => message.includes(d.name) && message.includes(prop.name)
-    );
-
-
     const matchingData1 = dataArray.find(
       (d) => message.includes(d.name) && message.includes("dimension")
     );
     const matchingData2 = dataArray.find((d) => d.name === message);
     const matchingData3 = dataArray.find((d) => d.sku === message);
-    
 
-
-
-
-    /* my main matching code and never deleted" */
-    if (matchingData) {
-      res.json({
-        botResponse: `\n\n${matchingData.name} of ${prop.name}: ${
-          matchingData[prop.property]
-        }`,
-      });
-      return;
-    } 
-
-
-  
-    
-
-
-
-
-
-
-
-
-     if (matchingData2) {
+    if (matchingData2) {
       res.json({
         botResponse: `\n\n${matchingData2.name} of : ${matchingData2.description}
           }`,
@@ -104,7 +67,6 @@ async function getInformation(req, res) {
     }
 
     const itemName = dataArray.find((d) => message.includes(d.name));
-   
 
     if (!itemName) {
       try {
@@ -130,24 +92,16 @@ async function getInformation(req, res) {
           .status(500)
           .send({ error: "Could not generate text completion" });
       }
-
-      console.log("kissu pacchi na")
-
     }
-
-
 
     const queries = properties.filter((p) => message.includes(p.name));
-   
-   
+
     if (queries.length === 0) {
-
-      console.log("kissu pacchi na")
-      // return getDeliveryInformation(req,res)
-      // return res.status(400).json({ error: "No valid query found" });
-
+      //call to the deliveryu
+      return getDeliveryInformation(req, res);
     }
-    const result = queries.map((q) => {
+    const result = queries
+      .map((q) => {
         const data = dataArray.find((d) => d.name === itemName.name);
         if (!data || !data[q.property]) {
           return null;
@@ -160,21 +114,10 @@ async function getInformation(req, res) {
       return res.status(400).json({ error: "No matching data found" });
     }
 
-      
-    if (result[0].hasOwnProperty('price')) {
-
-      console.log(itemName.weight);
-      var prop_weight=itemName.weight
-
-      module.exports = { prop_weight };
-      const {getDeliveryInformation} = require("./DeliveryInformationController")
-  
-  
-  
-    }      
- 
-    
-
+    if (result[0].hasOwnProperty("price")) {
+      var prop_weight = itemName.weight;
+      console.log("weight have to send to the others "+prop_weight);
+    }
 
     const response = result.reduce((prev, curr) => {
       return prev + ` ${Object.keys(curr)[0]}: ${curr[Object.keys(curr)[0]]} `;
@@ -185,5 +128,5 @@ async function getInformation(req, res) {
 }
 
 module.exports = {
-  getInformation
+  getInformation,
 };
