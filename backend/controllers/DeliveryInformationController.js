@@ -11,7 +11,7 @@ const { prop_weight } = require("./InformationController");
 const { getInformation } = require("./InformationController");
 
 
-console.log("inside delivery information  "+prop_weight);
+console.log("outside delivery information  "+prop_weight);
 
 let deliveryDataArray = [];
 
@@ -33,6 +33,9 @@ const processData = (data) => {
 
 
 async function getDeliveryInformation(req, res){
+
+
+  console.log("insider ")
     const message = req.body.message;
     
     const bayOfPlentyData = deliveryDataArray.filter(

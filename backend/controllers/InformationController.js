@@ -16,6 +16,7 @@ const processData = (data) => {
   // console.log(data);
 };
 
+const {getDeliveryInformation} = require("./DeliveryInformationController")
 
 
 
@@ -107,36 +108,44 @@ async function getInformation(req, res) {
    
 
     if (!itemName) {
-      try {
-        const API_KEY = process.env.OPENAI_API_KEY;
-        const response = await axios({
-          method: "post",
-          url: "https://api.openai.com/v1/engines/text-davinci-003/completions",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${API_KEY}`,
-          },
-          data: {
-            prompt: message,
-            max_tokens: 100,
-            n: 1,
-            stop: "",
-            temperature: 0.5,
-          },
-        });
-        return res.json({ botResponse: "\n" + response.data.choices[0].text });
-      } catch (error) {
-        return res
-          .status(500)
-          .send({ error: "Could not generate text completion" });
-      }
+      // try {
+      //   const API_KEY = process.env.OPENAI_API_KEY;
+      //   const response = await axios({
+      //     method: "post",
+      //     url: "https://api.openai.com/v1/engines/text-davinci-003/completions",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //       Authorization: `Bearer ${API_KEY}`,
+      //     },
+      //     data: {
+      //       prompt: message,
+      //       max_tokens: 100,
+      //       n: 1,
+      //       stop: "",
+      //       temperature: 0.5,
+      //     },
+      //   });
+      //   return res.json({ botResponse: "\n" + response.data.choices[0].text });
+      // } catch (error) {
+      //   return res
+      //     .status(500)
+      //     .send({ error: "Could not generate text completion" });
+      // }
+
+      console.log("kissu pacchi na")
+
     }
+
+
 
     const queries = properties.filter((p) => message.includes(p.name));
     if (queries.length === 0) {
-      return res.status(400).json({ error: "No valid query found" });
-    }
 
+      console.log("kissu pacchi na")
+      return getDeliveryInformation(req,res)
+      // return res.status(400).json({ error: "No valid query found" });
+
+    }
     const result = queries.map((q) => {
         const data = dataArray.find((d) => d.name === itemName.name);
         if (!data || !data[q.property]) {
@@ -146,7 +155,6 @@ async function getInformation(req, res) {
         return { [q.name]: data[q.property] };
       })
       .filter((r) => r !== null);
-
     if (result.length === 0) {
       return res.status(400).json({ error: "No matching data found" });
     }
@@ -159,6 +167,9 @@ async function getInformation(req, res) {
 
       module.exports = { prop_weight };
       const {getDeliveryInformation} = require("./DeliveryInformationController")
+  
+  
+  
     }      
  
     
