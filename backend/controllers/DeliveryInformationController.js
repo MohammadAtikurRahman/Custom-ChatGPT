@@ -35,7 +35,7 @@ const processData = (data) => {
 async function getDeliveryInformation(req, res){
 
 
-  console.log("insider ")
+  console.log("insider "+prop_weight)
     const message = req.body.message;
     
     const bayOfPlentyData = deliveryDataArray.filter(
