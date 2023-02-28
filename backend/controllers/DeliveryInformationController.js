@@ -7,6 +7,7 @@ app.use(express.json());
 const fs = require("fs");
 const csv = require("csv-parser");
 
+import { prop_weight } from './InformationController';
 const { getInformation } = require("./InformationController");
 
 let deliveryDataArray = [];

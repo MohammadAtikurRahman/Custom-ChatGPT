@@ -35,22 +35,61 @@ async function getInformation(req, res) {
   ];
 
   for (const prop of properties) {
+
+
+
     const matchingData = dataArray.find(
       (d) => message.includes(d.name) && message.includes(prop.name)
     );
+
+
     const matchingData1 = dataArray.find(
       (d) => message.includes(d.name) && message.includes("dimension")
     );
     const matchingData2 = dataArray.find((d) => d.name === message);
     const matchingData3 = dataArray.find((d) => d.sku === message);
+    
+
+
+
+
+    /* my main matching code and never deleted" */
+    // if (matchingData) {
+    //   res.json({
+    //     botResponse: `\n\n${matchingData.name} of ${prop.name}: ${
+    //       matchingData[prop.property]
+    //     }`,
+    //   });
+    //   return;
+    // } 
+
+
     if (matchingData) {
+
+      console.log("inside main if")
+      if (matchingData.price) {
+        console.log("data will go another page"+weight)
+
+        weight = matchingData.weight;
+      }
       res.json({
         botResponse: `\n\n${matchingData.name} of ${prop.name}: ${
           matchingData[prop.property]
         }`,
       });
       return;
-    } else if (matchingData2) {
+    }
+    
+    
+
+
+
+
+
+
+
+
+     if (matchingData2) {
       res.json({
         botResponse: `\n\n${matchingData2.name} of : ${matchingData2.description}
           }`,
@@ -107,8 +146,7 @@ async function getInformation(req, res) {
       return res.status(400).json({ error: "No valid query found" });
     }
 
-    const result = queries
-      .map((q) => {
+    const result = queries.map((q) => {
         const data = dataArray.find((d) => d.name === itemName.name);
         if (!data || !data[q.property]) {
           return null;
@@ -122,6 +160,19 @@ async function getInformation(req, res) {
       return res.status(400).json({ error: "No matching data found" });
     }
 
+      
+    if (result[0].hasOwnProperty('price')) {
+
+      console.log(itemName.weight);
+      var prop_weight=itemName.weight
+
+
+
+    }      
+    
+    
+
+
     const response = result.reduce((prev, curr) => {
       return prev + ` ${Object.keys(curr)[0]}: ${curr[Object.keys(curr)[0]]} `;
     }, "");
@@ -132,4 +183,5 @@ async function getInformation(req, res) {
 
 module.exports = {
   getInformation,
+  prop_weight,
 };
