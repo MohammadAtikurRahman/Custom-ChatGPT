@@ -2,6 +2,7 @@ const fs = require("fs");
 const csv = require("csv-parser");
 const axios = require("axios");
 const { getDeliveryInformation } = require("./DeliveryInformationController");
+const { getPriceInformation } = require("./priceController");
 
 let dataArray = [];
 fs.createReadStream("idiya.csv")
@@ -16,12 +17,10 @@ fs.createReadStream("idiya.csv")
 const processData = (data) => {
   // console.log(data);
 };
-
+var prop_weight;
 async function getInformation(req, res) {
   const message = req.body.message;
- 
- 
- 
+
   const properties = [
     { name: "name", property: "name" },
     { name: "sku", property: "sku" },
@@ -115,12 +114,10 @@ async function getInformation(req, res) {
     }
 
     if (result[0].hasOwnProperty("price")) {
-      var prop_weight = itemName.weight;
-      // console.log("weight have to send to the others "+prop_weight);
-      module.exports = { prop_weight };
-      const { priceController} = require("./priceController")
-
-
+      prop_weight = "Shipping - Bay of Plenty";
+     // itemName.weight
+      req.prop_weight = prop_weight;
+      await getPriceInformation(req, res);
 
     }
 
