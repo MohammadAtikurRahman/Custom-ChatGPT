@@ -116,7 +116,12 @@ async function getInformation(req, res) {
 
     if (result[0].hasOwnProperty("price")) {
       var prop_weight = itemName.weight;
-      console.log("weight have to send to the others "+prop_weight);
+      // console.log("weight have to send to the others "+prop_weight);
+      module.exports = { prop_weight };
+      const { priceController} = require("./priceController")
+
+
+
     }
 
     const response = result.reduce((prev, curr) => {
