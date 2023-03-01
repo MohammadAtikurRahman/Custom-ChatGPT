@@ -112,14 +112,22 @@ async function getInformation(req, res) {
     if (result.length === 0) {
       return res.status(400).json({ error: "No matching data found" });
     }
-
+   
+   
+   
     if (result[0].hasOwnProperty("price")) {
-      prop_weight = "Shipping - Bay of Plenty";
-     // itemName.weight
+      const prop_weight = "Shipping - Bay of Plenty";
       req.prop_weight = prop_weight;
-      await getPriceInformation(req, res);
-
+      res.send({ botResponse: `\n\n`+ " Basic Price is " + itemName.price + "  For Shipping We added charge based on location " });
+    
+      try {
+        await getPriceInformation(req, res);
+      } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+      }
     }
+    
 
     const response = result.reduce((prev, curr) => {
       return prev + ` ${Object.keys(curr)[0]}: ${curr[Object.keys(curr)[0]]} `;
