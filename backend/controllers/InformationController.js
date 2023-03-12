@@ -2,7 +2,6 @@ const fs = require("fs");
 const csv = require("csv-parser");
 const axios = require("axios");
 const { getDeliveryInformation } = require("./DeliveryInformationController");
-const { getPriceInformation } = require("./priceController");
 
 let dataArray = [];
 fs.createReadStream("idiya.csv")
@@ -13,7 +12,17 @@ fs.createReadStream("idiya.csv")
   .on("end", () => {
     processData(dataArray);
   });
-
+  let deliveryDataArray = [];
+  fs.createReadStream("delivery.csv")
+    .pipe(csv())
+    .on("data", (data) => {
+      deliveryDataArray.push(data);
+    })
+    .on("end", () => {
+      console.log("Delivery CSV file processed.");
+      processData(deliveryDataArray);
+      // console.log(deliveryDataArray); // Print the deliveryDataArray here
+    });
 const processData = (data) => {
   // console.log(data);
 };
@@ -115,19 +124,68 @@ async function getInformation(req, res) {
    
    
    
+   
+
     if (result[0].hasOwnProperty("price")) {
-      const prop_weight = "Shipping - Bay of Plenty";
-      req.prop_weight = prop_weight;
-      res.send({ botResponse: `\n\n`+ " Basic Price is " + itemName.price + "  For Shipping We added charge based on location " });
-    
+      const prop_weight = itemName.weight;
+      const prop_price = itemName.price;
+     
+     
+     
       try {
-        await getPriceInformation(req, res);
+        const message = req.body.message;
+    
+        console.log("weight inside " + prop_weight);
+        console.log("price inside " + prop_price);
+    
+        const bayOfPlentyData = deliveryDataArray.filter(
+          (d) => d.location === message
+        );
+    
+        const deliveryPrices = bayOfPlentyData.reduce(
+          (acc, d) => {
+            const price = parseFloat(d.deliveryPrice);
+            if (!isNaN(price)) {
+              // check if price is a valid number
+              if (price < acc.minPrice) {
+                acc.minPrice = price;
+              }
+              if (price > acc.maxPrice) {
+                acc.maxPrice = price;
+              }
+            }
+            return acc;
+          },
+          { minPrice: Infinity, maxPrice: -Infinity }
+        );
+    
+        return res.json({
+          botResponse:
+            "\n\n" +
+            "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For _" +
+            bayOfPlentyData[0]?.location +
+            "  the lowest shipping charge is " +
+            deliveryPrices.minPrice +
+            " and the Highest Shipping charge is " +
+            deliveryPrices.maxPrice +
+            ".  what is your area code ?",
+        });
       } catch (error) {
         console.error(error);
         res.status(500).send("Internal Server Error");
       }
     }
     
+
+
+
+
+
+
+
+
+
+
 
     const response = result.reduce((prev, curr) => {
       return prev + ` ${Object.keys(curr)[0]}: ${curr[Object.keys(curr)[0]]} `;
