@@ -12,17 +12,17 @@ fs.createReadStream("idiya.csv")
   .on("end", () => {
     processData(dataArray);
   });
-  let deliveryDataArray = [];
-  fs.createReadStream("delivery.csv")
-    .pipe(csv())
-    .on("data", (data) => {
-      deliveryDataArray.push(data);
-    })
-    .on("end", () => {
-      console.log("Delivery CSV file processed.");
-      processData(deliveryDataArray);
-      // console.log(deliveryDataArray); // Print the deliveryDataArray here
-    });
+let deliveryDataArray = [];
+fs.createReadStream("delivery.csv")
+  .pipe(csv())
+  .on("data", (data) => {
+    deliveryDataArray.push(data);
+  })
+  .on("end", () => {
+    console.log("Delivery CSV file processed.");
+    processData(deliveryDataArray);
+    // console.log(deliveryDataArray); // Print the deliveryDataArray here
+  });
 const processData = (data) => {
   // console.log(data);
 };
@@ -106,7 +106,7 @@ async function getInformation(req, res) {
 
     if (queries.length === 0) {
       //call to the deliveryu
-      return getDeliveryInformation(req, res);
+      return tiggerDetaile();
     }
     const result = queries
       .map((q) => {
@@ -121,68 +121,126 @@ async function getInformation(req, res) {
     if (result.length === 0) {
       return res.status(400).json({ error: "No matching data found" });
     }
-   
-   
-   
-   
 
     if (result[0].hasOwnProperty("price")) {
       const prop_weight = itemName.weight;
       const prop_price = itemName.price;
-     
-     
-     
-      try {
-        const message = req.body.message;
+      console.log("Price", prop_price)
+      console.log("Weight", prop_weight)
+
+      tiggerDetaile(prop_weight,prop_price)
+
+
+      if (result[0].hasOwnProperty("price")) {
+        setTimeout(() => {
+          res.json({
+            botResponse: "\n\n" + "What is your location?",
+          });
+        }, 100);
+
+        return;
+      }
+    }
+
+    // function tiggerDetaile(prop_weight,prop_price) {
+    //   if (message) {
+    //     console.log("test");
+    //     try {
+
+    //       console.log(itemName.weight,"weight")
+    //       const message = req.body.message;
+
+    //       const bayOfPlentyData = deliveryDataArray.filter(
+    //         (d) => d.location === message
+    //       );
+
+    //       const deliveryPrices = bayOfPlentyData.reduce(
+    //         (acc, d) => {
+    //           const price = parseFloat(d.deliveryPrice);
+    //           if (!isNaN(price)) {
+    //             // check if price is a valid number
+    //             if (price < acc.minPrice) {
+    //               acc.minPrice = price;
+    //             }
+    //             if (price > acc.maxPrice) {
+    //               acc.maxPrice = price;
+    //             }
+    //           }
+    //           return acc;
+    //         },
+    //         { minPrice: Infinity, maxPrice: -Infinity }
+    //       );
+
+    //       return res.json({
+    //         botResponse:
+    //           "\n\n" +
+    //           "Shipping Charge 1 depends on Product Weight and whether it is Heavy or Fragile. For _" +
+    //           bayOfPlentyData[0]?.location +
+    //           "  the lowest shipping charge is " +
+    //           deliveryPrices.minPrice +
+    //           " and the Highest Shipping charge is " +
+    //           deliveryPrices.maxPrice +
+    //           ".  what is your area code ?",
+    //       });
+    //     } catch (error) {
+    //       console.error(error);
+    //       res.status(500).send("Internal Server Error");
+    //     }
+    //   }
+    // }
+    function tiggerDetaile(prop_weight, prop_price) {
+      if (message) {
+        console.log("test");
+        try {
+          console.log(itemName.weight, "weight");
+          const message = req.body.message;
     
-        console.log("weight inside " + prop_weight);
-        console.log("price inside " + prop_price);
+          const bayOfPlentyData = deliveryDataArray.filter(
+            (d) => d.location === message
+          );
     
-        const bayOfPlentyData = deliveryDataArray.filter(
-          (d) => d.location === message
-        );
-    
-        const deliveryPrices = bayOfPlentyData.reduce(
-          (acc, d) => {
-            const price = parseFloat(d.deliveryPrice);
-            if (!isNaN(price)) {
-              // check if price is a valid number
-              if (price < acc.minPrice) {
-                acc.minPrice = price;
+          const deliveryPrices = bayOfPlentyData.reduce(
+            (acc, d) => {
+              const price = parseFloat(d.deliveryPrice);
+              if (!isNaN(price)) {
+                // check if price is a valid number
+                if (price < acc.minPrice) {
+                  acc.minPrice = price;
+                }
+                if (price > acc.maxPrice) {
+                  acc.maxPrice = price;
+                }
               }
-              if (price > acc.maxPrice) {
-                acc.maxPrice = price;
-              }
-            }
-            return acc;
-          },
-          { minPrice: Infinity, maxPrice: -Infinity }
-        );
+              return acc;
+            },
+            { minPrice: Infinity, maxPrice: -Infinity }
+          );
     
-        return res.json({
-          botResponse:
+          const responseMsg =
             "\n\n" +
-            "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For _" +
+            "Shipping Charge 1 depends on Product Weight and whether it is Heavy or Fragile. For _" +
             bayOfPlentyData[0]?.location +
             "  the lowest shipping charge is " +
             deliveryPrices.minPrice +
             " and the Highest Shipping charge is " +
             deliveryPrices.maxPrice +
-            ".  what is your area code ?",
-        });
-      } catch (error) {
-        console.error(error);
-        res.status(500).send("Internal Server Error");
+            ".  what is your area code ?";
+    
+          // return responseMsg instead of res.json()
+          return responseMsg;
+        } catch (error) {
+          console.error(error);
+          res.status(500).send("Internal Server Error");
+        }
       }
     }
     
-
-
-
-
-
-
-
+    // call tiggerDetaile() and use the responseMsg to send the response
+    const responseMsg = tiggerDetaile(prop_weight, prop_price);
+    if (responseMsg) {
+      return res.json({ botResponse: responseMsg });
+    }
+    
 
 
 
