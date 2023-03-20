@@ -125,76 +125,74 @@ async function getInformation(req, res) {
     console.log("result zero", result[0]);
 
 
+
+    
     if (result[0].hasOwnProperty("price")) {
       let prop_weight = itemName.weight;
       let prop_price = itemName.price;
       console.log("Price", prop_price);
       console.log("Weight", prop_weight);
-    
-      // Call tiggerDetaile with prop_weight and prop_price
+
+      // Call tiggerDetaile with prop_weight
       tiggerDetaile(prop_weight, prop_price);
-    
+
       return;
     }
-    
+
     function tiggerDetaile(prop_weight, prop_price) {
       console.log("successfully get the weight", prop_weight);
       console.log("successfully get the price", prop_price);
-    
+
       if (message) {
         console.log("test");
-    
+
         try {
           const message = req.body.message;
           console.log("the message", message);
-    
+          
           // Use a regular expression to match and extract the desired part of the message
           const shippingRegex = /Shipping - .*/;
           const match = message.match(shippingRegex);
-    
+          
           if (match) {
             var messageReceiver = match[0];
             console.log("messageReceiver", messageReceiver);
-    
-            const bayOfPlentyData = deliveryDataArray.filter(
-              (d) => d.location === messageReceiver
-            );
-            const deliveryPrices = bayOfPlentyData.reduce(
-              (acc, d) => {
-                const price = parseFloat(d.deliveryPrice);
-                if (!isNaN(price)) {
-                  // check if price is a valid number
-                  if (price < acc.minPrice) {
-                    acc.minPrice = price;
-                  }
-                  if (price > acc.maxPrice) {
-                    acc.maxPrice = price;
-                  }
-                }
-                return acc;
-              },
-              { minPrice: Infinity, maxPrice: -Infinity }
-            );
-    
-            res.json({
-              botResponse:
-                "\n\n" +
-                "Product Price: " +
-                prop_price +
-                "\n\n" +
-                "Shipping Charge+++++ depends on Product Weight and whether it is Heavy or Fragile. For _" +
-                bayOfPlentyData[0]?.location +
-                "  the lowest shipping charge is " +
-                deliveryPrices.minPrice +
-                " and the Highest Shipping charge is " +
-                deliveryPrices.maxPrice +
-                ".  what is your location?",
-            });
           } else {
-            res.json({
-              botResponse: "\n\n" + "Product Price: " + prop_price + "\n\n" + "What is your location?",
-            });
+            console.log("No shipping information found in the message");
           }
+          
+
+          const bayOfPlentyData = deliveryDataArray.filter(
+            (d) => d.location === messageReceiver
+          );
+          const deliveryPrices = bayOfPlentyData.reduce(
+            (acc, d) => {
+              const price = parseFloat(d.deliveryPrice);
+              if (!isNaN(price)) {
+                // check if price is a valid number
+                if (price < acc.minPrice) {
+                  acc.minPrice = price;
+                }
+                if (price > acc.maxPrice) {
+                  acc.maxPrice = price;
+                }
+              }
+              return acc;
+            },
+            { minPrice: Infinity, maxPrice: -Infinity }
+          );
+
+          res.json({
+            botResponse:
+              "\n\n" +
+              "Shipping Charge+++++ depends on Product Weight and whether it is Heavy or Fragile. For _" +
+              bayOfPlentyData[0]?.location +
+              "  the lowest shipping charge is " +
+              deliveryPrices.minPrice +
+              " and the Highest Shipping charge is " +
+              deliveryPrices.maxPrice +
+              ".  what is your location ?",
+          });
         } catch (error) {
           console.error(error);
           res.status(500).send("Internal Server Error");
@@ -205,85 +203,6 @@ async function getInformation(req, res) {
         });
       }
     }
-    
-    
-
-    // if (result[0].hasOwnProperty("price")) {
-    //   let prop_weight = itemName.weight;
-    //   let prop_price = itemName.price;
-    //   console.log("Price", prop_price);
-    //   console.log("Weight", prop_weight);
-
-    //   // Call tiggerDetaile with prop_weight
-    //   tiggerDetaile(prop_weight, prop_price);
-
-    //   return;
-    // }
-
-    // function tiggerDetaile(prop_weight, prop_price) {
-    //   console.log("successfully get the weight", prop_weight);
-    //   console.log("successfully get the price", prop_price);
-
-    //   if (message) {
-    //     console.log("test");
-
-    //     try {
-    //       const message = req.body.message;
-    //       console.log("the message", message);
-          
-    //       // Use a regular expression to match and extract the desired part of the message
-    //       const shippingRegex = /Shipping - .*/;
-    //       const match = message.match(shippingRegex);
-          
-    //       if (match) {
-    //         var messageReceiver = match[0];
-    //         console.log("messageReceiver", messageReceiver);
-    //       } else {
-    //         console.log("No shipping information found in the message");
-    //       }
-          
-
-    //       const bayOfPlentyData = deliveryDataArray.filter(
-    //         (d) => d.location === messageReceiver
-    //       );
-    //       const deliveryPrices = bayOfPlentyData.reduce(
-    //         (acc, d) => {
-    //           const price = parseFloat(d.deliveryPrice);
-    //           if (!isNaN(price)) {
-    //             // check if price is a valid number
-    //             if (price < acc.minPrice) {
-    //               acc.minPrice = price;
-    //             }
-    //             if (price > acc.maxPrice) {
-    //               acc.maxPrice = price;
-    //             }
-    //           }
-    //           return acc;
-    //         },
-    //         { minPrice: Infinity, maxPrice: -Infinity }
-    //       );
-
-    //       res.json({
-    //         botResponse:
-    //           "\n\n" +
-    //           "Shipping Charge+++++ depends on Product Weight and whether it is Heavy or Fragile. For _" +
-    //           bayOfPlentyData[0]?.location +
-    //           "  the lowest shipping charge is " +
-    //           deliveryPrices.minPrice +
-    //           " and the Highest Shipping charge is " +
-    //           deliveryPrices.maxPrice +
-    //           ".  what is your location ?",
-    //       });
-    //     } catch (error) {
-    //       console.error(error);
-    //       res.status(500).send("Internal Server Error");
-    //     }
-    //   } else {
-    //     res.json({
-    //       botResponse: "\n\n" + "What is your location?",
-    //     });
-    //   }
-    // }
 
     const response = result.reduce((prev, curr) => {
       return prev + ` ${Object.keys(curr)[0]}: ${curr[Object.keys(curr)[0]]} `;
