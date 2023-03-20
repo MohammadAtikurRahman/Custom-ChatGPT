@@ -48,6 +48,7 @@ async function getInformation(req, res) {
       (d) => message.includes(d.name) && message.includes("dimension")
     );
     const matchingData2 = dataArray.find((d) => d.name === message);
+
     const matchingData3 = dataArray.find((d) => d.sku === message);
 
     if (matchingData2) {
@@ -114,7 +115,6 @@ async function getInformation(req, res) {
         if (!data || !data[q.property]) {
           return null;
         }
-
         return { [q.name]: data[q.property] };
       })
       .filter((r) => r !== null);
@@ -122,83 +122,46 @@ async function getInformation(req, res) {
       return res.status(400).json({ error: "No matching data found" });
     }
 
+    console.log("result zero", result[0]);
+
     if (result[0].hasOwnProperty("price")) {
-      const prop_weight = itemName.weight;
-      const prop_price = itemName.price;
-      console.log("Price", prop_price)
-      console.log("Weight", prop_weight)
+      let prop_weight = itemName.weight;
+      let prop_price = itemName.price;
+      console.log("Price", prop_price);
+      console.log("Weight", prop_weight);
 
-      tiggerDetaile(prop_weight,prop_price)
+      // Call tiggerDetaile with prop_weight
+      tiggerDetaile(prop_weight, prop_price);
 
-
-      if (result[0].hasOwnProperty("price")) {
-        setTimeout(() => {
-          res.json({
-            botResponse: "\n\n" + "What is your location?",
-          });
-        }, 100);
-
-        return;
-      }
+      return;
     }
 
-    // function tiggerDetaile(prop_weight,prop_price) {
-    //   if (message) {
-    //     console.log("test");
-    //     try {
-
-    //       console.log(itemName.weight,"weight")
-    //       const message = req.body.message;
-
-    //       const bayOfPlentyData = deliveryDataArray.filter(
-    //         (d) => d.location === message
-    //       );
-
-    //       const deliveryPrices = bayOfPlentyData.reduce(
-    //         (acc, d) => {
-    //           const price = parseFloat(d.deliveryPrice);
-    //           if (!isNaN(price)) {
-    //             // check if price is a valid number
-    //             if (price < acc.minPrice) {
-    //               acc.minPrice = price;
-    //             }
-    //             if (price > acc.maxPrice) {
-    //               acc.maxPrice = price;
-    //             }
-    //           }
-    //           return acc;
-    //         },
-    //         { minPrice: Infinity, maxPrice: -Infinity }
-    //       );
-
-    //       return res.json({
-    //         botResponse:
-    //           "\n\n" +
-    //           "Shipping Charge 1 depends on Product Weight and whether it is Heavy or Fragile. For _" +
-    //           bayOfPlentyData[0]?.location +
-    //           "  the lowest shipping charge is " +
-    //           deliveryPrices.minPrice +
-    //           " and the Highest Shipping charge is " +
-    //           deliveryPrices.maxPrice +
-    //           ".  what is your area code ?",
-    //       });
-    //     } catch (error) {
-    //       console.error(error);
-    //       res.status(500).send("Internal Server Error");
-    //     }
-    //   }
-    // }
     function tiggerDetaile(prop_weight, prop_price) {
+      console.log("successfully get the weight", prop_weight);
+      console.log("successfully get the price", prop_price);
+
       if (message) {
         console.log("test");
+
         try {
-          console.log(itemName.weight, "weight");
           const message = req.body.message;
-    
+          console.log("the message", message);
+          
+          // Use a regular expression to match and extract the desired part of the message
+          const shippingRegex = /Shipping - .*/;
+          const match = message.match(shippingRegex);
+          
+          if (match) {
+            var messageReceiver = match[0];
+            console.log("messageReceiver", messageReceiver);
+          } else {
+            console.log("No shipping information found in the message");
+          }
+          
+
           const bayOfPlentyData = deliveryDataArray.filter(
-            (d) => d.location === message
+            (d) => d.location === messageReceiver
           );
-    
           const deliveryPrices = bayOfPlentyData.reduce(
             (acc, d) => {
               const price = parseFloat(d.deliveryPrice);
@@ -215,35 +178,28 @@ async function getInformation(req, res) {
             },
             { minPrice: Infinity, maxPrice: -Infinity }
           );
-    
-          const responseMsg =
-            "\n\n" +
-            "Shipping Charge 1 depends on Product Weight and whether it is Heavy or Fragile. For _" +
-            bayOfPlentyData[0]?.location +
-            "  the lowest shipping charge is " +
-            deliveryPrices.minPrice +
-            " and the Highest Shipping charge is " +
-            deliveryPrices.maxPrice +
-            ".  what is your area code ?";
-    
-          // return responseMsg instead of res.json()
-          return responseMsg;
+
+          res.json({
+            botResponse:
+              "\n\n" +
+              "Shipping Charge+++++ depends on Product Weight and whether it is Heavy or Fragile. For _" +
+              bayOfPlentyData[0]?.location +
+              "  the lowest shipping charge is " +
+              deliveryPrices.minPrice +
+              " and the Highest Shipping charge is " +
+              deliveryPrices.maxPrice +
+              ".  what is your location ?",
+          });
         } catch (error) {
           console.error(error);
           res.status(500).send("Internal Server Error");
         }
+      } else {
+        res.json({
+          botResponse: "\n\n" + "What is your location?",
+        });
       }
     }
-    
-    // call tiggerDetaile() and use the responseMsg to send the response
-    const responseMsg = tiggerDetaile(prop_weight, prop_price);
-    if (responseMsg) {
-      return res.json({ botResponse: responseMsg });
-    }
-    
-
-
-
 
     const response = result.reduce((prev, curr) => {
       return prev + ` ${Object.keys(curr)[0]}: ${curr[Object.keys(curr)[0]]} `;
