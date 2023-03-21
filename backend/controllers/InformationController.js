@@ -3,6 +3,23 @@ const csv = require("csv-parser");
 const axios = require("axios");
 const { getDeliveryInformation } = require("./DeliveryInformationController");
 
+const createCsvWriter = require('csv-writer').createObjectCsvWriter;
+const csvWriter = createCsvWriter({
+  path: 'database.csv',
+  header: [
+    { id: 'message', title: 'Message' },
+    { id: 'price', title: 'Price' },
+    { id: 'shipping', title: 'Shipping' },
+  ]
+});
+
+
+
+
+
+
+
+
 let dataArray = [];
 fs.createReadStream("idiya.csv")
   .pipe(csv())
@@ -118,15 +135,14 @@ async function getInformation(req, res) {
         return { [q.name]: data[q.property] };
       })
       .filter((r) => r !== null);
+
+    console.log("result data", result);
     if (result.length === 0) {
       return res.status(400).json({ error: "No matching data found" });
     }
 
     console.log("result zero", result[0]);
 
-
-
-    
     if (result[0].hasOwnProperty("price")) {
       let prop_weight = itemName.weight;
       let prop_price = itemName.price;
@@ -149,18 +165,20 @@ async function getInformation(req, res) {
         try {
           const message = req.body.message;
           console.log("the message", message);
+
           
-          // Use a regular expression to match and extract the desired part of the message
-          const shippingRegex = /Shipping - .*/;
+
+          // Use a regular expression to match and extract the desired part of the message, excluding the price
+          const shippingRegex = /(Shipping - [^p]*)(?:price)?/i;
           const match = message.match(shippingRegex);
-          
           if (match) {
-            var messageReceiver = match[0];
+            var messageReceiver = match[1].trim();
             console.log("messageReceiver", messageReceiver);
-          } else {
-            console.log("No shipping information found in the message");
           }
           
+           else {
+            console.log("No shipping information found in the message");
+          }
 
           const bayOfPlentyData = deliveryDataArray.filter(
             (d) => d.location === messageReceiver
@@ -182,17 +200,83 @@ async function getInformation(req, res) {
             { minPrice: Infinity, maxPrice: -Infinity }
           );
 
+          if (
+            deliveryPrices.minPrice !== null &&
+            deliveryPrices.minPrice !== undefined &&
+            deliveryPrices.minPrice !== "" &&
+            !isNaN(deliveryPrices.minPrice) &&
+            deliveryPrices.minPrice !== Infinity
+          ) {
+
+            function getDeliveryPrice(location, weight) {
+              // Find the delivery rule that matches the location and weight
+              const deliveryRule = deliveryDataArray.find(rule => {
+                return rule.location === location && (
+                  (rule.operator === '<' && weight < rule['weight-dl']) ||
+                  (rule.operator === '=' && weight == rule['weight-dl'])
+                );
+              });
+              
+              // If a matching rule was found, return the delivery price
+              if (deliveryRule) {
+                return deliveryRule.deliveryPrice;
+              } else {
+                return `No delivery price found for location ${location} and weight ${weight}`;
+              }
+            }
+
+
+
+             
+          const saver =  getDeliveryPrice(messageReceiver, prop_weight); // Output: 40
+         
+
+          console.log("delivery charge " +saver)
+          console.log("base price " +prop_price)
+          const numSaver = Number(saver);
+          const numPropPrice = Number(prop_price);
+          
+          const final_result = numSaver + numPropPrice;
+          console.log(final_result); // Output: 120
+
+            return res.json({
+              botResponse:
+                "\n\n" +
+                "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
+                bayOfPlentyData[0]?.location +
+                "  the lowest shipping charge is " +
+                deliveryPrices.minPrice +
+                " and the Highest Shipping charge is " +
+                deliveryPrices.maxPrice +
+                " . basic price is " + prop_price + " based with weight the delivery charge "+saver+" your final price is "+final_result,
+            });
+
+
+
+
+
+            
+          }
+          
+         else if(message){
           res.json({
             botResponse:
               "\n\n" +
-              "Shipping Charge+++++ depends on Product Weight and whether it is Heavy or Fragile. For _" +
-              bayOfPlentyData[0]?.location +
-              "  the lowest shipping charge is " +
-              deliveryPrices.minPrice +
-              " and the Highest Shipping charge is " +
-              deliveryPrices.maxPrice +
-              ".  what is your location ?",
-          });
+              "Shipping Charge depends on Product Weight and location and whether it is Heavy or Fragile." +
+              "Basic price " +
+              prop_price +
+              " here weight charged will be added based on location. What is your location or area code?",
+        
+        
+        
+        
+        
+            });
+
+        }
+
+
+          
         } catch (error) {
           console.error(error);
           res.status(500).send("Internal Server Error");

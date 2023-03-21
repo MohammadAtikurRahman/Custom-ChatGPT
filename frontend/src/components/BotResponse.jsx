@@ -12,7 +12,7 @@ const BotResponse = ({ response }) => {
         clearInterval(msg);
       }
       index++;
-    }, 100);
+    }, 10);
   }, [response]);
 
   
