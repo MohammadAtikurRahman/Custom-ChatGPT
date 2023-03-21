@@ -19,7 +19,7 @@ fs.createReadStream("delivery.csv")
     deliveryDataArray.push(data);
   })
   .on("end", () => {
-    console.log("Delivery CSV file processed.");
+    // console.log("Delivery CSV file processed.");
     processData(deliveryDataArray);
     // console.log(deliveryDataArray); // Print the deliveryDataArray here
   });

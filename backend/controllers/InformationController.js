@@ -2,7 +2,7 @@ const fs = require("fs");
 const csv = require("csv-parser");
 const axios = require("axios");
 const { getDeliveryInformation } = require("./DeliveryInformationController");
-
+const stringSimilarity = require("string-similarity");
 var sender;
 
 let messageReceiver = "";
@@ -23,7 +23,7 @@ fs.createReadStream("delivery.csv")
     deliveryDataArray.push(data);
   })
   .on("end", () => {
-    console.log("Delivery CSV file processed.");
+    // console.log("Delivery CSV file processed.");
     processData(deliveryDataArray);
     // console.log(deliveryDataArray); // Print the deliveryDataArray here
   });
@@ -48,9 +48,13 @@ async function getInformation(req, res) {
   ];
 
   for (const prop of properties) {
+
+
     const matchingData1 = dataArray.find(
       (d) => message.includes(d.name) && message.includes("dimension")
     );
+
+
     const matchingData2 = dataArray.find((d) => d.name === message);
 
     const matchingData3 = dataArray.find((d) => d.sku === message);
@@ -79,9 +83,39 @@ async function getInformation(req, res) {
       return;
     }
 
-    const itemName = dataArray.find((d) => message.includes(d.name));
+    const matches = stringSimilarity.findBestMatch(
+      message,
+      dataArray.map((d) => d.name)
+    );
+    let matchedItems = [];
+    if (matches.bestMatch.rating > 0.3) {
+      const matchedItem = dataArray[matches.bestMatchIndex];
+      matchedItems.push(matchedItem);
+    } else {
+      console.log("No match found");
+    }
+    // console.log("matched item:", matchedItems[0]);
+    const itemName = matchedItems[0];
 
-    console.log("data array which will be appled here AI" + itemName);
+
+
+
+    console.log("%cFuzzy Search is happening " + itemName?.name, "color: yellow");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     if (!itemName) {
       try {
@@ -125,18 +159,18 @@ async function getInformation(req, res) {
       })
       .filter((r) => r !== null);
 
-    console.log("result data", result);
+    // console.log("result data", result);
     if (result.length === 0) {
       return res.status(400).json({ error: "No matching data found" });
     }
 
-    console.log("result zero", result[0]);
+    // console.log("result zero", result[0]);
 
     if (result[0].hasOwnProperty("price")) {
       const prop_weight = itemName.weight;
       const prop_price = itemName.price;
-      console.log("Price", prop_price);
-      console.log("Weight", prop_weight);
+      // console.log("Price", prop_price);
+      // console.log("Weight", prop_weight);
 
       // Call tiggerDetaile with prop_weight
       tiggerDetaile(prop_weight, prop_price);
@@ -145,11 +179,10 @@ async function getInformation(req, res) {
     }
 
     function tiggerDetaile(prop_weight, prop_price) {
-      console.log("successfully get the weight", prop_weight);
-      console.log("successfully get the price", prop_price);
+      // console.log("successfully get the weight", prop_weight);
+      // console.log("successfully get the price", prop_price);
 
       if (message) {
-        console.log("test");
 
         try {
           const message = req.body.message;
@@ -157,6 +190,7 @@ async function getInformation(req, res) {
 
           // Use a regular expression to match and extract the desired part of the message, excluding the price
           const shippingRegex = /(Shipping - [^p]*)(?:price)?/i;
+    
           const match = message.match(shippingRegex);
           if (match) {
             messageReceiver = match[1].trim();
@@ -169,7 +203,6 @@ async function getInformation(req, res) {
             (d) => d.location === messageReceiver
           );
 
-          console.log("delivery location", +bayOfPlentyData);
 
           const deliveryPrices = bayOfPlentyData.reduce(
             (acc, d) => {
@@ -203,7 +236,7 @@ async function getInformation(req, res) {
             const saver = getDeliveryPrice(messageReceiver, numPropWeight);
 
             function getDeliveryPrice(location, weight) {
-              console.log("inside the weigh", weight);
+              // console.log("inside the weigh", weight);
               // Find the delivery rule that matches the location and weight
               const deliveryRule = deliveryDataArray.find((rule) => {
                 return (
@@ -221,15 +254,15 @@ async function getInformation(req, res) {
               }
             }
 
-            console.log("weight ", prop_weight);
+            // console.log("weight ", prop_weight);
 
-            console.log("delivery charge ", saver);
-            console.log("base price ", prop_price);
+            // console.log("delivery charge ", saver);
+            // console.log("base price ", prop_price);
             const numSaver = Number(saver);
             const numPropPrice = Number(prop_price);
 
             const final_result = numSaver + numPropPrice;
-            console.log(final_result); // Output: 120
+            // console.log(final_result); // Output: 120
 
             return res.json({
               botResponse:
