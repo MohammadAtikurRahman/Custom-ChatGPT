@@ -55,7 +55,30 @@ async function getInformation(req, res) {
     );
 
 
-    const matchingData2 = dataArray.find((d) => d.name === message);
+
+    
+
+
+    const matches1 = stringSimilarity.findBestMatch(
+      message,
+      dataArray.map((d) => d.name)
+    );
+    let matchedItems1 = [];
+    if (matches1.bestMatch.rating > 0.3) {
+      const matchedItem1 = dataArray[matches1.bestMatchIndex];
+      matchedItems1.push(matchedItem1);
+    } else {
+      console.log("No match found");
+    }
+    // console.log("matched item:", matchedItems[0]);
+    const matchingData2 = matchedItems1[0];
+    
+
+    console.log(matchingData2)
+
+
+
+
 
     const matchingData3 = dataArray.find((d) => d.sku === message);
 
@@ -82,6 +105,9 @@ async function getInformation(req, res) {
       });
       return;
     }
+
+
+
 
     const matches = stringSimilarity.findBestMatch(
       message,
@@ -149,6 +175,9 @@ async function getInformation(req, res) {
       //call to the deliveryu
       return tiggerDetaile();
     }
+  
+  
+  // have to coded here
     const result = queries
       .map((q) => {
         const data = dataArray.find((d) => d.name === itemName.name);
@@ -158,6 +187,10 @@ async function getInformation(req, res) {
         return { [q.name]: data[q.property] };
       })
       .filter((r) => r !== null);
+
+
+
+
 
     // console.log("result data", result);
     if (result.length === 0) {
@@ -266,7 +299,7 @@ async function getInformation(req, res) {
 
             return res.json({
               botResponse:
-                "\n\n" +
+                "\n\n" +itemName.name +
                 "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
                 bayOfPlentyData[0]?.location +
                 "  the lowest shipping charge is " +
