@@ -71,12 +71,11 @@ async function getInformation(req, res) {
 
 
 
-    const matchingData1 = dataArray.find(
-      (d) => message.includes(d.name) && message.includes("dimension")
-    );
+    const matchingData1 = search_result && message.includes("dimension")
+    
 
 
-    const matchingData2 = search_result
+    const matchingData2 = dataArray.find((d) => d.name === message);
 
     console.log("matching data2",matchingData2)
 
@@ -95,11 +94,11 @@ async function getInformation(req, res) {
           }`,
       });
       return;
-    } else if (matchingData1) {
+    }  if (matchingData1) {
       const dimensions = {
-        width: matchingData1.width,
-        height: matchingData1.height,
-        length: matchingData1.length,
+        width: search_result.width,
+        height: search_result.height,
+        length: search_result.length,
       };
       res.status(200).json({
         botResponse: `\n\nWidth: ${dimensions.width}, Height: ${dimensions.height}, Length: ${dimensions.length}`,
@@ -168,6 +167,9 @@ async function getInformation(req, res) {
     }
 
     const queries = properties.filter((p) => message.includes(p.name));
+
+
+    console.log("queries", queries)
 
     if (queries.length === 0) {
       //call to the deliveryu
@@ -312,7 +314,7 @@ async function getInformation(req, res) {
           } else if (message) {
             res.json({
               botResponse:
-                "\n\n" +
+                "\n\n" + itemName.name+
                 "Shipping Charge depends on Product Weight and location and whether it is Heavy or Fragile." +
                 "Basic price " +
                 prop_price +
