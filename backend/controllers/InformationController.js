@@ -50,12 +50,33 @@ async function getInformation(req, res) {
   for (const prop of properties) {
 
 
+
+    const matchesdata = stringSimilarity.findBestMatch(
+      message,
+      dataArray.map((d) => d.name)
+    );
+    let matchedItemsdata = [];
+    if (matchesdata.bestMatch.rating > 0.3) {
+      const matchedItemdata = dataArray[matchesdata.bestMatchIndex];
+      matchedItemsdata.push(matchedItemdata);
+    } else {
+      console.log("No match found");
+    }
+    // console.log("matched item:", matchedItems[0]);
+    const search_result = matchedItemsdata[0];
+
+
+     console.log("search result",search_result)
+
+
+
+
     const matchingData1 = dataArray.find(
       (d) => message.includes(d.name) && message.includes("dimension")
     );
 
 
-    const matchingData2 = dataArray.find((d) => d.name === message);
+    const matchingData2 = search_result
 
     console.log("matching data2",matchingData2)
 
