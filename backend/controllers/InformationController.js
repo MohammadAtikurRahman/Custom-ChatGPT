@@ -55,30 +55,9 @@ async function getInformation(req, res) {
     );
 
 
+    const matchingData2 = dataArray.find((d) => d.name === message);
 
-    console.log("matching dimension is check",matchingData1)
-    
-
-
-    const matches1 = stringSimilarity.findBestMatch(
-      message,
-      dataArray.map((d) => d.name)
-    );
-    let matchedItems1 = [];
-    if (matches1.bestMatch.rating > 0.3) {
-      const matchedItem1 = dataArray[matches1.bestMatchIndex];
-      matchedItems1.push(matchedItem1);
-    } else {
-      console.log("No match found");
-    }
-    // console.log("matched item:", matchedItems[0]);
-    const matchingData2 = matchedItems1[0];
-    
-
-    console.log(matchingData2)
-
-
-
+    console.log("matching data2",matchingData2)
 
 
     const matchingData3 = dataArray.find((d) => d.sku === message);
@@ -106,9 +85,6 @@ async function getInformation(req, res) {
       });
       return;
     }
-
-
-
 
     const matches = stringSimilarity.findBestMatch(
       message,
@@ -223,7 +199,7 @@ async function getInformation(req, res) {
           console.log("the message", message);
 
           // Use a regular expression to match and extract the desired part of the message, excluding the price
-          const shippingRegex = /(Shipping - [^p]*)(?:price)?/i;
+          const shippingRegex = /(Shipping - [^-]*?)(?=\sprice)/i;
     
           const match = message.match(shippingRegex);
           if (match) {
