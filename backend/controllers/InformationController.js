@@ -199,14 +199,12 @@ async function getInformation(req, res) {
           console.log("the message", message);
 
           // Use a regular expression to match and extract the desired part of the message, excluding the price
-          const shippingRegex = /(Shipping - [^-]*?)(?=\sprice)/i;
+          const shippingRegex = /(Shipping - [^-]*?)(?=\sprice|$)/i;
     
           const match = message.match(shippingRegex);
           if (match) {
             messageReceiver = match[1].trim();
             console.log("messageReceiver", messageReceiver);
-          } else {
-            console.log("No shipping information found in the message");
           }
 
           const bayOfPlentyData = deliveryDataArray.filter(
