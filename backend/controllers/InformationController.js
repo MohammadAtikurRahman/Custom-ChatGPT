@@ -48,6 +48,9 @@ async function getInformation(req, res) {
   ];
 
   for (const prop of properties) {
+  
+  
+  
     const matchesdata = stringSimilarity.findBestMatch(
       message,
       dataArray.map((d) => d.name)
@@ -60,9 +63,9 @@ async function getInformation(req, res) {
       console.log("No match found");
     }
     // console.log("matched item:", matchedItems[0]);
-    const search_result = matchedItemsdata[0];
+    var search_result = matchedItemsdata[0];
 
-     console.log("search result",search_result)
+  
 
 
      const dimensionRegex = /d[iae]*m[ea]*n[st]*s*[io]*[nm]*[ae]*n*/gi;
@@ -72,16 +75,21 @@ async function getInformation(req, res) {
     
 
 
-    const matchingData2 = search_result
+      const matchingData2 = dataArray.find((d) => d.name === search_result);
+
+      const queriesdata = properties.filter((p) => message.includes(p.name));
+
+
+    
 
     console.log("matching data2",matchingData2)
 
 
     const matchingData3 = dataArray.find((d) => d.sku === message);
 
-    if (matchingData2) {
+    if (queriesdata.length === 0) {
       res.json({
-        botResponse: `\n\n${matchingData2.name} of : ${matchingData2.description}
+        botResponse: `\n\n${search_result.name} of : ${search_result.description}
           }`,
       });
       return;
