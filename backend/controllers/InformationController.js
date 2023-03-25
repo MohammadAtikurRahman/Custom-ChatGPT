@@ -48,8 +48,6 @@ async function getInformation(req, res) {
   ];
 
   for (const prop of properties) {
-  
-  
     const matchesdata = stringSimilarity.findBestMatch(
       message,
       dataArray.map((d) => d.name)
@@ -63,14 +61,14 @@ async function getInformation(req, res) {
     }
     // console.log("matched item:", matchedItems[0]);
     const search_result = matchedItemsdata[0];
-    console.log("search result",search_result)
+
+     console.log("search result",search_result)
 
 
-    const dimensionRegex = /di(?:m|me)n(?:s|ss|t)?s?(?:ion)?/gi;
-    const correctedMessage = message.replace(dimensionRegex, "dimension");
+     const dimensionRegex = /d[iae]*m[ea]*n[st]*s*[io]*[nm]*[ae]*n*/gi;
 
 
-    const matchingData1 = search_result && correctedMessage;
+     const matchingData1 = search_result && dimensionRegex.test(message);
     
 
 
