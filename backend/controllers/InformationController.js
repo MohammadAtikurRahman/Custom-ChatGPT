@@ -49,7 +49,7 @@ async function getInformation(req, res) {
 
   for (const prop of properties) {
   
-  
+
   
     const matchesdata = stringSimilarity.findBestMatch(
       message,
@@ -75,17 +75,74 @@ async function getInformation(req, res) {
     
 
 
-      const matchingData2 = dataArray.find((d) => d.name === search_result);
+      // const matchingData2 = dataArray.find((d) => d.name === search_result);
 
       const queriesdata = properties.filter((p) => message.includes(p.name));
 
 
-    
+    console.log("query data",queriesdata)
 
-    console.log("matching data2",matchingData2)
+    // console.log("matching data2",matchingData2)
 
 
     const matchingData3 = dataArray.find((d) => d.sku === message);
+
+
+
+    const matchingData2 = deliveryDataArray.find((e) => e.location === message);
+
+    console.log("similar",matchingData2?.location)
+            
+
+
+    if(matchingData2){
+
+
+      const bayOfPlentyData = deliveryDataArray.filter(
+        (d) => d.location === matchingData2.location
+      );
+
+
+      const deliveryPrices = bayOfPlentyData.reduce(
+        (acc, d) => {
+          const price = parseFloat(d.deliveryPrice);
+          if (!isNaN(price)) {
+            // check if price is a valid number
+            if (price < acc.minPrice) {
+              acc.minPrice = price;
+            }
+            if (price > acc.maxPrice) {
+              acc.maxPrice = price;
+            }
+          }
+          return acc;
+        },
+        { minPrice: Infinity, maxPrice: -Infinity }
+      );
+
+
+
+      return res.json({
+        botResponse:
+          "\n\n" +  "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
+          matchingData2.location +
+          "  the lowest shipping charge is " +
+          deliveryPrices.minPrice +
+          " and the Highest Shipping charge is " +
+          deliveryPrices.maxPrice +
+ "",
+      });
+
+
+
+    }
+
+
+
+
+
+
+
 
     if (queriesdata.length === 0) {
       res.json({
@@ -93,7 +150,10 @@ async function getInformation(req, res) {
           }`,
       });
       return;
-    } else if (matchingData3) {
+    }
+    
+    
+    else if (matchingData3) {
       res.json({
         botResponse: `\n\n${matchingData3.name} of : ${matchingData3.description}
           }`,
@@ -134,17 +194,6 @@ async function getInformation(req, res) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
     if (!itemName) {
       try {
         const API_KEY = process.env.OPENAI_API_KEY;
@@ -172,17 +221,12 @@ async function getInformation(req, res) {
     }
 
     const queries = properties.filter((p) => message.includes(p.name));
-
-
     console.log("queries", queries)
 
     if (queries.length === 0) {
       //call to the deliveryu
       return tiggerDetaile();
     }
-  
-  
-  // have to coded here
     const result = queries
       .map((q) => {
         const data = dataArray.find((d) => d.name === itemName.name);
@@ -192,12 +236,6 @@ async function getInformation(req, res) {
         return { [q.name]: data[q.property] };
       })
       .filter((r) => r !== null);
-
-
-
-
-
-    // console.log("result data", result);
     if (result.length === 0) {
       return res.status(400).json({ error: "No matching data found" });
     }
@@ -207,10 +245,6 @@ async function getInformation(req, res) {
     if (result[0].hasOwnProperty("price")) {
       const prop_weight = itemName.weight;
       const prop_price = itemName.price;
-      // console.log("Price", prop_price);
-      // console.log("Weight", prop_weight);
-
-      // Call tiggerDetaile with prop_weight
       tiggerDetaile(prop_weight, prop_price);
 
       return;
@@ -232,7 +266,7 @@ async function getInformation(req, res) {
           const match = message.match(shippingRegex);
           if (match) {
             messageReceiver = match[1].trim();
-            console.log("messageReceiver", messageReceiver);
+            console.log("message Receiver", messageReceiver);
           }
 
           const bayOfPlentyData = deliveryDataArray.filter(
@@ -256,6 +290,11 @@ async function getInformation(req, res) {
             },
             { minPrice: Infinity, maxPrice: -Infinity }
           );
+
+
+            
+
+
 
           if (
             deliveryPrices.minPrice !== null &&
@@ -336,6 +375,8 @@ async function getInformation(req, res) {
         });
       }
     }
+
+
 
     const response = result.reduce((prev, curr) => {
       return prev + ` ${Object.keys(curr)[0]}: ${curr[Object.keys(curr)[0]]} `;
