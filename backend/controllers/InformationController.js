@@ -72,7 +72,7 @@ async function getInformation(req, res) {
     
 
 
-    const matchingData2 = dataArray.find((d) => d.name === message);
+    const matchingData2 = search_result
 
     console.log("matching data2",matchingData2)
 
