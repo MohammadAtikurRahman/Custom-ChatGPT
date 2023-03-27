@@ -48,9 +48,6 @@ async function getInformation(req, res) {
   ];
 
   for (const prop of properties) {
-  
-
-  
     const matchesdata = stringSimilarity.findBestMatch(
       message,
       dataArray.map((d) => d.name)
@@ -65,35 +62,23 @@ async function getInformation(req, res) {
     // console.log("matched item:", matchedItems[0]);
     var search_result = matchedItemsdata[0];
 
-  
+    console.log("search result", search_result.name);
 
-    console.log("search result",search_result.name)
+    const dimensionRegex = /d[iae]*m[ea]*n[st]*s*[io]*[nm]*[ae]*n*/gi;
 
+    const matchingData1 = search_result && dimensionRegex.test(message);
 
-     const dimensionRegex = /d[iae]*m[ea]*n[st]*s*[io]*[nm]*[ae]*n*/gi;
+    console.log("dimension check", matchingData1);
 
+    // const matchingData2 = dataArray.find((d) => d.name === search_result);
 
-     const matchingData1 = search_result && dimensionRegex.test(message);
-    
-      console.log("dimension check",matchingData1)
+    const queriesdata = properties.filter((p) => message.includes(p.name));
 
-      // const matchingData2 = dataArray.find((d) => d.name === search_result);
-
-      const queriesdata = properties.filter((p) => message.includes(p.name));
-
-
-    console.log("query data",queriesdata)
+    console.log("query data", queriesdata);
 
     // console.log("matching data2",matchingData2)
 
-
     const matchingData3 = dataArray.find((d) => d.sku === message);
-
-
-
-
-
-
 
     const matchesdataLocation = stringSimilarity.findBestMatch(
       message,
@@ -101,7 +86,8 @@ async function getInformation(req, res) {
     );
     let matchedItemsdataLocation = [];
     if (matchesdataLocation.bestMatch.rating > 0.3) {
-      const matchedItemdataLocation = deliveryDataArray[matchesdataLocation.bestMatchIndex];
+      const matchedItemdataLocation =
+        deliveryDataArray[matchesdataLocation.bestMatchIndex];
       matchedItemsdataLocation.push(matchedItemdataLocation);
     } else {
       console.log("No match found");
@@ -109,24 +95,12 @@ async function getInformation(req, res) {
     // console.log("matched item:", matchedItems[0]);
     var matchingData2 = matchedItemsdataLocation[0];
 
+    console.log("similar", matchingData2?.location);
 
-   
-
-
-
-  
-
-    console.log("similar",matchingData2?.location)
-            
-
-
-    if(matchingData2){
-
-
+    if (matchingData2) {
       const bayOfPlentyData = deliveryDataArray.filter(
         (d) => d.location === matchingData2.location
       );
-
 
       const deliveryPrices = bayOfPlentyData.reduce(
         (acc, d) => {
@@ -145,29 +119,35 @@ async function getInformation(req, res) {
         { minPrice: Infinity, maxPrice: -Infinity }
       );
 
-
-      console.log("weight & location & price",search_result.weight,matchingData2.location,search_result.price)
-
+      console.log(
+        "weight & location & price",
+        search_result.weight,
+        matchingData2.location,
+        search_result.price
+      );
 
       const location = matchingData2.location;
       const weight = Number(search_result.weight);
-      
-      const delivery_charge=getDeliveryPrice(location, weight); // Output: 40
+
+      console.log("weight",weight);
+
+      const delivery_charge = getDeliveryPrice(location, weight); // Output: 40
 
       const num_delivery_charge = Number(delivery_charge);
-      
-      const num_price= Number(search_result.price)
+
+      const num_price = Number(search_result.price);
       const total_price = num_price + num_delivery_charge;
 
       function getDeliveryPrice(location, weight) {
         // Find the delivery rule that matches the location and weight
-        const deliveryRule = deliveryDataArray.find(rule => {
-          return rule.location === location && (
-            (rule.operator === '<' && weight < rule['weight-dl']) ||
-            (rule.operator === '=' && weight == rule['weight-dl'])
+        const deliveryRule = deliveryDataArray.find((rule) => {
+          return (
+            rule.location === location &&
+            ((rule.operator === "<" && weight < rule["weight-dl"]) ||
+              (rule.operator === "=" && weight == rule["weight-dl"]))
           );
         });
-        
+
         // If a matching rule was found, return the delivery price
         if (deliveryRule) {
           return deliveryRule.deliveryPrice;
@@ -176,38 +156,39 @@ async function getInformation(req, res) {
         }
       }
 
-
-
-
-
-
-
-
-
-
-
-
-      return res.json({
-        botResponse:
-          "\n\n" +  "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
+      if (weight !== 0) {
+        return res.json({
+          botResponse:
+            "\n\n" +
+            "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
+            matchingData2.location +
+            "  the lowest shipping charge is " +
+            deliveryPrices.minPrice +
+            " and the Highest Shipping charge is " +
+            deliveryPrices.maxPrice +
+            " based on your product weight delivery charge is " +
+            delivery_charge +
+            "and total price is " +
+            total_price,
+        });
+      } else {
+        return res.json({
+          botResponse:
+          "\n\n" +
+          "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
           matchingData2.location +
           "  the lowest shipping charge is " +
           deliveryPrices.minPrice +
           " and the Highest Shipping charge is " +
-          deliveryPrices.maxPrice + " based on your product weight delivery charge is" + delivery_charge +
- "and total price is" +total_price,
-      });
+          deliveryPrices.maxPrice +
+       ""        });
+      }
+      
+
 
 
 
     }
-
-
-
-
-
-
-
 
     if (queriesdata.length === 0 && matchingData1 === false) {
       res.json({
@@ -215,16 +196,14 @@ async function getInformation(req, res) {
           }`,
       });
       return;
-    }
-    
-    
-    else if (matchingData3) {
+    } else if (matchingData3) {
       res.json({
         botResponse: `\n\n${matchingData3.name} of : ${matchingData3.description}
           }`,
       });
       return;
-    }  if (matchingData1) {
+    }
+    if (matchingData1) {
       const dimensions = {
         width: search_result.width,
         height: search_result.height,
@@ -250,14 +229,10 @@ async function getInformation(req, res) {
     // console.log("matched item:", matchedItems[0]);
     const itemName = matchedItems[0];
 
-
-
-
-    console.log("%cFuzzy Search is happening " + itemName?.name, "color: yellow");
-
-
-
-
+    console.log(
+      "%cFuzzy Search is happening " + itemName?.name,
+      "color: yellow"
+    );
 
     if (!itemName) {
       try {
@@ -286,7 +261,7 @@ async function getInformation(req, res) {
     }
 
     const queries = properties.filter((p) => message.includes(p.name));
-    console.log("queries", queries)
+    console.log("queries", queries);
 
     if (queries.length === 0) {
       //call to the deliveryu
@@ -320,14 +295,13 @@ async function getInformation(req, res) {
       // console.log("successfully get the price", prop_price);
 
       if (message) {
-
         try {
           const message = req.body.message;
           console.log("the message", message);
 
           // Use a regular expression to match and extract the desired part of the message, excluding the price
           const shippingRegex = /(Shipping - [^-]*?)(?=\sprice|$)/i;
-    
+
           const match = message.match(shippingRegex);
           if (match) {
             messageReceiver = match[1].trim();
@@ -337,7 +311,6 @@ async function getInformation(req, res) {
           const bayOfPlentyData = deliveryDataArray.filter(
             (d) => d.location === messageReceiver
           );
-
 
           const deliveryPrices = bayOfPlentyData.reduce(
             (acc, d) => {
@@ -356,11 +329,6 @@ async function getInformation(req, res) {
             { minPrice: Infinity, maxPrice: -Infinity }
           );
 
-
-            
-
-
-
           if (
             deliveryPrices.minPrice !== null &&
             deliveryPrices.minPrice !== undefined &&
@@ -368,10 +336,7 @@ async function getInformation(req, res) {
             !isNaN(deliveryPrices.minPrice) &&
             deliveryPrices.minPrice !== Infinity
           ) {
-
-
             const numPropWeight = Number(prop_weight);
-
 
             const saver = getDeliveryPrice(messageReceiver, numPropWeight);
 
@@ -406,7 +371,8 @@ async function getInformation(req, res) {
 
             return res.json({
               botResponse:
-                "\n\n" +itemName.name +
+                "\n\n" +
+                itemName.name +
                 "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
                 bayOfPlentyData[0]?.location +
                 "  the lowest shipping charge is " +
@@ -423,7 +389,8 @@ async function getInformation(req, res) {
           } else if (message) {
             res.json({
               botResponse:
-                "\n\n" + itemName.name+
+                "\n\n" +
+                itemName.name +
                 "Shipping Charge depends on Product Weight and location and whether it is Heavy or Fragile." +
                 "Basic price " +
                 prop_price +
@@ -440,8 +407,6 @@ async function getInformation(req, res) {
         });
       }
     }
-
-
 
     const response = result.reduce((prev, curr) => {
       return prev + ` ${Object.keys(curr)[0]}: ${curr[Object.keys(curr)[0]]} `;
