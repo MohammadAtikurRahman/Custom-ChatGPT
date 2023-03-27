@@ -3,8 +3,7 @@ const csv = require("csv-parser");
 const axios = require("axios");
 const { getDeliveryInformation } = require("./DeliveryInformationController");
 const stringSimilarity = require("string-similarity");
-const levenshtein = require('fast-levenshtein');
-
+const levenshtein = require("fast-levenshtein");
 
 var sender;
 let expirationTimestamp = Date.now() + 60000; // Expiration time set to 1 minute from now
@@ -12,7 +11,6 @@ let expirationTimestamp = Date.now() + 60000; // Expiration time set to 1 minute
 let messageReceiver = "";
 
 var userData = {};
-
 
 let dataArray = [];
 fs.createReadStream("idiya.csv")
@@ -23,9 +21,7 @@ fs.createReadStream("idiya.csv")
   .on("end", () => {
     processData(dataArray);
   });
-  
-  
-  
+
 let deliveryDataArray = [];
 fs.createReadStream("delivery.csv")
   .pipe(csv())
@@ -36,7 +32,7 @@ fs.createReadStream("delivery.csv")
     // console.log("Delivery CSV file processed.");
     processData(deliveryDataArray);
     // console.log(deliveryDataArray); // Print the deliveryDataArray here
-});
+  });
 
 let recomArray = [];
 fs.createReadStream("recom.csv")
@@ -47,8 +43,8 @@ fs.createReadStream("recom.csv")
   .on("end", () => {
     // console.log("Delivery CSV file processed.");
     processData(recomArray);
-  //  console.log(recomArray); // Print the deliveryDataArray here
-});
+    //  console.log(recomArray); // Print the deliveryDataArray here
+  });
 
 const processData = (data) => {
   // console.log(data);
@@ -103,7 +99,6 @@ async function getInformation(req, res) {
 
     const matchingData3 = dataArray.find((d) => d.sku === message);
 
-
     // const recomData = recomArray.find((d) => message.startsWith("recom") && d.name.includes(message.substring(5).trim()));
     // if (recomData) {
     //   return res.json({
@@ -112,17 +107,19 @@ async function getInformation(req, res) {
     // }
     // console.log("recomandation data",recomData);
 
-
-
     if (message.startsWith("recom")) {
       const searchTerm = message.substring(5).trim();
       const minSimilarityThreshold = 0.4;
-    
+
       // Define a function to calculate the similarity score
       function similarityScore(productName, searchTerm) {
-        return 1 - levenshtein.get(productName, searchTerm) / Math.max(productName.length, searchTerm.length);
+        return (
+          1 -
+          levenshtein.get(productName, searchTerm) /
+            Math.max(productName.length, searchTerm.length)
+        );
       }
-    
+
       const similarProducts = recomArray
         .map((product) => ({
           ...product,
@@ -130,33 +127,26 @@ async function getInformation(req, res) {
         }))
         .filter((product) => product.similarity >= minSimilarityThreshold)
         .sort((a, b) => b.similarity - a.similarity);
-    
+
       if (similarProducts.length > 0) {
         let botResponse = "\n\n" + "recommended products:\n";
-    
+
         for (const product of similarProducts) {
           botResponse += "- " + product.name + " (ref: " + product.ref + ")\n";
         }
-    
-      return  res.json({
-          botResponse: botResponse
+
+        return res.json({
+          botResponse: botResponse,
         });
       } else {
-          // Handle case when no similar products are found
-          return res.json({
-            botResponse: "\n\nThere are no similar products."
-          });
-        }
-      } else {
-        // Handle other types of messages
+        // Handle case when no similar products are found
+        return res.json({
+          botResponse: "\n\nThere are no similar products.",
+        });
       }
-      
-
-
-
-
-
-    
+    } else {
+      // Handle other types of messages
+    }
 
     const matchesdataLocation = stringSimilarity.findBestMatch(
       message,
@@ -207,7 +197,7 @@ async function getInformation(req, res) {
       const location = matchingData2.location;
       const weight = Number(search_result.weight);
 
-      console.log("weight",weight);
+      console.log("weight", weight);
 
       const delivery_charge = getDeliveryPrice(location, weight); // Output: 40
 
@@ -250,30 +240,29 @@ async function getInformation(req, res) {
             total_price,
         });
       } else {
-
-
         console.log("price sending shipping inside", userData?.prop_price);
         console.log("weight sending shipping inside", userData?.prop_weight);
 
-        const price_sh =Number(userData?.prop_price)
-        const weight =Number(userData?.prop_weight)
-        const location =  matchingData2.location
+        const price_sh = Number(userData?.prop_price);
+        const weight = Number(userData?.prop_weight);
+        const location = matchingData2.location;
 
-        const deliveryChargesh = getDeliveryPrice(location,weight)
-        console.log("inside the shipping of the alll data",deliveryChargesh);
+        const deliveryChargesh = getDeliveryPrice(location, weight);
+        console.log("inside the shipping of the alll data", deliveryChargesh);
 
         const final_money = price_sh + Number(deliveryChargesh);
-        console.log("final price of the event",final_money);
+        console.log("final price of the event", final_money);
 
         function getDeliveryPrice(location, weight) {
           // Find the delivery rule that matches the location and weight
-          const deliveryRule = deliveryDataArray.find(rule => {
-            return rule.location === location && (
-              (rule.operator === '<' && weight < rule['weight-dl']) ||
-              (rule.operator === '=' && weight == rule['weight-dl'])
+          const deliveryRule = deliveryDataArray.find((rule) => {
+            return (
+              rule.location === location &&
+              ((rule.operator === "<" && weight < rule["weight-dl"]) ||
+                (rule.operator === "=" && weight == rule["weight-dl"]))
             );
           });
-          
+
           // If a matching rule was found, return the delivery price
           if (deliveryRule) {
             return deliveryRule.deliveryPrice;
@@ -281,30 +270,36 @@ async function getInformation(req, res) {
             return `No delivery price found for location ${location} and weight ${weight}`;
           }
         }
-        
 
-        return res.json({
-          botResponse:
-          "\n\n" +
-          "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
-          matchingData2.location +
-          "  the lowest shipping charge is " +
-          deliveryPrices.minPrice +
-          " and the Highest Shipping charge is " +
-          deliveryPrices.maxPrice +
-       ""        });
-
-
-
-
-
-
+        if (final_money) {
+          return res.json({
+            botResponse:
+              "\n\n" +
+              "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
+              matchingData2.location +
+              "  the lowest shipping charge is " +
+              deliveryPrices.minPrice +
+              " and the Highest Shipping charge is " +
+              deliveryPrices.maxPrice +
+              "based on weight the delivery charge is" +
+              deliveryChargesh +
+              "and final price is " +
+              final_money,
+          });
+        } else {
+          return res.json({
+            botResponse:
+              "\n\n" +
+              "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
+              matchingData2.location +
+              "  the lowest shipping charge is " +
+              deliveryPrices.minPrice +
+              " and the Highest Shipping charge is " +
+              deliveryPrices.maxPrice +
+              "",
+          });
+        }
       }
-      
-
-
-
-
     }
 
     if (queriesdata.length === 0 && matchingData1 === false) {
@@ -503,18 +498,9 @@ async function getInformation(req, res) {
                 " your final price is " +
                 final_result,
             });
-
-
-          } 
-          
-          
-          
-          else if (message) {
-
-
+          } else if (message) {
             userData.prop_price = prop_price;
             userData.prop_weight = prop_weight;
-
 
             res.json({
               botResponse:
@@ -526,24 +512,9 @@ async function getInformation(req, res) {
                 " here weight charged will be added based on location. What is your location or area code?",
             });
 
-            console.log("price sending",prop_price)
-            console.log("weight sending",prop_weight)
-
+            console.log("price sending", prop_price);
+            console.log("weight sending", prop_weight);
           }
-
- 
-          
-          
-          
-          
-          
-
-
-
-
-
-
-
         } catch (error) {
           console.error(error);
           res.status(500).send("Internal Server Error");
@@ -561,15 +532,6 @@ async function getInformation(req, res) {
 
     return res.json({ botResponse: `\n\n` + response });
   }
-
-
-
-
-
-
-
-
-
 }
 
 module.exports = {
