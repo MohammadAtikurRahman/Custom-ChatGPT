@@ -73,7 +73,7 @@ async function getInformation(req, res) {
 
      const matchingData1 = search_result && dimensionRegex.test(message);
     
-
+      console.log("dimension check",matchingData1)
 
       // const matchingData2 = dataArray.find((d) => d.name === search_result);
 
@@ -144,7 +144,7 @@ async function getInformation(req, res) {
 
 
 
-    if (queriesdata.length === 0) {
+    if (queriesdata.length === 0 && matchingData1 === false) {
       res.json({
         botResponse: `\n\n${search_result.name} of : ${search_result.description}
           }`,
