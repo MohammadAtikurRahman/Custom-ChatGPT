@@ -89,7 +89,30 @@ async function getInformation(req, res) {
 
 
 
-    const matchingData2 = deliveryDataArray.find((e) => e.location === message);
+
+
+
+
+    const matchesdataLocation = stringSimilarity.findBestMatch(
+      message,
+      deliveryDataArray.map((d) => d.location)
+    );
+    let matchedItemsdataLocation = [];
+    if (matchesdataLocation.bestMatch.rating > 0.3) {
+      const matchedItemdataLocation = deliveryDataArray[matchesdataLocation.bestMatchIndex];
+      matchedItemsdataLocation.push(matchedItemdataLocation);
+    } else {
+      console.log("No match found");
+    }
+    // console.log("matched item:", matchedItems[0]);
+    var matchingData2 = matchedItemsdataLocation[0];
+
+
+   
+
+
+
+  
 
     console.log("similar",matchingData2?.location)
             
