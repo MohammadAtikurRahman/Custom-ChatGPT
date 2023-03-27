@@ -4,6 +4,7 @@ const axios = require("axios");
 const { getDeliveryInformation } = require("./DeliveryInformationController");
 const stringSimilarity = require("string-similarity");
 var sender;
+let expirationTimestamp = Date.now() + 60000; // Expiration time set to 1 minute from now
 
 let messageReceiver = "";
 
@@ -16,6 +17,9 @@ fs.createReadStream("idiya.csv")
   .on("end", () => {
     processData(dataArray);
   });
+  
+  
+  
 let deliveryDataArray = [];
 fs.createReadStream("delivery.csv")
   .pipe(csv())
@@ -26,7 +30,20 @@ fs.createReadStream("delivery.csv")
     // console.log("Delivery CSV file processed.");
     processData(deliveryDataArray);
     // console.log(deliveryDataArray); // Print the deliveryDataArray here
-  });
+});
+
+let recomArray = [];
+fs.createReadStream("recom.csv")
+  .pipe(csv())
+  .on("data", (data) => {
+    recomArray.push(data);
+  })
+  .on("end", () => {
+    // console.log("Delivery CSV file processed.");
+    processData(recomArray);
+  //  console.log(recomArray); // Print the deliveryDataArray here
+});
+
 const processData = (data) => {
   // console.log(data);
 };
@@ -62,7 +79,7 @@ async function getInformation(req, res) {
     // console.log("matched item:", matchedItems[0]);
     var search_result = matchedItemsdata[0];
 
-    console.log("search result", search_result.name);
+    console.log("search result", search_result?.name);
 
     const dimensionRegex = /d[iae]*m[ea]*n[st]*s*[io]*[nm]*[ae]*n*/gi;
 
@@ -79,6 +96,62 @@ async function getInformation(req, res) {
     // console.log("matching data2",matchingData2)
 
     const matchingData3 = dataArray.find((d) => d.sku === message);
+
+
+    // const recomData = recomArray.find((d) => message.startsWith("recom") && d.name.includes(message.substring(5).trim()));
+    // if (recomData) {
+    //   return res.json({
+    //     botResponse: "\n\n" + "Recommended product: " + recomData.name + " (ref: " + recomData.ref + ")"
+    //   });
+    // }
+    // console.log("recomandation data",recomData);
+
+
+    const levenshtein = require('fast-levenshtein');
+
+    if (message.startsWith("recom")) {
+      const searchTerm = message.substring(5).trim();
+      const minSimilarityThreshold = 0.4;
+    
+      // Define a function to calculate the similarity score
+      function similarityScore(productName, searchTerm) {
+        return 1 - levenshtein.get(productName, searchTerm) / Math.max(productName.length, searchTerm.length);
+      }
+    
+      const similarProducts = recomArray
+        .map((product) => ({
+          ...product,
+          similarity: similarityScore(product.name, searchTerm),
+        }))
+        .filter((product) => product.similarity >= minSimilarityThreshold)
+        .sort((a, b) => b.similarity - a.similarity);
+    
+      if (similarProducts.length > 0) {
+        let botResponse = "\n\n" + "recommended products:\n";
+    
+        for (const product of similarProducts) {
+          botResponse += "- " + product.name + " (ref: " + product.ref + ")\n";
+        }
+    
+      return  res.json({
+          botResponse: botResponse
+        });
+      } else {
+          // Handle case when no similar products are found
+          return res.json({
+            botResponse: "\n\nThere are no similar products."
+          });
+        }
+      } else {
+        // Handle other types of messages
+      }
+      
+
+
+
+
+
+    
 
     const matchesdataLocation = stringSimilarity.findBestMatch(
       message,
@@ -386,17 +459,43 @@ async function getInformation(req, res) {
                 " your final price is " +
                 final_result,
             });
-          } else if (message) {
+
+
+          } 
+          
+          
+          
+          else if (message) {
             res.json({
               botResponse:
                 "\n\n" +
                 itemName.name +
-                "Shipping Charge depends on Product Weight and location and whether it is Heavy or Fragile." +
+                " Shipping Charge depends on Product Weight and location and whether it is Heavy or Fragile." +
                 "Basic price " +
                 prop_price +
                 " here weight charged will be added based on location. What is your location or area code?",
             });
+
+            console.log("price sending",prop_price)
+            console.log("weight sending",prop_weight)
+
+
+
           }
+
+ 
+          
+          
+          
+          
+          
+
+
+
+
+
+
+
         } catch (error) {
           console.error(error);
           res.status(500).send("Internal Server Error");
@@ -414,6 +513,15 @@ async function getInformation(req, res) {
 
     return res.json({ botResponse: `\n\n` + response });
   }
+
+
+
+
+
+
+
+
+
 }
 
 module.exports = {
