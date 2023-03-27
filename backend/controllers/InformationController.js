@@ -3,10 +3,16 @@ const csv = require("csv-parser");
 const axios = require("axios");
 const { getDeliveryInformation } = require("./DeliveryInformationController");
 const stringSimilarity = require("string-similarity");
+const levenshtein = require('fast-levenshtein');
+
+
 var sender;
 let expirationTimestamp = Date.now() + 60000; // Expiration time set to 1 minute from now
 
 let messageReceiver = "";
+
+var userData = {};
+
 
 let dataArray = [];
 fs.createReadStream("idiya.csv")
@@ -107,7 +113,6 @@ async function getInformation(req, res) {
     // console.log("recomandation data",recomData);
 
 
-    const levenshtein = require('fast-levenshtein');
 
     if (message.startsWith("recom")) {
       const searchTerm = message.substring(5).trim();
@@ -245,6 +250,39 @@ async function getInformation(req, res) {
             total_price,
         });
       } else {
+
+
+        console.log("price sending shipping inside", userData?.prop_price);
+        console.log("weight sending shipping inside", userData?.prop_weight);
+
+        const price_sh =Number(userData?.prop_price)
+        const weight =Number(userData?.prop_weight)
+        const location =  matchingData2.location
+
+        const deliveryChargesh = getDeliveryPrice(location,weight)
+        console.log("inside the shipping of the alll data",deliveryChargesh);
+
+        const final_money = price_sh + Number(deliveryChargesh);
+        console.log("final price of the event",final_money);
+
+        function getDeliveryPrice(location, weight) {
+          // Find the delivery rule that matches the location and weight
+          const deliveryRule = deliveryDataArray.find(rule => {
+            return rule.location === location && (
+              (rule.operator === '<' && weight < rule['weight-dl']) ||
+              (rule.operator === '=' && weight == rule['weight-dl'])
+            );
+          });
+          
+          // If a matching rule was found, return the delivery price
+          if (deliveryRule) {
+            return deliveryRule.deliveryPrice;
+          } else {
+            return `No delivery price found for location ${location} and weight ${weight}`;
+          }
+        }
+        
+
         return res.json({
           botResponse:
           "\n\n" +
@@ -255,6 +293,12 @@ async function getInformation(req, res) {
           " and the Highest Shipping charge is " +
           deliveryPrices.maxPrice +
        ""        });
+
+
+
+
+
+
       }
       
 
@@ -466,6 +510,12 @@ async function getInformation(req, res) {
           
           
           else if (message) {
+
+
+            userData.prop_price = prop_price;
+            userData.prop_weight = prop_weight;
+
+
             res.json({
               botResponse:
                 "\n\n" +
@@ -478,8 +528,6 @@ async function getInformation(req, res) {
 
             console.log("price sending",prop_price)
             console.log("weight sending",prop_weight)
-
-
 
           }
 
