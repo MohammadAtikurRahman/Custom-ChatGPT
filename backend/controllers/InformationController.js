@@ -149,6 +149,44 @@ async function getInformation(req, res) {
       console.log("weight & location & price",search_result.weight,matchingData2.location,search_result.price)
 
 
+      const location = matchingData2.location;
+      const weight = Number(search_result.weight);
+      
+      const delivery_charge=getDeliveryPrice(location, weight); // Output: 40
+
+      const num_delivery_charge = Number(delivery_charge);
+      
+      const num_price= Number(search_result.price)
+      const total_price = num_price + num_delivery_charge;
+
+      function getDeliveryPrice(location, weight) {
+        // Find the delivery rule that matches the location and weight
+        const deliveryRule = deliveryDataArray.find(rule => {
+          return rule.location === location && (
+            (rule.operator === '<' && weight < rule['weight-dl']) ||
+            (rule.operator === '=' && weight == rule['weight-dl'])
+          );
+        });
+        
+        // If a matching rule was found, return the delivery price
+        if (deliveryRule) {
+          return deliveryRule.deliveryPrice;
+        } else {
+          return `No delivery price found for location ${location} and weight ${weight}`;
+        }
+      }
+
+
+
+
+
+
+
+
+
+
+
+
       return res.json({
         botResponse:
           "\n\n" +  "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
@@ -156,8 +194,8 @@ async function getInformation(req, res) {
           "  the lowest shipping charge is " +
           deliveryPrices.minPrice +
           " and the Highest Shipping charge is " +
-          deliveryPrices.maxPrice +
- "",
+          deliveryPrices.maxPrice + " based on your product weight delivery charge is" + delivery_charge +
+ "and total price is" +total_price,
       });
 
 
