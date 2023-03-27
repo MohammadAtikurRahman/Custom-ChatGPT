@@ -67,6 +67,8 @@ async function getInformation(req, res) {
 
   
 
+    console.log("search result",search_result.name)
+
 
      const dimensionRegex = /d[iae]*m[ea]*n[st]*s*[io]*[nm]*[ae]*n*/gi;
 
@@ -143,6 +145,8 @@ async function getInformation(req, res) {
         { minPrice: Infinity, maxPrice: -Infinity }
       );
 
+
+      console.log("weight & location & price",search_result.weight,matchingData2.location,search_result.price)
 
 
       return res.json({
