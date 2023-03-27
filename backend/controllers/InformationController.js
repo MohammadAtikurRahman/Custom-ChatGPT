@@ -126,7 +126,8 @@ async function getInformation(req, res) {
           similarity: similarityScore(product.name, searchTerm),
         }))
         .filter((product) => product.similarity >= minSimilarityThreshold)
-        .sort((a, b) => b.similarity - a.similarity);
+        .sort((a, b) => b.similarity - a.similarity).slice(0, 10);
+        ;
 
       if (similarProducts.length > 0) {
         let botResponse = "\n\n" + "recommended products:\n";
