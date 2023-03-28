@@ -514,6 +514,12 @@ async function getInformation(req, res) {
 
             console.log("price sending", prop_price);
             console.log("weight sending", prop_weight);
+
+            setTimeout(() => {
+              delete userData.prop_price;
+              delete userData.prop_weight;
+              console.log("Data deleted after 1 minute");
+            }, 60000);
           }
         } catch (error) {
           console.error(error);
