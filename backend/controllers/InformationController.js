@@ -67,6 +67,8 @@ async function getInformation(req, res) {
   ];
 
   for (const prop of properties) {
+  
+  
     const matchesdata = stringSimilarity.findBestMatch(
       message,
       dataArray.map((d) => d.name)
@@ -189,13 +191,13 @@ async function getInformation(req, res) {
 
       console.log(
         "weight & location & price",
-        search_result.weight,
+        search_result?.weight,
         matchingData2.location,
-        search_result.price
+        search_result?.price
       );
 
       const location = matchingData2.location;
-      const weight = Number(search_result.weight);
+      const weight = Number(search_result?.weight);
 
       console.log("weight", weight);
 
@@ -203,7 +205,7 @@ async function getInformation(req, res) {
 
       const num_delivery_charge = Number(delivery_charge);
 
-      const num_price = Number(search_result.price);
+      const num_price = Number(search_result?.price);
       const total_price = num_price + num_delivery_charge;
 
       function getDeliveryPrice(location, weight) {
@@ -224,7 +226,7 @@ async function getInformation(req, res) {
         }
       }
 
-      if (weight !== 0) {
+      if (weight !== 0 && search_result) {
         return res.json({
           botResponse:
             "\n\n" +
@@ -235,8 +237,8 @@ async function getInformation(req, res) {
             " and the Highest Shipping charge is " +
             deliveryPrices.maxPrice +
             " based on your product weight delivery charge is " +
-            delivery_charge +
-            "and total price is " +
+            delivery_charge +"."+
+            " total price is " +
             total_price,
         });
       } else {
@@ -280,10 +282,10 @@ async function getInformation(req, res) {
               "  the lowest shipping charge is " +
               deliveryPrices.minPrice +
               " and the Highest Shipping charge is " +
-              deliveryPrices.maxPrice +
-              "based on weight the delivery charge is" +
+              deliveryPrices.maxPrice +"."+
+              " based on weight the delivery charge is " +
               deliveryChargesh +
-              "and final price is " +
+              " and final price is " +
               final_money,
           });
         } else {
