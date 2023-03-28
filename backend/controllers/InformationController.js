@@ -126,9 +126,8 @@ async function getInformation(req, res) {
           similarity: similarityScore(product.name, searchTerm),
         }))
         .filter((product) => product.similarity >= minSimilarityThreshold)
-        .sort((a, b) => b.similarity - a.similarity).slice(0, 10);
-        ;
-
+        .sort((a, b) => b.similarity - a.similarity)
+        .slice(0, 10);
       if (similarProducts.length > 0) {
         let botResponse = "\n\n" + "recommended products:\n";
 
@@ -305,13 +304,13 @@ async function getInformation(req, res) {
 
     if (queriesdata.length === 0 && matchingData1 === false) {
       res.json({
-        botResponse: `\n\n${search_result.name} of : ${search_result.description}
+        botResponse: `\n\n${search_result.name}: ${search_result.description}
           }`,
       });
       return;
     } else if (matchingData3) {
       res.json({
-        botResponse: `\n\n${matchingData3.name} of : ${matchingData3.description}
+        botResponse: `\n\n${matchingData3.name}: ${matchingData3.description}
           }`,
       });
       return;
