@@ -156,15 +156,15 @@ async function getInformation(req, res) {
           
           const botResponse = "\n" + response.data.choices[0].text;
           
-          // Save the bot response and recom name to a CSV file
-          const csvData = `"${item}","${botResponse.replace(/"/g, '""')}"\n`;
-          fs.appendFile('recom_responses.csv', csvData, (err) => {
-            if (err) {
-              console.error('Error writing to file:', err);
-            } else {
-              console.log('Data saved to file');
-            }
-          });
+          // // Save the bot response and recom name to a CSV file
+          // const csvData = `"${item}","${botResponse.replace(/"/g, '""')}"\n`;
+          // fs.appendFile('recom_responses.csv', csvData, (err) => {
+          //   if (err) {
+          //     console.error('Error writing to file:', err);
+          //   } else {
+          //     console.log('Data saved to file');
+          //   }
+          // });
     
           return res.json({ botResponse });
     
@@ -177,7 +177,46 @@ async function getInformation(req, res) {
     } else {
       // Handle other types of messages
     }
-    
+    if (message.startsWith("gpt")) {
+      const searchTerm = message.substring(5).trim();
+      const minSimilarityThreshold = 0.4;
+
+      // Define a function to calculate the similarity score
+      function similarityScore(productName, searchTerm) {
+        return (
+          1 -
+          levenshtein.get(productName, searchTerm) /
+            Math.max(productName.length, searchTerm.length)
+        );
+      }
+
+      const similarProducts = recomArray
+        .map((product) => ({
+          ...product,
+          similarity: similarityScore(product.name, searchTerm),
+        }))
+        .filter((product) => product.similarity >= minSimilarityThreshold)
+        .sort((a, b) => b.similarity - a.similarity)
+        .slice(0, 10);
+      if (similarProducts.length > 0) {
+        let botResponse = "\n\n" + "recommended products:\n";
+
+        for (const product of similarProducts) {
+          botResponse += "- " + product.name + " (ref: " + product.ref + ")\n";
+        }
+
+        return res.json({
+          botResponse: botResponse,
+        });
+      } else {
+        // Handle case when no similar products are found
+        return res.json({
+          botResponse: "\n\nThere are no similar products.",
+        });
+      }
+    } else {
+      // Handle other types of messages
+    }
 
 
 
