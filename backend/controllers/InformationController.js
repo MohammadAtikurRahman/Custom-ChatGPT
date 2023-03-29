@@ -177,6 +177,7 @@ async function getInformation(req, res) {
     } else {
       // Handle other types of messages
     }
+
     if (message.startsWith("gpt")) {
       const searchTerm = message.substring(5).trim();
       const minSimilarityThreshold = 0.4;
@@ -217,7 +218,56 @@ async function getInformation(req, res) {
     } else {
       // Handle other types of messages
     }
-
+   if (message.startsWith("save")) {
+      const item = message.substring(6); // Remove the first 6 characters ("recom" and a space)
+      // console.log(item);
+    
+      const finder = `You're an expert from New Zealand in Furniture business for 20 years. You are tasked to find out the most popular, relevant and high demand product recommendation that goes with certain product. Target market is New Zealand. You will be fed with the product list and you will provide 20 recommended products against each product. If you have any question about this prompt, ask before you try to generate recommended products. product is ${item}`;
+      // console.log(finder);
+    
+      if (item) {
+        try {
+          const API_KEY = process.env.OPENAI_API_KEY;
+          const response = await axios({
+            method: "post",
+            url: "https://api.openai.com/v1/engines/text-davinci-003/completions",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${API_KEY}`,
+            },
+            data: {
+              prompt: finder,
+              max_tokens: 900,
+              n: 1,
+              stop: "",
+              temperature: 0.5,
+            },
+          });
+          
+          const botResponse = "\n" + response.data.choices[0].text;
+          
+          // Save the bot response and recom name to a CSV file
+          const csvData = `"${item}","${botResponse.replace(/"/g, '""')}"\n`;
+          fs.appendFile('recom_responses.csv', csvData, (err) => {
+            if (err) {
+              console.error('Error writing to file:', err);
+            } else {
+              console.log('Data saved to file');
+            }
+          });
+    
+          return res.json({ botResponse });
+    
+        } catch (error) {
+          return res
+            .status(500)
+            .send({ error: "Could not generate text completion" });
+        }
+      }
+    } else {
+      // Handle other types of messages
+    }
+    
 
 
 
