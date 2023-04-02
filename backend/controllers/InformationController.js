@@ -343,9 +343,93 @@ async function getInformation(req, res) {
     // console.log("matched item:", matchedItems[0]);
     var matchingData2 = matchedItemsdataLocation[0];
 
-    console.log("similar", matchingData2?.location);
 
-    if (matchingData2) {
+    
+
+
+
+    const areaAndDeliveryArray = areaCodeArray.map((d) => `${d.area} ${d.delivery}`);
+
+    const matchesdataLocation1 = stringSimilarity.findBestMatch(
+      message,
+      areaAndDeliveryArray
+    );
+    
+    let matchedItemsdataLocation1 = [];
+    
+    if (matchesdataLocation1.bestMatch.rating > 0.3) {
+      const matchedItemdataLocation1 =
+        areaCodeArray[matchesdataLocation1.bestMatchIndex];
+      matchedItemsdataLocation1.push(matchedItemdataLocation1);
+    } else {
+      console.log("No match found");
+    }
+    
+    var matchingData22 = matchedItemsdataLocation1[0];
+    
+    if (matchingData22) {
+      const matchedString = areaAndDeliveryArray[matchesdataLocation1.bestMatchIndex];
+      const isAreaMatched = matchedString.includes(matchingData22.area);
+      var isDeliveryMatched = matchedString.includes(matchingData22.delivery);
+    
+      if (isAreaMatched) {
+        console.log("Area:", matchingData22.area);
+      }
+      
+      if (isDeliveryMatched) {
+        console.log("Delivery:", matchingData22.delivery);
+      }
+    } else {
+      console.log("No matching data found");
+    }
+    
+
+
+
+
+
+    if(isDeliveryMatched){
+
+
+
+
+     var location = matchingData22?.delivery
+
+
+     console.log("location accepted",location)
+         const matchesdataLocation = stringSimilarity.findBestMatch(
+          location,
+      deliveryDataArray.map((d) => d.location)
+    );
+    let matchedItemsdataLocation = [];
+    if (matchesdataLocation.bestMatch.rating > 0.3) {
+      const matchedItemdataLocation =
+        deliveryDataArray[matchesdataLocation.bestMatchIndex];
+      matchedItemsdataLocation.push(matchedItemdataLocation);
+    } else {
+      console.log("No match found");
+    }
+    // console.log("matched item:", matchedItems[0]);
+    var matchingLocation = matchedItemsdataLocation[0];
+    // console.log("matching location",matchingLocation)
+
+    // console.log("xyzxxxxxxxx",matchingLocation)
+    // matchingData2 = matchingLocation
+  
+    }
+
+    console.log("xyzxxxxxxxx",matchingLocation)
+    matchingData2 = matchingLocation
+
+   
+    console.log("similar", matchingData2?.location);
+    console.log("abcd",matchingData2)
+
+    if (matchingData2?.location ) {
+
+      console.log("for this iffff")
+  
+  
       const bayOfPlentyData = deliveryDataArray.filter(
         (d) => d.location === matchingData2.location
       );
@@ -378,6 +462,12 @@ async function getInformation(req, res) {
       const weight = Number(search_result?.weight);
 
       console.log("weight", weight);
+
+
+      console.log("it will be location or area code",location)
+
+
+
 
       const delivery_charge = getDeliveryPrice(location, weight); // Output: 40
 

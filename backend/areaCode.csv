@@ -1,4 +1,4 @@
-﻿Delivery Method,Area Codes,Area Name,Region,Rural,Rural Charge
+delivery,code,area,region,rural,charge
 Shipping - Bay of Plenty,3177,Athenree,Bay of Plenty,TRUE,39
 Shipping - Bay of Plenty,3178,Katikati,Bay of Plenty,TRUE,39
 Shipping - Bay of Plenty,3079,Ruatahuna,Bay of Plenty,TRUE,39
@@ -351,7 +351,7 @@ Shipping - Hawke's Bay,4195,Tuai,Hawke's Bay,TRUE,39
 Shipping - Hawke's Bay,4196,Wairoa,Hawke's Bay,TRUE,39
 Shipping - Hawke's Bay,4122,Hastings,Hawke's Bay,FALSE,0
 Shipping - Hawke's Bay,4200,Waipukurau,Hawke's Bay,FALSE,0
-Shipping - Hawke's Bay, 4104,Bay View,Hawke's Bay,FALSE,0
+Shipping - Hawke's Bay,4104,Bay View,Hawke's Bay,FALSE,0
 Shipping - Hawke's Bay,4112,Meeanee,Hawke's Bay,FALSE,0
 Shipping - Hawke's Bay,4110,Onekawa,Hawke's Bay,FALSE,0
 Shipping - Hawke's Bay,4120,Hastings,Hawke's Bay,FALSE,0
@@ -492,45 +492,45 @@ Shipping - Auckland (From Silverdale to Pokeno),2105,Abilene Pl,Auckland,FALSE,0
 Shipping - Auckland (From Silverdale to Pokeno),2110,Albert St,Auckland,FALSE,0
 Shipping - Auckland (From Silverdale to Pokeno),2112,Conifer Grove,Auckland,FALSE,0
 Shipping - Auckland (From Silverdale to Pokeno),2113,Drury,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0600,Avondale,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0991,Whangapara,Auckland,TRUE,39
-Shipping - Auckland (From Silverdale to Pokeno),0874,Parkhurst,Auckland,TRUE,39
-Shipping - Auckland (From Silverdale to Pokeno),0875,Helensville,Auckland,TRUE,39
-Shipping - Auckland (From Silverdale to Pokeno),0781,Piha,Auckland,TRUE,39
-Shipping - Auckland (From Silverdale to Pokeno),0782,Waitakere,Auckland,TRUE,39
-Shipping - Auckland (From Silverdale to Pokeno),0871,Kaukapakapa,Auckland,TRUE,39
-Shipping - Auckland (From Silverdale to Pokeno),0873,Parakakau,Auckland,TRUE,39
-Shipping - Auckland (From Silverdale to Pokeno),0891,Huapai,Auckland,TRUE,39
-Shipping - Auckland (From Silverdale to Pokeno),0892,Kumeu,Auckland,TRUE,39
-Shipping - Auckland (From Silverdale to Pokeno),0772,Karekare,Auckland,TRUE,39
-Shipping - Auckland (From Silverdale to Pokeno),0992,Silverdale,Auckland,TRUE,39
-Shipping - Auckland (From Silverdale to Pokeno),0993,Red Beach,Auckland,TRUE,39
-Shipping - Auckland (From Silverdale to Pokeno),0881,Woodhill,Auckland,TRUE,39
-Shipping - Auckland (From Silverdale to Pokeno),0882,Waimauku,Auckland,TRUE,39
-Shipping - Auckland (From Silverdale to Pokeno),0883,Pahitoa,Auckland,TRUE,39
-Shipping - Auckland (From Silverdale to Pokeno),0981,Woodcocks,Auckland,TRUE,39
-Shipping - Auckland (From Silverdale to Pokeno),0982,Algies Bay,Auckland,TRUE,39
-Shipping - Auckland (From Silverdale to Pokeno),0983,Pohuehue,Auckland,TRUE,39
-Shipping - Auckland (From Silverdale to Pokeno),0984,Ahuroa,Auckland,TRUE,39
-Shipping - Auckland (From Silverdale to Pokeno),0985,Big Omaha,Auckland,TRUE,39
-Shipping - Auckland (From Silverdale to Pokeno),0986,Tawharanui,Auckland,TRUE,39
-Shipping - Auckland (From Silverdale to Pokeno),0972,Wayby,Auckland,TRUE,39
-Shipping - Auckland (From Silverdale to Pokeno),0973,Wharehine,Auckland,TRUE,39
-Shipping - Auckland (From Silverdale to Pokeno),0974,Te Hana,Auckland,TRUE,39
-Shipping - Auckland (From Silverdale to Pokeno),0977,Wharehine,Auckland,TRUE,39
-Shipping - Auckland (From Silverdale to Pokeno),0602,Glen Eden,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0604,Cornwallis,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0610,Henderson,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0612,Glen Eden,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0614,Henderson Valley,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0618,Herald Island,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0620,Castor Bay,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0622,Bayswater,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0624,Devonport,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0626,Beach Haven,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0627,Hillcrest,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0629,Glenfield,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0630,Browns Bay,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),600,Avondale,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),991,Whangapara,Auckland,TRUE,39
+Shipping - Auckland (From Silverdale to Pokeno),874,Parkhurst,Auckland,TRUE,39
+Shipping - Auckland (From Silverdale to Pokeno),875,Helensville,Auckland,TRUE,39
+Shipping - Auckland (From Silverdale to Pokeno),781,Piha,Auckland,TRUE,39
+Shipping - Auckland (From Silverdale to Pokeno),782,Waitakere,Auckland,TRUE,39
+Shipping - Auckland (From Silverdale to Pokeno),871,Kaukapakapa,Auckland,TRUE,39
+Shipping - Auckland (From Silverdale to Pokeno),873,Parakakau,Auckland,TRUE,39
+Shipping - Auckland (From Silverdale to Pokeno),891,Huapai,Auckland,TRUE,39
+Shipping - Auckland (From Silverdale to Pokeno),892,Kumeu,Auckland,TRUE,39
+Shipping - Auckland (From Silverdale to Pokeno),772,Karekare,Auckland,TRUE,39
+Shipping - Auckland (From Silverdale to Pokeno),992,Silverdale,Auckland,TRUE,39
+Shipping - Auckland (From Silverdale to Pokeno),993,Red Beach,Auckland,TRUE,39
+Shipping - Auckland (From Silverdale to Pokeno),881,Woodhill,Auckland,TRUE,39
+Shipping - Auckland (From Silverdale to Pokeno),882,Waimauku,Auckland,TRUE,39
+Shipping - Auckland (From Silverdale to Pokeno),883,Pahitoa,Auckland,TRUE,39
+Shipping - Auckland (From Silverdale to Pokeno),981,Woodcocks,Auckland,TRUE,39
+Shipping - Auckland (From Silverdale to Pokeno),982,Algies Bay,Auckland,TRUE,39
+Shipping - Auckland (From Silverdale to Pokeno),983,Pohuehue,Auckland,TRUE,39
+Shipping - Auckland (From Silverdale to Pokeno),984,Ahuroa,Auckland,TRUE,39
+Shipping - Auckland (From Silverdale to Pokeno),985,Big Omaha,Auckland,TRUE,39
+Shipping - Auckland (From Silverdale to Pokeno),986,Tawharanui,Auckland,TRUE,39
+Shipping - Auckland (From Silverdale to Pokeno),972,Wayby,Auckland,TRUE,39
+Shipping - Auckland (From Silverdale to Pokeno),973,Wharehine,Auckland,TRUE,39
+Shipping - Auckland (From Silverdale to Pokeno),974,Te Hana,Auckland,TRUE,39
+Shipping - Auckland (From Silverdale to Pokeno),977,Wharehine,Auckland,TRUE,39
+Shipping - Auckland (From Silverdale to Pokeno),602,Glen Eden,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),604,Cornwallis,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),610,Henderson,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),612,Glen Eden,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),614,Henderson Valley,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),618,Herald Island,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),620,Castor Bay,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),622,Bayswater,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),624,Devonport,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),626,Beach Haven,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),627,Hillcrest,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),629,Glenfield,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),630,Browns Bay,Auckland,FALSE,0
 Shipping - Auckland (From Silverdale to Pokeno),1140,Mechanics Bay,Auckland,FALSE,0
 Shipping - Auckland (From Silverdale to Pokeno),1141,Newmarket,Auckland,FALSE,0
 Shipping - Auckland (From Silverdale to Pokeno),1142,Newton,Auckland,FALSE,0
@@ -617,202 +617,202 @@ Shipping - Auckland (From Silverdale to Pokeno),2341,Waiuku,Auckland,FALSE,0
 Shipping - Auckland (From Silverdale to Pokeno),2343,Bombay,Auckland,FALSE,0
 Shipping - Auckland (From Silverdale to Pokeno),2344,Patumahoe,Auckland,FALSE,0
 Shipping - Auckland (From Silverdale to Pokeno),2345,Waiau Pa,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0752,Albany,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0755,Albany,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0920,Algies Bay,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0932,Arkles Bay,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0930,Army Bay,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0641,Glen Eden,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0642,Titirangi,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0643,Green Bay,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0644,Blockhouse Bay,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0645,Glendene,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0650,Sunnyvale,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0651,Te Atatu,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0652,Te Atatu South,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0653,Swanson,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0654,Te Atatu South,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0655,Swanson,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0656,Massey East,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0657,West Harbour,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0660,Waitakere,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0661,Te Atatu Peninsula,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0662,Brighams Creek,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0663,Massey East,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0740,Hauraki,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0741,Milford,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0742,Torbay,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0743,Forrest Hill,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0744,Devenport,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0745,Glenfield,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0746,Birkenhead,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0747,Marlborough,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0748,North Shore,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0749,Birkdale,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0750,Takapuna,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0751,Glenfield,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0753,Browns Bay,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0754,Mairangi Bay,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0756,Paremoremo,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0757,Forrest Hill,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0758,Mairangi Bay,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0800,Helensville,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0810,Huapai,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0812,Waimauku,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0814,Kumeu,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0820,Riverhead,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0830,Parakai,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0840,Helensville,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0841,Huapai,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0842,Pahitoa,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0843,Kaukapakapa,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0900,Wellsford,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0931,Hatfields Beach,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0940,Wellsford,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0941,Warkworth,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0942,Snells Beach,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0943,Whangaparaoa,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0944,Silverdale,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0945,Red Beach,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0946,Orewa,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0947,Leigh,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0948,Matakana,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0950,Waiwera,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0951,Puhoi,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0960,Okiwi,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0961,Okupu,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0962,Tryphena,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0963,Port Fitzroy,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),752,Albany,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),755,Albany,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),920,Algies Bay,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),932,Arkles Bay,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),930,Army Bay,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),641,Glen Eden,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),642,Titirangi,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),643,Green Bay,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),644,Blockhouse Bay,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),645,Glendene,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),650,Sunnyvale,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),651,Te Atatu,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),652,Te Atatu South,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),653,Swanson,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),654,Te Atatu South,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),655,Swanson,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),656,Massey East,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),657,West Harbour,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),660,Waitakere,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),661,Te Atatu Peninsula,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),662,Brighams Creek,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),663,Massey East,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),740,Hauraki,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),741,Milford,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),742,Torbay,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),743,Forrest Hill,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),744,Devenport,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),745,Glenfield,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),746,Birkenhead,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),747,Marlborough,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),748,North Shore,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),749,Birkdale,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),750,Takapuna,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),751,Glenfield,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),753,Browns Bay,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),754,Mairangi Bay,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),756,Paremoremo,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),757,Forrest Hill,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),758,Mairangi Bay,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),800,Helensville,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),810,Huapai,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),812,Waimauku,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),814,Kumeu,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),820,Riverhead,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),830,Parakai,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),840,Helensville,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),841,Huapai,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),842,Pahitoa,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),843,Kaukapakapa,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),900,Wellsford,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),931,Hatfields Beach,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),940,Wellsford,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),941,Warkworth,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),942,Snells Beach,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),943,Whangaparaoa,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),944,Silverdale,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),945,Red Beach,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),946,Orewa,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),947,Leigh,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),948,Matakana,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),950,Waiwera,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),951,Puhoi,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),960,Okiwi,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),961,Okupu,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),962,Tryphena,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),963,Port Fitzroy,Auckland,FALSE,0
 Shipping - Auckland (From Silverdale to Pokeno),2402,Pokeno2,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0632,Greenhithe,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0640,Avondale,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),632,Greenhithe,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),640,Avondale,Auckland,FALSE,0
 Shipping - Auckland (From Silverdale to Pokeno),2012,Manukau,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0616,Te Atatu,Auckland,FALSE,0
-Shipping - Auckland (From Silverdale to Pokeno),0816,Rural Auckland,Auckland,TRUE,39
+Shipping - Auckland (From Silverdale to Pokeno),616,Te Atatu,Auckland,FALSE,0
+Shipping - Auckland (From Silverdale to Pokeno),816,Rural Auckland,Auckland,TRUE,39
 Shipping - Auckland (From Silverdale to Pokeno),2019,Thomas Rd,Auckland,FALSE,0
 Shipping - Waiheke,1081,Omiha,Auckland,FALSE,0
-Shipping - Northland (Others),0486,Waiharera,Northland,TRUE,39
-Shipping - Northland (Others),0496,Pawarenga,Northland,TRUE,39
-Shipping - Northland (Others),0372,Kairara,Northland,TRUE,39
-Shipping - Northland (Others),0373,Mamaranui,Northland,TRUE,39
-Shipping - Northland (Others),0374,Arapohue,Northland,TRUE,39
-Shipping - Northland (Others),0376,Tutamoe,Northland,TRUE,39
-Shipping - Northland (Others),0377,Baylys Beach,Northland,TRUE,39
-Shipping - Northland (Others),0379,Whatoro,Northland,TRUE,39
-Shipping - Northland (Others),0370,Arapohue,Northland,TRUE,39
-Shipping - Northland (Others),0182,Hukerenui,Northland,TRUE,39
-Shipping - Northland (Others),0184,Whangaruru North,Northland,TRUE,39
-Shipping - Northland (Others),0478,Kaeo,Northland,TRUE,39
-Shipping - Northland (Others),0479,Saies,Northland,TRUE,39
-Shipping - Northland (Others),0474,Tautoro,Northland,TRUE,39
-Shipping - Northland (Others),0472,Pakaraka,Northland,TRUE,39
-Shipping - Northland (Others),0473,Waima,Northland,TRUE,39
-Shipping - Northland (Others),0481,Manukau,Northland,TRUE,39
-Shipping - Northland (Others),0482,Kaiaka,Northland,TRUE,39
-Shipping - Northland (Others),0483,Lake Ohia,Northland,TRUE,39
-Shipping - Northland (Others),0484,Te Kao,Northland,TRUE,39
-Shipping - Northland (Others),0281,Pokere,Northland,TRUE,39
-Shipping - Northland (Others),0282,Karetu,Northland,TRUE,39
-Shipping - Northland (Others),0294,Purerua,Northland,TRUE,39
-Shipping - Northland (Others),0295,Waipapa,Northland,TRUE,39
-Shipping - Northland (Others),0293,Puketona,Northland,TRUE,39
-Shipping - Northland (Others),0491,Broadwood,Northland,TRUE,39
-Shipping - Northland (Others),0492,Panguru,Northland,TRUE,39
-Shipping - Northland (Others),0494,Paraoanui,Northland,TRUE,39
-Shipping - Northland (Others),0593,Pahi,Northland,TRUE,39
-Shipping - Northland (Others),0594,Matakohe,Northland,TRUE,39
-Shipping - Northland (Others),0583,Marohemo,Northland,TRUE,39
-Shipping - Northland (Others),0587,Ranganui,Northland,TRUE,39
-Shipping - Northland (Others),0588,Maungaturoto,Northland,TRUE,39
-Shipping - Northland (Others),0589,Huarau,Northland,TRUE,39
-Shipping - Northland (Others),0475,Marangai,Northland,TRUE,39
-Shipping - Northland (Others),0476,Umawera,Northland,TRUE,39
-Shipping - Northland (Others),0192,Rukuwai,Northland,TRUE,39
-Shipping - Northland (Others),0571,Mareretu,Northland,TRUE,39
-Shipping - Northland (Others),0591,Ruawai,Northland,TRUE,39
-Shipping - Northland (Others),0592,Rehia,Northland,TRUE,39
-Shipping - Northland (Others),0381,Kirikopuni,Northland,TRUE,39
-Shipping - Northland (Others),0391,Tangaihe,Northland,TRUE,39
-Shipping - Northland (Others),0193,Waiotira,Northland,TRUE,39
-Shipping - Northland (Others),0582,Waipu,Northland,TRUE,39
-Shipping - Northland (Others),0171,Mata,Northland,TRUE,39
-Shipping - Northland (Others),0172,Parakao,Northland,TRUE,39
-Shipping - Northland (Others),0173,Kiripaka,Northland,TRUE,39
-Shipping - Northland (Others),0174,Whangarei Heads,Northland,TRUE,39
-Shipping - Northland (Others),0176,Moengawahine,Northland,TRUE,39
-Shipping - Northland (Others),0178,Maungakaramea,Northland,TRUE,39
-Shipping - Northland (Others),0114,Hikurangi,Northland,FALSE,0
-Shipping - Northland (Others),0116,Ruakaka,Northland,FALSE,0
-Shipping - Northland (Others),0200,Opua,Northland,FALSE,0
-Shipping - Northland (Others),0210,Kawakawa,Northland,FALSE,0
-Shipping - Northland (Others),0211,Moerewa,Northland,FALSE,0
-Shipping - Northland (Others),0230,Kerikeri,Northland,FALSE,0
-Shipping - Northland (Others),0310,Awakino Point,Northland,FALSE,0
-Shipping - Northland (Others),0405,Kaikohe,Northland,FALSE,0
-Shipping - Northland (Others),0410,Kaitaia,Northland,FALSE,0
-Shipping - Northland (Others),0420,Cable Bay,Northland,FALSE,0
-Shipping - Northland (Others),0510,Waipu,Northland,FALSE,0
-Shipping - Northland (Others),0520,Maungaturoto,Northland,FALSE,0
-Shipping - Northland (Others),0530,Ruawai,Northland,FALSE,0
-Shipping - Northland (Others),0140,Riverside,Northland,FALSE,0
-Shipping - Northland (Others),0141,Otangarei,Northland,FALSE,0
-Shipping - Northland (Others),0142,Sherwood Rise,Northland,FALSE,0
-Shipping - Northland (Others),0143,Morningside,Northland,FALSE,0
-Shipping - Northland (Others),0144,Tikipunga,Northland,FALSE,0
-Shipping - Northland (Others),0145,Kensington,Northland,FALSE,0
-Shipping - Northland (Others),0146,Maungakaramea,Northland,FALSE,0
-Shipping - Northland (Others),0147,Woodhill,Northland,FALSE,0
-Shipping - Northland (Others),0148,Woodhill,Northland,FALSE,0
-Shipping - Northland (Others),0149,Riverside,Northland,FALSE,0
-Shipping - Northland (Others),0150,Hikurangi,Northland,FALSE,0
-Shipping - Northland (Others),0151,Ruakaka,Northland,FALSE,0
-Shipping - Northland (Others),0152,Maungatapere,Northland,FALSE,0
-Shipping - Northland (Others),0153,Tutukaka,Northland,FALSE,0
-Shipping - Northland (Others),0154,Ngunguru,Northland,FALSE,0
-Shipping - Northland (Others),0180,Marua,Northland,FALSE,0
-Shipping - Northland (Others),0231,Opua,Northland,FALSE,0
-Shipping - Northland (Others),0242,Russell,Northland,FALSE,0
-Shipping - Northland (Others),0243,Kawakawa,Northland,FALSE,0
-Shipping - Northland (Others),0244,Moerewa,Northland,FALSE,0
-Shipping - Northland (Others),0245,Kerikeri,Northland,FALSE,0
-Shipping - Northland (Others),0246,Waipapa,Northland,FALSE,0
-Shipping - Northland (Others),0247,Paihia,Northland,FALSE,0
-Shipping - Northland (Others),0271,Haruru,Northland,FALSE,0
-Shipping - Northland (Others),0340,Dargaville,Northland,FALSE,0
-Shipping - Northland (Others),0341,Te Kopura,Northland,FALSE,0
-Shipping - Northland (Others),0440,Kaikohe,Northland,FALSE,0
-Shipping - Northland (Others),0441,Kaitaia,Northland,FALSE,0
-Shipping - Northland (Others),0442,Mangonui,Northland,FALSE,0
-Shipping - Northland (Others),0443,Rawene,Northland,FALSE,0
-Shipping - Northland (Others),0444,Omapere,Northland,FALSE,0
-Shipping - Northland (Others),0445,Opononi,Northland,FALSE,0
-Shipping - Northland (Others),0446,Waimamaku,Northland,FALSE,0
-Shipping - Northland (Others),0447,Okaihau,Northland,FALSE,0
-Shipping - Northland (Others),0448,Kaeo,Northland,FALSE,0
-Shipping - Northland (Others),0449,Ahipara,Northland,FALSE,0
-Shipping - Northland (Others),0451,Awanui,Northland,FALSE,0
-Shipping - Northland (Others),0453,Kohukohu,Northland,FALSE,0
-Shipping - Northland (Others),0460,Pukenui,Northland,FALSE,0
-Shipping - Northland (Others),0462,Broadwood,Northland,FALSE,0
-Shipping - Northland (Others),0540,Mangawhai,Northland,FALSE,0
-Shipping - Northland (Others),0541,Mangawhai Heads,Northland,FALSE,0
-Shipping - Northland (Others),0542,Kaiwaka,Northland,FALSE,0
-Shipping - Northland (Others),0543,Paparoa,Northland,FALSE,0
-Shipping - Northland (Others),0545,Waipu,Northland,FALSE,0
-Shipping - Northland (Others),0547,Rowsells,Northland,FALSE,0
-Shipping - Northland (Others),0549,Ruawai,Northland,FALSE,0
-Shipping - Northland (Others),0550,Matakohe,Northland,FALSE,0
-Shipping - Northland (Others),0575,Topuni,Northland,FALSE,0
-"Shipping -  Northland (Mangawhai, Whangarei)",0573,Kaiwaka,Northland,TRUE,39
-"Shipping -  Northland (Mangawhai, Whangarei)",0185,Ruatangata East,Northland,TRUE,39
-"Shipping -  Northland (Mangawhai, Whangarei)",0975,Topuni,Northland,FALSE,0
-"Shipping -  Northland (Mangawhai, Whangarei)",0175,Tahere,Northland,TRUE,39
-"Shipping -  Northland (Mangawhai, Whangarei)",0179,Maungatapere,Northland,TRUE,39
-"Shipping -  Northland (Mangawhai, Whangarei)",0170,Puwera,Northland,TRUE,39
-"Shipping -  Northland (Mangawhai, Whangarei)",0110,Abbey Caves,Northland,FALSE,0
-"Shipping -  Northland (Mangawhai, Whangarei)",0112,Glenbervie,Northland,FALSE,0
-"Shipping -  Northland (Mangawhai, Whangarei)",0505,Mangawhai,Northland,FALSE,0
-Shipping - Northland (Warkworth),0910,Warkworth,Auckland,FALSE,0
+Shipping - Northland (Others),486,Waiharera,Northland,TRUE,39
+Shipping - Northland (Others),496,Pawarenga,Northland,TRUE,39
+Shipping - Northland (Others),372,Kairara,Northland,TRUE,39
+Shipping - Northland (Others),373,Mamaranui,Northland,TRUE,39
+Shipping - Northland (Others),374,Arapohue,Northland,TRUE,39
+Shipping - Northland (Others),376,Tutamoe,Northland,TRUE,39
+Shipping - Northland (Others),377,Baylys Beach,Northland,TRUE,39
+Shipping - Northland (Others),379,Whatoro,Northland,TRUE,39
+Shipping - Northland (Others),370,Arapohue,Northland,TRUE,39
+Shipping - Northland (Others),182,Hukerenui,Northland,TRUE,39
+Shipping - Northland (Others),184,Whangaruru North,Northland,TRUE,39
+Shipping - Northland (Others),478,Kaeo,Northland,TRUE,39
+Shipping - Northland (Others),479,Saies,Northland,TRUE,39
+Shipping - Northland (Others),474,Tautoro,Northland,TRUE,39
+Shipping - Northland (Others),472,Pakaraka,Northland,TRUE,39
+Shipping - Northland (Others),473,Waima,Northland,TRUE,39
+Shipping - Northland (Others),481,Manukau,Northland,TRUE,39
+Shipping - Northland (Others),482,Kaiaka,Northland,TRUE,39
+Shipping - Northland (Others),483,Lake Ohia,Northland,TRUE,39
+Shipping - Northland (Others),484,Te Kao,Northland,TRUE,39
+Shipping - Northland (Others),281,Pokere,Northland,TRUE,39
+Shipping - Northland (Others),282,Karetu,Northland,TRUE,39
+Shipping - Northland (Others),294,Purerua,Northland,TRUE,39
+Shipping - Northland (Others),295,Waipapa,Northland,TRUE,39
+Shipping - Northland (Others),293,Puketona,Northland,TRUE,39
+Shipping - Northland (Others),491,Broadwood,Northland,TRUE,39
+Shipping - Northland (Others),492,Panguru,Northland,TRUE,39
+Shipping - Northland (Others),494,Paraoanui,Northland,TRUE,39
+Shipping - Northland (Others),593,Pahi,Northland,TRUE,39
+Shipping - Northland (Others),594,Matakohe,Northland,TRUE,39
+Shipping - Northland (Others),583,Marohemo,Northland,TRUE,39
+Shipping - Northland (Others),587,Ranganui,Northland,TRUE,39
+Shipping - Northland (Others),588,Maungaturoto,Northland,TRUE,39
+Shipping - Northland (Others),589,Huarau,Northland,TRUE,39
+Shipping - Northland (Others),475,Marangai,Northland,TRUE,39
+Shipping - Northland (Others),476,Umawera,Northland,TRUE,39
+Shipping - Northland (Others),192,Rukuwai,Northland,TRUE,39
+Shipping - Northland (Others),571,Mareretu,Northland,TRUE,39
+Shipping - Northland (Others),591,Ruawai,Northland,TRUE,39
+Shipping - Northland (Others),592,Rehia,Northland,TRUE,39
+Shipping - Northland (Others),381,Kirikopuni,Northland,TRUE,39
+Shipping - Northland (Others),391,Tangaihe,Northland,TRUE,39
+Shipping - Northland (Others),193,Waiotira,Northland,TRUE,39
+Shipping - Northland (Others),582,Waipu,Northland,TRUE,39
+Shipping - Northland (Others),171,Mata,Northland,TRUE,39
+Shipping - Northland (Others),172,Parakao,Northland,TRUE,39
+Shipping - Northland (Others),173,Kiripaka,Northland,TRUE,39
+Shipping - Northland (Others),174,Whangarei Heads,Northland,TRUE,39
+Shipping - Northland (Others),176,Moengawahine,Northland,TRUE,39
+Shipping - Northland (Others),178,Maungakaramea,Northland,TRUE,39
+Shipping - Northland (Others),114,Hikurangi,Northland,FALSE,0
+Shipping - Northland (Others),116,Ruakaka,Northland,FALSE,0
+Shipping - Northland (Others),200,Opua,Northland,FALSE,0
+Shipping - Northland (Others),210,Kawakawa,Northland,FALSE,0
+Shipping - Northland (Others),211,Moerewa,Northland,FALSE,0
+Shipping - Northland (Others),230,Kerikeri,Northland,FALSE,0
+Shipping - Northland (Others),310,Awakino Point,Northland,FALSE,0
+Shipping - Northland (Others),405,Kaikohe,Northland,FALSE,0
+Shipping - Northland (Others),410,Kaitaia,Northland,FALSE,0
+Shipping - Northland (Others),420,Cable Bay,Northland,FALSE,0
+Shipping - Northland (Others),510,Waipu,Northland,FALSE,0
+Shipping - Northland (Others),520,Maungaturoto,Northland,FALSE,0
+Shipping - Northland (Others),530,Ruawai,Northland,FALSE,0
+Shipping - Northland (Others),140,Riverside,Northland,FALSE,0
+Shipping - Northland (Others),141,Otangarei,Northland,FALSE,0
+Shipping - Northland (Others),142,Sherwood Rise,Northland,FALSE,0
+Shipping - Northland (Others),143,Morningside,Northland,FALSE,0
+Shipping - Northland (Others),144,Tikipunga,Northland,FALSE,0
+Shipping - Northland (Others),145,Kensington,Northland,FALSE,0
+Shipping - Northland (Others),146,Maungakaramea,Northland,FALSE,0
+Shipping - Northland (Others),147,Woodhill,Northland,FALSE,0
+Shipping - Northland (Others),148,Woodhill,Northland,FALSE,0
+Shipping - Northland (Others),149,Riverside,Northland,FALSE,0
+Shipping - Northland (Others),150,Hikurangi,Northland,FALSE,0
+Shipping - Northland (Others),151,Ruakaka,Northland,FALSE,0
+Shipping - Northland (Others),152,Maungatapere,Northland,FALSE,0
+Shipping - Northland (Others),153,Tutukaka,Northland,FALSE,0
+Shipping - Northland (Others),154,Ngunguru,Northland,FALSE,0
+Shipping - Northland (Others),180,Marua,Northland,FALSE,0
+Shipping - Northland (Others),231,Opua,Northland,FALSE,0
+Shipping - Northland (Others),242,Russell,Northland,FALSE,0
+Shipping - Northland (Others),243,Kawakawa,Northland,FALSE,0
+Shipping - Northland (Others),244,Moerewa,Northland,FALSE,0
+Shipping - Northland (Others),245,Kerikeri,Northland,FALSE,0
+Shipping - Northland (Others),246,Waipapa,Northland,FALSE,0
+Shipping - Northland (Others),247,Paihia,Northland,FALSE,0
+Shipping - Northland (Others),271,Haruru,Northland,FALSE,0
+Shipping - Northland (Others),340,Dargaville,Northland,FALSE,0
+Shipping - Northland (Others),341,Te Kopura,Northland,FALSE,0
+Shipping - Northland (Others),440,Kaikohe,Northland,FALSE,0
+Shipping - Northland (Others),441,Kaitaia,Northland,FALSE,0
+Shipping - Northland (Others),442,Mangonui,Northland,FALSE,0
+Shipping - Northland (Others),443,Rawene,Northland,FALSE,0
+Shipping - Northland (Others),444,Omapere,Northland,FALSE,0
+Shipping - Northland (Others),445,Opononi,Northland,FALSE,0
+Shipping - Northland (Others),446,Waimamaku,Northland,FALSE,0
+Shipping - Northland (Others),447,Okaihau,Northland,FALSE,0
+Shipping - Northland (Others),448,Kaeo,Northland,FALSE,0
+Shipping - Northland (Others),449,Ahipara,Northland,FALSE,0
+Shipping - Northland (Others),451,Awanui,Northland,FALSE,0
+Shipping - Northland (Others),453,Kohukohu,Northland,FALSE,0
+Shipping - Northland (Others),460,Pukenui,Northland,FALSE,0
+Shipping - Northland (Others),462,Broadwood,Northland,FALSE,0
+Shipping - Northland (Others),540,Mangawhai,Northland,FALSE,0
+Shipping - Northland (Others),541,Mangawhai Heads,Northland,FALSE,0
+Shipping - Northland (Others),542,Kaiwaka,Northland,FALSE,0
+Shipping - Northland (Others),543,Paparoa,Northland,FALSE,0
+Shipping - Northland (Others),545,Waipu,Northland,FALSE,0
+Shipping - Northland (Others),547,Rowsells,Northland,FALSE,0
+Shipping - Northland (Others),549,Ruawai,Northland,FALSE,0
+Shipping - Northland (Others),550,Matakohe,Northland,FALSE,0
+Shipping - Northland (Others),575,Topuni,Northland,FALSE,0
+"Shipping -  Northland (Mangawhai, Whangarei)",573,Kaiwaka,Northland,TRUE,39
+"Shipping -  Northland (Mangawhai, Whangarei)",185,Ruatangata East,Northland,TRUE,39
+"Shipping -  Northland (Mangawhai, Whangarei)",975,Topuni,Northland,FALSE,0
+"Shipping -  Northland (Mangawhai, Whangarei)",175,Tahere,Northland,TRUE,39
+"Shipping -  Northland (Mangawhai, Whangarei)",179,Maungatapere,Northland,TRUE,39
+"Shipping -  Northland (Mangawhai, Whangarei)",170,Puwera,Northland,TRUE,39
+"Shipping -  Northland (Mangawhai, Whangarei)",110,Abbey Caves,Northland,FALSE,0
+"Shipping -  Northland (Mangawhai, Whangarei)",112,Glenbervie,Northland,FALSE,0
+"Shipping -  Northland (Mangawhai, Whangarei)",505,Mangawhai,Northland,FALSE,0
+Shipping - Northland (Warkworth),910,Warkworth,Auckland,FALSE,0
 Shipping -  Gisborne,4071,Waerengaahika,Gisborne,TRUE,39
 Shipping -  Gisborne,4072,Pehiri,Gisborne,TRUE,39
 Shipping -  Gisborne,4073,Whangara,Gisborne,TRUE,39
@@ -1360,7 +1360,7 @@ Shipping -  Wellington,6021,Brooklyn,Wellington,FALSE,0
 "Shipping -  Christchurch (Cantebury) incl. Prebbleton, Lincoln, Rolleston",8082,Cass Bay,Canterbury,FALSE,0
 "Shipping -  Christchurch (Cantebury) incl. Prebbleton, Lincoln, Rolleston",8083,Belfast,Canterbury,FALSE,0
 "Shipping -  Christchurch (Cantebury) incl. Prebbleton, Lincoln, Rolleston",7615,#N/A,#N/A,#N/A,#N/A
-"Shipping -  Christchurch (Cantebury) incl. Prebbleton, Lincoln, Rolleston", 7670,#N/A,#N/A,#N/A,#N/A
+"Shipping -  Christchurch (Cantebury) incl. Prebbleton, Lincoln, Rolleston",7670,#N/A,#N/A,#N/A,#N/A
 "Shipping -  Christchurch (Cantebury) incl. Prebbleton, Lincoln, Rolleston",7612,Pegasus,Christchurch,FALSE,0
 "Shipping -  Christchurch (Cantebury) incl. Prebbleton, Lincoln, Rolleston",7076,Rollerston,Christchurch,FALSE,0
 "Shipping -  Southland (Invercargill, Gore, Winton, Te Anau)",9779,Balfour,Southland,TRUE,39
