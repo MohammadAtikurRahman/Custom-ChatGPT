@@ -344,56 +344,71 @@ async function getInformation(req, res) {
     var matchingData2 = matchedItemsdataLocation[0];
 
 
-    
 
 
-
-    const areaAndDeliveryArray = areaCodeArray.map((d) => `${d.area} ${d.delivery}`);
-
-    const matchesdataLocation1 = stringSimilarity.findBestMatch(
+    const areaMatch = stringSimilarity.findBestMatch(
       message,
-      areaAndDeliveryArray
+      areaCodeArray.map((d) => d.area)
     );
     
-    let matchedItemsdataLocation1 = [];
+    const deliveryMatch = stringSimilarity.findBestMatch(
+      message,
+      areaCodeArray.map((d) => d.delivery)
+    );
     
-    if (matchesdataLocation1.bestMatch.rating > 0.3) {
-      const matchedItemdataLocation1 =
-        areaCodeArray[matchesdataLocation1.bestMatchIndex];
-      matchedItemsdataLocation1.push(matchedItemdataLocation1);
-    } else {
-      console.log("No match found");
+    const codeMatch = stringSimilarity.findBestMatch(
+      message,
+      areaCodeArray.map((d) => d.code)
+    );
+    
+    const foundItems = [];
+    let matchedDelivery = null;
+    
+    if (areaMatch.bestMatch.rating > 0.3) {
+      const foundItem = areaCodeArray[areaMatch.bestMatchIndex];
+      foundItems.push(foundItem);
+      console.log("Area:", foundItem.area, "Delivery:", foundItem.delivery);
+      matchedDelivery = foundItem.delivery;
     }
     
-    var matchingData22 = matchedItemsdataLocation1[0];
+    if (deliveryMatch.bestMatch.rating > 0.3) {
+      const foundItem = areaCodeArray[deliveryMatch.bestMatchIndex];
+      foundItems.push(foundItem);
+      console.log("Delivery:", foundItem.delivery);
+      matchedDelivery = foundItem.delivery;
+    }
     
-    if (matchingData22) {
-      const matchedString = areaAndDeliveryArray[matchesdataLocation1.bestMatchIndex];
-      const isAreaMatched = matchedString.includes(matchingData22.area);
-      var isDeliveryMatched = matchedString.includes(matchingData22.delivery);
+    if (codeMatch.bestMatch.rating > 0.3) {
+      const foundItem = areaCodeArray[codeMatch.bestMatchIndex];
+      foundItems.push(foundItem);
+      console.log("Code:", foundItem.code, "Delivery:", foundItem.delivery);
+      matchedDelivery = foundItem.delivery;
+    }
     
-      if (isAreaMatched) {
-        console.log("Area:", matchingData22.area);
-      }
-      
-      if (isDeliveryMatched) {
-        console.log("Delivery:", matchingData22.delivery);
-      }
-    } else {
+    if (foundItems.length === 0) {
       console.log("No matching data found");
+    } else {
+      console.log("Matched Delivery:", matchedDelivery);
     }
     
 
 
 
+    
+    
+   console.log("delivbery",matchedDelivery)
+   
 
 
-    if(isDeliveryMatched){
+
+
+
+    if(matchedDelivery){
 
 
 
 
-     var location = matchingData22?.delivery
+     var location = matchedDelivery
 
 
      console.log("location accepted",location)
@@ -422,6 +437,11 @@ async function getInformation(req, res) {
     matchingData2 = matchingLocation
 
    
+
+
+
+
+
     console.log("similar", matchingData2?.location);
     console.log("abcd",matchingData2)
 
