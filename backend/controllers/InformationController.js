@@ -363,6 +363,8 @@ async function getInformation(req, res) {
     
     const foundItems = [];
     let matchedDelivery = null;
+    let extraPrice = null;
+
     
     if (areaMatch.bestMatch.rating > 0.3) {
       const foundItem = areaCodeArray[areaMatch.bestMatchIndex];
@@ -383,6 +385,11 @@ async function getInformation(req, res) {
       foundItems.push(foundItem);
       console.log("Code:", foundItem.code, "Delivery:", foundItem.delivery);
       matchedDelivery = foundItem.delivery;
+      extraPrice= foundItem.charge;
+
+      var globalPrice = Number(extraPrice)
+
+
     }
     
     if (foundItems.length === 0) {
@@ -397,7 +404,9 @@ async function getInformation(req, res) {
     
     
    console.log("delivbery",matchedDelivery)
-   
+   console.log("extra price",extraPrice)
+
+   console.log("globalPrice ",globalPrice)
 
 
 
