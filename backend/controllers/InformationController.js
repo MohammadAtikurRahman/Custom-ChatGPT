@@ -630,7 +630,8 @@ async function getInformation(req, res) {
               deliveryPrices.minPrice +
               " and the Highest Shipping charge is " +
               deliveryPrices.maxPrice +
-              "",
+              "Could you please tell me the name of your product?",
+              
           });
         }
       }
