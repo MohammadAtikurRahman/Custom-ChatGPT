@@ -560,6 +560,9 @@ async function getInformation(req, res) {
           });
         }
         var helperText = "Could you please tell me the name of your product?";
+        var helperLocation;
+        var helperPrice;
+        var helperPrice1;
 
         if (globalPrice > 0 && !isNaN(final_money)) {
           return res.json({
@@ -581,6 +584,15 @@ async function getInformation(req, res) {
           });
         } else {
           userInfo.helperText = helperText;
+          userInfo.helperLocation = matchingData2.location;
+          userInfo.helperPrice = globalPrice;
+          userInfo.helperPrice1 = globalPrice1;
+
+          console.log("global pric which we will use", globalPrice);
+          console.log(
+            "global pric which we will usfggfgfgfgfgfgfe",
+            globalPrice1
+          );
 
           return res.json({
             botResponse:
@@ -595,20 +607,144 @@ async function getInformation(req, res) {
               helperText +
               "",
           });
-
-
-
         }
       }
     }
 
-    console.log("back propagation ",userInfo.helperText)
-    if (queriesdata.length === 0 && matchingData1 === false) {
+    console.log("back propagation ", userInfo.helperText);
+    console.log("back location", userInfo.helperLocation);
+
+    if (
+      queriesdata.length === 0 &&
+      matchingData1 === false &&
+      userInfo.helperText == undefined
+    ) {
       res.json({
         botResponse: `\n\n${search_result.name}: ${search_result.description}
           }`,
       });
       return;
+    }
+
+    if (userInfo.helperText) {
+      userInfo.helperPrice = globalPrice;
+      userInfo.helperPrice1 = globalPrice1;
+
+      console.log("TRUE location", userInfo.helperLocation);
+      console.log("godzila", search_result);
+
+      const inside_price = getDeliveryPrice(
+        userInfo.helperLocation,
+        search_result.weight
+      );
+      console.log("inside price", inside_price);
+
+      const inside_main_price = Number(search_result.price);
+      const inside_delivery_price = Number(inside_price);
+      const main_price = inside_main_price + inside_delivery_price;
+
+      function getDeliveryPrice(location, weight) {
+        // Find the delivery rule that matches the location and weight
+        const deliveryRule = deliveryDataArray.find((rule) => {
+          return (
+            rule.location === location &&
+            ((rule.operator === "<" && weight < rule["weight-dl"]) ||
+              (rule.operator === "=" && weight == rule["weight-dl"]))
+          );
+        });
+
+        // If a matching rule was found, return the delivery price
+        if (deliveryRule) {
+          return deliveryRule.deliveryPrice;
+        } else {
+          return `No delivery price found for location ${location} and weight ${weight}`;
+        }
+      }
+
+      const bayOfPlentyData = deliveryDataArray.filter(
+        (d) => d.location === userInfo.helperLocation
+      );
+
+      const deliveryPrices = bayOfPlentyData.reduce(
+        (acc, d) => {
+          const price = parseFloat(d.deliveryPrice);
+          if (!isNaN(price)) {
+            // check if price is a valid number
+            if (price < acc.minPrice) {
+              acc.minPrice = price;
+            }
+            if (price > acc.maxPrice) {
+              acc.maxPrice = price;
+            }
+          }
+          return acc;
+        },
+        { minPrice: Infinity, maxPrice: -Infinity }
+      );
+
+      if (
+        userInfo.helperPrice == undefined &&
+        userInfo.helperPrice1 == undefined
+      ) {
+        return res.json({
+          botResponse:
+            "\n\n" +
+            "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
+            userInfo.helperLocation +
+            "  the lowest shipping charge is " +
+            deliveryPrices.minPrice +
+            " and the Highest Shipping charge is " +
+            deliveryPrices.maxPrice +
+            "." +
+            " based on weight the delivery charge is " +
+            inside_price +
+            
+            " and final price is " +main_price+"",
+        });
+      }
+
+    else  if (userInfo.helperPrice == undefined) {
+        return res.json({
+          botResponse:
+            "\n\n" +
+            "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
+            userInfo.helperLocation +
+            "  the lowest shipping charge is " +
+            deliveryPrices.minPrice +
+            " and the Highest Shipping charge is " +
+            deliveryPrices.maxPrice +
+            "." +
+            " based on weight the delivery charge is " +
+            inside_price +
+            " for rural area extra charge added " +
+            userInfo.helperPrice +
+            " and final price is " +
+            (   userInfo.helperPrice + main_price),
+        });
+      }
+
+    else  if (userInfo.helperPrice1 == undefined) {
+        return res.json({
+          botResponse:
+            "\n\n" +
+            "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
+            userInfo.helperLocation +
+            "  the lowest shipping charge is " +
+            deliveryPrices.minPrice +
+            " and the Highest Shipping charge is " +
+            deliveryPrices.maxPrice +
+            "." +
+            " based on weight the delivery charge is " +
+            inside_price +
+            " for rural area extra charge added " +
+            userInfo.helperPrice1 +
+            " and final price is " +
+            (userInfo.helperPrice1 + main_price
+               
+      
+              ),
+        });
+      }
     } else if (matchingData3) {
       res.json({
         botResponse: `\n\n${matchingData3.name}: ${matchingData3.description}
@@ -616,9 +752,6 @@ async function getInformation(req, res) {
       });
       return;
     }
-
-
-
 
     if (matchingData1) {
       const dimensions = {
