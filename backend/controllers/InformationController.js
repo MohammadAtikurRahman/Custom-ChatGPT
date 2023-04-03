@@ -595,6 +595,7 @@ async function getInformation(req, res) {
               final_money,
           });
         }
+        var helperText = "Could you please tell me the name of your product?"
 
         
         if(globalPrice>0 && !isNaN(final_money)
@@ -619,7 +620,6 @@ async function getInformation(req, res) {
         }
 
         
-        
         else {
           return res.json({
             botResponse:
@@ -629,9 +629,9 @@ async function getInformation(req, res) {
               "  the lowest shipping charge is " +
               deliveryPrices.minPrice +
               " and the Highest Shipping charge is " +
-              deliveryPrices.maxPrice +
-              "Could you please tell me the name of your product?",
-              
+              deliveryPrices.maxPrice +" "+ helperText +
+              "",
+
           });
         }
       }
