@@ -12,6 +12,8 @@ let messageReceiver = "";
 
 var userData = {};
 
+var userInfo = {};
+
 let dataArray = [];
 fs.createReadStream("idiya.csv")
   .pipe(csv())
@@ -34,10 +36,9 @@ fs.createReadStream("delivery.csv")
     // console.log(deliveryDataArray); // Print the deliveryDataArray here
   });
 
+let areaCodeArray = [];
 
-  let areaCodeArray = [];
-
-  fs.createReadStream("areaCode.csv")
+fs.createReadStream("areaCode.csv")
   .pipe(csv())
   .on("data", (data) => {
     areaCodeArray.push(data);
@@ -47,8 +48,6 @@ fs.createReadStream("delivery.csv")
     processData(areaCodeArray);
     // console.log(deliveryDataArray); // Print the deliveryDataArray here
   });
-
-
 
 let recomArray = [];
 fs.createReadStream("recom.csv")
@@ -82,8 +81,6 @@ async function getInformation(req, res) {
   ];
 
   for (const prop of properties) {
-  
-  
     const matchesdata = stringSimilarity.findBestMatch(
       message,
       dataArray.map((d) => d.name)
@@ -124,16 +121,13 @@ async function getInformation(req, res) {
     // }
     // console.log("recomandation data",recomData);
 
-
-
-
     // if (message.startsWith("recom")) {
     //   const item = message.substring(6); // Remove the first 6 characters ("recom" and a space)
     //   // console.log(item);
-    
+
     //   const finder = `You're an expert from New Zealand in Furniture business for 20 years. You are tasked to find out the most popular, relevant and high demand product recommendation that goes with certain product. Target market is New Zealand. You will be fed with the product list and you will provide 20 recommended products against each product. If you have any question about this prompt, ask before you try to generate recommended products. product is ${item}`;
     //   // console.log(finder);
-    
+
     //   if (item) {
     //     try {
     //       const API_KEY = process.env.OPENAI_API_KEY;
@@ -152,9 +146,9 @@ async function getInformation(req, res) {
     //           temperature: 1,
     //         },
     //       });
-          
+
     //       const botResponse = "\n\n" + response.data.choices[0].text.trim();
-          
+
     //       // // Save the bot response and recom name to a CSV file
     //       // const csvData = `"${item}","${botResponse.replace(/"/g, '""')}"\n`;
     //       // fs.appendFile('recom_responses.csv', csvData, (err) => {
@@ -164,9 +158,9 @@ async function getInformation(req, res) {
     //       //     console.log('Data saved to file');
     //       //   }
     //       // });
-    
+
     //       return res.json({ botResponse });
-    
+
     //     } catch (error) {
     //       return res
     //         .status(500)
@@ -217,116 +211,113 @@ async function getInformation(req, res) {
     //   // Handle other types of messages
     // }
 
-  //  if(message.startsWith("save")) {
-  //     const item = message.substring(6); // Remove the first 6 characters ("recom" and a space)
-  //     // console.log(item);
-    
-  //     const finder = `You're an expert from New Zealand in Furniture business for 20 years. You are tasked to find out the most popular, relevant and high demand product recommendation that goes with certain product. Target market is New Zealand. You will be fed with the product list and you will provide 20 recommended products against each product. If you have any question about this prompt, ask before you try to generate recommended products. product is ${item}`;
-  //     // console.log(finder);
-    
-  //     if (item) {
-  //       try {
-  //         const API_KEY = process.env.OPENAI_API_KEY;
-  //         const response = await axios({
-  //           method: "post",
-  //           url: "https://api.openai.com/v1/engines/text-davinci-003/completions",
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //             Authorization: `Bearer ${API_KEY}`,
-  //           },
-  //           data: {
-  //             prompt: finder,
-  //             max_tokens: 3000,
-  //             n: 1,
-  //             stop: "",
-  //             temperature: 1,
-  //           },
-  //         });
-          
-  //         const botResponse = "\n\n" + response.data.choices[0].text.trim();;
-  //         return res.json({ botResponse });
-    
-  //       } catch (error) {
-  //         return res
-  //           .status(500)
-  //           .send({ error: "Could not generate text completion" });
-  //       }
-  //     }
-  //   } else {
-  //     // Handle other types of messages
-  //   }
-    
+    //  if(message.startsWith("save")) {
+    //     const item = message.substring(6); // Remove the first 6 characters ("recom" and a space)
+    //     // console.log(item);
 
-  if(message.startsWith("data")) {
+    //     const finder = `You're an expert from New Zealand in Furniture business for 20 years. You are tasked to find out the most popular, relevant and high demand product recommendation that goes with certain product. Target market is New Zealand. You will be fed with the product list and you will provide 20 recommended products against each product. If you have any question about this prompt, ask before you try to generate recommended products. product is ${item}`;
+    //     // console.log(finder);
 
-    const BATCH_SIZE = 50; // Change the batch size according to your preference
-    const WAIT_TIME = 60000; // Time to wait between batches, in milliseconds
-    
-    async function saveRecommendations(recomArray) {
-      let i = 0;
-    
-      while (i < recomArray.length) {
-        const batch = recomArray.slice(i, i + BATCH_SIZE);
-    
-        const promises = batch.map(async (item) => {
-          const productName = `${item.name}, ${item.ref}`;
-          const finder = `You're an expert from New Zealand in Furniture business for 20 years. You are tasked to find out the most popular, relevant and high demand product recommendation that goes with certain product. Target market is New Zealand. You will be fed with the product list and you will provide 20 recommended products against each product. If you have any question about this prompt, ask before you try to generate recommended products. product is ${productName}`;
-    
-          try {
-            const API_KEY = process.env.OPENAI_API_KEY;
-            const response = await axios({
-              method: "post",
-              url: "https://api.openai.com/v1/engines/text-davinci-003/completions",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${API_KEY}`,
-              },
-              data: {
-                prompt: finder,
-                max_tokens: 3000,
-                n: 1,
-                stop: "",
-                temperature: 1,
-              },
-            });
-    
-            const botResponse = response.data.choices[0].text.trim();
-    
-            // Save the bot response and recom name to a CSV file
-            const csvData = `"${productName}","${botResponse.replace(/"/g, '""')}"\n`;
-            fs.appendFile('responses_data.csv', csvData, (err) => {
-              if (err) {
-                console.error('Error writing to file:', err);
-              } else {
-                console.log(`Data saved for: ${productName}`);
-              }
-            });
-    
-          } catch (error) {
-            console.error('Error generating text completion:', error);
+    //     if (item) {
+    //       try {
+    //         const API_KEY = process.env.OPENAI_API_KEY;
+    //         const response = await axios({
+    //           method: "post",
+    //           url: "https://api.openai.com/v1/engines/text-davinci-003/completions",
+    //           headers: {
+    //             "Content-Type": "application/json",
+    //             Authorization: `Bearer ${API_KEY}`,
+    //           },
+    //           data: {
+    //             prompt: finder,
+    //             max_tokens: 3000,
+    //             n: 1,
+    //             stop: "",
+    //             temperature: 1,
+    //           },
+    //         });
+
+    //         const botResponse = "\n\n" + response.data.choices[0].text.trim();;
+    //         return res.json({ botResponse });
+
+    //       } catch (error) {
+    //         return res
+    //           .status(500)
+    //           .send({ error: "Could not generate text completion" });
+    //       }
+    //     }
+    //   } else {
+    //     // Handle other types of messages
+    //   }
+
+    if (message.startsWith("data")) {
+      const BATCH_SIZE = 50; // Change the batch size according to your preference
+      const WAIT_TIME = 60000; // Time to wait between batches, in milliseconds
+
+      async function saveRecommendations(recomArray) {
+        let i = 0;
+
+        while (i < recomArray.length) {
+          const batch = recomArray.slice(i, i + BATCH_SIZE);
+
+          const promises = batch.map(async (item) => {
+            const productName = `${item.name}, ${item.ref}`;
+            const finder = `You're an expert from New Zealand in Furniture business for 20 years. You are tasked to find out the most popular, relevant and high demand product recommendation that goes with certain product. Target market is New Zealand. You will be fed with the product list and you will provide 20 recommended products against each product. If you have any question about this prompt, ask before you try to generate recommended products. product is ${productName}`;
+
+            try {
+              const API_KEY = process.env.OPENAI_API_KEY;
+              const response = await axios({
+                method: "post",
+                url: "https://api.openai.com/v1/engines/text-davinci-003/completions",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${API_KEY}`,
+                },
+                data: {
+                  prompt: finder,
+                  max_tokens: 3000,
+                  n: 1,
+                  stop: "",
+                  temperature: 1,
+                },
+              });
+
+              const botResponse = response.data.choices[0].text.trim();
+
+              // Save the bot response and recom name to a CSV file
+              const csvData = `"${productName}","${botResponse.replace(
+                /"/g,
+                '""'
+              )}"\n`;
+              fs.appendFile("responses_data.csv", csvData, (err) => {
+                if (err) {
+                  console.error("Error writing to file:", err);
+                } else {
+                  console.log(`Data saved for: ${productName}`);
+                }
+              });
+            } catch (error) {
+              console.error("Error generating text completion:", error);
+            }
+          });
+
+          await Promise.all(promises);
+          console.log(`Batch ${i + 1} to ${i + BATCH_SIZE} completed.`);
+          i += BATCH_SIZE;
+
+          if (i < recomArray.length) {
+            console.log(
+              `Waiting for ${
+                WAIT_TIME / 1000
+              } seconds before starting the next batch...`
+            );
+            await new Promise((resolve) => setTimeout(resolve, WAIT_TIME));
           }
-        });
-    
-        await Promise.all(promises);
-        console.log(`Batch ${i + 1} to ${i + BATCH_SIZE} completed.`);
-        i += BATCH_SIZE;
-    
-        if (i < recomArray.length) {
-          console.log(`Waiting for ${WAIT_TIME / 1000} seconds before starting the next batch...`);
-          await new Promise((resolve) => setTimeout(resolve, WAIT_TIME));
         }
       }
+
+      saveRecommendations(recomArray);
     }
-    
-    saveRecommendations(recomArray);
-  
-  }
-
-
-
-
-
-
 
     const matchesdataLocation = stringSimilarity.findBestMatch(
       message,
@@ -343,131 +334,102 @@ async function getInformation(req, res) {
     // console.log("matched item:", matchedItems[0]);
     var matchingData2 = matchedItemsdataLocation[0];
 
-
-
-
     const areaMatch = stringSimilarity.findBestMatch(
       message,
       areaCodeArray.map((d) => d.area)
     );
-    
+
     const deliveryMatch = stringSimilarity.findBestMatch(
       message,
       areaCodeArray.map((d) => d.delivery)
     );
-    
+
     const codeMatch = stringSimilarity.findBestMatch(
       message,
       areaCodeArray.map((d) => d.code)
     );
-    
+
     const foundItems = [];
     let matchedDelivery = null;
     let extraPrice = null;
-    let extraPrice1= null;
-    
-    
+    let extraPrice1 = null;
+
     if (areaMatch.bestMatch.rating > 0.3) {
       const foundItem = areaCodeArray[areaMatch.bestMatchIndex];
       foundItems.push(foundItem);
       console.log("Area:", foundItem.area, "Delivery:", foundItem.delivery);
       matchedDelivery = foundItem.delivery;
-      extraPrice1=foundItem.charge;
-      var globalPrice1 = Number(extraPrice1)
-   
+      extraPrice1 = foundItem.charge;
+      var globalPrice1 = Number(extraPrice1);
     }
-    
+
     if (deliveryMatch.bestMatch.rating > 0.3) {
       const foundItem = areaCodeArray[deliveryMatch.bestMatchIndex];
       foundItems.push(foundItem);
       console.log("Delivery:", foundItem.delivery);
       matchedDelivery = foundItem.delivery;
-      
     }
-    
+
     if (codeMatch.bestMatch.rating > 0.3) {
       const foundItem = areaCodeArray[codeMatch.bestMatchIndex];
       foundItems.push(foundItem);
       console.log("Code:", foundItem.code, "Delivery:", foundItem.delivery);
       matchedDelivery = foundItem.delivery;
-      extraPrice= foundItem.charge;
+      extraPrice = foundItem.charge;
 
-      var globalPrice = Number(extraPrice)
-
-
+      var globalPrice = Number(extraPrice);
     }
-    
+
     if (foundItems.length === 0) {
       console.log("No matching data found");
     } else {
       console.log("Matched Delivery:", matchedDelivery);
     }
-    
 
+    console.log("1 global", globalPrice1);
 
+    console.log("delivbery", matchedDelivery);
+    console.log("extra price", extraPrice);
 
-    console.log("1 global",globalPrice1)
-    
-   console.log("delivbery",matchedDelivery)
-   console.log("extra price",extraPrice)
+    console.log("globalPrice ", globalPrice);
 
-   console.log("globalPrice ",globalPrice)
-
-    if(globalPrice1){
-
-
+    if (globalPrice1) {
       globalPrice = globalPrice1;
     }
 
+    if (matchedDelivery) {
+      var location = matchedDelivery;
 
+      console.log("location accepted", location);
+      const matchesdataLocation = stringSimilarity.findBestMatch(
+        location,
+        deliveryDataArray.map((d) => d.location)
+      );
+      let matchedItemsdataLocation = [];
+      if (matchesdataLocation.bestMatch.rating > 0.3) {
+        const matchedItemdataLocation =
+          deliveryDataArray[matchesdataLocation.bestMatchIndex];
+        matchedItemsdataLocation.push(matchedItemdataLocation);
+      } else {
+        console.log("No match found");
+      }
+      // console.log("matched item:", matchedItems[0]);
+      var matchingLocation = matchedItemsdataLocation[0];
+      // console.log("matching location",matchingLocation)
 
-    if(matchedDelivery){
-
-
-
-
-     var location = matchedDelivery
-
-
-     console.log("location accepted",location)
-         const matchesdataLocation = stringSimilarity.findBestMatch(
-          location,
-      deliveryDataArray.map((d) => d.location)
-    );
-    let matchedItemsdataLocation = [];
-    if (matchesdataLocation.bestMatch.rating > 0.3) {
-      const matchedItemdataLocation =
-        deliveryDataArray[matchesdataLocation.bestMatchIndex];
-      matchedItemsdataLocation.push(matchedItemdataLocation);
-    } else {
-      console.log("No match found");
-    }
-    // console.log("matched item:", matchedItems[0]);
-    var matchingLocation = matchedItemsdataLocation[0];
-    // console.log("matching location",matchingLocation)
-
-    // console.log("xyzxxxxxxxx",matchingLocation)
-    // matchingData2 = matchingLocation
-  
+      // console.log("xyzxxxxxxxx",matchingLocation)
+      // matchingData2 = matchingLocation
     }
 
-    console.log("xyzxxxxxxxx",matchingLocation)
-    matchingData2 = matchingLocation
-
-   
-
-
-
-
+    console.log("xyzxxxxxxxx", matchingLocation);
+    matchingData2 = matchingLocation;
 
     console.log("similar", matchingData2?.location);
-    console.log("abcd",matchingData2)
+    console.log("abcd", matchingData2);
 
-    if (matchingData2?.location ) {
+    if (matchingData2?.location) {
+      console.log("for this iffff");
 
-      console.log("for this iffff")
-  
-  
       const bayOfPlentyData = deliveryDataArray.filter(
         (d) => d.location === matchingData2.location
       );
@@ -501,11 +463,7 @@ async function getInformation(req, res) {
 
       console.log("weight", weight);
 
-
-      console.log("it will be location or area code",location)
-
-
-
+      console.log("it will be location or area code", location);
 
       const delivery_charge = getDeliveryPrice(location, weight); // Output: 40
 
@@ -543,7 +501,8 @@ async function getInformation(req, res) {
             " and the Highest Shipping charge is " +
             deliveryPrices.maxPrice +
             " based on your product weight delivery charge is " +
-            delivery_charge +"."+
+            delivery_charge +
+            "." +
             " total price is " +
             total_price,
         });
@@ -575,12 +534,16 @@ async function getInformation(req, res) {
           if (deliveryRule) {
             return deliveryRule.deliveryPrice;
           } else {
-            return 
+            return;
           }
         }
 
-        if ( !isNaN(final_money) && (globalPrice == 0 || globalPrice ==undefined) && globalPrice == undefined ) {
-         return  res.json({
+        if (
+          !isNaN(final_money) &&
+          (globalPrice == 0 || globalPrice == undefined) &&
+          globalPrice == undefined
+        ) {
+          return res.json({
             botResponse:
               "\n\n" +
               "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
@@ -588,18 +551,17 @@ async function getInformation(req, res) {
               "  the lowest shipping charge is " +
               deliveryPrices.minPrice +
               " and the Highest Shipping charge is " +
-              deliveryPrices.maxPrice +"."+
+              deliveryPrices.maxPrice +
+              "." +
               " based on weight the delivery charge is " +
               deliveryChargesh +
               " and final price is entering " +
               final_money,
           });
         }
-        var helperText = "Could you please tell me the name of your product?"
+        var helperText = "Could you please tell me the name of your product?";
 
-        
-        if(globalPrice>0 && !isNaN(final_money)
-        ){
+        if (globalPrice > 0 && !isNaN(final_money)) {
           return res.json({
             botResponse:
               "\n\n" +
@@ -608,19 +570,18 @@ async function getInformation(req, res) {
               "  the lowest shipping charge is " +
               deliveryPrices.minPrice +
               " and the Highest Shipping charge is " +
-              deliveryPrices.maxPrice +"."+
+              deliveryPrices.maxPrice +
+              "." +
               " based on weight the delivery charge is " +
-              deliveryChargesh + " for rural area extra charge added " + globalPrice +
+              deliveryChargesh +
+              " for rural area extra charge added " +
+              globalPrice +
               " and final price is " +
-              (globalPrice+final_money),
+              (globalPrice + final_money),
           });
+        } else {
+          userInfo.helperText = helperText;
 
-
-
-        }
-
-        
-        else {
           return res.json({
             botResponse:
               "\n\n" +
@@ -629,14 +590,19 @@ async function getInformation(req, res) {
               "  the lowest shipping charge is " +
               deliveryPrices.minPrice +
               " and the Highest Shipping charge is " +
-              deliveryPrices.maxPrice +" "+ helperText +
+              deliveryPrices.maxPrice +
+              " " +
+              helperText +
               "",
-
           });
+
+
+
         }
       }
     }
 
+    console.log("back propagation ",userInfo.helperText)
     if (queriesdata.length === 0 && matchingData1 === false) {
       res.json({
         botResponse: `\n\n${search_result.name}: ${search_result.description}
@@ -650,6 +616,10 @@ async function getInformation(req, res) {
       });
       return;
     }
+
+
+
+
     if (matchingData1) {
       const dimensions = {
         width: search_result.width,
