@@ -579,7 +579,7 @@ async function getInformation(req, res) {
           }
         }
 
-        if ( !isNaN(final_money) && globalPrice == 0 && globalPrice == undefined ) {
+        if ( !isNaN(final_money) && (globalPrice == 0 || globalPrice ==undefined) && globalPrice == undefined ) {
          return  res.json({
             botResponse:
               "\n\n" +
