@@ -575,11 +575,11 @@ async function getInformation(req, res) {
           if (deliveryRule) {
             return deliveryRule.deliveryPrice;
           } else {
-            return `No delivery price found for location ${location} and weight ${weight}`;
+            return 
           }
         }
 
-        if (final_money && globalPrice == 0 || globalPrice == undefined ) {
+        if ( !isNaN(final_money) && globalPrice == 0 && globalPrice == undefined ) {
          return  res.json({
             botResponse:
               "\n\n" +
@@ -591,7 +591,7 @@ async function getInformation(req, res) {
               deliveryPrices.maxPrice +"."+
               " based on weight the delivery charge is " +
               deliveryChargesh +
-              " and final price is " +
+              " and final price is entering " +
               final_money,
           });
         }
