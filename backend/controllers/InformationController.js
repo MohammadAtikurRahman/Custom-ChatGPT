@@ -364,13 +364,17 @@ async function getInformation(req, res) {
     const foundItems = [];
     let matchedDelivery = null;
     let extraPrice = null;
-
+    let extraPrice1= null;
+    
     
     if (areaMatch.bestMatch.rating > 0.3) {
       const foundItem = areaCodeArray[areaMatch.bestMatchIndex];
       foundItems.push(foundItem);
       console.log("Area:", foundItem.area, "Delivery:", foundItem.delivery);
       matchedDelivery = foundItem.delivery;
+      extraPrice1=foundItem.charge;
+      var globalPrice1 = Number(extraPrice1)
+   
     }
     
     if (deliveryMatch.bestMatch.rating > 0.3) {
@@ -378,6 +382,7 @@ async function getInformation(req, res) {
       foundItems.push(foundItem);
       console.log("Delivery:", foundItem.delivery);
       matchedDelivery = foundItem.delivery;
+      
     }
     
     if (codeMatch.bestMatch.rating > 0.3) {
@@ -401,14 +406,18 @@ async function getInformation(req, res) {
 
 
 
-    
+    console.log("1 global",globalPrice1)
     
    console.log("delivbery",matchedDelivery)
    console.log("extra price",extraPrice)
 
    console.log("globalPrice ",globalPrice)
 
+    if(globalPrice1){
 
+
+      globalPrice = globalPrice1;
+    }
 
 
 
@@ -570,8 +579,8 @@ async function getInformation(req, res) {
           }
         }
 
-        if (final_money) {
-          return res.json({
+        if (final_money && globalPrice == 0 || globalPrice == undefined ) {
+         return  res.json({
             botResponse:
               "\n\n" +
               "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
@@ -585,7 +594,33 @@ async function getInformation(req, res) {
               " and final price is " +
               final_money,
           });
-        } else {
+        }
+
+        
+        if(globalPrice>0 && !isNaN(final_money)
+        ){
+          return res.json({
+            botResponse:
+              "\n\n" +
+              "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
+              matchingData2.location +
+              "  the lowest shipping charge is " +
+              deliveryPrices.minPrice +
+              " and the Highest Shipping charge is " +
+              deliveryPrices.maxPrice +"."+
+              " based on weight the delivery charge is " +
+              deliveryChargesh + " for rural area extra charge added " + globalPrice +
+              " and final price is " +
+              (globalPrice+final_money),
+          });
+
+
+
+        }
+
+        
+        
+        else {
           return res.json({
             botResponse:
               "\n\n" +
@@ -818,7 +853,7 @@ async function getInformation(req, res) {
               delete userData.prop_price;
               delete userData.prop_weight;
               console.log("Data deleted after 1 minute");
-            }, 60000);
+            }, 90000);
           }
         } catch (error) {
           console.error(error);
