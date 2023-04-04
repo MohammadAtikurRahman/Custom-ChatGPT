@@ -10,6 +10,9 @@ let expirationTimestamp = Date.now() + 60000; // Expiration time set to 1 minute
 
 let messageReceiver = "";
 
+
+var storeData = {}
+
 var userData = {};
 
 var userInfo = {};
@@ -105,7 +108,7 @@ async function getInformation(req, res) {
 
     // const matchingData2 = dataArray.find((d) => d.name === search_result);
 
-    const queriesdata = properties.filter((p) => message.includes(p.name));
+    var queriesdata = properties.filter((p) => message.includes(p.name));
 
     console.log("query data", queriesdata);
 
@@ -361,6 +364,10 @@ async function getInformation(req, res) {
       matchedDelivery = foundItem.delivery;
       extraPrice1 = foundItem.charge;
       var globalPrice1 = Number(extraPrice1);
+      var area = foundItem.area;
+      storeData.area =area;
+
+
     }
 
     if (deliveryMatch.bestMatch.rating > 0.3) {
@@ -377,8 +384,24 @@ async function getInformation(req, res) {
       matchedDelivery = foundItem.delivery;
       extraPrice = foundItem.charge;
 
+      var codeArea = foundItem.code;
+
       var globalPrice = Number(extraPrice);
+
+        storeData.codeArea =codeArea;
+
+
+
+
     }
+    setTimeout(() => {
+      delete storeData.codeArea;
+      delete storeData.area 
+      console.log("Data deleted after 20 seconds");
+    }, 20000);
+
+
+
 
     if (foundItems.length === 0) {
       console.log("No matching data found");
@@ -585,13 +608,13 @@ async function getInformation(req, res) {
         } else {
           userInfo.helperText = helperText;
           userInfo.helperLocation = matchingData2.location;
-          userInfo.helperPrice = globalPrice;
-          userInfo.helperPrice1 = globalPrice1;
+          userInfo.globalPrice = globalPrice;
+          userInfo.globalPrice1 = globalPrice1;
 
-          console.log("global pric which we will use", globalPrice);
+          console.log("global pric which we will use 0",  userInfo.globalPrice);
           console.log(
-            "global pric which we will usfggfgfgfgfgfgfe",
-            globalPrice1
+            "global pric which we will use 1",
+            userInfo.globalPrice1
           );
 
           return res.json({
@@ -625,10 +648,32 @@ async function getInformation(req, res) {
       });
       return;
     }
+    let requestCounter = 0;
 
+    // Assuming this is your request handling function
+    function handleRequest() {
+      requestCounter++; // Increment the request counter for each incoming request
+    
+      // Process your request here...
+    
+      if (requestCounter === 2) { // Check if it's the 2nd request
+        delete userInfo.helperText;
+        console.log("Data deleted after 2nd request");
+      }
+    }
+    
+    // Simulate incoming requests
+    handleRequest(); // 1st request
+    handleRequest(); // 2nd request
+    
     if (userInfo.helperText) {
-      userInfo.helperPrice = globalPrice;
-      userInfo.helperPrice1 = globalPrice1;
+     
+      
+
+     
+     
+      userInfo.globalPrice = globalPrice;
+      userInfo.globalPrice1 = globalPrice1;
 
       console.log("TRUE location", userInfo.helperLocation);
       console.log("godzila", search_result);
@@ -682,9 +727,39 @@ async function getInformation(req, res) {
         { minPrice: Infinity, maxPrice: -Infinity }
       );
 
+
+
+      console.log("helper text",userInfo.helperText)
+      console.log("price1",userInfo.globalPrice1)
+      console.log("price",userInfo.globalPrice)
+
+
+
+      console.log("another testing", storeData.codeArea  )
+      console.log("area testing",      storeData.area  )
+
+      const area =storeData.area ;
+      const code =storeData.codeArea ;
+
+          const matchingData3 = areaCodeArray.find((d) => d.area === area);
+          if(matchingData3){
+            console.log("value of Area based",matchingData3?.charge)
+            var chargeof1 = matchingData3?.charge;
+          }
+
+            const matchingData2 = areaCodeArray.find((d) => d.code === code);
+            if(matchingData2){
+            console.log("value of Code based",matchingData2?.charge)
+            var chargeof2= matchingData2?.charge;
+            }
+
+
+
+
+
       if (
-        userInfo.helperPrice == undefined &&
-        userInfo.helperPrice1 == undefined
+        chargeof1 == undefined &&
+        chargeof2 == undefined  && queriesdata.length === 0
       ) {
         return res.json({
           botResponse:
@@ -699,11 +774,11 @@ async function getInformation(req, res) {
             " based on weight the delivery charge is " +
             inside_price +
             
-            " and final price is " +main_price+"",
+            " and final price is  " +(main_price)+"",
         });
       }
 
-    else  if (userInfo.helperPrice == undefined) {
+      if (chargeof1 == 0 || chargeof2 ==0 && queriesdata.length === 0) {
         return res.json({
           botResponse:
             "\n\n" +
@@ -716,14 +791,12 @@ async function getInformation(req, res) {
             "." +
             " based on weight the delivery charge is " +
             inside_price +
-            " for rural area extra charge added " +
-            userInfo.helperPrice +
-            " and final price is " +
-            (   userInfo.helperPrice + main_price),
+            "" + " and final price is " +
+            +(main_price),
         });
       }
 
-    else  if (userInfo.helperPrice1 == undefined) {
+     if(queriesdata.length === 0) {
         return res.json({
           botResponse:
             "\n\n" +
@@ -733,16 +806,14 @@ async function getInformation(req, res) {
             deliveryPrices.minPrice +
             " and the Highest Shipping charge is " +
             deliveryPrices.maxPrice +
-            "." +
+            "." + "basic price is "  + search_result.price+
             " based on weight the delivery charge is " +
             inside_price +
             " for rural area extra charge added " +
-            userInfo.helperPrice1 +
-            " and final price is " +
-            (userInfo.helperPrice1 + main_price
-               
-      
-              ),
+            (chargeof1 ? chargeof1 + " " : "") +
+            ""+  (chargeof2 ? chargeof2 + " " : "") +
+
+            " and final price is " + ( Number((chargeof1 ? chargeof1 + " " : ""))+Number((chargeof2 ? chargeof2 + " " : ""))+main_price)  ,
         });
       }
     } else if (matchingData3) {
