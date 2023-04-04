@@ -776,6 +776,11 @@ async function getInformation(req, res) {
         chargeof1 == undefined &&
         chargeof2 == undefined  && queriesdata.length === 0
       ) {
+
+          
+        delete userInfo.helperText;
+        console.log("Data deleted after 2nd request");
+    
         return res.json({
           botResponse:
             "\n\n" +
@@ -794,6 +799,12 @@ async function getInformation(req, res) {
       }
 
       if (chargeof1 == 0 || chargeof2 ==0 && queriesdata.length === 0) {
+
+
+          
+        delete userInfo.helperText;
+        console.log("Data deleted after 2nd request");
+    
         return res.json({
           botResponse:
             "\n\n" +
@@ -812,6 +823,12 @@ async function getInformation(req, res) {
       }
 
      if(queriesdata.length === 0) {
+
+    
+        delete userInfo.helperText;
+        console.log("Data deleted after 2nd request");
+    
+
         return res.json({
           botResponse:
             "\n\n" +
@@ -829,9 +846,17 @@ async function getInformation(req, res) {
 
 
             " and final price is  " + ( Number((chargeof1 ? chargeof1 + " " : ""))+Number((chargeof2 ? chargeof2 + " " : ""))+main_price)  ,
-        });
+        }
+        );
+
+
+
+
       }
-    } else if (matchingData3) {
+    } 
+    
+    
+    else if (matchingData3) {
       res.json({
         botResponse: `\n\n${matchingData3.name}: ${matchingData3.description}
           }`,
