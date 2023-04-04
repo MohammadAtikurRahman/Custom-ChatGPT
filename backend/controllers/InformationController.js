@@ -394,13 +394,28 @@ async function getInformation(req, res) {
 
 
     }
-    setTimeout(() => {
-      delete storeData.codeArea;
-      delete storeData.area 
-      console.log("Data deleted after 20 seconds");
-    }, 20000);
+    // setTimeout(() => {
+    //   delete storeData.codeArea;
+    //   delete storeData.area 
+    //   console.log("Data deleted after 15 seconds");
+    // }, 15000);
+    let requestCounter = 0;
 
-
+    function handleRequest() {
+      requestCounter++; // Increment the request counter for each incoming request
+    
+      // Process your request here...
+    
+      if (requestCounter === 2) { // Check if it's the 2nd request
+        delete storeData.codeArea;
+        delete storeData.area ;
+                console.log("Data deleted after 2nd request");
+      }
+    }
+    
+    // Simulate incoming requests
+    handleRequest(); // 1st request
+    // handleRequest(); // 2nd request
 
 
     if (foundItems.length === 0) {
@@ -648,23 +663,23 @@ async function getInformation(req, res) {
       });
       return;
     }
-    let requestCounter = 0;
+    // let requestCounter = 0;
 
     // Assuming this is your request handling function
-    function handleRequest() {
-      requestCounter++; // Increment the request counter for each incoming request
+    // function handleRequest() {
+    //   requestCounter++; // Increment the request counter for each incoming request
     
-      // Process your request here...
+    //   // Process your request here...
     
-      if (requestCounter === 2) { // Check if it's the 2nd request
-        delete userInfo.helperText;
-        console.log("Data deleted after 2nd request");
-      }
-    }
+    //   if (requestCounter === 2) { // Check if it's the 2nd request
+    //     delete userInfo.helperText;
+    //     console.log("Data deleted after 2nd request");
+    //   }
+    // }
     
-    // Simulate incoming requests
-    handleRequest(); // 1st request
-    handleRequest(); // 2nd request
+    // // Simulate incoming requests
+    // handleRequest(); // 1st request
+    // handleRequest(); // 2nd request
     
     if (userInfo.helperText) {
      
@@ -680,7 +695,7 @@ async function getInformation(req, res) {
 
       const inside_price = getDeliveryPrice(
         userInfo.helperLocation,
-        search_result.weight
+        Number(search_result.weight)
       );
       console.log("inside price", inside_price);
 
@@ -771,8 +786,8 @@ async function getInformation(req, res) {
             " and the Highest Shipping charge is " +
             deliveryPrices.maxPrice +
             "." +
-            " based on weight the delivery charge is " +
-            inside_price +
+            " based on weight the delivery charge is" +
+            inside_delivery_price +
             
             " and final price is  " +(main_price)+"",
         });
@@ -790,7 +805,7 @@ async function getInformation(req, res) {
             deliveryPrices.maxPrice +
             "." +
             " based on weight the delivery charge is " +
-            inside_price +
+            inside_delivery_price +
             "" + " and final price is " +
             +(main_price),
         });
@@ -808,12 +823,12 @@ async function getInformation(req, res) {
             deliveryPrices.maxPrice +
             "." + "basic price is "  + search_result.price+
             " based on weight the delivery charge is " +
-            inside_price +
+            inside_delivery_price +
             " for rural area extra charge added " +
             (chargeof1 ? chargeof1 + " " : "") +
             ""+  (chargeof2 ? chargeof2 + " " : "") +
 
-            " and final price is " + ( Number((chargeof1 ? chargeof1 + " " : ""))+Number((chargeof2 ? chargeof2 + " " : ""))+main_price)  ,
+            " and final price is  " + ( Number((chargeof1 ? chargeof1 + " " : ""))+Number((chargeof2 ? chargeof2 + " " : ""))+main_price)  ,
         });
       }
     } else if (matchingData3) {
