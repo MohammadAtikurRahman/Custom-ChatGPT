@@ -825,8 +825,8 @@ async function getInformation(req, res) {
             " based on weight the delivery charge is " +
             inside_delivery_price +
             " for rural area extra charge added " +
-            (chargeof1 ? chargeof1 + " " : "") +
-            ""+  (chargeof2 ? chargeof2 + " " : "") +
+            (chargeof1 === chargeof2 ? (chargeof1 ? chargeof1 + " " : "") : (chargeof1 ? chargeof1 + " " : "") + (chargeof2 ? chargeof2 + " " : "")) +
+
 
             " and final price is  " + ( Number((chargeof1 ? chargeof1 + " " : ""))+Number((chargeof2 ? chargeof2 + " " : ""))+main_price)  ,
         });
