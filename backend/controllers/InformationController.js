@@ -114,7 +114,7 @@ async function getInformation(req, res) {
 
     // console.log("matching data2",matchingData2)
 
-    const matchingData3 = dataArray.find((d) => d.sku === message);
+    const matchingData33= dataArray.find((d) => d.sku === message);
 
     // const recomData = recomArray.find((d) => message.startsWith("recom") && d.name.includes(message.substring(5).trim()));
     // if (recomData) {
@@ -347,10 +347,14 @@ async function getInformation(req, res) {
       areaCodeArray.map((d) => d.delivery)
     );
 
-    const codeMatch = stringSimilarity.findBestMatch(
-      message,
-      areaCodeArray.map((d) => d.code)
-    );
+    // const codeMatch = stringSimilarity.findBestMatch(
+    //   message,
+    //   areaCodeArray.map((d) => d.code)
+    // );
+
+
+
+    // console.log("data bidning",codeMatch);
 
     const foundItems = [];
     let matchedDelivery = null;
@@ -377,23 +381,33 @@ async function getInformation(req, res) {
       matchedDelivery = foundItem.delivery;
     }
 
-    if (codeMatch.bestMatch.rating > 0.3) {
-      const foundItem = areaCodeArray[codeMatch.bestMatchIndex];
-      foundItems.push(foundItem);
+
+
+
+
+
+
+
+
+    const foundItem = areaCodeArray.find(item => item.code === message);
+
+    if (foundItem) {
       console.log("Code:", foundItem.code, "Delivery:", foundItem.delivery);
+    
       matchedDelivery = foundItem.delivery;
       extraPrice = foundItem.charge;
-
       var codeArea = foundItem.code;
-
       var globalPrice = Number(extraPrice);
-
-        storeData.codeArea =codeArea;
-
-
-
-
+      storeData.codeArea = codeArea;
+    } else {
+      console.log("No matching area code found");
     }
+
+    
+    
+
+
+
     // setTimeout(() => {
     //   delete storeData.codeArea;
     //   delete storeData.area 
@@ -582,6 +596,9 @@ async function getInformation(req, res) {
           globalPrice == undefined
         ) {
           return res.json({
+
+
+
             botResponse:
               "\n\n" +
               "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
@@ -593,7 +610,7 @@ async function getInformation(req, res) {
               "." +
               " based on weight the delivery charge is " +
               deliveryChargesh +
-              " and final price is entering " +
+              " and final price is  " +
               final_money,
           });
         }
@@ -845,7 +862,7 @@ async function getInformation(req, res) {
             (chargeof1 === chargeof2 ? (chargeof1 ? chargeof1 + " " : "") : (chargeof1 ? chargeof1 + " " : "") + (chargeof2 ? chargeof2 + " " : "")) +
 
 
-            " and final price is  " + ( Number((chargeof1 ? chargeof1 + " " : ""))+Number((chargeof2 ? chargeof2 + " " : ""))+main_price)  ,
+            " and final price is  " + ( 39+main_price)  ,
         }
         );
 
@@ -856,9 +873,9 @@ async function getInformation(req, res) {
     } 
     
     
-    else if (matchingData3) {
+    else if (matchingData33) {
       res.json({
-        botResponse: `\n\n${matchingData3.name}: ${matchingData3.description}
+        botResponse: `\n\n${matchingData33.name}: ${matchingData33.description}
           }`,
       });
       return;
@@ -1068,7 +1085,12 @@ async function getInformation(req, res) {
               delete userData.prop_price;
               delete userData.prop_weight;
               console.log("Data deleted after 1 minute");
-            }, 90000);
+            }, 40000);
+
+
+
+
+
           }
         } catch (error) {
           console.error(error);
