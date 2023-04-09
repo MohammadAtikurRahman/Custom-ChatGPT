@@ -10,8 +10,7 @@ let expirationTimestamp = Date.now() + 60000; // Expiration time set to 1 minute
 
 let messageReceiver = "";
 
-
-var storeData = {}
+var storeData = {};
 
 var userData = {};
 
@@ -114,7 +113,7 @@ async function getInformation(req, res) {
 
     // console.log("matching data2",matchingData2)
 
-    const matchingData33= dataArray.find((d) => d.sku === message);
+    const matchingData33 = dataArray.find((d) => d.sku === message);
 
     // const recomData = recomArray.find((d) => message.startsWith("recom") && d.name.includes(message.substring(5).trim()));
     // if (recomData) {
@@ -352,8 +351,6 @@ async function getInformation(req, res) {
     //   areaCodeArray.map((d) => d.code)
     // );
 
-
-
     // console.log("data bidning",codeMatch);
 
     const foundItems = [];
@@ -361,40 +358,41 @@ async function getInformation(req, res) {
     let extraPrice = null;
     let extraPrice1 = null;
 
-    if (areaMatch.bestMatch.rating > 0.3) {
+    if (areaMatch.bestMatch.rating > 0.5) {
       const foundItem = areaCodeArray[areaMatch.bestMatchIndex];
       foundItems.push(foundItem);
-      console.log("Area:", foundItem.area, "Delivery:", foundItem.delivery);
+      console.log("new Area:", foundItem.area, "Delivery:", foundItem.delivery);
       matchedDelivery = foundItem.delivery;
       extraPrice1 = foundItem.charge;
       var globalPrice1 = Number(extraPrice1);
       var area = foundItem.area;
-      storeData.area =area;
 
+      
+      storeData.area = area;
 
+      console.log("area knowing",area)
     }
 
     if (deliveryMatch.bestMatch.rating > 0.3) {
-      const foundItem = areaCodeArray[deliveryMatch.bestMatchIndex];
+      const foundItem = deliveryDataArray[deliveryMatch.bestMatchIndex];
       foundItems.push(foundItem);
-      console.log("Delivery:", foundItem.delivery);
-      matchedDelivery = foundItem.delivery;
+      console.log("Delivery:", foundItem.location);
+      matchedDelivery = foundItem.location;
+
+
+      
     }
 
 
 
 
-
-
-
-
-
-    const foundItem = areaCodeArray.find(item => item.code === message);
+    const foundItem = areaCodeArray.find((item) => item.code === message);
 
     if (foundItem) {
       console.log("Code:", foundItem.code, "Delivery:", foundItem.delivery);
-    
+
       matchedDelivery = foundItem.delivery;
+
       extraPrice = foundItem.charge;
       var codeArea = foundItem.code;
       var globalPrice = Number(extraPrice);
@@ -403,34 +401,29 @@ async function getInformation(req, res) {
       console.log("No matching area code found");
     }
 
-    
-    
-
-
-
     // setTimeout(() => {
     //   delete storeData.codeArea;
-    //   delete storeData.area 
+    //   delete storeData.area
     //   console.log("Data deleted after 15 seconds");
     // }, 15000);
     let requestCounter = 0;
 
     function handleRequest() {
       requestCounter++; // Increment the request counter for each incoming request
-    
+
       // Process your request here...
-    
-      if (requestCounter === 2) { // Check if it's the 2nd request
+
+      if (requestCounter === 2) {
+        // Check if it's the 2nd request
         delete storeData.codeArea;
-        delete storeData.area ;
-                console.log("Data deleted after 2nd request");
+        delete storeData.area;
+        console.log("Data deleted after back propgration request");
       }
     }
-    
+
     // Simulate incoming requests
     handleRequest(); // 1st request
     // handleRequest(); // 2nd request
-
 
     if (foundItems.length === 0) {
       console.log("No matching data found");
@@ -457,6 +450,7 @@ async function getInformation(req, res) {
         location,
         deliveryDataArray.map((d) => d.location)
       );
+
       let matchedItemsdataLocation = [];
       if (matchesdataLocation.bestMatch.rating > 0.3) {
         const matchedItemdataLocation =
@@ -473,7 +467,7 @@ async function getInformation(req, res) {
       // matchingData2 = matchingLocation
     }
 
-    console.log("xyzxxxxxxxx", matchingLocation);
+    // console.log("xyzxxxxxxxx", matchingLocation);
     matchingData2 = matchingLocation;
 
     console.log("similar", matchingData2?.location);
@@ -510,13 +504,18 @@ async function getInformation(req, res) {
         search_result?.price
       );
 
+      var weightControll = search_result?.weight;
+
+
       const location = matchingData2.location;
       const weight = Number(search_result?.weight);
 
       console.log("weight", weight);
 
       console.log("it will be location or area code", location);
+      userInfo.location = location;
 
+       var locationControll =   userInfo.location;
       const delivery_charge = getDeliveryPrice(location, weight); // Output: 40
 
       const num_delivery_charge = Number(delivery_charge);
@@ -596,9 +595,6 @@ async function getInformation(req, res) {
           globalPrice == undefined
         ) {
           return res.json({
-
-
-
             botResponse:
               "\n\n" +
               "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
@@ -632,7 +628,7 @@ async function getInformation(req, res) {
               "." +
               " based on weight the delivery charge is " +
               deliveryChargesh +
-              " for rural area extra charge added " +
+              " for rural area extra charge added front propagrarion " +
               globalPrice +
               " and final price is " +
               (globalPrice + final_money),
@@ -642,10 +638,9 @@ async function getInformation(req, res) {
           userInfo.helperLocation = matchingData2.location;
           userInfo.globalPrice = globalPrice;
           userInfo.globalPrice1 = globalPrice1;
-
-          console.log("global pric which we will use 0",  userInfo.globalPrice);
+          console.log("global price which we will use 0", userInfo.globalPrice);
           console.log(
-            "global pric which we will use 1",
+            "global price which we will use 1",
             userInfo.globalPrice1
           );
 
@@ -662,7 +657,14 @@ async function getInformation(req, res) {
               helperText +
               "",
           });
+
+
+
         }
+
+
+
+
       }
     }
 
@@ -685,36 +687,31 @@ async function getInformation(req, res) {
     // Assuming this is your request handling function
     // function handleRequest() {
     //   requestCounter++; // Increment the request counter for each incoming request
-    
+
     //   // Process your request here...
-    
+
     //   if (requestCounter === 2) { // Check if it's the 2nd request
     //     delete userInfo.helperText;
     //     console.log("Data deleted after 2nd request");
     //   }
     // }
-    
+
     // // Simulate incoming requests
     // handleRequest(); // 1st request
     // handleRequest(); // 2nd request
-    
-    if (userInfo.helperText) {
-     
-      
 
-     
-     
+    if (userInfo.helperText) {
       userInfo.globalPrice = globalPrice;
       userInfo.globalPrice1 = globalPrice1;
 
       console.log("TRUE location", userInfo.helperLocation);
-      console.log("godzila", search_result);
+      // console.log("godzila", search_result);
 
       const inside_price = getDeliveryPrice(
         userInfo.helperLocation,
-        Number(search_result.weight)
+        Number(search_result?.weight)
       );
-      console.log("inside price", inside_price);
+      // console.log("inside price", inside_price);
 
       const inside_main_price = Number(search_result.price);
       const inside_delivery_price = Number(inside_price);
@@ -759,70 +756,47 @@ async function getInformation(req, res) {
         { minPrice: Infinity, maxPrice: -Infinity }
       );
 
+      console.log("helper text", userInfo.helperText);
+      console.log("price1", userInfo.globalPrice1);
+      console.log("price", userInfo.globalPrice);
 
+      console.log("another testing", storeData.codeArea);
+      console.log("area testing", storeData.area);
 
-      console.log("helper text",userInfo.helperText)
-      console.log("price1",userInfo.globalPrice1)
-      console.log("price",userInfo.globalPrice)
+      const area = storeData.area;
+      const code = storeData.codeArea;
 
+      const matchingData3 = areaCodeArray.find((d) => d.area === area);
+      if (matchingData3) {
+        console.log("value of Area based", matchingData3?.charge);
+        var chargeof1 = Number(matchingData3?.charge);
 
-
-      console.log("another testing", storeData.codeArea  )
-      console.log("area testing",      storeData.area  )
-
-      const area =storeData.area ;
-      const code =storeData.codeArea ;
-
-          const matchingData3 = areaCodeArray.find((d) => d.area === area);
-          if(matchingData3){
-            console.log("value of Area based",matchingData3?.charge)
-            var chargeof1 = matchingData3?.charge;
-          }
-
-            const matchingData2 = areaCodeArray.find((d) => d.code === code);
-            if(matchingData2){
-            console.log("value of Code based",matchingData2?.charge)
-            var chargeof2= matchingData2?.charge;
-            }
-
-
-
-
-
-      if (
-        chargeof1 == undefined &&
-        chargeof2 == undefined  && queriesdata.length === 0
-      ) {
-
-          
-        delete userInfo.helperText;
-        console.log("Data deleted after 2nd request");
-    
-        return res.json({
-          botResponse:
-            "\n\n" +
-            "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
-            userInfo.helperLocation +
-            "  the lowest shipping charge is " +
-            deliveryPrices.minPrice +
-            " and the Highest Shipping charge is " +
-            deliveryPrices.maxPrice +
-            "." +
-            " based on weight the delivery charge is" +
-            inside_delivery_price +
-            
-            " and final price is  " +(main_price)+"",
-        });
+        
       }
 
-      if (chargeof1 == 0 || chargeof2 ==0 && queriesdata.length === 0) {
+
+      console.log(typeof chargeof1)
 
 
-          
+
+      const matchingData2 = areaCodeArray.find((d) => d.code === code);
+      if (matchingData2) {
+        console.log("value of Code based", matchingData2?.charge);
+        var chargeof2 = Number(matchingData2?.charge);
+      }
+
+  
+
+
+      if (chargeof1 == 0 && weightControll > 0 ) {
+    
+        console.log(typeof chargeof1)
+
+    
         delete userInfo.helperText;
         console.log("Data deleted after 2nd request");
-    
-        return res.json({
+
+         res.json({
           botResponse:
             "\n\n" +
             "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
@@ -834,19 +808,27 @@ async function getInformation(req, res) {
             "." +
             " based on weight the delivery charge is " +
             inside_delivery_price +
-            "" + " and final price is " +
-            +(main_price),
+            "" +
+            " and final price is " +
+            +main_price,
         });
+
+
+        chargeof1 = 0;
+        chargeof2 = 0;
+      
+
+        return ;
+
       }
-
-     if(queriesdata.length === 0) {
-
+      if (chargeof2 == 0 && weightControll > 0 ) {
+    
+    
     
         delete userInfo.helperText;
         console.log("Data deleted after 2nd request");
-    
 
-        return res.json({
+         res.json({
           botResponse:
             "\n\n" +
             "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
@@ -855,22 +837,167 @@ async function getInformation(req, res) {
             deliveryPrices.minPrice +
             " and the Highest Shipping charge is " +
             deliveryPrices.maxPrice +
-            "." + "basic price is "  + search_result.price+
+            "." +
             " based on weight the delivery charge is " +
             inside_delivery_price +
-            " for rural area extra charge added " +
-            (chargeof1 === chargeof2 ? (chargeof1 ? chargeof1 + " " : "") : (chargeof1 ? chargeof1 + " " : "") + (chargeof2 ? chargeof2 + " " : "")) +
-
-
-            " and final price is  " + ( 39+main_price)  ,
-        }
-        );
+            "" +
+            " and final price is " +
+            +main_price,
+        });
 
 
 
+        chargeof1 = 0;
+        chargeof2 = 0;
+        
+      
+        return ;
 
       }
+
+
+
+
+
+      if (chargeof1 == 39 && weightControll > 0 ) {
+        delete userInfo.helperText;
+
+
+        console.log("area 151",storeData.area )
+
+        res.json({
+          botResponse:
+            "\n\n" +
+            "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
+            userInfo.helperLocation +
+            "  the lowest shipping charge is " +
+            deliveryPrices.minPrice +
+            " and the Highest Shipping charge is " +
+            deliveryPrices.maxPrice +
+            "." +
+            "basic price is " +
+            search_result.price +
+            " based on weight the delivery charge is " +
+            inside_delivery_price +
+            " for rural area extra charge added back propgration" +
+            (chargeof1 === chargeof2
+              ? chargeof1
+                ? chargeof1 + " "
+                : ""
+              : (chargeof1 ? chargeof1 + " " : "") +
+                (chargeof2 ? chargeof2 + " " : "")) +
+            " and final price is  " +
+            (39 + main_price),
+        });
+
+        chargeof1 = 0;
+        chargeof2 = 0;
+      
+        return ;
+      }
+
+
+
+
+
+
+
+
+      if (chargeof2 == 39 && weightControll > 0 ) {
+        delete userInfo.helperText;
+
+
+        console.log("area 151",storeData.area )
+
+        res.json({
+          botResponse:
+            "\n\n" +
+            "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
+            userInfo.helperLocation +
+            "  the lowest shipping charge is " +
+            deliveryPrices.minPrice +
+            " and the Highest Shipping charge is " +
+            deliveryPrices.maxPrice +
+            "." +
+            "basic price is " +
+            search_result.price +
+            " based on weight the delivery charge is " +
+            inside_delivery_price +
+            " for rural area extra charge added back propgration" +
+            (chargeof1 === chargeof2
+              ? chargeof1
+                ? chargeof1 + " "
+                : ""
+              : (chargeof1 ? chargeof1 + " " : "") +
+                (chargeof2 ? chargeof2 + " " : "")) +
+            " and final price is  " +
+            (39 + main_price),
+        });
+
+        chargeof1 = 0;
+        chargeof2 = 0;
+      
+        return ;
+      }
+     
+
+
+    else{
+
+        res.json({
+         botResponse:
+           "\n\n" +
+           "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
+           userInfo.helperLocation +
+           "  the lowest shipping charge is " +
+           deliveryPrices.minPrice +
+           " and the Highest Shipping charge is " +
+           deliveryPrices.maxPrice +
+           "." +
+           " based on weight the delivery charge is" +
+           inside_delivery_price +
+           " and final price isdggdggggggggggggggggggggggggggg  " +
+           main_price + 
+           "",
+       });
+
+       delete userInfo.helperText;
+       console.log("Data deleted after 2nd request");
+
+       // chargeof1 = 0;
+       // chargeof2 = 0;
+     
+     
+       return ;
+
+     }
+
+
+      // function delation() {
+      //   delete userData.prop_price;
+      //   delete userData.prop_weight;
+      //    chargeof1 =0;
+      //    chargeof2 =0;
+      //   console.log("deletation happen", delete userData.prop_price);
+      //   console.log("deletation happen", delete userData.prop_weight);
+
+      //   console.log("charge is deleted", chargeof1, chargeof2)
+
+      //   return;
+      // }
+
+
+
+
+
+
     } 
+    
+    
+    
+    
+    
+    
     
     
     else if (matchingData33) {
@@ -1086,11 +1213,6 @@ async function getInformation(req, res) {
               delete userData.prop_weight;
               console.log("Data deleted after 1 minute");
             }, 40000);
-
-
-
-
-
           }
         } catch (error) {
           console.error(error);
