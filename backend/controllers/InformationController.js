@@ -16,6 +16,8 @@ var userData = {};
 
 var userInfo = {};
 
+var infoControl = {};
+
 let dataArray = [];
 fs.createReadStream("idiya.csv")
   .pipe(csv())
@@ -346,6 +348,11 @@ async function getInformation(req, res) {
       areaCodeArray.map((d) => d.delivery)
     );
 
+    const deliveryMatch1 = stringSimilarity.findBestMatch(
+      message,
+      deliveryDataArray.map((d) => d.location)
+    );
+
     // const codeMatch = stringSimilarity.findBestMatch(
     //   message,
     //   areaCodeArray.map((d) => d.code)
@@ -354,7 +361,10 @@ async function getInformation(req, res) {
     // console.log("data bidning",codeMatch);
 
     const foundItems = [];
+    const foundItems1 = [];
     let matchedDelivery = null;
+    var matchedDelivery1 = null;
+
     let extraPrice = null;
     let extraPrice1 = null;
 
@@ -367,24 +377,26 @@ async function getInformation(req, res) {
       var globalPrice1 = Number(extraPrice1);
       var area = foundItem.area;
 
-      
       storeData.area = area;
 
-      console.log("area knowing",area)
+      console.log("area knowing", area);
     }
 
     if (deliveryMatch.bestMatch.rating > 0.3) {
-      const foundItem = deliveryDataArray[deliveryMatch.bestMatchIndex];
+      const foundItem = areaCodeArray[deliveryMatch.bestMatchIndex];
       foundItems.push(foundItem);
-      console.log("Delivery:", foundItem.location);
-      matchedDelivery = foundItem.location;
-
-
-      
+      console.log("Delivery:", foundItem.delivery);
+      matchedDelivery = foundItem.delivery;
     }
 
+    if (deliveryMatch1.bestMatch.rating > 0.3) {
+      const foundItem1 = deliveryDataArray[deliveryMatch1.bestMatchIndex];
+      foundItems1.push(foundItem1);
+      console.log("Extact location", foundItem1.location);
+      matchedDelivery1 = foundItem1.location;
 
-
+      infoControl.matchedDelivery1 = matchedDelivery1;
+    }
 
     const foundItem = areaCodeArray.find((item) => item.code === message);
 
@@ -393,6 +405,7 @@ async function getInformation(req, res) {
 
       matchedDelivery = foundItem.delivery;
 
+      var deliveryControll = matchedDelivery;
       extraPrice = foundItem.charge;
       var codeArea = foundItem.code;
       var globalPrice = Number(extraPrice);
@@ -471,10 +484,10 @@ async function getInformation(req, res) {
     matchingData2 = matchingLocation;
 
     console.log("similar", matchingData2?.location);
-    console.log("abcd", matchingData2);
+    // console.log("abcd", matchingData2);
 
     if (matchingData2?.location) {
-      console.log("for this iffff");
+      // console.log("for this iffff");
 
       const bayOfPlentyData = deliveryDataArray.filter(
         (d) => d.location === matchingData2.location
@@ -506,7 +519,6 @@ async function getInformation(req, res) {
 
       var weightControll = search_result?.weight;
 
-
       const location = matchingData2.location;
       const weight = Number(search_result?.weight);
 
@@ -515,7 +527,7 @@ async function getInformation(req, res) {
       console.log("it will be location or area code", location);
       userInfo.location = location;
 
-       var locationControll =   userInfo.location;
+      var locationControll = userInfo.location;
       const delivery_charge = getDeliveryPrice(location, weight); // Output: 40
 
       const num_delivery_charge = Number(delivery_charge);
@@ -558,8 +570,8 @@ async function getInformation(req, res) {
             total_price,
         });
       } else {
-        console.log("price sending shipping inside", userData?.prop_price);
-        console.log("weight sending shipping inside", userData?.prop_weight);
+        // console.log("price sending shipping inside", userData?.prop_price);
+        // console.log("weight sending shipping inside", userData?.prop_weight);
 
         const price_sh = Number(userData?.prop_price);
         const weight = Number(userData?.prop_weight);
@@ -657,14 +669,7 @@ async function getInformation(req, res) {
               helperText +
               "",
           });
-
-
-
         }
-
-
-
-
       }
     }
 
@@ -767,36 +772,38 @@ async function getInformation(req, res) {
       const code = storeData.codeArea;
 
       const matchingData3 = areaCodeArray.find((d) => d.area === area);
+      const matchingData2 = areaCodeArray.find((d) => d.code === code);
+
+      let finalCharge;
+
       if (matchingData3) {
-        console.log("value of Area based", matchingData3?.charge);
+        // console.log("chargeof1", matchingData3?.charge);
         var chargeof1 = Number(matchingData3?.charge);
 
-        
+        infoControl.chargeof1 = chargeof1;
+        // console.log("value check", infoControl.chargeof1);
+
+        finalCharge = chargeof1;
       }
 
-
-      console.log(typeof chargeof1)
-
-
-
-      const matchingData2 = areaCodeArray.find((d) => d.code === code);
       if (matchingData2) {
-        console.log("value of Code based", matchingData2?.charge);
+        // console.log("chargeof2", matchingData2?.charge);
         var chargeof2 = Number(matchingData2?.charge);
+
+        infoControl.chargeof2 = chargeof2;
+        // console.log("value check2", infoControl.chargeof2);
+
+        finalCharge = chargeof2;
       }
 
-  
+      console.log("Final charge:", finalCharge);
 
+      console.log("is he still exist", infoControl.matchedDelivery1);
 
-      if (chargeof1 == 0 && weightControll > 0 ) {
-    
-        console.log(typeof chargeof1)
-
-    
+      if (finalCharge == 0) {
         delete userInfo.helperText;
-        console.log("Data deleted after 2nd request");
 
-         res.json({
+        res.json({
           botResponse:
             "\n\n" +
             "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
@@ -813,165 +820,61 @@ async function getInformation(req, res) {
             +main_price,
         });
 
-
-        chargeof1 = 0;
-        chargeof2 = 0;
-      
-
-        return ;
-
+        return;
       }
-      if (chargeof2 == 0 && weightControll > 0 ) {
-    
-    
-    
+
+      if (finalCharge == 39) {
+        delete userInfo.helperText;
+
+        res.json({
+          botResponse:
+            "\n\n" +
+            "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
+            userInfo.helperLocation +
+            "  the lowest shipping charge is " +
+            deliveryPrices.minPrice +
+            " and the Highest Shipping charge is " +
+            deliveryPrices.maxPrice +
+            "." +
+            "basic price is " +
+            search_result.price +
+            " based on weight the delivery charge is " +
+            inside_delivery_price +
+            " for rural area extra charge " +
+            (chargeof1 === chargeof2
+              ? chargeof1
+                ? chargeof1 + " "
+                : ""
+              : (chargeof1 ? chargeof1 + " " : "") +
+                (chargeof2 ? chargeof2 + " " : "")) +
+            " and final price is  " +
+            (39 + main_price),
+        });
+
+        return;
+      } else {
+        res.json({
+          botResponse:
+            "\n\n" +
+            "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
+            userInfo.helperLocation +
+            "  the lowest shipping charge is " +
+            deliveryPrices.minPrice +
+            " and the Highest Shipping charge is " +
+            deliveryPrices.maxPrice +
+            "." +
+            " based on weight the delivery charge is" +
+            inside_delivery_price +
+            " and final price isdggdggggggggggggggggggggggggggg  " +
+            main_price +
+            "",
+        });
+
         delete userInfo.helperText;
         console.log("Data deleted after 2nd request");
 
-         res.json({
-          botResponse:
-            "\n\n" +
-            "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
-            userInfo.helperLocation +
-            "  the lowest shipping charge is " +
-            deliveryPrices.minPrice +
-            " and the Highest Shipping charge is " +
-            deliveryPrices.maxPrice +
-            "." +
-            " based on weight the delivery charge is " +
-            inside_delivery_price +
-            "" +
-            " and final price is " +
-            +main_price,
-        });
-
-
-
-        chargeof1 = 0;
-        chargeof2 = 0;
-        
-      
-        return ;
-
+        return;
       }
-
-
-
-
-
-      if (chargeof1 == 39 && weightControll > 0 ) {
-        delete userInfo.helperText;
-
-
-        console.log("area 151",storeData.area )
-
-        res.json({
-          botResponse:
-            "\n\n" +
-            "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
-            userInfo.helperLocation +
-            "  the lowest shipping charge is " +
-            deliveryPrices.minPrice +
-            " and the Highest Shipping charge is " +
-            deliveryPrices.maxPrice +
-            "." +
-            "basic price is " +
-            search_result.price +
-            " based on weight the delivery charge is " +
-            inside_delivery_price +
-            " for rural area extra charge added back propgration" +
-            (chargeof1 === chargeof2
-              ? chargeof1
-                ? chargeof1 + " "
-                : ""
-              : (chargeof1 ? chargeof1 + " " : "") +
-                (chargeof2 ? chargeof2 + " " : "")) +
-            " and final price is  " +
-            (39 + main_price),
-        });
-
-        chargeof1 = 0;
-        chargeof2 = 0;
-      
-        return ;
-      }
-
-
-
-
-
-
-
-
-      if (chargeof2 == 39 && weightControll > 0 ) {
-        delete userInfo.helperText;
-
-
-        console.log("area 151",storeData.area )
-
-        res.json({
-          botResponse:
-            "\n\n" +
-            "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
-            userInfo.helperLocation +
-            "  the lowest shipping charge is " +
-            deliveryPrices.minPrice +
-            " and the Highest Shipping charge is " +
-            deliveryPrices.maxPrice +
-            "." +
-            "basic price is " +
-            search_result.price +
-            " based on weight the delivery charge is " +
-            inside_delivery_price +
-            " for rural area extra charge added back propgration" +
-            (chargeof1 === chargeof2
-              ? chargeof1
-                ? chargeof1 + " "
-                : ""
-              : (chargeof1 ? chargeof1 + " " : "") +
-                (chargeof2 ? chargeof2 + " " : "")) +
-            " and final price is  " +
-            (39 + main_price),
-        });
-
-        chargeof1 = 0;
-        chargeof2 = 0;
-      
-        return ;
-      }
-     
-
-
-    else{
-
-        res.json({
-         botResponse:
-           "\n\n" +
-           "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
-           userInfo.helperLocation +
-           "  the lowest shipping charge is " +
-           deliveryPrices.minPrice +
-           " and the Highest Shipping charge is " +
-           deliveryPrices.maxPrice +
-           "." +
-           " based on weight the delivery charge is" +
-           inside_delivery_price +
-           " and final price isdggdggggggggggggggggggggggggggg  " +
-           main_price + 
-           "",
-       });
-
-       delete userInfo.helperText;
-       console.log("Data deleted after 2nd request");
-
-       // chargeof1 = 0;
-       // chargeof2 = 0;
-     
-     
-       return ;
-
-     }
-
 
       // function delation() {
       //   delete userData.prop_price;
@@ -985,22 +888,7 @@ async function getInformation(req, res) {
 
       //   return;
       // }
-
-
-
-
-
-
-    } 
-    
-    
-    
-    
-    
-    
-    
-    
-    else if (matchingData33) {
+    } else if (matchingData33) {
       res.json({
         botResponse: `\n\n${matchingData33.name}: ${matchingData33.description}
           }`,
