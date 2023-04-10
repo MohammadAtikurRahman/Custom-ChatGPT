@@ -4,6 +4,11 @@ const axios = require("axios");
 const { getDeliveryInformation } = require("./DeliveryInformationController");
 const stringSimilarity = require("string-similarity");
 const levenshtein = require("fast-levenshtein");
+const express = require('express');
+const session = require('express-session');
+
+const app = express();
+
 
 var sender;
 let expirationTimestamp = Date.now() + 60000; // Expiration time set to 1 minute from now
@@ -771,110 +776,126 @@ async function getInformation(req, res) {
       const area = storeData.area;
       const code = storeData.codeArea;
 
-      const matchingData3 = areaCodeArray.find((d) => d.area === area);
-      const matchingData2 = areaCodeArray.find((d) => d.code === code);
+      var matchingData3 = areaCodeArray.find((d) => d.area === area);
+      var matchingData2 = areaCodeArray.find((d) => d.code === code);
 
-      let finalCharge;
+      console.log("matchingData3",matchingData3)
 
-      if (matchingData3) {
-        // console.log("chargeof1", matchingData3?.charge);
+      console.log("matchingData2",matchingData2)
+
+
+      var finalCharge;
+
+
+
+
+
+
+      if (matchingData3.charge == 39 && infoControl.matchedDelivery1 === undefined) {
+
+         console.log("what is the data of matching",matchingData3)
         var chargeof1 = Number(matchingData3?.charge);
-
-        infoControl.chargeof1 = chargeof1;
-        // console.log("value check", infoControl.chargeof1);
-
         finalCharge = chargeof1;
-      }
+        console.log("Final charge inside:", finalCharge);
 
-      if (matchingData2) {
-        // console.log("chargeof2", matchingData2?.charge);
+      }
+      if (matchingData3.charge == 0  && infoControl.matchedDelivery1 === undefined) {
+
+        console.log("what is the data of matching",matchingData3)
+        var chargeof1 = Number(matchingData3?.charge);
+        finalCharge = chargeof1;
+        console.log("Final charge inside:", finalCharge);
+
+      }
+    
+    
+      if (matchingData2?.charge == 39  && infoControl.matchedDelivery1 === undefined) {
         var chargeof2 = Number(matchingData2?.charge);
-
-        infoControl.chargeof2 = chargeof2;
-        // console.log("value check2", infoControl.chargeof2);
-
         finalCharge = chargeof2;
+        console.log("Final charge inside:", finalCharge);
+
       }
 
+      if (matchingData2?.charge == 0  && infoControl.matchedDelivery1 === undefined) {
+        var chargeof2 = Number(matchingData2?.charge);
+        finalCharge = chargeof2;
+        console.log("Final charge inside:", finalCharge);
+
+      }
       console.log("Final charge:", finalCharge);
 
       console.log("is he still exist", infoControl.matchedDelivery1);
 
+      let botResponse;
+
+
       if (finalCharge == 0) {
-        delete userInfo.helperText;
+        botResponse =
+          "\n\n" +
+          "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
+          userInfo.helperLocation +
+          "  the lowest shipping charge is " +
+          deliveryPrices.minPrice +
+          " and the Highest Shipping charge is " +
+          deliveryPrices.maxPrice +
+          "." +
+          " based on weight the delivery charge is " +
+          inside_delivery_price +
+          "" +
+          " and final price is " +
+          +main_price;
+        
 
-        res.json({
-          botResponse:
-            "\n\n" +
-            "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
-            userInfo.helperLocation +
-            "  the lowest shipping charge is " +
-            deliveryPrices.minPrice +
-            " and the Highest Shipping charge is " +
-            deliveryPrices.maxPrice +
-            "." +
-            " based on weight the delivery charge is " +
-            inside_delivery_price +
-            "" +
-            " and final price is " +
-            +main_price,
-        });
 
-        return;
-      }
+      } else if (finalCharge == 39) {
+        botResponse =
+          "\n\n" +
+          "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
+          userInfo.helperLocation +
+          "  the lowest shipping charge is " +
+          deliveryPrices.minPrice +
+          " and the Highest Shipping charge is " +
+          deliveryPrices.maxPrice +
+          "." +
+          "basic price is " +
+          search_result.price +
+          " based on weight the delivery charge is " +
+          inside_delivery_price +
+          " for rural area extra charge " +
+          (chargeof1 === chargeof2
+            ? chargeof1
+              ? chargeof1 + " "
+              : ""
+            : (chargeof1 ? chargeof1 + " " : "") +
+              (chargeof2 ? chargeof2 + " " : "")) +
+          " and final price is  " +
+          (39 + main_price);
 
-      if (finalCharge == 39) {
-        delete userInfo.helperText;
+      
 
-        res.json({
-          botResponse:
-            "\n\n" +
-            "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
-            userInfo.helperLocation +
-            "  the lowest shipping charge is " +
-            deliveryPrices.minPrice +
-            " and the Highest Shipping charge is " +
-            deliveryPrices.maxPrice +
-            "." +
-            "basic price is " +
-            search_result.price +
-            " based on weight the delivery charge is " +
-            inside_delivery_price +
-            " for rural area extra charge " +
-            (chargeof1 === chargeof2
-              ? chargeof1
-                ? chargeof1 + " "
-                : ""
-              : (chargeof1 ? chargeof1 + " " : "") +
-                (chargeof2 ? chargeof2 + " " : "")) +
-            " and final price is  " +
-            (39 + main_price),
-        });
 
-        return;
       } else {
-        res.json({
-          botResponse:
-            "\n\n" +
-            "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
-            userInfo.helperLocation +
-            "  the lowest shipping charge is " +
-            deliveryPrices.minPrice +
-            " and the Highest Shipping charge is " +
-            deliveryPrices.maxPrice +
-            "." +
-            " based on weight the delivery charge is" +
-            inside_delivery_price +
-            " and final price isdggdggggggggggggggggggggggggggg  " +
-            main_price +
-            "",
-        });
+        botResponse =
+          "\n\n" +
+          "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
+          userInfo.helperLocation +
+          "  the lowest shipping charge is " +
+          deliveryPrices.minPrice +
+          " and the Highest Shipping charge is " +
+          deliveryPrices.maxPrice +
+          "." +
+          " based on weight the delivery charge is" +
+          inside_delivery_price +
+          " and final price isdggdggggggggggggggggggggggggggg  " +
+          main_price +
+          "";
+    
 
-        delete userInfo.helperText;
-        console.log("Data deleted after 2nd request");
-
-        return;
       }
+      
+       return  res.json({
+        botResponse,
+      });
 
       // function delation() {
       //   delete userData.prop_price;
