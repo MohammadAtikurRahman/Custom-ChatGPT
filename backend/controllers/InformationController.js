@@ -779,9 +779,9 @@ async function getInformation(req, res) {
       var matchingData3 = areaCodeArray.find((d) => d.area === area);
       var matchingData2 = areaCodeArray.find((d) => d.code === code);
 
-      console.log("matchingData3",matchingData3)
+      console.log("matchingData3.charge",matchingData3?.charge)
 
-      console.log("matchingData2",matchingData2)
+      console.log("matchingData2.charge",matchingData2?.charge)
 
 
       var finalCharge;
@@ -791,17 +791,17 @@ async function getInformation(req, res) {
 
 
 
-      if (matchingData3.charge == 39 && infoControl.matchedDelivery1 === undefined) {
+      if (matchingData3?.charge == 39 && infoControl.matchedDelivery1 === undefined) {
 
-         console.log("what is the data of matching",matchingData3)
+         console.log("matchingdata3 = 39",matchingData3)
         var chargeof1 = Number(matchingData3?.charge);
         finalCharge = chargeof1;
         console.log("Final charge inside:", finalCharge);
 
       }
-      if (matchingData3.charge == 0  && infoControl.matchedDelivery1 === undefined) {
+      if (matchingData3?.charge == 0  && infoControl.matchedDelivery1 === undefined) {
 
-        console.log("what is the data of matching",matchingData3)
+        console.log("matchingdata3 = 0",matchingData3?.charge)
         var chargeof1 = Number(matchingData3?.charge);
         finalCharge = chargeof1;
         console.log("Final charge inside:", finalCharge);
@@ -810,18 +810,26 @@ async function getInformation(req, res) {
     
     
       if (matchingData2?.charge == 39  && infoControl.matchedDelivery1 === undefined) {
+     
+        console.log("matchingdata2 = 39",matchingData2?.charge)
+
         var chargeof2 = Number(matchingData2?.charge);
+
         finalCharge = chargeof2;
         console.log("Final charge inside:", finalCharge);
 
       }
 
       if (matchingData2?.charge == 0  && infoControl.matchedDelivery1 === undefined) {
+        console.log("matchingdata2 = 0",matchingData2?.charge)
+
+      
         var chargeof2 = Number(matchingData2?.charge);
         finalCharge = chargeof2;
         console.log("Final charge inside:", finalCharge);
 
       }
+      
       console.log("Final charge:", finalCharge);
 
       console.log("is he still exist", infoControl.matchedDelivery1);
