@@ -5,15 +5,9 @@ const BotResponse = ({ response }) => {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    let index = 1;
-    let msg = setInterval(() => {
-      setBotResponse(response.slice(0, index));
-      if (index >= response.length) {
-        clearInterval(msg);
-      }
-      index++;
-    }, 10);
+    setBotResponse(response);
   }, [response]);
+  
 
   
   const scrollToBottom = () => {

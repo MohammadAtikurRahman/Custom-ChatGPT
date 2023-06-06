@@ -4,13 +4,24 @@ const axios = require("axios");
 const { getDeliveryInformation } = require("./DeliveryInformationController");
 const stringSimilarity = require("string-similarity");
 const levenshtein = require("fast-levenshtein");
+const express = require('express');
+const session = require('express-session');
+
+const app = express();
+
 
 var sender;
 let expirationTimestamp = Date.now() + 60000; // Expiration time set to 1 minute from now
 
 let messageReceiver = "";
 
+var storeData = {};
+
 var userData = {};
+
+var userInfo = {};
+
+var infoControl = {};
 
 let dataArray = [];
 fs.createReadStream("idiya.csv")
@@ -34,10 +45,9 @@ fs.createReadStream("delivery.csv")
     // console.log(deliveryDataArray); // Print the deliveryDataArray here
   });
 
+let areaCodeArray = [];
 
-  let areaCodeArray = [];
-
-  fs.createReadStream("areaCode.csv")
+fs.createReadStream("areaCode.csv")
   .pipe(csv())
   .on("data", (data) => {
     areaCodeArray.push(data);
@@ -47,8 +57,6 @@ fs.createReadStream("delivery.csv")
     processData(areaCodeArray);
     // console.log(deliveryDataArray); // Print the deliveryDataArray here
   });
-
-
 
 let recomArray = [];
 fs.createReadStream("recom.csv")
@@ -82,8 +90,6 @@ async function getInformation(req, res) {
   ];
 
   for (const prop of properties) {
-  
-  
     const matchesdata = stringSimilarity.findBestMatch(
       message,
       dataArray.map((d) => d.name)
@@ -108,13 +114,13 @@ async function getInformation(req, res) {
 
     // const matchingData2 = dataArray.find((d) => d.name === search_result);
 
-    const queriesdata = properties.filter((p) => message.includes(p.name));
+    var queriesdata = properties.filter((p) => message.includes(p.name));
 
     console.log("query data", queriesdata);
 
     // console.log("matching data2",matchingData2)
 
-    const matchingData3 = dataArray.find((d) => d.sku === message);
+    const matchingData33 = dataArray.find((d) => d.sku === message);
 
     // const recomData = recomArray.find((d) => message.startsWith("recom") && d.name.includes(message.substring(5).trim()));
     // if (recomData) {
@@ -124,16 +130,13 @@ async function getInformation(req, res) {
     // }
     // console.log("recomandation data",recomData);
 
-
-
-
     // if (message.startsWith("recom")) {
     //   const item = message.substring(6); // Remove the first 6 characters ("recom" and a space)
     //   // console.log(item);
-    
+
     //   const finder = `You're an expert from New Zealand in Furniture business for 20 years. You are tasked to find out the most popular, relevant and high demand product recommendation that goes with certain product. Target market is New Zealand. You will be fed with the product list and you will provide 20 recommended products against each product. If you have any question about this prompt, ask before you try to generate recommended products. product is ${item}`;
     //   // console.log(finder);
-    
+
     //   if (item) {
     //     try {
     //       const API_KEY = process.env.OPENAI_API_KEY;
@@ -152,9 +155,9 @@ async function getInformation(req, res) {
     //           temperature: 1,
     //         },
     //       });
-          
+
     //       const botResponse = "\n\n" + response.data.choices[0].text.trim();
-          
+
     //       // // Save the bot response and recom name to a CSV file
     //       // const csvData = `"${item}","${botResponse.replace(/"/g, '""')}"\n`;
     //       // fs.appendFile('recom_responses.csv', csvData, (err) => {
@@ -164,9 +167,9 @@ async function getInformation(req, res) {
     //       //     console.log('Data saved to file');
     //       //   }
     //       // });
-    
+
     //       return res.json({ botResponse });
-    
+
     //     } catch (error) {
     //       return res
     //         .status(500)
@@ -217,116 +220,113 @@ async function getInformation(req, res) {
     //   // Handle other types of messages
     // }
 
-  //  if(message.startsWith("save")) {
-  //     const item = message.substring(6); // Remove the first 6 characters ("recom" and a space)
-  //     // console.log(item);
-    
-  //     const finder = `You're an expert from New Zealand in Furniture business for 20 years. You are tasked to find out the most popular, relevant and high demand product recommendation that goes with certain product. Target market is New Zealand. You will be fed with the product list and you will provide 20 recommended products against each product. If you have any question about this prompt, ask before you try to generate recommended products. product is ${item}`;
-  //     // console.log(finder);
-    
-  //     if (item) {
-  //       try {
-  //         const API_KEY = process.env.OPENAI_API_KEY;
-  //         const response = await axios({
-  //           method: "post",
-  //           url: "https://api.openai.com/v1/engines/text-davinci-003/completions",
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //             Authorization: `Bearer ${API_KEY}`,
-  //           },
-  //           data: {
-  //             prompt: finder,
-  //             max_tokens: 3000,
-  //             n: 1,
-  //             stop: "",
-  //             temperature: 1,
-  //           },
-  //         });
-          
-  //         const botResponse = "\n\n" + response.data.choices[0].text.trim();;
-  //         return res.json({ botResponse });
-    
-  //       } catch (error) {
-  //         return res
-  //           .status(500)
-  //           .send({ error: "Could not generate text completion" });
-  //       }
-  //     }
-  //   } else {
-  //     // Handle other types of messages
-  //   }
-    
+    //  if(message.startsWith("save")) {
+    //     const item = message.substring(6); // Remove the first 6 characters ("recom" and a space)
+    //     // console.log(item);
 
-  if(message.startsWith("data")) {
+    //     const finder = `You're an expert from New Zealand in Furniture business for 20 years. You are tasked to find out the most popular, relevant and high demand product recommendation that goes with certain product. Target market is New Zealand. You will be fed with the product list and you will provide 20 recommended products against each product. If you have any question about this prompt, ask before you try to generate recommended products. product is ${item}`;
+    //     // console.log(finder);
 
-    const BATCH_SIZE = 50; // Change the batch size according to your preference
-    const WAIT_TIME = 60000; // Time to wait between batches, in milliseconds
-    
-    async function saveRecommendations(recomArray) {
-      let i = 0;
-    
-      while (i < recomArray.length) {
-        const batch = recomArray.slice(i, i + BATCH_SIZE);
-    
-        const promises = batch.map(async (item) => {
-          const productName = `${item.name}, ${item.ref}`;
-          const finder = `You're an expert from New Zealand in Furniture business for 20 years. You are tasked to find out the most popular, relevant and high demand product recommendation that goes with certain product. Target market is New Zealand. You will be fed with the product list and you will provide 20 recommended products against each product. If you have any question about this prompt, ask before you try to generate recommended products. product is ${productName}`;
-    
-          try {
-            const API_KEY = process.env.OPENAI_API_KEY;
-            const response = await axios({
-              method: "post",
-              url: "https://api.openai.com/v1/engines/text-davinci-003/completions",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${API_KEY}`,
-              },
-              data: {
-                prompt: finder,
-                max_tokens: 3000,
-                n: 1,
-                stop: "",
-                temperature: 1,
-              },
-            });
-    
-            const botResponse = response.data.choices[0].text.trim();
-    
-            // Save the bot response and recom name to a CSV file
-            const csvData = `"${productName}","${botResponse.replace(/"/g, '""')}"\n`;
-            fs.appendFile('responses_data.csv', csvData, (err) => {
-              if (err) {
-                console.error('Error writing to file:', err);
-              } else {
-                console.log(`Data saved for: ${productName}`);
-              }
-            });
-    
-          } catch (error) {
-            console.error('Error generating text completion:', error);
+    //     if (item) {
+    //       try {
+    //         const API_KEY = process.env.OPENAI_API_KEY;
+    //         const response = await axios({
+    //           method: "post",
+    //           url: "https://api.openai.com/v1/engines/text-davinci-003/completions",
+    //           headers: {
+    //             "Content-Type": "application/json",
+    //             Authorization: `Bearer ${API_KEY}`,
+    //           },
+    //           data: {
+    //             prompt: finder,
+    //             max_tokens: 3000,
+    //             n: 1,
+    //             stop: "",
+    //             temperature: 1,
+    //           },
+    //         });
+
+    //         const botResponse = "\n\n" + response.data.choices[0].text.trim();;
+    //         return res.json({ botResponse });
+
+    //       } catch (error) {
+    //         return res
+    //           .status(500)
+    //           .send({ error: "Could not generate text completion" });
+    //       }
+    //     }
+    //   } else {
+    //     // Handle other types of messages
+    //   }
+
+    if (message.startsWith("data")) {
+      const BATCH_SIZE = 50; // Change the batch size according to your preference
+      const WAIT_TIME = 60000; // Time to wait between batches, in milliseconds
+
+      async function saveRecommendations(recomArray) {
+        let i = 0;
+
+        while (i < recomArray.length) {
+          const batch = recomArray.slice(i, i + BATCH_SIZE);
+
+          const promises = batch.map(async (item) => {
+            const productName = `${item.name}, ${item.ref}`;
+            const finder = `You're an expert from New Zealand in Furniture business for 20 years. You are tasked to find out the most popular, relevant and high demand product recommendation that goes with certain product. Target market is New Zealand. You will be fed with the product list and you will provide 20 recommended products against each product. If you have any question about this prompt, ask before you try to generate recommended products. product is ${productName}`;
+
+            try {
+              const API_KEY = process.env.OPENAI_API_KEY;
+              const response = await axios({
+                method: "post",
+                url: "https://api.openai.com/v1/engines/text-davinci-003/completions",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${API_KEY}`,
+                },
+                data: {
+                  prompt: finder,
+                  max_tokens: 3000,
+                  n: 1,
+                  stop: "",
+                  temperature: 1,
+                },
+              });
+
+              const botResponse = response.data.choices[0].text.trim();
+
+              // Save the bot response and recom name to a CSV file
+              const csvData = `"${productName}","${botResponse.replace(
+                /"/g,
+                '""'
+              )}"\n`;
+              fs.appendFile("responses_data.csv", csvData, (err) => {
+                if (err) {
+                  console.error("Error writing to file:", err);
+                } else {
+                  console.log(`Data saved for: ${productName}`);
+                }
+              });
+            } catch (error) {
+              console.error("Error generating text completion:", error);
+            }
+          });
+
+          await Promise.all(promises);
+          console.log(`Batch ${i + 1} to ${i + BATCH_SIZE} completed.`);
+          i += BATCH_SIZE;
+
+          if (i < recomArray.length) {
+            console.log(
+              `Waiting for ${
+                WAIT_TIME / 1000
+              } seconds before starting the next batch...`
+            );
+            await new Promise((resolve) => setTimeout(resolve, WAIT_TIME));
           }
-        });
-    
-        await Promise.all(promises);
-        console.log(`Batch ${i + 1} to ${i + BATCH_SIZE} completed.`);
-        i += BATCH_SIZE;
-    
-        if (i < recomArray.length) {
-          console.log(`Waiting for ${WAIT_TIME / 1000} seconds before starting the next batch...`);
-          await new Promise((resolve) => setTimeout(resolve, WAIT_TIME));
         }
       }
+
+      saveRecommendations(recomArray);
     }
-    
-    saveRecommendations(recomArray);
-  
-  }
-
-
-
-
-
-
 
     const matchesdataLocation = stringSimilarity.findBestMatch(
       message,
@@ -343,131 +343,157 @@ async function getInformation(req, res) {
     // console.log("matched item:", matchedItems[0]);
     var matchingData2 = matchedItemsdataLocation[0];
 
-
-
-
     const areaMatch = stringSimilarity.findBestMatch(
       message,
       areaCodeArray.map((d) => d.area)
     );
-    
+
     const deliveryMatch = stringSimilarity.findBestMatch(
       message,
       areaCodeArray.map((d) => d.delivery)
     );
-    
-    const codeMatch = stringSimilarity.findBestMatch(
+
+    const deliveryMatch1 = stringSimilarity.findBestMatch(
       message,
-      areaCodeArray.map((d) => d.code)
+      deliveryDataArray.map((d) => d.location)
     );
-    
+
+    // const codeMatch = stringSimilarity.findBestMatch(
+    //   message,
+    //   areaCodeArray.map((d) => d.code)
+    // );
+
+    // console.log("data bidning",codeMatch);
+
     const foundItems = [];
+    const foundItems1 = [];
     let matchedDelivery = null;
+    var matchedDelivery1 = null;
+
     let extraPrice = null;
-    let extraPrice1= null;
-    
-    
-    if (areaMatch.bestMatch.rating > 0.3) {
+    let extraPrice1 = null;
+
+    if (areaMatch.bestMatch.rating > 0.5) {
       const foundItem = areaCodeArray[areaMatch.bestMatchIndex];
       foundItems.push(foundItem);
-      console.log("Area:", foundItem.area, "Delivery:", foundItem.delivery);
+      console.log("new Area:", foundItem.area, "Delivery:", foundItem.delivery);
       matchedDelivery = foundItem.delivery;
-      extraPrice1=foundItem.charge;
-      var globalPrice1 = Number(extraPrice1)
-   
+      extraPrice1 = foundItem.charge;
+      var globalPrice1 = Number(extraPrice1);
+      var area = foundItem.area;
+
+      storeData.area = area;
+
+      console.log("area knowing", area);
     }
-    
+
     if (deliveryMatch.bestMatch.rating > 0.3) {
       const foundItem = areaCodeArray[deliveryMatch.bestMatchIndex];
       foundItems.push(foundItem);
       console.log("Delivery:", foundItem.delivery);
       matchedDelivery = foundItem.delivery;
-      
     }
-    
-    if (codeMatch.bestMatch.rating > 0.3) {
-      const foundItem = areaCodeArray[codeMatch.bestMatchIndex];
-      foundItems.push(foundItem);
+
+    if (deliveryMatch1.bestMatch.rating > 0.3) {
+      const foundItem1 = deliveryDataArray[deliveryMatch1.bestMatchIndex];
+      foundItems1.push(foundItem1);
+      console.log("Extact location", foundItem1.location);
+      matchedDelivery1 = foundItem1.location;
+
+      infoControl.matchedDelivery1 = matchedDelivery1;
+    }
+
+    const foundItem = areaCodeArray.find((item) => item.code === message);
+
+    if (foundItem) {
       console.log("Code:", foundItem.code, "Delivery:", foundItem.delivery);
+
       matchedDelivery = foundItem.delivery;
-      extraPrice= foundItem.charge;
 
-      var globalPrice = Number(extraPrice)
-
-
+      var deliveryControll = matchedDelivery;
+      extraPrice = foundItem.charge;
+      var codeArea = foundItem.code;
+      var globalPrice = Number(extraPrice);
+      storeData.codeArea = codeArea;
+    } else {
+      console.log("No matching area code found");
     }
-    
+
+    // setTimeout(() => {
+    //   delete storeData.codeArea;
+    //   delete storeData.area
+    //   console.log("Data deleted after 15 seconds");
+    // }, 15000);
+    let requestCounter = 0;
+
+    function handleRequest() {
+      requestCounter++; // Increment the request counter for each incoming request
+
+      // Process your request here...
+
+      if (requestCounter === 2) {
+        // Check if it's the 2nd request
+        delete storeData.codeArea;
+        delete storeData.area;
+        console.log("Data deleted after back propgration request");
+      }
+    }
+
+    // Simulate incoming requests
+    handleRequest(); // 1st request
+    // handleRequest(); // 2nd request
+
     if (foundItems.length === 0) {
       console.log("No matching data found");
     } else {
       console.log("Matched Delivery:", matchedDelivery);
     }
-    
 
+    console.log("1 global", globalPrice1);
 
+    console.log("delivbery", matchedDelivery);
+    console.log("extra price", extraPrice);
 
-    console.log("1 global",globalPrice1)
-    
-   console.log("delivbery",matchedDelivery)
-   console.log("extra price",extraPrice)
+    console.log("globalPrice ", globalPrice);
 
-   console.log("globalPrice ",globalPrice)
-
-    if(globalPrice1){
-
-
+    if (globalPrice1) {
       globalPrice = globalPrice1;
     }
 
+    if (matchedDelivery) {
+      var location = matchedDelivery;
 
+      console.log("location accepted", location);
+      const matchesdataLocation = stringSimilarity.findBestMatch(
+        location,
+        deliveryDataArray.map((d) => d.location)
+      );
 
-    if(matchedDelivery){
+      let matchedItemsdataLocation = [];
+      if (matchesdataLocation.bestMatch.rating > 0.3) {
+        const matchedItemdataLocation =
+          deliveryDataArray[matchesdataLocation.bestMatchIndex];
+        matchedItemsdataLocation.push(matchedItemdataLocation);
+      } else {
+        console.log("No match found");
+      }
+      // console.log("matched item:", matchedItems[0]);
+      var matchingLocation = matchedItemsdataLocation[0];
+      // console.log("matching location",matchingLocation)
 
-
-
-
-     var location = matchedDelivery
-
-
-     console.log("location accepted",location)
-         const matchesdataLocation = stringSimilarity.findBestMatch(
-          location,
-      deliveryDataArray.map((d) => d.location)
-    );
-    let matchedItemsdataLocation = [];
-    if (matchesdataLocation.bestMatch.rating > 0.3) {
-      const matchedItemdataLocation =
-        deliveryDataArray[matchesdataLocation.bestMatchIndex];
-      matchedItemsdataLocation.push(matchedItemdataLocation);
-    } else {
-      console.log("No match found");
-    }
-    // console.log("matched item:", matchedItems[0]);
-    var matchingLocation = matchedItemsdataLocation[0];
-    // console.log("matching location",matchingLocation)
-
-    // console.log("xyzxxxxxxxx",matchingLocation)
-    // matchingData2 = matchingLocation
-  
+      // console.log("xyzxxxxxxxx",matchingLocation)
+      // matchingData2 = matchingLocation
     }
 
-    console.log("xyzxxxxxxxx",matchingLocation)
-    matchingData2 = matchingLocation
-
-   
-
-
-
-
+    // console.log("xyzxxxxxxxx", matchingLocation);
+    matchingData2 = matchingLocation;
 
     console.log("similar", matchingData2?.location);
-    console.log("abcd",matchingData2)
+    // console.log("abcd", matchingData2);
 
-    if (matchingData2?.location ) {
+    if (matchingData2?.location) {
+      // console.log("for this iffff");
 
-      console.log("for this iffff")
-  
-  
       const bayOfPlentyData = deliveryDataArray.filter(
         (d) => d.location === matchingData2.location
       );
@@ -496,17 +522,17 @@ async function getInformation(req, res) {
         search_result?.price
       );
 
+      var weightControll = search_result?.weight;
+
       const location = matchingData2.location;
       const weight = Number(search_result?.weight);
 
       console.log("weight", weight);
 
+      console.log("it will be location or area code", location);
+      userInfo.location = location;
 
-      console.log("it will be location or area code",location)
-
-
-
-
+      var locationControll = userInfo.location;
       const delivery_charge = getDeliveryPrice(location, weight); // Output: 40
 
       const num_delivery_charge = Number(delivery_charge);
@@ -543,13 +569,14 @@ async function getInformation(req, res) {
             " and the Highest Shipping charge is " +
             deliveryPrices.maxPrice +
             " based on your product weight delivery charge is " +
-            delivery_charge +"."+
+            delivery_charge +
+            "." +
             " total price is " +
             total_price,
         });
       } else {
-        console.log("price sending shipping inside", userData?.prop_price);
-        console.log("weight sending shipping inside", userData?.prop_weight);
+        // console.log("price sending shipping inside", userData?.prop_price);
+        // console.log("weight sending shipping inside", userData?.prop_weight);
 
         const price_sh = Number(userData?.prop_price);
         const weight = Number(userData?.prop_weight);
@@ -575,52 +602,15 @@ async function getInformation(req, res) {
           if (deliveryRule) {
             return deliveryRule.deliveryPrice;
           } else {
-            return 
+            return;
           }
         }
 
-        if ( !isNaN(final_money) && (globalPrice == 0 || globalPrice ==undefined) && globalPrice == undefined ) {
-         return  res.json({
-            botResponse:
-              "\n\n" +
-              "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
-              matchingData2.location +
-              "  the lowest shipping charge is " +
-              deliveryPrices.minPrice +
-              " and the Highest Shipping charge is " +
-              deliveryPrices.maxPrice +"."+
-              " based on weight the delivery charge is " +
-              deliveryChargesh +
-              " and final price is entering " +
-              final_money,
-          });
-        }
-
-        
-        if(globalPrice>0 && !isNaN(final_money)
-        ){
-          return res.json({
-            botResponse:
-              "\n\n" +
-              "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
-              matchingData2.location +
-              "  the lowest shipping charge is " +
-              deliveryPrices.minPrice +
-              " and the Highest Shipping charge is " +
-              deliveryPrices.maxPrice +"."+
-              " based on weight the delivery charge is " +
-              deliveryChargesh + " for rural area extra charge added " + globalPrice +
-              " and final price is " +
-              (globalPrice+final_money),
-          });
-
-
-
-        }
-
-        
-        
-        else {
+        if (
+          !isNaN(final_money) &&
+          (globalPrice == 0 || globalPrice == undefined) &&
+          globalPrice == undefined
+        ) {
           return res.json({
             botResponse:
               "\n\n" +
@@ -630,25 +620,311 @@ async function getInformation(req, res) {
               deliveryPrices.minPrice +
               " and the Highest Shipping charge is " +
               deliveryPrices.maxPrice +
+              "." +
+              " based on weight the delivery charge is " +
+              deliveryChargesh +
+              " and final price is  " +
+              final_money,
+          });
+        }
+        var helperText = "Could you please tell me the name of your product?";
+        var helperLocation;
+        var helperPrice;
+        var helperPrice1;
+
+        if (globalPrice > 0 && !isNaN(final_money)) {
+          return res.json({
+            botResponse:
+              "\n\n" +
+              "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
+              matchingData2.location +
+              "  the lowest shipping charge is " +
+              deliveryPrices.minPrice +
+              " and the Highest Shipping charge is " +
+              deliveryPrices.maxPrice +
+              "." +
+              " based on weight the delivery charge is " +
+              deliveryChargesh +
+              " for rural area extra charge added front propagrarion " +
+              globalPrice +
+              " and final price is " +
+              (globalPrice + final_money),
+          });
+        } else {
+          userInfo.helperText = helperText;
+          userInfo.helperLocation = matchingData2.location;
+          userInfo.globalPrice = globalPrice;
+          userInfo.globalPrice1 = globalPrice1;
+          console.log("global price which we will use 0", userInfo.globalPrice);
+          console.log(
+            "global price which we will use 1",
+            userInfo.globalPrice1
+          );
+
+          return res.json({
+            botResponse:
+              "\n\n" +
+              "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
+              matchingData2.location +
+              "  the lowest shipping charge is " +
+              deliveryPrices.minPrice +
+              " and the Highest Shipping charge is " +
+              deliveryPrices.maxPrice +
+              " " +
+              helperText +
               "",
           });
         }
       }
     }
 
-    if (queriesdata.length === 0 && matchingData1 === false) {
+    console.log("back propagation ", userInfo.helperText);
+    console.log("back location", userInfo.helperLocation);
+
+    if (
+      queriesdata.length === 0 &&
+      matchingData1 === false &&
+      userInfo.helperText == undefined
+    ) {
       res.json({
         botResponse: `\n\n${search_result.name}: ${search_result.description}
           }`,
       });
       return;
-    } else if (matchingData3) {
+    }
+    // let requestCounter = 0;
+
+    // Assuming this is your request handling function
+    // function handleRequest() {
+    //   requestCounter++; // Increment the request counter for each incoming request
+
+    //   // Process your request here...
+
+    //   if (requestCounter === 2) { // Check if it's the 2nd request
+    //     delete userInfo.helperText;
+    //     console.log("Data deleted after 2nd request");
+    //   }
+    // }
+
+    // // Simulate incoming requests
+    // handleRequest(); // 1st request
+    // handleRequest(); // 2nd request
+
+    if (userInfo.helperText) {
+      userInfo.globalPrice = globalPrice;
+      userInfo.globalPrice1 = globalPrice1;
+
+      console.log("TRUE location", userInfo.helperLocation);
+      // console.log("godzila", search_result);
+
+      const inside_price = getDeliveryPrice(
+        userInfo.helperLocation,
+        Number(search_result?.weight)
+      );
+      // console.log("inside price", inside_price);
+
+      const inside_main_price = Number(search_result.price);
+      const inside_delivery_price = Number(inside_price);
+      const main_price = inside_main_price + inside_delivery_price;
+
+      function getDeliveryPrice(location, weight) {
+        // Find the delivery rule that matches the location and weight
+        const deliveryRule = deliveryDataArray.find((rule) => {
+          return (
+            rule.location === location &&
+            ((rule.operator === "<" && weight < rule["weight-dl"]) ||
+              (rule.operator === "=" && weight == rule["weight-dl"]))
+          );
+        });
+
+        // If a matching rule was found, return the delivery price
+        if (deliveryRule) {
+          return deliveryRule.deliveryPrice;
+        } else {
+          return `No delivery price found for location ${location} and weight ${weight}`;
+        }
+      }
+
+      const bayOfPlentyData = deliveryDataArray.filter(
+        (d) => d.location === userInfo.helperLocation
+      );
+
+      const deliveryPrices = bayOfPlentyData.reduce(
+        (acc, d) => {
+          const price = parseFloat(d.deliveryPrice);
+          if (!isNaN(price)) {
+            // check if price is a valid number
+            if (price < acc.minPrice) {
+              acc.minPrice = price;
+            }
+            if (price > acc.maxPrice) {
+              acc.maxPrice = price;
+            }
+          }
+          return acc;
+        },
+        { minPrice: Infinity, maxPrice: -Infinity }
+      );
+
+      console.log("helper text", userInfo.helperText);
+      console.log("price1", userInfo.globalPrice1);
+      console.log("price", userInfo.globalPrice);
+
+      console.log("another testing", storeData.codeArea);
+      console.log("area testing", storeData.area);
+
+      const area = storeData.area;
+      const code = storeData.codeArea;
+
+      var matchingData3 = areaCodeArray.find((d) => d.area === area);
+      var matchingData2 = areaCodeArray.find((d) => d.code === code);
+
+      console.log("matchingData3.charge",matchingData3?.charge)
+
+      console.log("matchingData2.charge",matchingData2?.charge)
+
+
+      var finalCharge;
+
+
+
+
+
+
+      if (matchingData3?.charge == 39 && infoControl.matchedDelivery1 === undefined) {
+
+         console.log("matchingdata3 = 39",matchingData3)
+        var chargeof1 = Number(matchingData3?.charge);
+        finalCharge = chargeof1;
+        console.log("Final charge inside:", finalCharge);
+
+      }
+      if (matchingData3?.charge == 0  && infoControl.matchedDelivery1 === undefined) {
+
+        console.log("matchingdata3 = 0",matchingData3?.charge)
+        var chargeof1 = Number(matchingData3?.charge);
+        finalCharge = chargeof1;
+        console.log("Final charge inside:", finalCharge);
+
+      }
+    
+    
+      if (matchingData2?.charge == 39  && infoControl.matchedDelivery1 === undefined) {
+     
+        console.log("matchingdata2 = 39",matchingData2?.charge)
+
+        var chargeof2 = Number(matchingData2?.charge);
+
+        finalCharge = chargeof2;
+        console.log("Final charge inside:", finalCharge);
+
+      }
+
+      if (matchingData2?.charge == 0  && infoControl.matchedDelivery1 === undefined) {
+        console.log("matchingdata2 = 0",matchingData2?.charge)
+
+      
+        var chargeof2 = Number(matchingData2?.charge);
+        finalCharge = chargeof2;
+        console.log("Final charge inside:", finalCharge);
+
+      }
+      
+      console.log("Final charge:", finalCharge);
+
+      console.log("is he still exist", infoControl.matchedDelivery1);
+
+      let botResponse;
+
+
+      if (finalCharge == 0) {
+        botResponse =
+          "\n\n" +
+          "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
+          userInfo.helperLocation +
+          "  the lowest shipping charge is " +
+          deliveryPrices.minPrice +
+          " and the Highest Shipping charge is " +
+          deliveryPrices.maxPrice +
+          "." +
+          " based on weight the delivery charge is " +
+          inside_delivery_price +
+          "" +
+          " and final price is " +
+          +main_price;
+        
+
+
+      } else if (finalCharge == 39) {
+        botResponse =
+          "\n\n" +
+          "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
+          userInfo.helperLocation +
+          "  the lowest shipping charge is " +
+          deliveryPrices.minPrice +
+          " and the Highest Shipping charge is " +
+          deliveryPrices.maxPrice +
+          "." +
+          "basic price is " +
+          search_result.price +
+          " based on weight the delivery charge is " +
+          inside_delivery_price +
+          " for rural area extra charge " +
+          (chargeof1 === chargeof2
+            ? chargeof1
+              ? chargeof1 + " "
+              : ""
+            : (chargeof1 ? chargeof1 + " " : "") +
+              (chargeof2 ? chargeof2 + " " : "")) +
+          " and final price is  " +
+          (39 + main_price);
+
+      
+
+
+      } else {
+        botResponse =
+          "\n\n" +
+          "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For " +
+          userInfo.helperLocation +
+          "  the lowest shipping charge is " +
+          deliveryPrices.minPrice +
+          " and the Highest Shipping charge is " +
+          deliveryPrices.maxPrice +
+          "." +
+          " based on weight the delivery charge is" +
+          inside_delivery_price +
+          " and final price isdggdggggggggggggggggggggggggggg  " +
+          main_price +
+          "";
+    
+
+      }
+      
+       return  res.json({
+        botResponse,
+      });
+
+      // function delation() {
+      //   delete userData.prop_price;
+      //   delete userData.prop_weight;
+      //    chargeof1 =0;
+      //    chargeof2 =0;
+      //   console.log("deletation happen", delete userData.prop_price);
+      //   console.log("deletation happen", delete userData.prop_weight);
+
+      //   console.log("charge is deleted", chargeof1, chargeof2)
+
+      //   return;
+      // }
+    } else if (matchingData33) {
       res.json({
-        botResponse: `\n\n${matchingData3.name}: ${matchingData3.description}
+        botResponse: `\n\n${matchingData33.name}: ${matchingData33.description}
           }`,
       });
       return;
     }
+
     if (matchingData1) {
       const dimensions = {
         width: search_result.width,
@@ -853,7 +1129,7 @@ async function getInformation(req, res) {
               delete userData.prop_price;
               delete userData.prop_weight;
               console.log("Data deleted after 1 minute");
-            }, 90000);
+            }, 40000);
           }
         } catch (error) {
           console.error(error);
