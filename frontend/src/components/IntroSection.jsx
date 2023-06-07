@@ -11,8 +11,7 @@ function YourComponent() {
 
   return (
     <div id="introsection">
-      <h1>Introducing Idiya ChatGPT</h1>
-      <p>
+      {/* <p>
         Features:
         <ul>
           <li><button onClick={() => handleClick('Message 1')}>Product name + price, sku, brand, weight, height, dimension</button></li>
@@ -22,7 +21,7 @@ function YourComponent() {
           <li><button onClick={() => handleClick('Message 5')}>sku, Product name = description</button></li>
         </ul>
       </p>
-      {showMessage && <div style={{ position: "fixed" , bottom: "6.3%",left: "25%", zIndex: "9999"}} id="messageBox">{message}</div>}
+      {showMessage && <div style={{ position: "fixed" , bottom: "6.3%",left: "25%", zIndex: "9999"}} id="messageBox">{message}</div>} */}
     </div>
   );
 }
