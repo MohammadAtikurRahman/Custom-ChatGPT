@@ -140,12 +140,17 @@ async function getInformation(req, res) {
       }
 
 
-     return res.json({ botResponse: `\n\n` + "Price" +retrievedPrice+ "For Weight" + retrievedWeight + "Deliver Charge" +deliveryPrice + "Total Price" +total_price});
+     return res.json({ botResponse: `\n\n` + "Price" +retrievedPrice+" "+"For Weight" +" " + retrievedWeight+" "+"Deliver Charge"+" "+deliveryPrice+" "+"Total Price"+" "+total_price});
 
 
 
 
      } 
+
+
+
+
+     
 
     const itemName = dataArray.find((d) => message.includes(d.name));
 
