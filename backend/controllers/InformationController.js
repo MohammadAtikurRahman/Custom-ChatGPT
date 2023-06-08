@@ -92,6 +92,61 @@ async function getInformation(req, res) {
       return;
     }
 
+    if (message.includes("Shipping")){
+      console.log("shipping inside")
+      const weightData = fs.readFileSync("weight.json", 'utf8');
+
+      const parsedWeightData = JSON.parse(weightData);
+
+      const retrievedWeight = parsedWeightData.weight;
+
+
+      const priceData = fs.readFileSync("weight.json", 'utf8');
+
+      const parsedPriceData = JSON.parse(priceData);
+
+      const retrievedPrice = parsedPriceData.price;
+
+      const printconvertedint = parseInt(retrievedPrice.trim(), 10);
+
+
+
+      console.log(typeof retrievedPrice)
+
+      const deliveryPrice = getDeliveryPrice(message, retrievedWeight);
+
+      const convertedintdelivery = parseInt(deliveryPrice.trim(),10)
+
+      const total_price = printconvertedint + convertedintdelivery;
+
+      console.log(typeof deliveryPrice); // Output: 40
+
+      
+      function getDeliveryPrice(location, weight) {
+        // Find the delivery rule that matches the location and weight
+        const deliveryRule = deliveryDataArray.find(rule => {
+          return rule.location === location && (
+            (rule.operator === '<' && weight < rule['weight-dl']) ||
+            (rule.operator === '=' && weight == rule['weight-dl'])
+          );
+        });
+        
+        // If a matching rule was found, return the delivery price
+        if (deliveryRule) {
+          return deliveryRule.deliveryPrice;
+        } else {
+          return `No delivery price found for location ${location} and weight ${weight}`;
+        }
+      }
+
+
+     return res.json({ botResponse: `\n\n` + "Price" +retrievedPrice+ "For Weight" + retrievedWeight + "Deliver Charge" +deliveryPrice + "Total Price" +total_price});
+
+
+
+
+     } 
+
     const itemName = dataArray.find((d) => message.includes(d.name));
 
     const queries = properties.filter((p) => message.includes(p.name));
@@ -137,19 +192,73 @@ async function getInformation(req, res) {
       })
       .filter((r) => r !== null);
 
-    console.log("result data", result);
-    if (result.length === 0) {
+
+
+
+
+    // console.log("result data", result);
+    if  (result.length === 0) {
+
+      
       return res.status(400).json({ error: "No matching data found" });
     }
 
-    // if (result[0].hasOwnProperty("price")) {
-    //   let prop_weight = itemName.weight;
-    //   let prop_price = itemName.price;
+    if (result[0]?.hasOwnProperty("price")) {
+      let prop_weight = itemName.weight;
+      let prop_price = itemName.price;
      
-    //   tiggerDetaile(prop_weight, prop_price);
+      tiggerDetaile(prop_weight, prop_price);
 
-    //   return;
-    // }
+      return;
+    }
+
+ 
+
+    
+
+  
+
+
+
+
+    function tiggerDetaile(prop_weight, prop_price) {
+      console.log("successfully get the weight", prop_weight);
+      console.log("successfully get the price", prop_price);
+
+
+      fs.writeFileSync("weight.json", JSON.stringify({weight: prop_weight, price: prop_price}));
+
+      res.json({ botResponse: `\n\n` + "Please tell me your location or area or area code" });
+      console.log(message);
+      if(prop_weight != "undifined"){
+
+      }
+      else{
+        console.log(getDeliveryPrice(location, prop_weight)); // Output: 40
+
+
+      }
+    }
+
+    function getDeliveryPrice(location, weight) {
+      // Find the delivery rule that matches the location and weight
+      const deliveryRule = deliveryDataArray.find(rule => {
+        return rule.location === location && (
+          (rule.operator === '<' && weight < rule['weight-dl']) ||
+          (rule.operator === '=' && weight == rule['weight-dl'])
+        );
+      });
+      
+      // If a matching rule was found, return the delivery price
+      if (deliveryRule) {
+        return deliveryRule.deliveryPrice;
+      } else {
+        return `No delivery price found for location ${location} and weight ${weight}`;
+      }
+    }
+
+
+
 
 
     const response = result.reduce((prev, curr) => {
@@ -158,37 +267,6 @@ async function getInformation(req, res) {
 
     return res.json({ botResponse: `\n\n` + response });
     
-
-    // function tiggerDetaile(prop_weight, prop_price) {
-    //   console.log("successfully get the weight", prop_weight);
-    //   console.log("successfully get the price", prop_price);
-    //   res.json({ botResponse: `\n\n` + "Please tell me your location or area or area code" });
-    //   console.log(message);
-    //   if(prop_weight != "undifined"){
-
-    //     console.log(getDeliveryPrice(location, prop_weight)); // Output: 40
-    //   }
-    // }
-
-    // function getDeliveryPrice(location, weight) {
-    //   // Find the delivery rule that matches the location and weight
-    //   const deliveryRule = deliveryDataArray.find(rule => {
-    //     return rule.location === location && (
-    //       (rule.operator === '<' && weight < rule['weight-dl']) ||
-    //       (rule.operator === '=' && weight == rule['weight-dl'])
-    //     );
-    //   });
-      
-    //   // If a matching rule was found, return the delivery price
-    //   if (deliveryRule) {
-    //     return deliveryRule.deliveryPrice;
-    //   } else {
-    //     return `No delivery price found for location ${location} and weight ${weight}`;
-    //   }
-    // }
-
-
-
 
 
   }
