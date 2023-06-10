@@ -100,20 +100,20 @@ async function getInformation(req, res) {
     }
     
       
-    else if (areaTocharge) {
-      res.json({
+    // else if (areaTocharge) {
+    //   res.json({
 
-        botResponse: `\n\n${areaTocharge.area} of : ${areaTocharge.charge}`,
-      });
-      return;
-    }
+    //     botResponse: `\n\n${areaTocharge.area} of : ${areaTocharge.charge}`,
+    //   });
+    //   return;
+    // }
     
-    else if (codeTocharge) {
-      res.json({
-        botResponse: `\n\n${codeTocharge.code} of : ${codeTocharge.charge}`,
-      });
-      return;
-    }
+    // else if (codeTocharge) {
+    //   res.json({
+    //     botResponse: `\n\n${codeTocharge.code} of : ${codeTocharge.charge}`,
+    //   });
+    //   return;
+    // }
     
 
 
@@ -138,7 +138,7 @@ async function getInformation(req, res) {
     const retrievedPrice = parsedWeightData.price;
         
     
-    if (message.includes("Shipping") && retrievedWeight && retrievedPrice) {
+    if (message.includes("Shipping") && retrievedWeight && retrievedPrice || codeTocharge) {
 
 
       
@@ -150,7 +150,20 @@ async function getInformation(req, res) {
       const parsedPriceData = JSON.parse(priceData);
       const retrievedPrice = parsedPriceData.price;
       const printconvertedint = parseInt(retrievedPrice?.trim(), 10);
-      const deliveryPrice = getDeliveryPrice(message, retrievedWeight);
+
+
+      if(codeTocharge?.code){
+
+        var deliveryPrice = getDeliveryPrice(codeTocharge.delivery, retrievedWeight);
+
+      }
+      else  {
+
+         deliveryPrice = getDeliveryPrice(message, retrievedWeight);
+
+      }
+
+
       const convertedintdelivery = parseInt(deliveryPrice?.trim(), 10);
       const total_price = printconvertedint + convertedintdelivery;
     
@@ -170,6 +183,28 @@ async function getInformation(req, res) {
         }
       }
     
+      if(codeTocharge?.charge){
+
+        const rural_charge = codeTocharge.charge;
+        const conv_rural_charge = parseInt(rural_charge?.trim(), 10);
+
+      const response = {
+        botResponse: `\n\nPrice ${retrievedPrice} For Weight ${retrievedWeight} Deliver Charge ${deliveryPrice} for rural area extra charge added ${codeTocharge.charge}  Total Price ${total_price+conv_rural_charge}`,
+      };
+    
+      // Write an empty JSON object to weight.json
+      fs.writeFileSync('weight.json', JSON.stringify({}));
+    
+      return res.json(response);
+      
+    }
+
+
+
+    // if(codeTocharge?.charge == "undifined")
+    else
+    {
+
       const response = {
         botResponse: `\n\nPrice ${retrievedPrice} For Weight ${retrievedWeight} Deliver Charge ${deliveryPrice} Total Price ${total_price}`,
       };
@@ -178,8 +213,94 @@ async function getInformation(req, res) {
       fs.writeFileSync('weight.json', JSON.stringify({}));
     
       return res.json(response);
+      
+    }
+
+
     }
      
+
+        
+    if (message.includes("Shipping") && retrievedWeight && retrievedPrice || areaTocharge) {
+
+
+      
+      
+      const weightData = fs.readFileSync("weight.json", 'utf8');
+      const parsedWeightData = JSON.parse(weightData);
+      const retrievedWeight = parsedWeightData.weight;
+      const priceData = fs.readFileSync("weight.json", 'utf8');
+      const parsedPriceData = JSON.parse(priceData);
+      const retrievedPrice = parsedPriceData.price;
+      const printconvertedint = parseInt(retrievedPrice?.trim(), 10);
+
+
+      if(areaTocharge?.area){
+
+        var deliveryPrice = getDeliveryPrice(areaTocharge.delivery, retrievedWeight);
+
+      }
+      else  {
+
+         deliveryPrice = getDeliveryPrice(message, retrievedWeight);
+
+      }
+
+
+      const convertedintdelivery = parseInt(deliveryPrice?.trim(), 10);
+      const total_price = printconvertedint + convertedintdelivery;
+    
+      function getDeliveryPrice(location, weight) {
+        const deliveryRule = deliveryDataArray.find(rule => {
+          return (
+            rule.location === location &&
+            ((rule.operator === '<' && weight < rule['weight-dl']) ||
+              (rule.operator === '=' && weight == rule['weight-dl']))
+          );
+        });
+    
+        if (deliveryRule) {
+          return deliveryRule.deliveryPrice;
+        } else {
+          return `No delivery price found for location ${location} and weight ${weight}`;
+        }
+      }
+    
+      if(areaTocharge?.charge){
+
+        const rural_charge = areaTocharge.charge;
+        const conv_rural_charge = parseInt(rural_charge?.trim(), 10);
+
+      const response = {
+        botResponse: `\n\nPrice ${retrievedPrice} For Weight ${retrievedWeight} Deliver Charge ${deliveryPrice} for rural area extra charge added ${areaTocharge.charge}  Total Price ${total_price+conv_rural_charge}`,
+      };
+    
+      // Write an empty JSON object to weight.json
+      fs.writeFileSync('weight.json', JSON.stringify({}));
+    
+      return res.json(response);
+      
+    }
+
+
+
+    // if(codeTocharge?.charge == "undifined")
+    else
+    {
+
+      const response = {
+        botResponse: `\n\nPrice ${retrievedPrice} For Weight ${retrievedWeight} Deliver Charge ${deliveryPrice} Total Price ${total_price}`,
+      };
+    
+      // Write an empty JSON object to weight.json
+      fs.writeFileSync('weight.json', JSON.stringify({}));
+    
+      return res.json(response);
+      
+    }
+
+
+    }
 
     if (message.includes("Shipping") && !retrievedWeight && !retrievedPrice) {
      
