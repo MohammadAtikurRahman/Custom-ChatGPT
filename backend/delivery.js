@@ -38,7 +38,7 @@ function delivery() {
       (d) => d.location === message
     );
     if (bayOfPlentyData.length === 0) {
-return;      
+      return;
     }
 
     // Find the minimum and maximum values of the deliveryPrice property
@@ -71,6 +71,8 @@ return;
         deliveryPrices.maxPrice +
         ".  what is your area code ?",
     });
+
+    
   });
 
   return router;

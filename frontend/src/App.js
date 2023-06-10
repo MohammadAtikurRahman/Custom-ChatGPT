@@ -402,7 +402,7 @@ function App() {
                 marginBottom: "10px",
                 transition: "background 0.3s",
               }}
-              onClick={() => handleClick("Message 6")}
+              onClick={() => handleClick("Message 4")}
               onMouseOver={(e) => (e.target.style.background = "black")}
               onMouseOut={(e) => (e.target.style.background = "#40414F")}
             >
@@ -421,7 +421,7 @@ function App() {
                 marginBottom: "10px",
                 transition: "background 0.3s",
               }}
-              onClick={() => handleClick("Message 7")}
+              onClick={() => handleClick("Message 5")}
               onMouseOver={(e) => (e.target.style.background = "black")}
               onMouseOut={(e) => (e.target.style.background = "#40414F")}
             >

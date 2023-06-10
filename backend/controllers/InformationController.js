@@ -55,6 +55,15 @@ async function getInformation(req, res) {
     { name: "length", property: "length" },
     { name: "weight", property: "weight" },
     { name: "description", property: "description" },
+    { name: "delivery", property: "delivery" },
+    { name: "code", property: "code" },
+    { name: "area", property: "area" },
+    { name: "region", property: "region" },
+    { name: "rural", property: "rural" },
+    { name: "charge", property: "charge" },
+
+
+
   ];
 
   for (const prop of properties) {
@@ -68,19 +77,48 @@ async function getInformation(req, res) {
 
     const matchingData3 = dataArray.find((d) => d.sku === message);
 
+
+    const areaTocharge = dataArray.find((d) => d.area === message)
+
+
+    const codeTocharge = dataArray.find((d) => d.code === message)
+
+
     if (matchingData2) {
       res.json({
-        botResponse: `\n\n${matchingData2.name} of : ${matchingData2.description}
-                    }`,
+        botResponse: `\n\n${matchingData2.name} of : ${matchingData2.description}`,
       });
       return;
-    } else if (matchingData3) {
+    } 
+    
+    
+    else if (matchingData3) {
       res.json({
-        botResponse: `\n\n${matchingData3.name} of : ${matchingData3.description}
-                    }`,
+        botResponse: `\n\n${matchingData3.name} of : ${matchingData3.description}`,
       });
       return;
-    } else if (matchingData1) {
+    }
+    
+      
+    else if (areaTocharge) {
+      res.json({
+
+        botResponse: `\n\n${areaTocharge.area} of : ${areaTocharge.charge}`,
+      });
+      return;
+    }
+    
+    else if (codeTocharge) {
+      res.json({
+        botResponse: `\n\n${codeTocharge.code} of : ${codeTocharge.charge}`,
+      });
+      return;
+    }
+    
+
+
+    
+    else if (matchingData1) {
       const dimensions = {
         width: matchingData1.width,
         height: matchingData1.height,
@@ -92,63 +130,98 @@ async function getInformation(req, res) {
       return;
     }
 
-    if (message.includes("Shipping")){
-      console.log("shipping inside")
-      const weightData = fs.readFileSync("weight.json", 'utf8');
-
-      const parsedWeightData = JSON.parse(weightData);
-
-      const retrievedWeight = parsedWeightData.weight;
 
 
-      const priceData = fs.readFileSync("weight.json", 'utf8');
+    const weightData = fs.readFileSync("weight.json", 'utf8');
+    const parsedWeightData = JSON.parse(weightData);
+    const retrievedWeight = parsedWeightData.weight;
+    const retrievedPrice = parsedWeightData.price;
+        
+    
+    if (message.includes("Shipping") && retrievedWeight && retrievedPrice) {
 
-      const parsedPriceData = JSON.parse(priceData);
-
-      const retrievedPrice = parsedPriceData.price;
-
-      const printconvertedint = parseInt(retrievedPrice.trim(), 10);
-
-
-
-      console.log(typeof retrievedPrice)
-
-      const deliveryPrice = getDeliveryPrice(message, retrievedWeight);
-
-      const convertedintdelivery = parseInt(deliveryPrice.trim(),10)
-
-      const total_price = printconvertedint + convertedintdelivery;
-
-      console.log(typeof deliveryPrice); // Output: 40
 
       
+      
+      const weightData = fs.readFileSync("weight.json", 'utf8');
+      const parsedWeightData = JSON.parse(weightData);
+      const retrievedWeight = parsedWeightData.weight;
+      const priceData = fs.readFileSync("weight.json", 'utf8');
+      const parsedPriceData = JSON.parse(priceData);
+      const retrievedPrice = parsedPriceData.price;
+      const printconvertedint = parseInt(retrievedPrice?.trim(), 10);
+      const deliveryPrice = getDeliveryPrice(message, retrievedWeight);
+      const convertedintdelivery = parseInt(deliveryPrice?.trim(), 10);
+      const total_price = printconvertedint + convertedintdelivery;
+    
       function getDeliveryPrice(location, weight) {
-        // Find the delivery rule that matches the location and weight
         const deliveryRule = deliveryDataArray.find(rule => {
-          return rule.location === location && (
-            (rule.operator === '<' && weight < rule['weight-dl']) ||
-            (rule.operator === '=' && weight == rule['weight-dl'])
+          return (
+            rule.location === location &&
+            ((rule.operator === '<' && weight < rule['weight-dl']) ||
+              (rule.operator === '=' && weight == rule['weight-dl']))
           );
         });
-        
-        // If a matching rule was found, return the delivery price
+    
         if (deliveryRule) {
           return deliveryRule.deliveryPrice;
         } else {
           return `No delivery price found for location ${location} and weight ${weight}`;
         }
       }
+    
+      const response = {
+        botResponse: `\n\nPrice ${retrievedPrice} For Weight ${retrievedWeight} Deliver Charge ${deliveryPrice} Total Price ${total_price}`,
+      };
+    
+      // Write an empty JSON object to weight.json
+      fs.writeFileSync('weight.json', JSON.stringify({}));
+    
+      return res.json(response);
+    }
+     
 
-
-     return res.json({ botResponse: `\n\n` + "Price" +retrievedPrice+" "+"For Weight" +" " + retrievedWeight+" "+"Deliver Charge"+" "+deliveryPrice+" "+"Total Price"+" "+total_price});
-
-
-
-
-     } 
-
-
-
+    if (message.includes("Shipping") && !retrievedWeight && !retrievedPrice) {
+     
+      const bayOfPlentyData = deliveryDataArray.filter(
+        (d) => d.location === message
+      );
+      if (bayOfPlentyData.length === 0) {
+        return;
+      }
+  
+      // Find the minimum and maximum values of the deliveryPrice property
+      const deliveryPrices = bayOfPlentyData.reduce(
+        (acc, d) => {
+          const price = parseFloat(d.deliveryPrice);
+          if (!isNaN(price)) {
+            // check if price is a valid number
+            if (price < acc.minPrice) {
+              acc.minPrice = price;
+            }
+            if (price > acc.maxPrice) {
+              acc.maxPrice = price;
+            }
+          }
+          return acc;
+        },
+        { minPrice: Infinity, maxPrice: -Infinity }
+      );
+  
+      // Return bot response with highest and lowest deliveryPrice
+      return res.json({
+        botResponse:
+          "\n\n" +
+          "Shipping Charge depends on Product Weight and whether it is Heavy or Fragile. For _" +
+          bayOfPlentyData[0].location +
+          "  the lowest shipping charge is " +
+          deliveryPrices.minPrice +
+          " and the Highest Shipping charge is " +
+          deliveryPrices.maxPrice +
+          ".  Please enter here product name",
+      });
+    }
+     
 
      
 
@@ -217,20 +290,11 @@ async function getInformation(req, res) {
       return;
     }
 
- 
-
-    
-
-  
-
-
 
 
     function tiggerDetaile(prop_weight, prop_price) {
       console.log("successfully get the weight", prop_weight);
       console.log("successfully get the price", prop_price);
-
-
       fs.writeFileSync("weight.json", JSON.stringify({weight: prop_weight, price: prop_price}));
 
       res.json({ botResponse: `\n\n` + "Please tell me your location or area or area code" });
@@ -244,7 +308,6 @@ async function getInformation(req, res) {
 
       }
     }
-
     function getDeliveryPrice(location, weight) {
       // Find the delivery rule that matches the location and weight
       const deliveryRule = deliveryDataArray.find(rule => {
@@ -261,11 +324,6 @@ async function getInformation(req, res) {
         return `No delivery price found for location ${location} and weight ${weight}`;
       }
     }
-
-
-
-
-
     const response = result.reduce((prev, curr) => {
       return prev + ` ${Object.keys(curr)[0]}: ${curr[Object.keys(curr)[0]]} `;
     }, "");
