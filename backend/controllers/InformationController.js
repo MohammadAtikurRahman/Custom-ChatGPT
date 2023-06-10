@@ -106,7 +106,7 @@ async function getInformation(req, res) {
     else if (areaTocharge) {
       res.json({
 
-        botResponse: `\n\n${areaTocharge.area} of : ${areaTocharge.charge}`,
+        botResponse: `\n\n Yes we ship to ${areaTocharge.area} and Our next delivery dates are : ${areaTocharge.charge}`,
       });
       return;
     }
