@@ -78,10 +78,13 @@ async function getInformation(req, res) {
     const matchingData3 = dataArray.find((d) => d.sku === message);
 
 
-    const areaTocharge = dataArray.find((d) => d.area === message)
+    const areaTocharge = dataArray.find((d) => d.area.toLowerCase() === message.toLowerCase() || message.toLowerCase().includes(d.area.toLowerCase()));
+    console.log("area to charge", areaTocharge);
+    
 
 
     const codeTocharge = dataArray.find((d) => d.code === message)
+
 
 
     if (matchingData2) {
@@ -100,13 +103,13 @@ async function getInformation(req, res) {
     }
     
       
-    // else if (areaTocharge) {
-    //   res.json({
+    else if (areaTocharge) {
+      res.json({
 
-    //     botResponse: `\n\n${areaTocharge.area} of : ${areaTocharge.charge}`,
-    //   });
-    //   return;
-    // }
+        botResponse: `\n\n${areaTocharge.area} of : ${areaTocharge.charge}`,
+      });
+      return;
+    }
     
     // else if (codeTocharge) {
     //   res.json({
@@ -115,8 +118,6 @@ async function getInformation(req, res) {
     //   return;
     // }
     
-
-
     
     else if (matchingData1) {
       const dimensions = {
@@ -130,14 +131,11 @@ async function getInformation(req, res) {
       return;
     }
 
-
-
     const weightData = fs.readFileSync("weight.json", 'utf8');
     const parsedWeightData = JSON.parse(weightData);
     const retrievedWeight = parsedWeightData.weight;
     const retrievedPrice = parsedWeightData.price;
         
-    
     if (message.includes("Shipping") && retrievedWeight && retrievedPrice || codeTocharge) {
 
 
@@ -233,9 +231,7 @@ async function getInformation(req, res) {
 
 
     }
-     
-
-        
+      
     if (message.includes("Shipping") && retrievedWeight && retrievedPrice || areaTocharge) {
 
 
@@ -376,9 +372,6 @@ async function getInformation(req, res) {
       });
     }
      
-
-     
-
     const itemName = dataArray.find((d) => message.includes(d.name));
 
     const queries = properties.filter((p) => message.includes(p.name));
@@ -424,14 +417,9 @@ async function getInformation(req, res) {
       })
       .filter((r) => r !== null);
 
-
-
-
-
     // console.log("result data", result);
     if  (result.length === 0) {
 
-      
       return res.status(400).json({ error: "No matching data found" });
     }
 
