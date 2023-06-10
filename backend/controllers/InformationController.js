@@ -436,9 +436,12 @@ async function getInformation(req, res) {
     }
 
     if (result[0]?.hasOwnProperty("price")) {
-      let prop_weight = itemName.weight;
+      let prop_weight = parseInt(itemName.weight.trim(),10)
       let prop_price = itemName.price;
-     
+      // const conv_rural_charge = parseInt(rural_charge?.trim(), 10);
+
+
+     console.log(typeof prop_weight)
       tiggerDetaile(prop_weight, prop_price);
 
       return;
