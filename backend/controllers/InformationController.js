@@ -183,7 +183,7 @@ async function getInformation(req, res) {
         }
       }
     
-      if(codeTocharge?.charge){
+      if(codeTocharge?.charge == '39'){
 
         const rural_charge = codeTocharge.charge;
         const conv_rural_charge = parseInt(rural_charge?.trim(), 10);
@@ -198,6 +198,21 @@ async function getInformation(req, res) {
       return res.json(response);
       
     }
+    if(codeTocharge?.charge == '0'){
+
+      const rural_charge = codeTocharge.charge;
+      const conv_rural_charge = parseInt(rural_charge?.trim(), 10);
+
+    const response = {
+      botResponse: `\n\nPrice ${retrievedPrice} For Weight ${retrievedWeight} Deliver Charge ${deliveryPrice}  Total Price ${total_price}`,
+    };
+  
+    // Write an empty JSON object to weight.json
+    fs.writeFileSync('weight.json', JSON.stringify({}));
+  
+    return res.json(response);
+    
+  }
 
 
 
@@ -281,6 +296,9 @@ async function getInformation(req, res) {
       return res.json(response);
       
     }
+
+
+
 
 
 
