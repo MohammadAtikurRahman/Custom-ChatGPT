@@ -24,7 +24,7 @@ fs.createReadStream("idiya.csv")
     processData(dataArray);
   });
 
-  let deliverypath = [];
+ var deliveryPath = [];
   let dates = [];
   
   let routes = {};
@@ -39,24 +39,24 @@ fs.createReadStream("idiya.csv")
           if (!routes[row["route"]]) {
             routes[row["route"]] = {
               'route': row["route"],
-              'postcodes': [],
-              'ddates': []
+              'postcode': [],
+              'ddate': []
             };
           }
   
           // Push the current postcode to the postcodes array for the route, only if it's not empty
           if (row["postcode"].trim() !== '') {
-            routes[row["route"]].postcodes.push(row["postcode"]);
+            routes[row["route"]].postcode.push(row["postcode"]);
           }
   
           // Push all non-empty assigned dates to the ddates array for the route
           if (assignedDates.length > 0) {
-            routes[row["route"]].ddates.push(...assignedDates);
+            routes[row["route"]].ddate.push(...assignedDates);
           }
       })
       .on('end', () => {
           // Convert routes to an array of route objects
-          let deliveryPath = Object.values(routes);
+           deliveryPath = Object.values(routes);
     
           console.log(deliveryPath);
       });
@@ -115,9 +115,16 @@ async function getInformation(req, res) {
     const matchingData3 = dataArray.find((d) => d.sku === message);
 
 
-    const areaTocharge = deliverypath.find((d) => d.postcode.toLowerCase() === message.toLowerCase() || message.toLowerCase().includes(d.postcode.toLowerCase()));
+    // const areaTocharge = deliveryPath.find((d) => d.postcode.toLowerCase() === message.toLowerCase() || message.toLowerCase().includes(d.postcode.toLowerCase()));
     // console.log("area to charge", areaTocharge);
-    
+
+    //  const areaTo_delivery = deliveryPath.find((d) => d.route === message)
+
+
+
+    const areaTocharge = dataArray.find((d) => d.area === message)
+    console.log("area to charge", areaTocharge);
+
 
 
     const codeTocharge = dataArray.find((d) => d.code === message)
@@ -140,16 +147,31 @@ async function getInformation(req, res) {
     }
     
       
-    else if (areaTocharge) {
-      res.json({
-
-        botResponse: `\n\n Yes we ship to ${areaTocharge.postcode} and Our next delivery dates are : ${areaTocharge.ddate}`,
-
-
-
-      });
-      return;
-    }
+    // else if (areaTo_delivery) {
+    //   // Convert the strings in ddates to Date objects
+    //   let deliveryDates = areaTo_delivery.ddate.map(date => new Date(date));
+      
+    //   // Get today's date at midnight for comparison
+    //   let today = new Date();
+    //   today.setHours(0, 0, 0, 0);
+    
+    //   // Filter for dates that are today or in the future
+    //   let futureDates = deliveryDates.filter(date => date >= today);
+    
+    //   // Sort the dates in ascending order
+    //   futureDates.sort((a, b) => a - b);
+    
+    //   // Take the next 3 dates
+    //   let nextThreeDates = futureDates.slice(0, 3);
+    
+    //   // Convert the dates back to strings in the format YYYY-MM-DD
+    //   nextThreeDates = nextThreeDates.map(date => date.toISOString().split('T')[0]);
+    
+    //   res.json({
+    //     botResponse: `\n\n Yes we ship to ${areaTo_delivery.route} and Our next delivery dates are : ${nextThreeDates.join(', ')}`,
+    //   });
+    //   return;
+    // }
     
     // else if (codeTocharge) {
     //   res.json({
