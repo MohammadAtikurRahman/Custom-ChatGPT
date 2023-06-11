@@ -2,6 +2,7 @@ const fs = require("fs");
 const csv = require("csv-parser");
 const axios = require("axios");
 const { getDeliveryInformation } = require("./DeliveryInformationController");
+const util = require('util');
 
 const createCsvWriter = require("csv-writer").createObjectCsvWriter;
 const csvWriter = createCsvWriter({
@@ -23,7 +24,43 @@ fs.createReadStream("idiya.csv")
     processData(dataArray);
   });
 
+  let deliverypath = [];
+  let dates = [];
+  
+  let routes = {};
 
+  fs.createReadStream('data.csv')
+      .pipe(csv())
+      .on('data', (row) => {
+          // Split the "ddate" string into an array of dates
+          let assignedDates = row["ddate"].split('\n').filter(date => date.trim() !== '');
+  
+          // If the route does not exist in routes, initialize it
+          if (!routes[row["route"]]) {
+            routes[row["route"]] = {
+              'route': row["route"],
+              'postcodes': [],
+              'ddates': []
+            };
+          }
+  
+          // Push the current postcode to the postcodes array for the route, only if it's not empty
+          if (row["postcode"].trim() !== '') {
+            routes[row["route"]].postcodes.push(row["postcode"]);
+          }
+  
+          // Push all non-empty assigned dates to the ddates array for the route
+          if (assignedDates.length > 0) {
+            routes[row["route"]].ddates.push(...assignedDates);
+          }
+      })
+      .on('end', () => {
+          // Convert routes to an array of route objects
+          let deliveryPath = Object.values(routes);
+    
+          console.log(deliveryPath);
+      });
+  
 
 let deliveryDataArray = [];
 fs.createReadStream("delivery.csv")
@@ -78,8 +115,8 @@ async function getInformation(req, res) {
     const matchingData3 = dataArray.find((d) => d.sku === message);
 
 
-    const areaTocharge = dataArray.find((d) => d.area.toLowerCase() === message.toLowerCase() || message.toLowerCase().includes(d.area.toLowerCase()));
-    console.log("area to charge", areaTocharge);
+    const areaTocharge = deliverypath.find((d) => d.postcode.toLowerCase() === message.toLowerCase() || message.toLowerCase().includes(d.postcode.toLowerCase()));
+    // console.log("area to charge", areaTocharge);
     
 
 
@@ -106,7 +143,10 @@ async function getInformation(req, res) {
     else if (areaTocharge) {
       res.json({
 
-        botResponse: `\n\n Yes we ship to ${areaTocharge.area} and Our next delivery dates are : ${areaTocharge.charge}`,
+        botResponse: `\n\n Yes we ship to ${areaTocharge.postcode} and Our next delivery dates are : ${areaTocharge.ddate}`,
+
+
+
       });
       return;
     }

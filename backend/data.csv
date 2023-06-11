@@ -1,0 +1,941 @@
+route,postcode,ddate
+Auckland (AKL),0792,2023-05-02
+Auckland (AKL),0793,2023-05-09
+Auckland (AKL),0794,2023-05-16
+Auckland (AKL),2675,2023-05-23
+Auckland (AKL),2577,2023-05-30
+Auckland (AKL),2578,2023-06-06
+Auckland (AKL),2579,2023-06-13
+Auckland (AKL),2571,2023-06-20
+Auckland (AKL),2576,2023-06-27
+Auckland (AKL),2580,2023-07-04
+Auckland (AKL),2582,2023-07-11
+Auckland (AKL),2583,2023-07-18
+Auckland (AKL),2584,2023-07-25
+Auckland (AKL),2585,2023-08-01
+Auckland (AKL),2471,2023-08-08
+Auckland (AKL),2676,2023-08-15
+Auckland (AKL),2678,2023-08-22
+Auckland (AKL),2679,2023-08-29
+Auckland (AKL),1971,2023-09-05
+Auckland (AKL),2681,2023-09-12
+Auckland (AKL),2682,2023-09-19
+Auckland (AKL),2683,2023-09-26
+Auckland (AKL),2684,2023-10-03
+Auckland (AKL),1010,2023-10-10
+Auckland (AKL),1011,2023-10-17
+Auckland (AKL),1021,2023-10-24
+Auckland (AKL),1022,2023-10-31
+Auckland (AKL),1023,2023-11-07
+Auckland (AKL),1024,2023-11-14
+Auckland (AKL),1025,2023-11-21
+Auckland (AKL),1026,2023-11-28
+Auckland (AKL),1041,2023-12-05
+Auckland (AKL),1042,2023-12-12
+Auckland (AKL),1050,2023-12-19
+Auckland (AKL),1051,
+Auckland (AKL),1052,
+Auckland (AKL),1060,
+Auckland (AKL),1061,
+Auckland (AKL),1062,
+Auckland (AKL),1071,
+Auckland (AKL),1072,
+Auckland (AKL),1081,
+Auckland (AKL),2010,
+Auckland (AKL),2016,
+Auckland (AKL),2013,
+Auckland (AKL),2014,
+Auckland (AKL),2018,
+Auckland (AKL),2022,
+Auckland (AKL),2023,
+Auckland (AKL),2024,
+Auckland (AKL),2025,
+Auckland (AKL),2102,
+Auckland (AKL),2103,
+Auckland (AKL),2104,
+Auckland (AKL),2105,
+Auckland (AKL),2110,
+Auckland (AKL),2112,
+Auckland (AKL),2113,
+Auckland (AKL),0600,
+Auckland (AKL),0991,
+Auckland (AKL),0874,
+Auckland (AKL),0875,
+Auckland (AKL),0781,
+Auckland (AKL),0782,
+Auckland (AKL),0871,
+Auckland (AKL),0873,
+Auckland (AKL),0891,
+Auckland (AKL),0892,
+Auckland (AKL),0772,
+Auckland (AKL),0994,
+Auckland (AKL),0992,
+Auckland (AKL),0993,
+Auckland (AKL),0881,
+Auckland (AKL),0882,
+Auckland (AKL),0883,
+Auckland (AKL),0981,
+Auckland (AKL),0982,
+Auckland (AKL),0983,
+Auckland (AKL),0984,
+Auckland (AKL),0985,
+Auckland (AKL),0986,
+Auckland (AKL),0972,
+Auckland (AKL),0973,
+Auckland (AKL),0974,
+Auckland (AKL),0977,
+Auckland (AKL),0602,
+Auckland (AKL),0604,
+Auckland (AKL),0610,
+Auckland (AKL),0612,
+Auckland (AKL),0614,
+Auckland (AKL),0618,
+Auckland (AKL),0620,
+Auckland (AKL),0622,
+Auckland (AKL),0624,
+Auckland (AKL),0626,
+Auckland (AKL),0627,
+Auckland (AKL),0629,
+Auckland (AKL),0630,
+Auckland (AKL),1140,
+Auckland (AKL),1141,
+Auckland (AKL),1142,
+Auckland (AKL),1143,
+Auckland (AKL),1144,
+Auckland (AKL),1145,
+Auckland (AKL),1147,
+Auckland (AKL),1148,
+Auckland (AKL),1149,
+Auckland (AKL),1150,
+Auckland (AKL),1151,
+Auckland (AKL),1245,
+Auckland (AKL),1246,
+Auckland (AKL),1340,
+Auckland (AKL),1342,
+Auckland (AKL),1344,
+Auckland (AKL),1345,
+Auckland (AKL),1346,
+Auckland (AKL),1347,
+Auckland (AKL),1348,
+Auckland (AKL),1349,
+Auckland (AKL),1350,
+Auckland (AKL),1351,
+Auckland (AKL),1352,
+Auckland (AKL),1440,
+Auckland (AKL),1443,
+Auckland (AKL),1445,
+Auckland (AKL),1446,
+Auckland (AKL),1541,
+Auckland (AKL),1542,
+Auckland (AKL),1543,
+Auckland (AKL),1544,
+Auckland (AKL),1545,
+Auckland (AKL),1546,
+Auckland (AKL),1640,
+Auckland (AKL),1641,
+Auckland (AKL),1642,
+Auckland (AKL),1643,
+Auckland (AKL),1740,
+Auckland (AKL),1741,
+Auckland (AKL),1742,
+Auckland (AKL),1743,
+Auckland (AKL),1744,
+Auckland (AKL),1745,
+Auckland (AKL),1746,
+Auckland (AKL),1840,
+Auckland (AKL),1841,
+Auckland (AKL),1842,
+Auckland (AKL),1843,
+Auckland (AKL),2120,
+Auckland (AKL),2122,
+Auckland (AKL),2123,
+Auckland (AKL),2140,
+Auckland (AKL),2141,
+Auckland (AKL),2142,
+Auckland (AKL),2143,
+Auckland (AKL),2144,
+Auckland (AKL),2145,
+Auckland (AKL),2146,
+Auckland (AKL),2147,
+Auckland (AKL),2148,
+Auckland (AKL),2149,
+Auckland (AKL),2150,
+Auckland (AKL),2151,
+Auckland (AKL),2153,
+Auckland (AKL),2154,
+Auckland (AKL),2155,
+Auckland (AKL),2156,
+Auckland (AKL),2157,
+Auckland (AKL),2158,
+Auckland (AKL),2159,
+Auckland (AKL),2160,
+Auckland (AKL),2240,
+Auckland (AKL),2241,
+Auckland (AKL),2242,
+Auckland (AKL),2243,
+Auckland (AKL),2244,
+Auckland (AKL),2245,
+Auckland (AKL),2246,
+Auckland (AKL),2247,
+Auckland (AKL),2248,
+Auckland (AKL),2340,
+Auckland (AKL),2341,
+Auckland (AKL),2343,
+Auckland (AKL),2344,
+Auckland (AKL),2345,
+Auckland (AKL),0752,
+Auckland (AKL),0755,
+Auckland (AKL),0920,
+Auckland (AKL),0932,
+Auckland (AKL),0930,
+Auckland (AKL),0910,
+Auckland (AKL),0641,
+Auckland (AKL),0642,
+Auckland (AKL),0643,
+Auckland (AKL),0644,
+Auckland (AKL),0645,
+Auckland (AKL),0650,
+Auckland (AKL),0651,
+Auckland (AKL),0652,
+Auckland (AKL),0653,
+Auckland (AKL),0654,
+Auckland (AKL),0655,
+Auckland (AKL),0656,
+Auckland (AKL),0657,
+Auckland (AKL),0660,
+Auckland (AKL),0661,
+Auckland (AKL),0662,
+Auckland (AKL),0663,
+Auckland (AKL),0740,
+Auckland (AKL),0741,
+Auckland (AKL),0742,
+Auckland (AKL),0743,
+Auckland (AKL),0744,
+Auckland (AKL),0745,
+Auckland (AKL),0746,
+Auckland (AKL),0747,
+Auckland (AKL),0748,
+Auckland (AKL),0749,
+Auckland (AKL),0750,
+Auckland (AKL),0751,
+Auckland (AKL),0753,
+Auckland (AKL),0754,
+Auckland (AKL),0756,
+Auckland (AKL),0757,
+Auckland (AKL),0758,
+Auckland (AKL),0800,
+Auckland (AKL),0810,
+Auckland (AKL),0812,
+Auckland (AKL),0814,
+Auckland (AKL),0820,
+Auckland (AKL),0830,
+Auckland (AKL),0840,
+Auckland (AKL),0841,
+Auckland (AKL),0842,
+Auckland (AKL),0843,
+Auckland (AKL),0900,
+Auckland (AKL),0931,
+Auckland (AKL),0940,
+Auckland (AKL),0941,
+Auckland (AKL),0942,
+Auckland (AKL),0943,
+Auckland (AKL),0944,
+Auckland (AKL),0945,
+Auckland (AKL),0946,
+Auckland (AKL),0947,
+Auckland (AKL),0948,
+Auckland (AKL),0950,
+Auckland (AKL),0951,
+Auckland (AKL),0960,
+Auckland (AKL),0961,
+Auckland (AKL),0962,
+Auckland (AKL),0963,
+Auckland (AKL),2402,
+Auckland (AKL),0635,
+Auckland (AKL),6072,
+Auckland (AKL),0632,
+Auckland (AKL),0640,
+Auckland (AKL),2012,
+Auckland (AKL),0616,
+Auckland (AKL),0816,
+Auckland (AKL),2019,
+Auckland (AKL),9032,
+Dundin - Queenstown - Wanaka (Otago),9391,2023-03-26
+Dundin - Queenstown - Wanaka (Otago),9392,2023-04-30
+Dundin - Queenstown - Wanaka (Otago),9091,2023-05-17
+Dundin - Queenstown - Wanaka (Otago),9384,2023-06-14
+Dundin - Queenstown - Wanaka (Otago),9383,2023-07-12
+Dundin - Queenstown - Wanaka (Otago),9591,2023-08-16
+Dundin - Queenstown - Wanaka (Otago),9593,2023-09-13
+Dundin - Queenstown - Wanaka (Otago),9291,2023-10-18
+Dundin - Queenstown - Wanaka (Otago),9292,2023-11-15
+Dundin - Queenstown - Wanaka (Otago),9495,2023-12-13
+Dundin - Queenstown - Wanaka (Otago),9493,
+Dundin - Queenstown - Wanaka (Otago),9073,
+Dundin - Queenstown - Wanaka (Otago),9481,
+Dundin - Queenstown - Wanaka (Otago),9482,
+Dundin - Queenstown - Wanaka (Otago),9571,
+Dundin - Queenstown - Wanaka (Otago),9572,
+Dundin - Queenstown - Wanaka (Otago),9587,
+Dundin - Queenstown - Wanaka (Otago),9472,
+Dundin - Queenstown - Wanaka (Otago),9010,
+Dundin - Queenstown - Wanaka (Otago),9013,
+Dundin - Queenstown - Wanaka (Otago),9019,
+Dundin - Queenstown - Wanaka (Otago),9220,
+Dundin - Queenstown - Wanaka (Otago),9300,
+Dundin - Queenstown - Wanaka (Otago),9302,
+Dundin - Queenstown - Wanaka (Otago),9304,
+Dundin - Queenstown - Wanaka (Otago),9305,
+Dundin - Queenstown - Wanaka (Otago),9310,
+Dundin - Queenstown - Wanaka (Otago),9320,
+Dundin - Queenstown - Wanaka (Otago),9330,
+Dundin - Queenstown - Wanaka (Otago),9400,
+Dundin - Queenstown - Wanaka (Otago),9401,
+Dundin - Queenstown - Wanaka (Otago),9410,
+Dundin - Queenstown - Wanaka (Otago),9430,
+Dundin - Queenstown - Wanaka (Otago),9500,
+Dundin - Queenstown - Wanaka (Otago),9532,
+South Island Up North (Nelson Tasman),7091,2022-12-20
+South Island Up North (Nelson Tasman),7073,2023-01-31
+South Island Up North (Nelson Tasman),7196,2023-02-28
+South Island Up North (Nelson Tasman),7197,2023-03-28
+South Island Up North (Nelson Tasman),7198,2023-04-16
+South Island Up North (Nelson Tasman),7077,2023-04-28
+South Island Up North (Nelson Tasman),7071,2023-06-12
+South Island Up North (Nelson Tasman),7072,2023-07-10
+South Island Up North (Nelson Tasman),7081,2023-08-14
+South Island Up North (Nelson Tasman),7183,2023-09-11
+South Island Up North (Nelson Tasman),7182,2023-10-16
+South Island Up North (Nelson Tasman),7173,2023-11-13
+South Island Up North (Nelson Tasman),7175,2023-12-11
+South Island Up North (Nelson Tasman),7095,
+South Island Up North (Nelson Tasman),7096,
+South Island Up North (Nelson Tasman),7005,
+South Island Up North (Nelson Tasman),7007,
+South Island Up North (Nelson Tasman),7010,
+South Island Up North (Nelson Tasman),7011,
+South Island Up North (Nelson Tasman),7020,
+South Island Up North (Nelson Tasman),7022,
+South Island Up North (Nelson Tasman),7025,
+South Island Up North (Nelson Tasman),7110,
+South Island Up North (Nelson Tasman),7120,
+South Island Up North (Nelson Tasman),7040,
+South Island Up North (Nelson Tasman),7041,
+South Island Up North (Nelson Tasman),7042,
+South Island Up North (Nelson Tasman),7043,
+South Island Up North (Nelson Tasman),7044,
+South Island Up North (Nelson Tasman),7045,
+South Island Up North (Nelson Tasman),7046,
+South Island Up North (Nelson Tasman),7047,
+South Island Up North (Nelson Tasman),7048,
+South Island Up North (Nelson Tasman),7049,
+South Island Up North (Nelson Tasman),7050,
+South Island Up North (Nelson Tasman),7051,
+South Island Up North (Nelson Tasman),7052,
+South Island Up North (Nelson Tasman),7053,
+South Island Up North (Nelson Tasman),7054,
+South Island Up North (Nelson Tasman),7055,
+South Island Up North (Nelson Tasman),7142,
+South Island Up North (Nelson Tasman),7143,
+South Island Up North (Nelson Tasman),7144,
+South Island Up North (Nelson Tasman),7146,
+Christchurch,7581,2023-03-27
+Christchurch,7582,2023-04-17
+Christchurch,7583,2023-04-29
+Christchurch,7671,2023-05-16
+Christchurch,7672,2023-06-13
+Christchurch,7674,2023-07-11
+Christchurch,7675,2023-08-15
+Christchurch,7676,2023-09-12
+Christchurch,7677,2023-10-17
+Christchurch,7678,2023-11-14
+Christchurch,7571,2023-12-12
+Christchurch,8972,
+Christchurch,7692,
+Christchurch,7591,
+Christchurch,7476,
+Christchurch,7477,
+Christchurch,7510,
+Christchurch,7520,
+Christchurch,7600,
+Christchurch,7604,
+Christchurch,7608,
+Christchurch,7614,
+Christchurch,7616,
+Christchurch,7630,
+Christchurch,7700,
+Christchurch,8011,
+Christchurch,8013,
+Christchurch,8014,
+Christchurch,8022,
+Christchurch,8023,
+Christchurch,8024,
+Christchurch,8025,
+Christchurch,8041,
+Christchurch,8042,
+Christchurch,8051,
+Christchurch,8052,
+Christchurch,8053,
+Christchurch,8061,
+Christchurch,8062,
+Christchurch,8081,
+Christchurch,8082,
+Christchurch,8083,
+Christchurch,7615,
+Christchurch,7618,
+Christchurch, 7670,
+Christchurch,7612,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",4472,2022-12-20
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0486,2023-02-02
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0496,2023-03-02
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0372,2023-03-30
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0373,2023-04-20
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0374,2023-05-11
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0376,2023-06-08
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0377,2023-07-06
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0379,2023-08-10
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0370,2023-09-07
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0181,2023-10-12
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0182,2023-11-09
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0184,2023-12-07
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0478,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0479,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0474,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0472,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0473,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0481,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0482,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0483,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0484,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0573,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0185,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0281,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0282,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0283,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0294,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0295,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0293,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0491,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0492,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0494,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0593,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0594,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0583,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0587,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0588,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0589,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0475,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0476,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0571,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0591,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0592,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0272,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0381,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0391,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0193,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0582,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0975,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0172,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0173,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0175,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0176,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0178,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0179,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0170,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0110,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0112,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0114,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0200,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0202,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0204,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0210,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0211,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0230,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0310,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0405,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0410,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0420,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0505,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0510,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0520,
+"Warkworth, Mangawhai, Whangarei (UPNORTH 1)",0530,
+Hamilton - Raglan (HAM1),3493,2023-04-29
+Hamilton - Raglan (HAM1),3495,2023-04-04
+Hamilton - Raglan (HAM1),3496,2023-04-15
+Hamilton - Raglan (HAM1),3281,2023-05-05
+Hamilton - Raglan (HAM1),3282,2023-05-12
+Hamilton - Raglan (HAM1),3283,2023-05-19
+Hamilton - Raglan (HAM1),3284,2023-05-26
+Hamilton - Raglan (HAM1),3285,2023-06-02
+Hamilton - Raglan (HAM1),3286,2023-06-09
+Hamilton - Raglan (HAM1),3287,2023-06-16
+Hamilton - Raglan (HAM1),3288,2023-06-23
+Hamilton - Raglan (HAM1),3289,2023-06-30
+Hamilton - Raglan (HAM1),3290,2023-07-07
+Hamilton - Raglan (HAM1),3293,2023-07-14
+Hamilton - Raglan (HAM1),3771,2023-07-21
+Hamilton - Raglan (HAM1),3772,2023-07-28
+Hamilton - Raglan (HAM1),3889,2023-08-04
+Hamilton - Raglan (HAM1),2474,2023-08-11
+Hamilton - Raglan (HAM1),3793,2023-08-18
+Hamilton - Raglan (HAM1),3794,2023-08-25
+Hamilton - Raglan (HAM1),3881,2023-09-01
+Hamilton - Raglan (HAM1),3882,2023-09-08
+Hamilton - Raglan (HAM1),3883,2023-09-15
+Hamilton - Raglan (HAM1),3885,2023-09-22
+Hamilton - Raglan (HAM1),3886,2023-09-29
+Hamilton - Raglan (HAM1),3974,2023-10-06
+Hamilton - Raglan (HAM1),3296,2023-10-13
+Hamilton - Raglan (HAM1),3297,2023-10-20
+Hamilton - Raglan (HAM1),2696,2023-10-27
+Hamilton - Raglan (HAM1),2697,2023-11-03
+Hamilton - Raglan (HAM1),2693,2023-11-10
+Hamilton - Raglan (HAM1),2694,2023-11-17
+Hamilton - Raglan (HAM1),2695,2023-11-24
+Hamilton - Raglan (HAM1),2121,2023-12-01
+Hamilton - Raglan (HAM1),3200,2023-12-08
+Hamilton - Raglan (HAM1),3204,2023-12-15
+Hamilton - Raglan (HAM1),3206,2023-12-22
+Hamilton - Raglan (HAM1),3210,
+Hamilton - Raglan (HAM1),3214,
+Hamilton - Raglan (HAM1),3216,
+Hamilton - Raglan (HAM1),3225,
+Hamilton - Raglan (HAM1),3432,
+Hamilton - Raglan (HAM1),3700,
+Hamilton - Raglan (HAM1),3710,
+Hamilton - Raglan (HAM1),3720,
+Hamilton - Raglan (HAM1),3721,
+Hamilton - Rotorua (HAM2),4188,2023-04-29
+Hamilton - Rotorua (HAM2),3472,2023-04-04
+Hamilton - Rotorua (HAM2),3473,2023-04-15
+Hamilton - Rotorua (HAM2),3371,2023-04-27
+Hamilton - Rotorua (HAM2),3372,2023-05-06
+Hamilton - Rotorua (HAM2),3373,2023-05-13
+Hamilton - Rotorua (HAM2),3374,2023-05-27
+Hamilton - Rotorua (HAM2),3375,2023-06-03
+Hamilton - Rotorua (HAM2),3074,2023-06-24
+Hamilton - Rotorua (HAM2),3791,2023-07-15
+Hamilton - Rotorua (HAM2),3782,2023-08-05
+Hamilton - Rotorua (HAM2),3474,2023-08-26
+Hamilton - Rotorua (HAM2),3380,2023-09-16
+Hamilton - Rotorua (HAM2),3475,2023-10-07
+Hamilton - Rotorua (HAM2),4108,2023-10-28
+Hamilton - Rotorua (HAM2),7400,2023-11-18
+Hamilton - Rotorua (HAM2),3300,2023-12-09
+Hamilton - Rotorua (HAM2),3310,2023-12-23
+Hamilton - Rotorua (HAM2),3400,
+Hamilton - Rotorua (HAM2),3401,
+Hamilton - Rotorua (HAM2),3410,
+Hamilton - Rotorua (HAM2),3434,
+Hamilton - Rotorua (HAM2),0271,
+Marlborough,7271,2023-02-28
+Marlborough,7272,2023-03-28
+Marlborough,7273,2023-04-16
+Marlborough,7274,2023-04-28
+Marlborough,7275,2023-05-15
+Marlborough,7276,2023-06-12
+Marlborough,7193,2023-07-10
+Marlborough,7178,2023-08-14
+Marlborough,7281,2023-09-11
+Marlborough,7282,2023-10-16
+Marlborough,7194,2023-11-13
+Marlborough,7192,2023-12-11
+Marlborough,7195,
+Marlborough,7285,
+Marlborough,7100,
+Marlborough,7201,
+Marlborough,7202,
+Marlborough,7204,
+Marlborough,7206,
+Marlborough,7210,
+Marlborough,7220,
+Marlborough,7145,
+Marlborough,7150,
+Marlborough,7240,
+Marlborough,7241,
+Marlborough,7242,
+Marlborough,7243,
+Marlborough,7244,
+Marlborough,7246,
+Marlborough,7247,
+Marlborough,7248,
+Marlborough,7250,
+Marlborough,7251,
+Marlborough,7284,
+West Coast,7871,
+West Coast,7872,
+West Coast,7884,
+West Coast,7881,
+West Coast,7882,
+West Coast,7883,
+West Coast,7893,
+West Coast,7875,
+West Coast,7895,
+West Coast,7885,
+West Coast,7873,
+West Coast,7891,
+West Coast,7892,
+West Coast,7886,
+West Coast,7802,
+West Coast,7803,
+West Coast,7804,
+West Coast,7805,
+West Coast,7810,
+West Coast,7811,
+West Coast,7812,
+West Coast,7822,
+West Coast,7823,
+West Coast,7825,
+West Coast,7830,
+West Coast,7832,
+West Coast,7840,
+West Coast,7841,
+West Coast,7842,
+West Coast,7843,
+West Coast,7844,
+West Coast,7845,
+West Coast,7846,
+West Coast,7847,
+West Coast,7848,
+West Coast,7851,
+West Coast,7856,
+West Coast,7857,
+West Coast,7859,
+West Coast,7860,
+West Coast,7861,
+West Coast,7862,
+West Coast,7863,
+West Coast,7864,
+West Coast,7865,
+West Coast,7866,
+West Coast,7867,
+New Plymouth (NP),4371,2023-04-28
+New Plymouth (NP),4372,2023-04-14
+New Plymouth (NP),4373,2023-05-05
+New Plymouth (NP),4310,2023-05-26
+New Plymouth (NP),4312,2023-06-02
+New Plymouth (NP),,2023-06-23
+New Plymouth (NP),,2023-07-14
+New Plymouth (NP),,2023-08-04
+New Plymouth (NP),,2023-08-25
+New Plymouth (NP),,2023-09-15
+New Plymouth (NP),,2023-10-06
+New Plymouth (NP),,2023-10-27
+New Plymouth (NP),,2023-11-17
+New Plymouth (NP),,2023-12-08
+New Plymouth (NP),,2023-12-22
+Wellington (WELL),5791,2023-04-22
+Wellington (WELL),5792,2023-04-06
+Wellington (WELL),5771,2023-04-21
+Wellington (WELL),5772,2023-05-05
+Wellington (WELL),5773,2023-05-12
+Wellington (WELL),5794,2023-05-19
+Wellington (WELL),6972,2023-05-26
+Wellington (WELL),5781,2023-05-06
+Wellington (WELL),5782,2023-05-13
+Wellington (WELL),5783,2023-05-20
+Wellington (WELL),5784,2023-05-27
+Wellington (WELL),5881,2023-06-02
+Wellington (WELL),5883,2023-06-09
+Wellington (WELL),5884,2023-06-16
+Wellington (WELL),5885,2023-06-23
+Wellington (WELL),5886,2023-06-30
+Wellington (WELL),5887,2023-07-07
+Wellington (WELL),5888,2023-07-14
+Wellington (WELL),5889,2023-07-21
+Wellington (WELL),5890,2023-07-28
+Wellington (WELL),5871,2023-08-04
+Wellington (WELL),5872,2023-08-11
+Wellington (WELL),5581,2023-08-18
+Wellington (WELL),5582,2023-08-25
+Wellington (WELL),5583,2023-09-01
+Wellington (WELL),5381,2023-09-08
+Wellington (WELL),5894,2023-09-15
+Wellington (WELL),5371,2023-09-22
+Wellington (WELL),5372,2023-09-29
+Wellington (WELL),5391,2023-10-06
+Wellington (WELL),5373,2023-10-13
+Wellington (WELL),5010,2023-10-20
+Wellington (WELL),5011,2023-10-27
+Wellington (WELL),5012,2023-11-03
+Wellington (WELL),5013,2023-11-10
+Wellington (WELL),5014,2023-11-17
+Wellington (WELL),5016,2023-11-24
+Wellington (WELL),5018,2023-12-01
+Wellington (WELL),5019,2023-12-08
+Wellington (WELL),5022,2023-12-15
+Wellington (WELL),5024,2023-12-22
+Wellington (WELL),5026,2023-06-03
+Wellington (WELL),5028,2023-06-24
+Wellington (WELL),5032,2023-07-15
+Wellington (WELL),5034,2023-08-05
+Wellington (WELL),5036,2023-08-26
+Wellington (WELL),5512,2023-09-16
+Wellington (WELL),5710,2023-10-07
+Wellington (WELL),5711,2023-10-28
+Wellington (WELL),5712,2023-11-18
+Wellington (WELL),5713,2023-12-09
+Wellington (WELL),5810,2023-12-23
+Wellington (WELL),6011,2023-06-10
+Wellington (WELL),6012,2023-06-17
+Wellington (WELL),6022,2023-07-01
+Wellington (WELL),6035,2023-07-08
+Wellington (WELL),6037,2023-07-22
+Wellington (WELL),6021,2023-07-29
+Wellington (WELL),6023,2023-08-12
+Wellington (WELL),6010,2023-08-19
+Wellington (WELL),,2023-09-02
+Wellington (WELL),,2023-09-09
+Wellington (WELL),,2023-09-23
+Wellington (WELL),,2023-09-30
+Wellington (WELL),,2023-10-14
+Wellington (WELL),,2023-10-21
+Wellington (WELL),,2023-11-04
+Wellington (WELL),,2023-11-11
+Wellington (WELL),,2023-11-25
+Wellington (WELL),,2023-12-02
+Wellington (WELL),,2023-12-16
+Thames Coromandal (THC),3581,2023-04-13
+Thames Coromandal (THC),3582,2023-05-04
+Thames Coromandal (THC),3583,2023-06-01
+Thames Coromandal (THC),3578,2023-06-29
+Thames Coromandal (THC),3577,2023-07-27
+Thames Coromandal (THC),3500,2023-08-31
+Thames Coromandal (THC),3506,2023-09-28
+Thames Coromandal (THC),,2023-11-02
+Thames Coromandal (THC),,2023-11-30
+Tauranga (TAU),3181,2023-04-04
+Tauranga (TAU),3171,2023-04-27
+Tauranga (TAU),3173,2023-04-13
+Tauranga (TAU),3175,2023-05-04
+Tauranga (TAU),3176,2023-05-18
+Tauranga (TAU),3110,2023-05-25
+Tauranga (TAU),3112,2023-07-13
+Tauranga (TAU),,2023-06-01
+Tauranga (TAU),,2023-06-29
+Tauranga (TAU),,2023-07-27
+Tauranga (TAU),,2023-08-31
+Tauranga (TAU),,2023-09-28
+Tauranga (TAU),,2023-11-02
+Tauranga (TAU),,2023-11-30
+Tauranga (TAU),,2023-06-15
+Tauranga (TAU),,2023-08-17
+Tauranga (TAU),,2023-09-14
+Tauranga (TAU),,2023-10-19
+Tauranga (TAU),,2023-11-16
+Tauranga (TAU),,2023-12-14
+Gisborne (GIS),4071,2023-04-04
+Gisborne (GIS),,2023-04-27
+Gisborne (GIS),,2023-05-18
+Gisborne (GIS),,2023-07-13
+Gisborne (GIS),,2023-06-15
+Gisborne (GIS),,2023-08-17
+Gisborne (GIS),,2023-09-14
+Gisborne (GIS),,2023-10-19
+Gisborne (GIS),,2023-11-16
+Gisborne (GIS),,2023-12-14
+Taranaki (TAR),4671,2023-03-18
+Taranaki (TAR),4672,2023-04-28
+Taranaki (TAR),4673,2023-04-14
+Taranaki (TAR),4674,2023-05-05
+Taranaki (TAR),4675,2023-05-26
+Taranaki (TAR),4678,2023-06-02
+Taranaki (TAR),4679,2023-06-23
+Taranaki (TAR),4374,2023-07-14
+Taranaki (TAR),4681,2023-08-04
+Taranaki (TAR),4682,2023-08-25
+Taranaki (TAR),4684,2023-09-15
+Taranaki (TAR),4685,2023-10-06
+Taranaki (TAR),4597,2023-11-17
+Taranaki (TAR),4598,2023-12-08
+Taranaki (TAR),4391,2023-12-22
+Taranaki (TAR),4375,
+Taranaki (TAR),4588,
+Taranaki (TAR),4591,
+Taranaki (TAR),4592,
+Taranaki (TAR),4314,
+Taranaki (TAR),4320,
+Taranaki (TAR),4322,
+Taranaki (TAR),4332,
+Taranaki (TAR),4510,
+Taranaki (TAR),4520,
+Taranaki (TAR),4610,
+Taranaki (TAR),4612,
+Taranaki (TAR),4614,
+Taranaki (TAR),4616,
+Hawke's Bay (HB),4970,2023-04-04
+Hawke's Bay (HB),4398,2023-04-27
+Hawke's Bay (HB),4399,2023-05-18
+Hawke's Bay (HB),4171,2023-07-13
+Hawke's Bay (HB),4172,2023-06-15
+Hawke's Bay (HB),4174,2023-08-17
+Hawke's Bay (HB),4175,2023-09-14
+Hawke's Bay (HB),4179,2023-10-19
+Hawke's Bay (HB),4178,2023-11-16
+Hawke's Bay (HB),4294,2023-12-14
+Hawke's Bay (HB),4295,
+Hawke's Bay (HB),4386,
+Hawke's Bay (HB),4387,
+Hawke's Bay (HB),4388,
+Hawke's Bay (HB),4389,
+Hawke's Bay (HB),4390,
+Hawke's Bay (HB),4376,
+Hawke's Bay (HB),3079,
+Hawke's Bay (HB),4181,
+Hawke's Bay (HB),4182,
+Hawke's Bay (HB),4184,
+Hawke's Bay (HB),4186,
+Hawke's Bay (HB),4381,
+Hawke's Bay (HB),4198,
+Hawke's Bay (HB),4278,
+Hawke's Bay (HB),4279,
+Hawke's Bay (HB),4276,
+Hawke's Bay (HB),4277,
+Hawke's Bay (HB),4471,
+Hawke's Bay (HB),4473,
+Hawke's Bay (HB),4474,
+Hawke's Bay (HB),4475,
+Hawke's Bay (HB),4476,
+Hawke's Bay (HB),4477,
+Hawke's Bay (HB),4478,
+Hawke's Bay (HB),4479,
+Hawke's Bay (HB),4470,
+Hawke's Bay (HB),4481,
+Hawke's Bay (HB),4189,
+Hawke's Bay (HB),4392,
+Hawke's Bay (HB),4393,
+Hawke's Bay (HB),4394,
+Hawke's Bay (HB),4395,
+Hawke's Bay (HB),4396,
+Hawke's Bay (HB),4397,
+Hawke's Bay (HB),4792,
+Hawke's Bay (HB),4286,
+Hawke's Bay (HB),4287,
+Hawke's Bay (HB),4288,
+Hawke's Bay (HB),3179,
+Hawke's Bay (HB),3382,
+Hawke's Bay (HB),4377,
+Hawke's Bay (HB),4379,
+Hawke's Bay (HB),4378,
+Hawke's Bay (HB),4271,
+Hawke's Bay (HB),4272,
+Hawke's Bay (HB),4273,
+Hawke's Bay (HB),4274,
+Hawke's Bay (HB),4275,
+Hawke's Bay (HB),4281,
+Hawke's Bay (HB),4282,
+Hawke's Bay (HB),4283,
+Hawke's Bay (HB),4284,
+Hawke's Bay (HB),4285,
+Hawke's Bay (HB),4191,
+Hawke's Bay (HB),4197,
+Hawke's Bay (HB),4193,
+Hawke's Bay (HB),4195,
+Hawke's Bay (HB),4196,
+Hawke's Bay (HB),4382,
+Hawke's Bay (HB),4383,
+Hawke's Bay (HB),4102,
+Hawke's Bay (HB),4122,
+Hawke's Bay (HB),4202,
+Hawke's Bay (HB),4203,
+Hawke's Bay (HB),4210,
+Hawke's Bay (HB),4200,
+Hawke's Bay (HB),4330,
+Hawke's Bay (HB),4335,
+Hawke's Bay (HB),4410,
+Hawke's Bay (HB),4412,
+Hawke's Bay (HB),4414,
+Hawke's Bay (HB),4500,
+Hawke's Bay (HB), 4104,
+Hawke's Bay (HB),4140,
+Hawke's Bay (HB),4141,
+Hawke's Bay (HB),4142,
+Hawke's Bay (HB),4143,
+Hawke's Bay (HB),4144,
+Hawke's Bay (HB),4145,
+Hawke's Bay (HB),4146,
+Hawke's Bay (HB),4147,
+Hawke's Bay (HB),4148,
+Hawke's Bay (HB),4149,
+Hawke's Bay (HB),4153,
+Hawke's Bay (HB),4154,
+Hawke's Bay (HB),4155,
+Hawke's Bay (HB),4156,
+Hawke's Bay (HB),4157,
+Hawke's Bay (HB),4158,
+Hawke's Bay (HB),4159,
+Hawke's Bay (HB),4160,
+Hawke's Bay (HB),4161,
+Hawke's Bay (HB),4162,
+Hawke's Bay (HB),4163,
+Hawke's Bay (HB),4164,
+Hawke's Bay (HB),4165,
+Hawke's Bay (HB),4166,
+Hawke's Bay (HB),4240,
+Hawke's Bay (HB),4241,
+Hawke's Bay (HB),4242,
+Hawke's Bay (HB),4243,
+Hawke's Bay (HB),4244,
+Hawke's Bay (HB),4245,
+Hawke's Bay (HB),4440,
+Hawke's Bay (HB),4441,
+Hawke's Bay (HB),4442,
+Hawke's Bay (HB),4443,
+Hawke's Bay (HB),4444,
+Hawke's Bay (HB),4445,
+Hawke's Bay (HB),4446,
+Hawke's Bay (HB),4448,
+Hawke's Bay (HB),4340,
+Hawke's Bay (HB),4341,
+Hawke's Bay (HB),4342,
+Hawke's Bay (HB),4343,
+Hawke's Bay (HB),4344,
+Hawke's Bay (HB),4345,
+Hawke's Bay (HB),4347,
+Hawke's Bay (HB),4348,
+Hawke's Bay (HB),4349,
+Hawke's Bay (HB),4351,
+Hawke's Bay (HB),4352,
+Hawke's Bay (HB),4353,
+Hawke's Bay (HB),4360,
+Hawke's Bay (HB),4350,
+Hawke's Bay (HB),4110,
+Hawke's Bay (HB),4120,
+Hawke's Bay (HB),4130,
+Taupo,3377,2023-04-29
+Taupo,3378,2023-04-15
+Taupo,3379,2023-04-22
+Taupo,3384,2023-04-06
+Taupo,3385,2023-05-06
+Taupo,3330,2023-05-20
+Taupo,3332,2023-05-27
+Taupo,,2023-06-03
+Taupo,,2023-06-24
+Taupo,,2023-07-15
+Taupo,,2023-08-05
+Taupo,,2023-08-26
+Taupo,,2023-09-16
+Taupo,,2023-10-07
+Taupo,,2023-10-28
+Taupo,,2023-11-18
+Taupo,,2023-12-09
+Taupo,,2023-12-23
+Taupo,,2023-06-10
+Taupo,,2023-06-17
+Taupo,,2023-07-01
+Taupo,,2023-07-08
+Taupo,,2023-07-22
+Taupo,,2023-07-29
+Taupo,,2023-08-12
+Taupo,,2023-08-19
+Taupo,,2023-09-02
+Taupo,,2023-09-09
+Taupo,,2023-09-23
+Taupo,,2023-09-30
+Taupo,,2023-10-14
+Taupo,,2023-10-21
+Taupo,,2023-11-04
+Taupo,,2023-11-11
+Taupo,,2023-11-25
+Taupo,,2023-12-02
+Taupo,,2023-12-16
