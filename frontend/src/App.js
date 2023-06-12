@@ -84,8 +84,8 @@ function App() {
 
     // Handle different messages based on the button clicked
     switch (message) {
-      case "Message 1":
-        botMessage = "Reply message for Message 1";
+      case "Are you an IKEA store?":
+        botMessage = "No. We are parallel importer of genuine IKEA and other brands from overseas and do not claim to represent IKEA in New Zealand. We have the largest stock of Ikea products which we buy from Ikea stores in different parts of the world and make available to the New Zealand market. We do sell various other brands as well.";
         break;
       case "Message 2":
         botMessage = "Reply message for Message 2";
@@ -301,6 +301,9 @@ function App() {
       <section className="chatBox">
       <p style={{ display: "flex", justifyContent: "center" }}>
       <div>
+
+
+           <h3>Product FAQ</h3>
         <ul style={{ listStyleType: "none" }}>
           <li>
             <button
@@ -314,11 +317,11 @@ function App() {
                 marginBottom: "10px",
                 transition: "background 0.3s",
               }}
-              onClick={() => handleClick("Message 1")}
+              onClick={() => handleClick("Are you an IKEA store?")}
               onMouseOver={(e) => (e.target.style.background = "black")}
               onMouseOut={(e) => (e.target.style.background = "#40414F")}
             >
-              For frequently asked question 1
+             Are you an IKEA store?
             </button>
           </li>
           <li>
@@ -342,6 +345,9 @@ function App() {
           </li>
           {/* Add more buttons here */}
         </ul>
+
+
+
       </div>
 
       <div>

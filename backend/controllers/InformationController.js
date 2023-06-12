@@ -118,7 +118,6 @@ async function getInformation(req, res) {
     // const areaTocharge = deliveryPath.find((d) => d.postcode.toLowerCase() === message.toLowerCase() || message.toLowerCase().includes(d.postcode.toLowerCase()));
     // console.log("area to charge", areaTocharge);
 
-    //  const areaTo_delivery = deliveryPath.find((d) => d.route === message)
 
 
 
@@ -129,6 +128,7 @@ async function getInformation(req, res) {
 
     const codeTocharge = dataArray.find((d) => d.code === message)
 
+    const areaTo_delivery = deliveryPath.find((d) => message.includes(d.route));
 
 
     if (matchingData2) {
@@ -147,38 +147,14 @@ async function getInformation(req, res) {
     }
     
       
-    // else if (areaTo_delivery) {
-    //   // Convert the strings in ddates to Date objects
-    //   let deliveryDates = areaTo_delivery.ddate.map(date => new Date(date));
-      
-    //   // Get today's date at midnight for comparison
-    //   let today = new Date();
-    //   today.setHours(0, 0, 0, 0);
+
     
-    //   // Filter for dates that are today or in the future
-    //   let futureDates = deliveryDates.filter(date => date >= today);
-    
-    //   // Sort the dates in ascending order
-    //   futureDates.sort((a, b) => a - b);
-    
-    //   // Take the next 3 dates
-    //   let nextThreeDates = futureDates.slice(0, 3);
-    
-    //   // Convert the dates back to strings in the format YYYY-MM-DD
-    //   nextThreeDates = nextThreeDates.map(date => date.toISOString().split('T')[0]);
-    
-    //   res.json({
-    //     botResponse: `\n\n Yes we ship to ${areaTo_delivery.route} and Our next delivery dates are : ${nextThreeDates.join(', ')}`,
-    //   });
-    //   return;
-    // }
-    
-    // else if (codeTocharge) {
-    //   res.json({
-    //     botResponse: `\n\n${codeTocharge.code} of : ${codeTocharge.charge}`,
-    //   });
-    //   return;
-    // }
+    else if (codeTocharge) {
+      res.json({
+        botResponse: `\n\n${codeTocharge.code} of : ${codeTocharge.charge}`,
+      });
+      return;
+    }
     
     
     else if (matchingData1) {
@@ -192,7 +168,31 @@ async function getInformation(req, res) {
       });
       return;
     }
-
+    else if (areaTo_delivery) {
+      // Convert the strings in ddates to Date objects
+      let deliveryDates = areaTo_delivery.ddate.map(date => new Date(date));
+      
+      // Get today's date at midnight for comparison
+      let today = new Date();
+      today.setHours(0, 0, 0, 0);
+    
+      // Filter for dates that are today or in the future
+      let futureDates = deliveryDates.filter(date => date >= today);
+    
+      // Sort the dates in ascending order
+      futureDates.sort((a, b) => a - b);
+    
+      // Take the next 3 dates
+      let nextThreeDates = futureDates.slice(0, 3);
+    
+      // Convert the dates back to strings in the format YYYY-MM-DD
+      nextThreeDates = nextThreeDates.map(date => date.toISOString().split('T')[0]);
+    
+      res.json({
+        botResponse: `\n\n Yes we ship to ${areaTo_delivery.route} and Our next delivery dates are : ${nextThreeDates.join(', ')}`,
+      });
+      return;
+    }
     const weightData = fs.readFileSync("weight.json", 'utf8');
     const parsedWeightData = JSON.parse(weightData);
     const retrievedWeight = parsedWeightData.weight;
