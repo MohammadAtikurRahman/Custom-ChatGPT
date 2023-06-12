@@ -482,8 +482,19 @@ function App() {
               <ul style={{ listStyleType: "none", paddingLeft: "10px" }}>
                 <li>
                   <button
-                    style={styles.button}
+                    style={{
+                      width: "270px",
 
+                      height: "35px",
+                      background: "#40414F",
+                      color: "white",
+                      border: "none",
+                      outline: "none",
+                      marginBottom: "10px",
+                      transition: "background 0.3s",
+                      fontSize: "11px",
+borderRadius:  "8px"
+                    }}
                     onClick={() => {
                       handleClick("Are you an IKEA store?");
                       setShowProductFaq(false);
@@ -507,6 +518,11 @@ function App() {
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
+borderRadius:  "8px"
+
+
+
+                      
                     }}
                     onClick={() => {
                       handleClick("Do you sell only IKEA products?");
@@ -532,6 +548,7 @@ function App() {
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
+borderRadius:  "8px"
                     }}
                     onClick={() => {
                       handleClick("How can I know more about a product?");
@@ -575,6 +592,7 @@ function App() {
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
+borderRadius:  "8px"
                     }}
                     onClick={() => {
                       handleClick("I Have Placed my order. What Happens next?");
@@ -599,6 +617,7 @@ function App() {
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
+borderRadius:  "8px"
                     }}
                     onClick={() => {
                       handleClick("My order was a preorder , what's that ?");
@@ -625,6 +644,7 @@ function App() {
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
+borderRadius:  "8px"
                     }}
                     onClick={() => {
                       handleClick("My order was back order, what’s that ?");
@@ -651,6 +671,7 @@ function App() {
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
+borderRadius:  "8px"
                     }}
                     onClick={() => {
                       handleClick(
@@ -679,6 +700,7 @@ function App() {
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
+borderRadius:  "8px"
                     }}
                     onClick={() => {
                       handleClick(
@@ -707,6 +729,7 @@ function App() {
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
+borderRadius:  "8px"
                     }}
                     onClick={() => {
                       handleClick("When will I get my items ?");
@@ -733,6 +756,7 @@ function App() {
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
+borderRadius:  "8px"
                     }}
                     onClick={() => {
                       handleClick(
@@ -769,6 +793,7 @@ function App() {
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
+borderRadius:  "8px"
                     }}
                     onClick={() => {
                       handleClick(
@@ -797,6 +822,7 @@ function App() {
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
+borderRadius:  "8px"
                     }}
                     onClick={() => {
                       handleClick(
@@ -824,6 +850,7 @@ function App() {
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
+borderRadius:  "8px"
                     }}
                     onClick={() => {
                       handleClick("How do I return part of the order ?");
@@ -849,6 +876,7 @@ function App() {
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
+borderRadius:  "8px"
                     }}
                     onClick={() => {
                       handleClick("How do I return all of the order ?");
@@ -875,6 +903,7 @@ function App() {
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
+borderRadius:  "8px"
                     }}
                     onClick={() => {
                       handleClick(
@@ -902,6 +931,7 @@ function App() {
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
+borderRadius:  "8px"
                     }}
                     onClick={() => {
                       handleClick(
@@ -929,6 +959,7 @@ function App() {
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
+borderRadius:  "8px"
                     }}
                     onClick={() => {
                       handleClick(
@@ -958,6 +989,7 @@ function App() {
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
+borderRadius:  "8px"
                     }}
                     onClick={() => {
                       handleClick(
@@ -993,6 +1025,7 @@ function App() {
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
+borderRadius:  "8px"
                     }}
                     onClick={() => {
                       handleClick("When will my order be delivered?");
@@ -1018,6 +1051,7 @@ function App() {
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
+borderRadius:  "8px"
                     }}
                     onClick={() => {
                       handleClick(
@@ -1046,6 +1080,7 @@ function App() {
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
+borderRadius:  "8px"
                     }}
                     onClick={() => {
                       handleClick(
@@ -1073,6 +1108,7 @@ function App() {
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
+borderRadius:  "8px"
                     }}
                     onClick={() => {
                       handleClick("What if I’m not there to receive my order?");
