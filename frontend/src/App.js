@@ -57,6 +57,25 @@ function App() {
   const baseurl = process.env.REACT_APP_URL;
   console.log("base url " + baseurl);
 
+  const styles = {
+  button: {
+    width: '270px',
+    height: '35px',
+    background: '#40414F',
+    color: 'white',
+    border: 'none',
+    outline: 'none',
+    marginBottom: '10px',
+    transition: 'background 0.3s',
+    fontSize: '11px',
+    '@media (max-width: 1280px)': {
+      width: '200px',   // you can adjust as you need
+      height: '30px',  // you can adjust as you need
+      fontSize: '9px', // you can adjust as you need
+    },
+  },
+};
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setMessage("");
@@ -85,6 +104,8 @@ function App() {
     callAPI();
     setInputPrompt("");
   };
+
+  const [showProductFaq, setShowProductFaq] = useState(true);
 
   const handleClick = (message) => {
     let botMessage = "";
@@ -131,180 +152,125 @@ function App() {
           "Instock items are ready for pick up immediately. We ship using either post or our truck or third party carriers. Auckland orders should be with you within a week. North island within two weeks and South Island within 4 weeks. ( This applies to north island stock , South Island instock items get dispatched/ ready for pick up in 2 days only. )";
         break;
 
-       case "Can I make changes to my order before receiving it ?":
-        botMessage = "Sure you can. Just email us and we will be able to confirm the changes usually within a day or two.  "
-       break;
-
-
-
-
-
-
-
-
-
-
-       case "What if I’m not there to receive my order ?":
-        botMessage = "We will contact you before attempting delivery. If there is a dry secure place then the delivery guys leave the item there. Otherwise they bring it back and contact you to reschedule. We don’t normally charge for one more attempted delivery. It’s very rare."
-       break;
-
-
-
-
-       case "How do I cancel my order before receiving ?":
-        botMessage = "It’s simple , just email us order number. We will refund through the same method as you paid automatically ( credit card / paypal/part pay etc ) . If you paid via a bank transfer we would need a bank account number to return the funds to. Best would be to email the account number in the same email. We refund immediately and send a confirmation email."
-       break;
-
-
-       case "How do I return part of the order ?":
-        botMessage = "Simply email us what part of the order you need to return , if within 14 days and still in original packing we can arrange to pick back by post / our own delivery truck. Returns usually take a week to arrange. We refund the costs once products arrive our warehouse. There might be a return postage cost which we charge as actual."
-       break;
-
-
-
-
-       case "1":
-        botMessage = "1"
-       break;
-
-
-       case "1":
-        botMessage = "1"
-       break;
-
-
-
-
-       case "1":
-        botMessage = "1"
-       break;
-
-
-       case "1":
-        botMessage = "1"
-       break;
-
-
-
-
-       case "1":
-        botMessage = "1"
-       break;
-
-
-
-
-
-       case "1":
-        botMessage = "1"
-       break;
-
-
-       case "1":
-        botMessage = "1"
-       break;
-
-
-
-
-       case "1":
-        botMessage = "1"
-       break;
-
-
-       case "1":
-        botMessage = "1"
-       break;
-
-
-
-
-       case "1":
-        botMessage = "1"
-       break;
-
-
-       case "1":
-        botMessage = "1"
-       break;
-
-
-
-
-       case "1":
-        botMessage = "1"
-       break;
-
-
-       case "1":
-        botMessage = "1"
-       break;
-
-
-
-
-       case "1":
-        botMessage = "1"
-       break;
-
-
-       case "1":
-        botMessage = "1"
-       break;
-
-
-
-
-       case "1":
-        botMessage = "1"
-       break;
-
-
-       case "1":
-        botMessage = "1"
-       break;
-
-
-
-
-       case "1":
-        botMessage = "1"
-       break;
-
-
-
-
-
-       case "1":
-        botMessage = "1"
-       break;
-
-
-       case "1":
-        botMessage = "1"
-       break;
-
-
-
-
-       case "1":
-        botMessage = "1"
-       break;
-
-
-       case "1":
-        botMessage = "1"
-       break;
-
-
-
-
-       case "1":
-        botMessage = "1"
-       break;
-
-
-
+      case "Can I make changes to my order before receiving it ?":
+        botMessage =
+          "Sure you can. Just email us and we will be able to confirm the changes usually within a day or two.  ";
+        break;
+
+      case "What if I’m not there to receive my order ?":
+        botMessage =
+          "We will contact you before attempting delivery. If there is a dry secure place then the delivery guys leave the item there. Otherwise they bring it back and contact you to reschedule. We don’t normally charge for one more attempted delivery. It’s very rare.";
+        break;
+
+      case "How do I cancel my order before receiving ?":
+        botMessage =
+          "It’s simple , just email us order number. We will refund through the same method as you paid automatically ( credit card / paypal/part pay etc ) . If you paid via a bank transfer we would need a bank account number to return the funds to. Best would be to email the account number in the same email. We refund immediately and send a confirmation email.";
+        break;
+
+      case "How do I return part of the order ?":
+        botMessage =
+          "Simply email us what part of the order you need to return , if within 14 days and still in original packing we can arrange to pick back by post / our own delivery truck. Returns usually take a week to arrange. We refund the costs once products arrive our warehouse. There might be a return postage cost which we charge as actual.";
+        break;
+
+      case "How do I return all of the order ?":
+        botMessage =
+          "Within 14 days and in original packing , all orders are returnable. Simply email us and we will organise the return via post or our truck. There might be a return postage cost which we charge as actual.";
+        break;
+
+      case "My order was not as I expected , what should I do ?":
+        botMessage =
+          "Please email us a discriptive email preferably with photos. We will try our best to make it right for you. It might involve a compensation through a store credit or a partial cash refund or a full return and refund. But in any case we won’t stop till you are satisfied and at any time all your rights under CG act are well preserved. The only way we can grow our business is by keeping you satisfied and promoting us to your friends.";
+        break;
+
+      case "I have not received any emails from you , what’s happening?":
+        botMessage =
+          "Something is definitely wrong. Please email us with order number or purchase details. It might take few hours to solve such a mystery. But it has happened in past mostly due to wrong/email bouncing.";
+        break;
+
+      case "I can see some reviews for your shop mentioning lack of communication and delivery delays. How do you explain that ?":
+        botMessage =
+          "Just like the rest of us , we are not perfect. We endeavour our best to keep you informed and happy but at times we do fail to meet expectations. Being a relatively new field of online furniture selling , there are no benchmarks for service standards. We strive to be better than yesterday. We are a relatively medium scale business and feel pride in maintaining consumer laws and rights. We believe internet to be an open billboard for customers to put their views and reviews on . We don’t reward customers for good reviews nor we expect them to change a review after we correct or fix a problem. We should have got it right the first time and deserve a slap when we don’t. It’s just natural that when people get “ normal “ service ie all done nicely , we don’t get a review for that. This happens 99.9999% times.  It’s the times when we fail to deliver , is when a negative review is put. We learn from these experiences and fix our systems to avoid repeating the same mistakes. But these represent a very tiny portion of our overall trade.";
+        break;
+
+      case "Why are there no discounts on your website anymore?":
+        botMessage =
+          "We have reduced all in stock product price to clearance prices and these are now final price. Preorder prices are higher as new imports are much dearer due to rising costs. Most of in stock products when restocked will be considerably more expensive after they get out of stock.";
+        break;
+
+      case "When will my order be delivered?":
+        botMessage =
+          "In-stock items are ready for pick up immediately. We ship using either post or our truck or third party carriers. Auckland orders should be with you within a week. North island within two weeks and South Island within 4 weeks. (This applies to north island stock , South Island in-stock items get dispatched/ ready for pick up in 2 days only)";
+        break;
+
+      case "Can I make changes to my order before receiving it?":
+        botMessage = "Can I make changes to my order before receiving it?";
+        break;
+
+      case "How do I know next available delivery date to my location?":
+        botMessage =
+          "You may ask ChatGPT about next available delivery date. We deliver all over New Zealand. Please let us know your postcode so that we can inform you about next delivery dates.";
+        break;
+
+      case "What if I’m not there to receive my order?":
+        botMessage =
+          "We will contact you before attempting delivery. If there is a dry secure place then the delivery guys leave the item there. Otherwise they bring it back and contact you to reschedule. We don’t normally charge for one more attempted delivery. It’s very rare.";
+        break;
+
+      case "1":
+        botMessage = "1";
+        break;
+
+      case "1":
+        botMessage = "1";
+        break;
+
+      case "1":
+        botMessage = "1";
+        break;
+
+      case "1":
+        botMessage = "1";
+        break;
+
+      case "1":
+        botMessage = "1";
+        break;
+
+      case "1":
+        botMessage = "1";
+        break;
+
+      case "1":
+        botMessage = "1";
+        break;
+
+      case "1":
+        botMessage = "1";
+        break;
+
+      case "1":
+        botMessage = "1";
+        break;
+
+      case "1":
+        botMessage = "1";
+        break;
+
+      case "1":
+        botMessage = "1";
+        break;
+
+      case "1":
+        botMessage = "1";
+        break;
+
+      case "1":
+        botMessage = "1";
+        break;
+
+      case "1":
+        botMessage = "1";
+        break;
 
       default:
         break;
@@ -506,369 +472,622 @@ function App() {
       </aside>
 
       <section className="chatBox">
-        <p style={{ display: "flex", justifyContent: "center" }}>
-          <div>
-            <h3>
-              <FontAwesomeIcon icon={faShoppingCart} /> Product FAQ
-            </h3>
+        {showProductFaq && (
+          <p style={{ display: "flex", justifyContent: "center" }}>
+            <div>
+              <h3>
+                <FontAwesomeIcon icon={faShoppingCart} /> Product FAQ
+              </h3>
 
-            <ul style={{ listStyleType: "none" }}>
-              <li>
-                <button
-                  style={{
-                    width: "300px",
-                    height: "40px",
-                    background: "#40414F",
-                    color: "white",
-                    border: "none",
-                    outline: "none",
-                    marginBottom: "10px",
-                    transition: "background 0.3s",
-                    fontSize: "11px",
-                  }}
-                  onClick={() => handleClick("Are you an IKEA store?")}
-                  onMouseOver={(e) => (e.target.style.background = "black")}
-                  onMouseOut={(e) => (e.target.style.background = "#40414F")}
-                >
-                  Are you an IKEA store?
-                </button>
-              </li>
-              <li>
-                <button
-                  style={{
-                    width: "300px",
-                    height: "40px",
-                    background: "#40414F",
-                    color: "white",
-                    border: "none",
-                    outline: "none",
-                    marginBottom: "10px",
-                    transition: "background 0.3s",
-                    fontSize: "11px",
-                  }}
-                  onClick={() => handleClick("Do you sell only IKEA products?")}
-                  onMouseOver={(e) => (e.target.style.background = "black")}
-                  onMouseOut={(e) => (e.target.style.background = "#40414F")}
-                >
-                  Do you sell only IKEA products?{" "}
-                </button>
-              </li>
-              <li>
-                <button
-                  style={{
-                    width: "300px",
-                    height: "40px",
-                    background: "#40414F",
-                    color: "white",
-                    border: "none",
-                    outline: "none",
-                    marginBottom: "10px",
-                    transition: "background 0.3s",
-                    fontSize: "11px",
-                  }}
-                  onClick={() =>
-                    handleClick("How can I know more about a product?")
-                  }
-                  onMouseOver={(e) => (e.target.style.background = "black")}
-                  onMouseOut={(e) => (e.target.style.background = "#40414F")}
-                >
-                  How can I know more about a product?{" "}
-                </button>
-              </li>
+              <ul style={{ listStyleType: "none", paddingLeft: "10px" }}>
+                <li>
+                  <button
+                    style={styles.button}
 
-              {/* Add more buttons here */}
-            </ul>
-          </div>
+                    onClick={() => {
+                      handleClick("Are you an IKEA store?");
+                      setShowProductFaq(false);
+                    }}
+                    onMouseOver={(e) => (e.target.style.background = "black")}
+                    onMouseOut={(e) => (e.target.style.background = "#40414F")}
+                  >
+                    Are you an IKEA store?
+                  </button>
+                </li>
+                <li>
+                  <button
+                    style={{
+                      width: "270px",
 
-          <div>
-            <h3>
-              <FontAwesomeIcon icon={faClipboardList} /> Order FAQ
-            </h3>
+                      height: "35px",
+                      background: "#40414F",
+                      color: "white",
+                      border: "none",
+                      outline: "none",
+                      marginBottom: "10px",
+                      transition: "background 0.3s",
+                      fontSize: "11px",
+                    }}
+                    onClick={() => {
+                      handleClick("Do you sell only IKEA products?");
 
-            <ul style={{ listStyleType: "none" }}>
-              <li>
-                <button
-                  style={{
-                    width: "300px",
-                    height: "40px",
-                    background: "#40414F",
-                    color: "white",
-                    border: "none",
-                    outline: "none",
-                    marginBottom: "10px",
-                    transition: "background 0.3s",
-                    fontSize: "11px",
-                  }}
-                  onClick={() =>
-                    handleClick("I Have Placed my order. What Happens next?")
-                  }
-                  onMouseOver={(e) => (e.target.style.background = "black")}
-                  onMouseOut={(e) => (e.target.style.background = "#40414F")}
-                >
-                  I Have Placed my order. <br />
-                  What Happens next?
-                </button>
-              </li>
-              <li>
-                <button
-                  style={{
-                    width: "300px",
-                    height: "40px",
-                    background: "#40414F",
-                    color: "white",
-                    border: "none",
-                    outline: "none",
-                    marginBottom: "10px",
-                    transition: "background 0.3s",
-                    fontSize: "11px",
-                  }}
-                  onClick={() =>
-                    handleClick("My order was a preorder , what's that ?")
-                  }
-                  onMouseOver={(e) => (e.target.style.background = "black")}
-                  onMouseOut={(e) => (e.target.style.background = "#40414F")}
-                >
-                  My order was a preorder. <br /> what's that ?{" "}
-                </button>
-              </li>
+                      setShowProductFaq(false);
+                    }}
+                    onMouseOver={(e) => (e.target.style.background = "black")}
+                    onMouseOut={(e) => (e.target.style.background = "#40414F")}
+                  >
+                    Do you sell only IKEA products?{" "}
+                  </button>
+                </li>
+                <li>
+                  <button
+                    style={{
+                      width: "270px",
 
-              <li>
-                <button
-                  style={{
-                    width: "300px",
-                    height: "40px",
-                    background: "#40414F",
-                    color: "white",
-                    border: "none",
-                    outline: "none",
-                    marginBottom: "10px",
-                    transition: "background 0.3s",
-                    fontSize: "11px",
-                  }}
-                  onClick={() =>
-                    handleClick("My order was back order, what’s that ?")
-                  }
-                  onMouseOver={(e) => (e.target.style.background = "black")}
-                  onMouseOut={(e) => (e.target.style.background = "#40414F")}
-                >
-                  My order was back order, what’s that ?{" "}
-                </button>
-              </li>
+                      height: "35px",
+                      background: "#40414F",
+                      color: "white",
+                      border: "none",
+                      outline: "none",
+                      marginBottom: "10px",
+                      transition: "background 0.3s",
+                      fontSize: "11px",
+                    }}
+                    onClick={() => {
+                      handleClick("How can I know more about a product?");
 
-              <li>
-                <button
-                  style={{
-                    width: "300px",
-                    height: "40px",
-                    background: "#40414F",
-                    color: "white",
-                    border: "none",
-                    outline: "none",
-                    marginBottom: "10px",
-                    transition: "background 0.3s",
-                    fontSize: "11px",
-                  }}
-                  onClick={() =>
-                    handleClick(
-                      "My order was in stock but I got an email that it’s not , what happens next ?"
-                    )
-                  }
-                  onMouseOver={(e) => (e.target.style.background = "black")}
-                  onMouseOut={(e) => (e.target.style.background = "#40414F")}
-                >
-                  My order was in stock but I got an email that it’s not , what
-                  happens next ?{" "}
-                </button>
-              </li>
+                      setShowProductFaq(false);
+                    }}
+                    onMouseOver={(e) => (e.target.style.background = "black")}
+                    onMouseOut={(e) => (e.target.style.background = "#40414F")}
+                  >
+                    How can I know more about a product?{" "}
+                  </button>
+                </li>
 
-              <li>
-                <button
-                  style={{
-                    width: "300px",
-                    height: "40px",
-                    background: "#40414F",
-                    color: "white",
-                    border: "none",
-                    outline: "none",
-                    marginBottom: "10px",
-                    transition: "background 0.3s",
-                    fontSize: "11px",
-                  }}
-                  onClick={() =>
-                    handleClick(
-                      "My order has both preorders and in stock items , what happens in this situation?"
-                    )
-                  }
-                  onMouseOver={(e) => (e.target.style.background = "black")}
-                  onMouseOut={(e) => (e.target.style.background = "#40414F")}
-                >
-                  My order has both preorders and in stock items , what happens
-                  in this situation?{" "}
-                </button>
-              </li>
-
-              <li>
-                <button
-                  style={{
-                    width: "300px",
-                    height: "40px",
-                    background: "#40414F",
-                    color: "white",
-                    border: "none",
-                    outline: "none",
-                    marginBottom: "10px",
-                    transition: "background 0.3s",
-                    fontSize: "11px",
-                  }}
-                  onClick={() => handleClick("When will I get my items ?")}
-                  onMouseOver={(e) => (e.target.style.background = "black")}
-                  onMouseOut={(e) => (e.target.style.background = "#40414F")}
-                >
-                  When will I get my items ?{" "}
-                </button>
-              </li>
-
-                
-              <li>
-                <button
-                  style={{
-                    width: "300px",
-                    height: "40px",
-                    background: "#40414F",
-                    color: "white",
-                    border: "none",
-                    outline: "none",
-                    marginBottom: "10px",
-                    transition: "background 0.3s",
-                    fontSize: "11px",
-                  }}
-                  onClick={() => handleClick("Can I make changes to my order before receiving it ?")}
-                  onMouseOver={(e) => (e.target.style.background = "black")}
-                  onMouseOut={(e) => (e.target.style.background = "#40414F")}
-                >
-                 Can I make changes to my order before receiving it ?{" "}
-                </button>
-              </li>
-
-              <li>
-                <button
-                  style={{
-                    width: "300px",
-                    height: "40px",
-                    background: "#40414F",
-                    color: "white",
-                    border: "none",
-                    outline: "none",
-                    marginBottom: "10px",
-                    transition: "background 0.3s",
-                    fontSize: "11px",
-                  }}
-                  onClick={() => handleClick("What if I’m not there to receive my order ?")}
-                  onMouseOver={(e) => (e.target.style.background = "black")}
-                  onMouseOut={(e) => (e.target.style.background = "#40414F")}
-                >
-                What if I’m not there to receive my order ?{" "}
-                </button>
-              </li>
+                {/* Add more buttons here */}
+              </ul>
+            </div>
 
 
-              <li>
-                <button
-                  style={{
-                    width: "300px",
-                    height: "40px",
-                    background: "#40414F",
-                    color: "white",
-                    border: "none",
-                    outline: "none",
-                    marginBottom: "10px",
-                    transition: "background 0.3s",
-                    fontSize: "11px",
-                  }}
-                  onClick={() => handleClick("How do I cancel my order before receiving ?")}
-                  onMouseOver={(e) => (e.target.style.background = "black")}
-                  onMouseOut={(e) => (e.target.style.background = "#40414F")}
-                >
-                How do I cancel my order before receiving ?{" "}
-                </button>
-              </li>
 
 
-              <li>
-                <button
-                  style={{
-                    width: "300px",
-                    height: "40px",
-                    background: "#40414F",
-                    color: "white",
-                    border: "none",
-                    outline: "none",
-                    marginBottom: "10px",
-                    transition: "background 0.3s",
-                    fontSize: "11px",
-                  }}
-                  onClick={() => handleClick("How do I return part of the order ?")}
-                  onMouseOver={(e) => (e.target.style.background = "black")}
-                  onMouseOut={(e) => (e.target.style.background = "#40414F")}
-                >
-                              How do I return part of the order ?
-{" "}
-                </button>
-              </li>
 
-            </ul>
-          </div>
 
-          <div>
-            <h3>
-              <FontAwesomeIcon icon={faTruck} /> Delivery FAQ
-            </h3>
 
-            <ul style={{ listStyleType: "none" }}>
-              <li>
-                <button
-                  style={{
-                    width: "300px",
-                    height: "40px",
-                    background: "#40414F",
-                    color: "white",
-                    border: "none",
-                    outline: "none",
-                    marginBottom: "10px",
-                    transition: "background 0.3s",
-                    fontSize: "11px",
-                  }}
-                  onClick={() => handleClick("Message 4")}
-                  onMouseOver={(e) => (e.target.style.background = "black")}
-                  onMouseOut={(e) => (e.target.style.background = "#40414F")}
-                >
-                  For frequently asked question 6
-                </button>
-              </li>
-              <li>
-                <button
-                  style={{
-                    width: "300px",
-                    height: "40px",
-                    background: "#40414F",
-                    color: "white",
-                    border: "none",
-                    outline: "none",
-                    marginBottom: "10px",
-                    transition: "background 0.3s",
-                    fontSize: "11px",
-                  }}
-                  onClick={() => handleClick("Message 5")}
-                  onMouseOver={(e) => (e.target.style.background = "black")}
-                  onMouseOut={(e) => (e.target.style.background = "#40414F")}
-                >
-                  For frequently asked question 7
-                </button>
-              </li>
-              {/* Add more buttons here */}
-            </ul>
-          </div>
-        </p>
+
+            <div>
+              <h3>
+                <FontAwesomeIcon icon={faClipboardList} /> Order FAQ
+              </h3>
+
+              <ul style={{ listStyleType: "none", paddingLeft: "10px" }}>
+                <li>
+                  <button
+                    style={{
+                      width: "270px",
+
+                      height: "35px",
+                      background: "#40414F",
+                      color: "white",
+                      border: "none",
+                      outline: "none",
+                      marginBottom: "10px",
+                      transition: "background 0.3s",
+                      fontSize: "11px",
+                    }}
+                    onClick={() => {
+                      handleClick("I Have Placed my order. What Happens next?");
+                      setShowProductFaq(false);
+                    }}
+                    onMouseOver={(e) => (e.target.style.background = "black")}
+                    onMouseOut={(e) => (e.target.style.background = "#40414F")}
+                  >
+                    I Have Placed my order. What Happens next?
+                  </button>
+                </li>
+                <li>
+                  <button
+                    style={{
+                      width: "270px",
+
+                      height: "35px",
+                      background: "#40414F",
+                      color: "white",
+                      border: "none",
+                      outline: "none",
+                      marginBottom: "10px",
+                      transition: "background 0.3s",
+                      fontSize: "11px",
+                    }}
+                    onClick={() => {
+                      handleClick("My order was a preorder , what's that ?");
+
+                      setShowProductFaq(false);
+                    }}
+                    onMouseOver={(e) => (e.target.style.background = "black")}
+                    onMouseOut={(e) => (e.target.style.background = "#40414F")}
+                  >
+                    My order was a preorder. what's that ?{" "}
+                  </button>
+                </li>
+
+                <li>
+                  <button
+                    style={{
+                      width: "270px",
+
+                      height: "35px",
+                      background: "#40414F",
+                      color: "white",
+                      border: "none",
+                      outline: "none",
+                      marginBottom: "10px",
+                      transition: "background 0.3s",
+                      fontSize: "11px",
+                    }}
+                    onClick={() => {
+                      handleClick("My order was back order, what’s that ?");
+
+                      setShowProductFaq(false);
+                    }}
+                    onMouseOver={(e) => (e.target.style.background = "black")}
+                    onMouseOut={(e) => (e.target.style.background = "#40414F")}
+                  >
+                    My order was back order, what’s that ?{" "}
+                  </button>
+                </li>
+
+                <li>
+                  <button
+                    style={{
+                      width: "270px",
+
+                      height: "35px",
+                      background: "#40414F",
+                      color: "white",
+                      border: "none",
+                      outline: "none",
+                      marginBottom: "10px",
+                      transition: "background 0.3s",
+                      fontSize: "11px",
+                    }}
+                    onClick={() => {
+                      handleClick(
+                        "My order was in stock but I got an email that it’s not , what happens next ?"
+                      );
+                      setShowProductFaq(false);
+                    }}
+                    onMouseOver={(e) => (e.target.style.background = "black")}
+                    onMouseOut={(e) => (e.target.style.background = "#40414F")}
+                  >
+                    My order was in stock but I got an email that it’s not ,
+                    what happens next ?{" "}
+                  </button>
+                </li>
+
+                <li>
+                  <button
+                    style={{
+                      width: "270px",
+
+                      height: "35px",
+                      background: "#40414F",
+                      color: "white",
+                      border: "none",
+                      outline: "none",
+                      marginBottom: "10px",
+                      transition: "background 0.3s",
+                      fontSize: "11px",
+                    }}
+                    onClick={() => {
+                      handleClick(
+                        "My order has both preorders and in stock items , what happens in this situation?"
+                      );
+                      setShowProductFaq(false);
+                    }}
+                    onMouseOver={(e) => (e.target.style.background = "black")}
+                    onMouseOut={(e) => (e.target.style.background = "#40414F")}
+                  >
+                    My order has both preorders and in stock items , what
+                    happens in this situation?{" "}
+                  </button>
+                </li>
+
+                <li>
+                  <button
+                    style={{
+                      width: "270px",
+
+                      height: "35px",
+                      background: "#40414F",
+                      color: "white",
+                      border: "none",
+                      outline: "none",
+                      marginBottom: "10px",
+                      transition: "background 0.3s",
+                      fontSize: "11px",
+                    }}
+                    onClick={() => {
+                      handleClick("When will I get my items ?");
+
+                      setShowProductFaq(false);
+                    }}
+                    onMouseOver={(e) => (e.target.style.background = "black")}
+                    onMouseOut={(e) => (e.target.style.background = "#40414F")}
+                  >
+                    When will I get my items ?{" "}
+                  </button>
+                </li>
+
+                <li>
+                  <button
+                    style={{
+                      width: "270px",
+
+                      height: "35px",
+                      background: "#40414F",
+                      color: "white",
+                      border: "none",
+                      outline: "none",
+                      marginBottom: "10px",
+                      transition: "background 0.3s",
+                      fontSize: "11px",
+                    }}
+                    onClick={() => {
+                      handleClick(
+                        "Can I make changes to my order before receiving it ?"
+                      );
+
+                      setShowProductFaq(false);
+                    }}
+                    onMouseOver={(e) => (e.target.style.background = "black")}
+                    onMouseOut={(e) => (e.target.style.background = "#40414F")}
+                  >
+                    Can I make changes to my order before receiving it ?{" "}
+                  </button>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3>
+                <FontAwesomeIcon icon={faTruck} /> Order FAQ
+              </h3>
+
+              <ul style={{ listStyleType: "none", paddingLeft: "10px" }}>
+                <li>
+                  <button
+                    style={{
+                      width: "270px",
+
+                      height: "35px",
+                      background: "#40414F",
+                      color: "white",
+                      border: "none",
+                      outline: "none",
+                      marginBottom: "10px",
+                      transition: "background 0.3s",
+                      fontSize: "11px",
+                    }}
+                    onClick={() => {
+                      handleClick(
+                        "What if I’m not there to receive my order ?"
+                      );
+
+                      setShowProductFaq(false);
+                    }}
+                    onMouseOver={(e) => (e.target.style.background = "black")}
+                    onMouseOut={(e) => (e.target.style.background = "#40414F")}
+                  >
+                    What if I’m not there to receive my order ?{" "}
+                  </button>
+                </li>
+
+                <li>
+                  <button
+                    style={{
+                      width: "270px",
+
+                      height: "35px",
+                      background: "#40414F",
+                      color: "white",
+                      border: "none",
+                      outline: "none",
+                      marginBottom: "10px",
+                      transition: "background 0.3s",
+                      fontSize: "11px",
+                    }}
+                    onClick={() => {
+                      handleClick(
+                        "How do I cancel my order before receiving ?"
+                      );
+                      setShowProductFaq(false);
+                    }}
+                    onMouseOver={(e) => (e.target.style.background = "black")}
+                    onMouseOut={(e) => (e.target.style.background = "#40414F")}
+                  >
+                    How do I cancel my order before receiving ?{" "}
+                  </button>
+                </li>
+
+                <li>
+                  <button
+                    style={{
+                      width: "270px",
+
+                      height: "35px",
+                      background: "#40414F",
+                      color: "white",
+                      border: "none",
+                      outline: "none",
+                      marginBottom: "10px",
+                      transition: "background 0.3s",
+                      fontSize: "11px",
+                    }}
+                    onClick={() => {
+                      handleClick("How do I return part of the order ?");
+                      setShowProductFaq(false);
+                    }}
+                    onMouseOver={(e) => (e.target.style.background = "black")}
+                    onMouseOut={(e) => (e.target.style.background = "#40414F")}
+                  >
+                    How do I return part of the order ?{" "}
+                  </button>
+                </li>
+
+                <li>
+                  <button
+                    style={{
+                      width: "270px",
+
+                      height: "35px",
+                      background: "#40414F",
+                      color: "white",
+                      border: "none",
+                      outline: "none",
+                      marginBottom: "10px",
+                      transition: "background 0.3s",
+                      fontSize: "11px",
+                    }}
+                    onClick={() => {
+                      handleClick("How do I return all of the order ?");
+
+                      setShowProductFaq(false);
+                    }}
+                    onMouseOver={(e) => (e.target.style.background = "black")}
+                    onMouseOut={(e) => (e.target.style.background = "#40414F")}
+                  >
+                    How do I return all of the order ?{" "}
+                  </button>
+                </li>
+
+                <li>
+                  <button
+                    style={{
+                      width: "270px",
+
+                      height: "35px",
+                      background: "#40414F",
+                      color: "white",
+                      border: "none",
+                      outline: "none",
+                      marginBottom: "10px",
+                      transition: "background 0.3s",
+                      fontSize: "11px",
+                    }}
+                    onClick={() => {
+                      handleClick(
+                        "My order was not as I expected , what should I do ?"
+                      );
+                      setShowProductFaq(false);
+                    }}
+                    onMouseOver={(e) => (e.target.style.background = "black")}
+                    onMouseOut={(e) => (e.target.style.background = "#40414F")}
+                  >
+                    My order was not as I expected , what should I do ?{" "}
+                  </button>
+                </li>
+
+                <li>
+                  <button
+                    style={{
+                      width: "270px",
+
+                      height: "35px",
+                      background: "#40414F",
+                      color: "white",
+                      border: "none",
+                      outline: "none",
+                      marginBottom: "10px",
+                      transition: "background 0.3s",
+                      fontSize: "11px",
+                    }}
+                    onClick={() => {
+                      handleClick(
+                        "I have not received any emails from you , what’s happening?"
+                      );
+                      setShowProductFaq(false);
+                    }}
+                    onMouseOver={(e) => (e.target.style.background = "black")}
+                    onMouseOut={(e) => (e.target.style.background = "#40414F")}
+                  >
+                    I have not received any emails from you , what’s happening?{" "}
+                  </button>
+                </li>
+
+                <li>
+                  <button
+                    style={{
+                      width: "270px",
+
+                      height: "35px",
+                      background: "#40414F",
+                      color: "white",
+                      border: "none",
+                      outline: "none",
+                      marginBottom: "10px",
+                      transition: "background 0.3s",
+                      fontSize: "11px",
+                    }}
+                    onClick={() => {
+                      handleClick(
+                        "I can see some reviews for your shop mentioning lack of communication and delivery delays. How do you explain that ?"
+                      );
+
+                      setShowProductFaq(false);
+                    }}
+                    onMouseOver={(e) => (e.target.style.background = "black")}
+                    onMouseOut={(e) => (e.target.style.background = "#40414F")}
+                  >
+                    I can see some reviews for your shop mentioning lack of
+                    communication and delivery delays. How do you explain that ?{" "}
+                  </button>
+                </li>
+
+                <li>
+                  <button
+                    style={{
+                      width: "270px",
+
+                      height: "35px",
+                      background: "#40414F",
+                      color: "white",
+                      border: "none",
+                      outline: "none",
+                      marginBottom: "10px",
+                      transition: "background 0.3s",
+                      fontSize: "11px",
+                    }}
+                    onClick={() => {
+                      handleClick(
+                        "Why are there no discounts on your website anymore?"
+                      );
+                      setShowProductFaq(false);
+                    }}
+                    onMouseOver={(e) => (e.target.style.background = "black")}
+                    onMouseOut={(e) => (e.target.style.background = "#40414F")}
+                  >
+                    Why are there no discounts on your website anymore?{" "}
+                  </button>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3>
+                <FontAwesomeIcon icon={faTruck} /> Delivery FAQ
+              </h3>
+
+              <ul style={{ listStyleType: "none", paddingLeft: "10px" }}>
+                <li>
+                  <button
+                    style={{
+                      width: "270px",
+
+                      height: "35px",
+                      background: "#40414F",
+                      color: "white",
+                      border: "none",
+                      outline: "none",
+                      marginBottom: "10px",
+                      transition: "background 0.3s",
+                      fontSize: "11px",
+                    }}
+                    onClick={() => {
+                      handleClick("When will my order be delivered?");
+                      setShowProductFaq(false);
+                    }}
+                    onMouseOver={(e) => (e.target.style.background = "black")}
+                    onMouseOut={(e) => (e.target.style.background = "#40414F")}
+                  >
+                    When will my order be delivered?{" "}
+                  </button>
+                </li>
+
+                <li>
+                  <button
+                    style={{
+                      width: "270px",
+
+                      height: "35px",
+                      background: "#40414F",
+                      color: "white",
+                      border: "none",
+                      outline: "none",
+                      marginBottom: "10px",
+                      transition: "background 0.3s",
+                      fontSize: "11px",
+                    }}
+                    onClick={() => {
+                      handleClick(
+                        "Can I make changes to my order before receiving it?"
+                      );
+
+                      setShowProductFaq(false);
+                    }}
+                    onMouseOver={(e) => (e.target.style.background = "black")}
+                    onMouseOut={(e) => (e.target.style.background = "#40414F")}
+                  >
+                    Can I make changes to my order before receiving it?{" "}
+                  </button>
+                </li>
+
+                <li>
+                  <button
+                    style={{
+                      width: "270px",
+
+                      height: "35px",
+                      background: "#40414F",
+                      color: "white",
+                      border: "none",
+                      outline: "none",
+                      marginBottom: "10px",
+                      transition: "background 0.3s",
+                      fontSize: "11px",
+                    }}
+                    onClick={() => {
+                      handleClick(
+                        "How do I know next available delivery date to my location?"
+                      );
+                      setShowProductFaq(false);
+                    }}
+                    onMouseOver={(e) => (e.target.style.background = "black")}
+                    onMouseOut={(e) => (e.target.style.background = "#40414F")}
+                  >
+                    How do I know next available delivery date to my location?{" "}
+                  </button>
+                </li>
+
+                <li>
+                  <button
+                    style={{
+                      width: "270px",
+
+                      height: "35px",
+                      background: "#40414F",
+                      color: "white",
+                      border: "none",
+                      outline: "none",
+                      marginBottom: "10px",
+                      transition: "background 0.3s",
+                      fontSize: "11px",
+                    }}
+                    onClick={() => {
+                      handleClick("What if I’m not there to receive my order?");
+                      setShowProductFaq(false);
+                    }}
+                    onMouseOver={(e) => (e.target.style.background = "black")}
+                    onMouseOut={(e) => (e.target.style.background = "#40414F")}
+                  >
+                    What if I’m not there to receive my order?{" "}
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </p>
+        )}
 
         {chatLog.length > 0 ? (
           <div className="chatLogWrapper">
