@@ -23,7 +23,7 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { faTag } from "@fortawesome/free-solid-svg-icons";
 import { faClipboardList } from "@fortawesome/free-solid-svg-icons";
 import { faTruck } from "@fortawesome/free-solid-svg-icons";
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 // import { MdSend } from "react-icons/md";
 import { IoSendSharp } from "react-icons/io5";
@@ -336,8 +336,8 @@ function App() {
             >
               <path d="M21 18H3M21 12H3M21 6H3" />
             </svg>
-          <FontAwesomeIcon icon={faArrowRight} />
-</button>
+            <FontAwesomeIcon icon={faArrowRight} />
+          </button>
         </div>
         <h1 style={{ paddingRight: "40px" }}>Custom ChatGPT</h1>
       </header>
@@ -474,11 +474,15 @@ function App() {
       </aside>
 
       <section className="chatBox">
-          <br/>
+        <br />
+        {showProductFaq && (
+
         <h1>FAQ Categories</h1>
+
+        )
+}
         {showProductFaq && (
           <p style={{ display: "flex", justifyContent: "center" }}>
-            
             <div>
               <h3>
                 <FontAwesomeIcon icon={faShoppingCart} /> Product FAQ
@@ -507,9 +511,9 @@ function App() {
                     onMouseOver={(e) => (e.target.style.background = "black")}
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
-                    Are you an IKEA store? <FontAwesomeIcon icon={faArrowRight} />
-
-</button>
+                    Are you an IKEA store?{" "}
+                    <FontAwesomeIcon icon={faArrowRight} />
+                  </button>
                 </li>
                 <li>
                   <button
@@ -535,8 +539,8 @@ function App() {
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
                     Do you sell only IKEA products?{" "}
-                  <FontAwesomeIcon icon={faArrowRight} />
-</button>
+                    <FontAwesomeIcon icon={faArrowRight} />
+                  </button>
                 </li>
                 <li>
                   <button
@@ -562,8 +566,8 @@ function App() {
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
                     How can I know more about a product?{" "}
-                  <FontAwesomeIcon icon={faArrowRight} />
-</button>
+                    <FontAwesomeIcon icon={faArrowRight} />
+                  </button>
                 </li>
 
                 {/* Add more buttons here */}
@@ -599,8 +603,8 @@ function App() {
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
                     I Have Placed my order. What Happens next?
-                  <FontAwesomeIcon icon={faArrowRight} />
-</button>
+                    <FontAwesomeIcon icon={faArrowRight} />
+                  </button>
                 </li>
                 <li>
                   <button
@@ -626,8 +630,8 @@ function App() {
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
                     My order was a preorder. what's that ?{" "}
-                  <FontAwesomeIcon icon={faArrowRight} />
-</button>
+                    <FontAwesomeIcon icon={faArrowRight} />
+                  </button>
                 </li>
 
                 <li>
@@ -654,8 +658,8 @@ function App() {
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
                     My order was back order, what’s that ?{" "}
-                  <FontAwesomeIcon icon={faArrowRight} />
-</button>
+                    <FontAwesomeIcon icon={faArrowRight} />
+                  </button>
                 </li>
 
                 <li>
@@ -683,9 +687,8 @@ function App() {
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
                     My order was in stock but I got an email that it’s not ,
-                    what happens next ?{" "}
-                  <FontAwesomeIcon icon={faArrowRight} />
-</button>
+                    what happens next ? <FontAwesomeIcon icon={faArrowRight} />
+                  </button>
                 </li>
 
                 <li>
@@ -714,8 +717,8 @@ function App() {
                   >
                     My order has both preorders and in stock items , what
                     happens in this situation?{" "}
-                  <FontAwesomeIcon icon={faArrowRight} />
-</button>
+                    <FontAwesomeIcon icon={faArrowRight} />
+                  </button>
                 </li>
 
                 <li>
@@ -742,8 +745,8 @@ function App() {
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
                     When will I get my items ?{" "}
-                  <FontAwesomeIcon icon={faArrowRight} />
-</button>
+                    <FontAwesomeIcon icon={faArrowRight} />
+                  </button>
                 </li>
 
                 <li>
@@ -772,8 +775,8 @@ function App() {
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
                     Can I make changes to my order before receiving it ?{" "}
-                  <FontAwesomeIcon icon={faArrowRight} />
-</button>
+                    <FontAwesomeIcon icon={faArrowRight} />
+                  </button>
                 </li>
               </ul>
             </div>
@@ -810,8 +813,8 @@ function App() {
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
                     What if I’m not there to receive my order ?{" "}
-                  <FontAwesomeIcon icon={faArrowRight} />
-</button>
+                    <FontAwesomeIcon icon={faArrowRight} />
+                  </button>
                 </li>
 
                 <li>
@@ -839,8 +842,8 @@ function App() {
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
                     How do I cancel my order before receiving ?{" "}
-                  <FontAwesomeIcon icon={faArrowRight} />
-</button>
+                    <FontAwesomeIcon icon={faArrowRight} />
+                  </button>
                 </li>
 
                 <li>
@@ -866,8 +869,8 @@ function App() {
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
                     How do I return part of the order ?{" "}
-                  <FontAwesomeIcon icon={faArrowRight} />
-</button>
+                    <FontAwesomeIcon icon={faArrowRight} />
+                  </button>
                 </li>
 
                 <li>
@@ -894,8 +897,8 @@ function App() {
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
                     How do I return all of the order ?{" "}
-                  <FontAwesomeIcon icon={faArrowRight} />
-</button>
+                    <FontAwesomeIcon icon={faArrowRight} />
+                  </button>
                 </li>
 
                 <li>
@@ -923,8 +926,8 @@ function App() {
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
                     My order was not as I expected , what should I do ?{" "}
-                  <FontAwesomeIcon icon={faArrowRight} />
-</button>
+                    <FontAwesomeIcon icon={faArrowRight} />
+                  </button>
                 </li>
 
                 <li>
@@ -952,8 +955,8 @@ function App() {
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
                     I have not received any emails from you , what’s happening?{" "}
-                  <FontAwesomeIcon icon={faArrowRight} />
-</button>
+                    <FontAwesomeIcon icon={faArrowRight} />
+                  </button>
                 </li>
 
                 <li>
@@ -983,8 +986,8 @@ function App() {
                   >
                     I can see some reviews for your shop mentioning lack of
                     communication and delivery delays. How do you explain that ?{" "}
-                  <FontAwesomeIcon icon={faArrowRight} />
-</button>
+                    <FontAwesomeIcon icon={faArrowRight} />
+                  </button>
                 </li>
 
                 <li>
@@ -1012,8 +1015,8 @@ function App() {
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
                     Why are there no discounts on your website anymore?{" "}
-                  <FontAwesomeIcon icon={faArrowRight} />
-</button>
+                    <FontAwesomeIcon icon={faArrowRight} />
+                  </button>
                 </li>
               </ul>
             </div>
@@ -1047,8 +1050,8 @@ function App() {
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
                     When will my order be delivered?{" "}
-                  <FontAwesomeIcon icon={faArrowRight} />
-</button>
+                    <FontAwesomeIcon icon={faArrowRight} />
+                  </button>
                 </li>
 
                 <li>
@@ -1077,8 +1080,8 @@ function App() {
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
                     Can I make changes to my order before receiving it?{" "}
-                  <FontAwesomeIcon icon={faArrowRight} />
-</button>
+                    <FontAwesomeIcon icon={faArrowRight} />
+                  </button>
                 </li>
 
                 <li>
@@ -1106,8 +1109,8 @@ function App() {
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
                     How do I know next available delivery date to my location?{" "}
-                  <FontAwesomeIcon icon={faArrowRight} />
-</button>
+                    <FontAwesomeIcon icon={faArrowRight} />
+                  </button>
                 </li>
 
                 <li>
@@ -1133,8 +1136,8 @@ function App() {
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
                     What if I’m not there to receive my order?{" "}
-                  <FontAwesomeIcon icon={faArrowRight} />
-</button>
+                    <FontAwesomeIcon icon={faArrowRight} />
+                  </button>
                 </li>
               </ul>
             </div>
@@ -1192,12 +1195,12 @@ function App() {
                             startBtn={
                               <button className="micPosition">
                                 <BsMicFill />{" "}
-</button>
+                              </button>
                             }
                             stopBtn={
                               <button className="micPosition">
                                 <BsMicMuteFill />
-</button>
+                              </button>
                             }
                           />
                         </div>
@@ -1241,22 +1244,27 @@ function App() {
               }}
             >
               <BsMic />
-</button>
+            </button>
+       
+       
+       
             <button
-              className="send-button"
-              type="submit"
-              style={{
-                backgroundColor: "#41414E",
-                color: "white",
-                border: 0,
-                padding: "4px 22px",
-                textAlign: "center",
-                fontSize: "16px",
-                transform: "translateX(-132px)",
-              }}
-            >
-              <IoSendSharp />
+  className="send-button"
+  type="submit"
+  style={{
+    backgroundColor: "#41414E",
+    color: "white",
+    border: 0,
+    padding: "4px 22px",
+    textAlign: "center",
+    fontSize: "16px",
+    transform: "translateX(-132px)",
+  }}
+  onClick={() => setShowProductFaq(false)}
+>
+  <IoSendSharp/>
 </button>
+
             <p></p>
           </div>
         </form>
