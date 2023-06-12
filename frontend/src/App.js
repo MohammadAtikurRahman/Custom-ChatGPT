@@ -144,20 +144,20 @@ function App() {
 
 
 
-       case "1":
-        botMessage = "1"
+       case "What if I’m not there to receive my order ?":
+        botMessage = "We will contact you before attempting delivery. If there is a dry secure place then the delivery guys leave the item there. Otherwise they bring it back and contact you to reschedule. We don’t normally charge for one more attempted delivery. It’s very rare."
        break;
 
 
 
 
-       case "1":
-        botMessage = "1"
+       case "How do I cancel my order before receiving ?":
+        botMessage = "It’s simple , just email us order number. We will refund through the same method as you paid automatically ( credit card / paypal/part pay etc ) . If you paid via a bank transfer we would need a bank account number to return the funds to. Best would be to email the account number in the same email. We refund immediately and send a confirmation email."
        break;
 
 
-       case "1":
-        botMessage = "1"
+       case "How do I return part of the order ?":
+        botMessage = "Simply email us what part of the order you need to return , if within 14 days and still in original packing we can arrange to pick back by post / our own delivery truck. Returns usually take a week to arrange. We refund the costs once products arrive our warehouse. There might be a return postage cost which we charge as actual."
        break;
 
 
@@ -750,10 +750,71 @@ function App() {
                 </button>
               </li>
 
+              <li>
+                <button
+                  style={{
+                    width: "300px",
+                    height: "40px",
+                    background: "#40414F",
+                    color: "white",
+                    border: "none",
+                    outline: "none",
+                    marginBottom: "10px",
+                    transition: "background 0.3s",
+                    fontSize: "11px",
+                  }}
+                  onClick={() => handleClick("What if I’m not there to receive my order ?")}
+                  onMouseOver={(e) => (e.target.style.background = "black")}
+                  onMouseOut={(e) => (e.target.style.background = "#40414F")}
+                >
+                What if I’m not there to receive my order ?{" "}
+                </button>
+              </li>
 
 
+              <li>
+                <button
+                  style={{
+                    width: "300px",
+                    height: "40px",
+                    background: "#40414F",
+                    color: "white",
+                    border: "none",
+                    outline: "none",
+                    marginBottom: "10px",
+                    transition: "background 0.3s",
+                    fontSize: "11px",
+                  }}
+                  onClick={() => handleClick("How do I cancel my order before receiving ?")}
+                  onMouseOver={(e) => (e.target.style.background = "black")}
+                  onMouseOut={(e) => (e.target.style.background = "#40414F")}
+                >
+                How do I cancel my order before receiving ?{" "}
+                </button>
+              </li>
 
 
+              <li>
+                <button
+                  style={{
+                    width: "300px",
+                    height: "40px",
+                    background: "#40414F",
+                    color: "white",
+                    border: "none",
+                    outline: "none",
+                    marginBottom: "10px",
+                    transition: "background 0.3s",
+                    fontSize: "11px",
+                  }}
+                  onClick={() => handleClick("How do I return part of the order ?")}
+                  onMouseOver={(e) => (e.target.style.background = "black")}
+                  onMouseOut={(e) => (e.target.style.background = "#40414F")}
+                >
+                              How do I return part of the order ?
+{" "}
+                </button>
+              </li>
 
             </ul>
           </div>
