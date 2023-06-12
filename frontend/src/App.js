@@ -474,8 +474,11 @@ function App() {
       </aside>
 
       <section className="chatBox">
+          <br/>
+        <h1>FAQ Categories</h1>
         {showProductFaq && (
           <p style={{ display: "flex", justifyContent: "center" }}>
+            
             <div>
               <h3>
                 <FontAwesomeIcon icon={faShoppingCart} /> Product FAQ
