@@ -23,6 +23,7 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { faTag } from "@fortawesome/free-solid-svg-icons";
 import { faClipboardList } from "@fortawesome/free-solid-svg-icons";
 import { faTruck } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
 // import { MdSend } from "react-icons/md";
 import { IoSendSharp } from "react-icons/io5";
@@ -58,23 +59,23 @@ function App() {
   console.log("base url " + baseurl);
 
   const styles = {
-  button: {
-    width: '270px',
-    height: '35px',
-    background: '#40414F',
-    color: 'white',
-    border: 'none',
-    outline: 'none',
-    marginBottom: '10px',
-    transition: 'background 0.3s',
-    fontSize: '11px',
-    '@media (max-width: 1280px)': {
-      width: '200px',   // you can adjust as you need
-      height: '30px',  // you can adjust as you need
-      fontSize: '9px', // you can adjust as you need
+    button: {
+      width: "270px",
+      height: "35px",
+      background: "#40414F",
+      color: "white",
+      border: "none",
+      outline: "none",
+      marginBottom: "10px",
+      transition: "background 0.3s",
+      fontSize: "11px",
+      "@media (max-width: 1280px)": {
+        width: "200px", // you can adjust as you need
+        height: "30px", // you can adjust as you need
+        fontSize: "9px", // you can adjust as you need
+      },
     },
-  },
-};
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -335,7 +336,8 @@ function App() {
             >
               <path d="M21 18H3M21 12H3M21 6H3" />
             </svg>
-          </button>
+          <FontAwesomeIcon icon={faArrowRight} />
+</button>
         </div>
         <h1 style={{ paddingRight: "40px" }}>Custom ChatGPT</h1>
       </header>
@@ -493,7 +495,7 @@ function App() {
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
-borderRadius:  "8px"
+                      borderRadius: "8px",
                     }}
                     onClick={() => {
                       handleClick("Are you an IKEA store?");
@@ -502,8 +504,9 @@ borderRadius:  "8px"
                     onMouseOver={(e) => (e.target.style.background = "black")}
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
-                    Are you an IKEA store?
-                  </button>
+                    Are you an IKEA store? <FontAwesomeIcon icon={faArrowRight} />
+
+</button>
                 </li>
                 <li>
                   <button
@@ -518,11 +521,7 @@ borderRadius:  "8px"
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
-borderRadius:  "8px"
-
-
-
-                      
+                      borderRadius: "8px",
                     }}
                     onClick={() => {
                       handleClick("Do you sell only IKEA products?");
@@ -533,7 +532,8 @@ borderRadius:  "8px"
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
                     Do you sell only IKEA products?{" "}
-                  </button>
+                  <FontAwesomeIcon icon={faArrowRight} />
+</button>
                 </li>
                 <li>
                   <button
@@ -548,7 +548,7 @@ borderRadius:  "8px"
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
-borderRadius:  "8px"
+                      borderRadius: "8px",
                     }}
                     onClick={() => {
                       handleClick("How can I know more about a product?");
@@ -559,19 +559,13 @@ borderRadius:  "8px"
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
                     How can I know more about a product?{" "}
-                  </button>
+                  <FontAwesomeIcon icon={faArrowRight} />
+</button>
                 </li>
 
                 {/* Add more buttons here */}
               </ul>
             </div>
-
-
-
-
-
-
-
 
             <div>
               <h3>
@@ -592,7 +586,7 @@ borderRadius:  "8px"
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
-borderRadius:  "8px"
+                      borderRadius: "8px",
                     }}
                     onClick={() => {
                       handleClick("I Have Placed my order. What Happens next?");
@@ -602,7 +596,8 @@ borderRadius:  "8px"
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
                     I Have Placed my order. What Happens next?
-                  </button>
+                  <FontAwesomeIcon icon={faArrowRight} />
+</button>
                 </li>
                 <li>
                   <button
@@ -617,7 +612,7 @@ borderRadius:  "8px"
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
-borderRadius:  "8px"
+                      borderRadius: "8px",
                     }}
                     onClick={() => {
                       handleClick("My order was a preorder , what's that ?");
@@ -628,7 +623,8 @@ borderRadius:  "8px"
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
                     My order was a preorder. what's that ?{" "}
-                  </button>
+                  <FontAwesomeIcon icon={faArrowRight} />
+</button>
                 </li>
 
                 <li>
@@ -644,7 +640,7 @@ borderRadius:  "8px"
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
-borderRadius:  "8px"
+                      borderRadius: "8px",
                     }}
                     onClick={() => {
                       handleClick("My order was back order, what’s that ?");
@@ -655,7 +651,8 @@ borderRadius:  "8px"
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
                     My order was back order, what’s that ?{" "}
-                  </button>
+                  <FontAwesomeIcon icon={faArrowRight} />
+</button>
                 </li>
 
                 <li>
@@ -671,7 +668,7 @@ borderRadius:  "8px"
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
-borderRadius:  "8px"
+                      borderRadius: "8px",
                     }}
                     onClick={() => {
                       handleClick(
@@ -684,7 +681,8 @@ borderRadius:  "8px"
                   >
                     My order was in stock but I got an email that it’s not ,
                     what happens next ?{" "}
-                  </button>
+                  <FontAwesomeIcon icon={faArrowRight} />
+</button>
                 </li>
 
                 <li>
@@ -700,7 +698,7 @@ borderRadius:  "8px"
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
-borderRadius:  "8px"
+                      borderRadius: "8px",
                     }}
                     onClick={() => {
                       handleClick(
@@ -713,7 +711,8 @@ borderRadius:  "8px"
                   >
                     My order has both preorders and in stock items , what
                     happens in this situation?{" "}
-                  </button>
+                  <FontAwesomeIcon icon={faArrowRight} />
+</button>
                 </li>
 
                 <li>
@@ -729,7 +728,7 @@ borderRadius:  "8px"
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
-borderRadius:  "8px"
+                      borderRadius: "8px",
                     }}
                     onClick={() => {
                       handleClick("When will I get my items ?");
@@ -740,7 +739,8 @@ borderRadius:  "8px"
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
                     When will I get my items ?{" "}
-                  </button>
+                  <FontAwesomeIcon icon={faArrowRight} />
+</button>
                 </li>
 
                 <li>
@@ -756,7 +756,7 @@ borderRadius:  "8px"
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
-borderRadius:  "8px"
+                      borderRadius: "8px",
                     }}
                     onClick={() => {
                       handleClick(
@@ -769,7 +769,8 @@ borderRadius:  "8px"
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
                     Can I make changes to my order before receiving it ?{" "}
-                  </button>
+                  <FontAwesomeIcon icon={faArrowRight} />
+</button>
                 </li>
               </ul>
             </div>
@@ -793,7 +794,7 @@ borderRadius:  "8px"
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
-borderRadius:  "8px"
+                      borderRadius: "8px",
                     }}
                     onClick={() => {
                       handleClick(
@@ -806,7 +807,8 @@ borderRadius:  "8px"
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
                     What if I’m not there to receive my order ?{" "}
-                  </button>
+                  <FontAwesomeIcon icon={faArrowRight} />
+</button>
                 </li>
 
                 <li>
@@ -822,7 +824,7 @@ borderRadius:  "8px"
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
-borderRadius:  "8px"
+                      borderRadius: "8px",
                     }}
                     onClick={() => {
                       handleClick(
@@ -834,7 +836,8 @@ borderRadius:  "8px"
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
                     How do I cancel my order before receiving ?{" "}
-                  </button>
+                  <FontAwesomeIcon icon={faArrowRight} />
+</button>
                 </li>
 
                 <li>
@@ -850,7 +853,7 @@ borderRadius:  "8px"
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
-borderRadius:  "8px"
+                      borderRadius: "8px",
                     }}
                     onClick={() => {
                       handleClick("How do I return part of the order ?");
@@ -860,7 +863,8 @@ borderRadius:  "8px"
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
                     How do I return part of the order ?{" "}
-                  </button>
+                  <FontAwesomeIcon icon={faArrowRight} />
+</button>
                 </li>
 
                 <li>
@@ -876,7 +880,7 @@ borderRadius:  "8px"
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
-borderRadius:  "8px"
+                      borderRadius: "8px",
                     }}
                     onClick={() => {
                       handleClick("How do I return all of the order ?");
@@ -887,7 +891,8 @@ borderRadius:  "8px"
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
                     How do I return all of the order ?{" "}
-                  </button>
+                  <FontAwesomeIcon icon={faArrowRight} />
+</button>
                 </li>
 
                 <li>
@@ -903,7 +908,7 @@ borderRadius:  "8px"
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
-borderRadius:  "8px"
+                      borderRadius: "8px",
                     }}
                     onClick={() => {
                       handleClick(
@@ -915,7 +920,8 @@ borderRadius:  "8px"
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
                     My order was not as I expected , what should I do ?{" "}
-                  </button>
+                  <FontAwesomeIcon icon={faArrowRight} />
+</button>
                 </li>
 
                 <li>
@@ -931,7 +937,7 @@ borderRadius:  "8px"
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
-borderRadius:  "8px"
+                      borderRadius: "8px",
                     }}
                     onClick={() => {
                       handleClick(
@@ -943,7 +949,8 @@ borderRadius:  "8px"
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
                     I have not received any emails from you , what’s happening?{" "}
-                  </button>
+                  <FontAwesomeIcon icon={faArrowRight} />
+</button>
                 </li>
 
                 <li>
@@ -959,7 +966,7 @@ borderRadius:  "8px"
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
-borderRadius:  "8px"
+                      borderRadius: "8px",
                     }}
                     onClick={() => {
                       handleClick(
@@ -973,7 +980,8 @@ borderRadius:  "8px"
                   >
                     I can see some reviews for your shop mentioning lack of
                     communication and delivery delays. How do you explain that ?{" "}
-                  </button>
+                  <FontAwesomeIcon icon={faArrowRight} />
+</button>
                 </li>
 
                 <li>
@@ -989,7 +997,7 @@ borderRadius:  "8px"
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
-borderRadius:  "8px"
+                      borderRadius: "8px",
                     }}
                     onClick={() => {
                       handleClick(
@@ -1001,7 +1009,8 @@ borderRadius:  "8px"
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
                     Why are there no discounts on your website anymore?{" "}
-                  </button>
+                  <FontAwesomeIcon icon={faArrowRight} />
+</button>
                 </li>
               </ul>
             </div>
@@ -1025,7 +1034,7 @@ borderRadius:  "8px"
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
-borderRadius:  "8px"
+                      borderRadius: "8px",
                     }}
                     onClick={() => {
                       handleClick("When will my order be delivered?");
@@ -1035,7 +1044,8 @@ borderRadius:  "8px"
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
                     When will my order be delivered?{" "}
-                  </button>
+                  <FontAwesomeIcon icon={faArrowRight} />
+</button>
                 </li>
 
                 <li>
@@ -1051,7 +1061,7 @@ borderRadius:  "8px"
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
-borderRadius:  "8px"
+                      borderRadius: "8px",
                     }}
                     onClick={() => {
                       handleClick(
@@ -1064,7 +1074,8 @@ borderRadius:  "8px"
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
                     Can I make changes to my order before receiving it?{" "}
-                  </button>
+                  <FontAwesomeIcon icon={faArrowRight} />
+</button>
                 </li>
 
                 <li>
@@ -1080,7 +1091,7 @@ borderRadius:  "8px"
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
-borderRadius:  "8px"
+                      borderRadius: "8px",
                     }}
                     onClick={() => {
                       handleClick(
@@ -1092,7 +1103,8 @@ borderRadius:  "8px"
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
                     How do I know next available delivery date to my location?{" "}
-                  </button>
+                  <FontAwesomeIcon icon={faArrowRight} />
+</button>
                 </li>
 
                 <li>
@@ -1108,7 +1120,7 @@ borderRadius:  "8px"
                       marginBottom: "10px",
                       transition: "background 0.3s",
                       fontSize: "11px",
-borderRadius:  "8px"
+                      borderRadius: "8px",
                     }}
                     onClick={() => {
                       handleClick("What if I’m not there to receive my order?");
@@ -1118,7 +1130,8 @@ borderRadius:  "8px"
                     onMouseOut={(e) => (e.target.style.background = "#40414F")}
                   >
                     What if I’m not there to receive my order?{" "}
-                  </button>
+                  <FontAwesomeIcon icon={faArrowRight} />
+</button>
                 </li>
               </ul>
             </div>
@@ -1176,12 +1189,12 @@ borderRadius:  "8px"
                             startBtn={
                               <button className="micPosition">
                                 <BsMicFill />{" "}
-                              </button>
+</button>
                             }
                             stopBtn={
                               <button className="micPosition">
                                 <BsMicMuteFill />
-                              </button>
+</button>
                             }
                           />
                         </div>
@@ -1225,7 +1238,7 @@ borderRadius:  "8px"
               }}
             >
               <BsMic />
-            </button>
+</button>
             <button
               className="send-button"
               type="submit"
@@ -1240,7 +1253,7 @@ borderRadius:  "8px"
               }}
             >
               <IoSendSharp />
-            </button>
+</button>
             <p></p>
           </div>
         </form>
