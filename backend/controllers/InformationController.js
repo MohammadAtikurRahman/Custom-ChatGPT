@@ -14,6 +14,8 @@ const csvWriter = createCsvWriter({
   ],
 });
 
+var userInfo = {};
+
 let dataArray = [];
 fs.createReadStream("idiya.csv")
   .pipe(csv())
@@ -60,7 +62,7 @@ fs.createReadStream("data.csv")
     // Convert routes to an array of route objects
     deliveryPath = Object.values(routes);
 
-    console.log(deliveryPath);
+    // console.log(deliveryPath);
   });
 
 let deliveryDataArray = [];
@@ -112,9 +114,12 @@ async function getInformation(req, res) {
     const areaTocharge = dataArray.find((d) => d.area === message);
     console.log("area to charge", areaTocharge);
 
+  
     const codeTocharge = dataArray.find((d) => d.code === message);
 
     const areaTo_delivery = deliveryPath.find((d) => message.includes(d.route));
+
+
     //  const areaTo_charge = deliveryPath.find((d) => d.postcode.toLowerCase() === message.toLowerCase() || message.toLowerCase().includes(d.postcode.toLowerCase()));
     //  console.log("area to charge", areaTo_charge);
 
@@ -175,6 +180,10 @@ async function getInformation(req, res) {
       });
       return;
     }
+
+  
+
+
 
     const weightData = fs.readFileSync("weight.json", "utf8");
     const parsedWeightData = JSON.parse(weightData);
@@ -251,7 +260,7 @@ async function getInformation(req, res) {
         return res.json(response);
       }
 
-      if (codeTocharge?.charge == "0"  && retrievedPrice !== undefined) {
+      if (codeTocharge?.charge == "0" && retrievedPrice !== undefined) {
         const rural_charge = codeTocharge.charge;
         const conv_rural_charge = parseInt(rural_charge?.trim(), 10);
 
@@ -265,8 +274,7 @@ async function getInformation(req, res) {
         return res.json(response);
       }
 
-
-      if (codeTocharge?.charge == "0"  && retrievedPrice === undefined) {
+      if (codeTocharge?.charge == "0" && retrievedPrice === undefined) {
         const rural_charge = codeTocharge.charge;
         const conv_rural_charge = parseInt(rural_charge?.trim(), 10);
 
@@ -279,8 +287,6 @@ async function getInformation(req, res) {
 
         return res.json(response);
       }
-
-
 
       // if(codeTocharge?.charge == "undifined")
       else {
@@ -335,7 +341,7 @@ async function getInformation(req, res) {
         }
       }
 
-      if (areaTocharge?.charge == "39" && retrievedPrice !== undefined ) {
+      if (areaTocharge?.charge == "39" && retrievedPrice !== undefined) {
         const rural_charge = areaTocharge.charge;
         const conv_rural_charge = parseInt(rural_charge?.trim(), 10);
 
@@ -351,7 +357,6 @@ async function getInformation(req, res) {
         return res.json(response);
       }
 
-
       if (areaTocharge?.charge == "39" && retrievedPrice === undefined) {
         const rural_charge = areaTocharge.charge;
         const conv_rural_charge = parseInt(rural_charge?.trim(), 10);
@@ -366,9 +371,6 @@ async function getInformation(req, res) {
         return res.json(response);
       }
 
-
-
-      
       if (areaTocharge?.charge == "0" && retrievedPrice !== undefined) {
         const rural_charge = areaTocharge.charge;
         const conv_rural_charge = parseInt(rural_charge?.trim(), 10);
@@ -382,6 +384,7 @@ async function getInformation(req, res) {
 
         return res.json(response);
       }
+
       if (areaTocharge?.charge == "0" && retrievedPrice == undefined) {
         const rural_charge = areaTocharge.charge;
         const conv_rural_charge = parseInt(rural_charge?.trim(), 10);
@@ -494,10 +497,42 @@ async function getInformation(req, res) {
 
     // console.log("result data", result);
     if (result.length === 0) {
-      return res.status(400).json({ error: "No matching data found" });
+      if (
+        message.includes("when") ||
+        message.includes("get") ||
+        message.includes("date") ||
+        message.includes("delivery date")
+      ) {
+        let prop_weight = parseInt(itemName.weight.trim(), 10);
+        let prop_price = itemName.price;
+        // const conv_rural_charge = parseInt(rural_charge?.trim(), 10);
+
+        console.log(typeof prop_weight);
+
+        const response = {
+          botResponse: `\n\n What is you postcode?`,
+        };
+
+          postcode();
+
+        return res.json(response);
+      }
     }
 
-    if (result[0]?.hasOwnProperty("price")) {
+    async function postcode(){
+
+      console.log("function calling")
+
+
+
+      
+    }
+
+    if (
+      result[0]?.hasOwnProperty("price") ||
+      message.includes("charge") ||
+      message.includes("delivery")
+    ) {
       let prop_weight = parseInt(itemName.weight.trim(), 10);
       let prop_price = itemName.price;
       // const conv_rural_charge = parseInt(rural_charge?.trim(), 10);
@@ -521,7 +556,7 @@ async function getInformation(req, res) {
           `\n\n` + "Please tell me your location or area or area code",
       });
       console.log(message);
-      if (prop_weight != "undifined") {
+      if (prop_weight !== undefined) {
       } else {
         console.log(getDeliveryPrice(location, prop_weight)); // Output: 40
       }
@@ -543,6 +578,7 @@ async function getInformation(req, res) {
         return `No delivery price found for location ${location} and weight ${weight}`;
       }
     }
+
     const response = result.reduce((prev, curr) => {
       return prev + ` ${Object.keys(curr)[0]}: ${curr[Object.keys(curr)[0]]} `;
     }, "");
