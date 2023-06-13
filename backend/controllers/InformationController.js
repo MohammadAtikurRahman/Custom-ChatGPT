@@ -335,7 +335,7 @@ async function getInformation(req, res) {
         }
       }
 
-      if (areaTocharge?.charge == "39") {
+      if (areaTocharge?.charge == "39" && retrievedPrice !== undefined ) {
         const rural_charge = areaTocharge.charge;
         const conv_rural_charge = parseInt(rural_charge?.trim(), 10);
 
@@ -350,12 +350,44 @@ async function getInformation(req, res) {
 
         return res.json(response);
       }
-      if (areaTocharge?.charge == "0") {
+
+
+      if (areaTocharge?.charge == "39" && retrievedPrice === undefined) {
+        const rural_charge = areaTocharge.charge;
+        const conv_rural_charge = parseInt(rural_charge?.trim(), 10);
+
+        const response = {
+          botResponse: `\n\n What is your product name?`,
+        };
+
+        // Write an empty JSON object to weight.json
+        fs.writeFileSync("weight.json", JSON.stringify({}));
+
+        return res.json(response);
+      }
+
+
+
+      
+      if (areaTocharge?.charge == "0" && retrievedPrice !== undefined) {
         const rural_charge = areaTocharge.charge;
         const conv_rural_charge = parseInt(rural_charge?.trim(), 10);
 
         const response = {
           botResponse: `\n\nPrice ${retrievedPrice} For Weight ${retrievedWeight} Deliver Charge ${deliveryPrice} Total Price ${total_price}`,
+        };
+
+        // Write an empty JSON object to weight.json
+        fs.writeFileSync("weight.json", JSON.stringify({}));
+
+        return res.json(response);
+      }
+      if (areaTocharge?.charge == "0" && retrievedPrice == undefined) {
+        const rural_charge = areaTocharge.charge;
+        const conv_rural_charge = parseInt(rural_charge?.trim(), 10);
+
+        const response = {
+          botResponse: `\n\n What is your product name?`,
         };
 
         // Write an empty JSON object to weight.json
