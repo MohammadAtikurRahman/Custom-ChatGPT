@@ -2,7 +2,7 @@ const fs = require("fs");
 const csv = require("csv-parser");
 const axios = require("axios");
 const { getDeliveryInformation } = require("./DeliveryInformationController");
-const util = require('util');
+const util = require("util");
 
 const createCsvWriter = require("csv-writer").createObjectCsvWriter;
 const csvWriter = createCsvWriter({
@@ -24,43 +24,44 @@ fs.createReadStream("idiya.csv")
     processData(dataArray);
   });
 
- var deliveryPath = [];
-  let dates = [];
-  
-  let routes = {};
+var deliveryPath = [];
+let dates = [];
 
-  fs.createReadStream('data.csv')
-      .pipe(csv())
-      .on('data', (row) => {
-          // Split the "ddate" string into an array of dates
-          let assignedDates = row["ddate"].split('\n').filter(date => date.trim() !== '');
-  
-          // If the route does not exist in routes, initialize it
-          if (!routes[row["route"]]) {
-            routes[row["route"]] = {
-              'route': row["route"],
-              'postcode': [],
-              'ddate': []
-            };
-          }
-  
-          // Push the current postcode to the postcodes array for the route, only if it's not empty
-          if (row["postcode"].trim() !== '') {
-            routes[row["route"]].postcode.push(row["postcode"]);
-          }
-  
-          // Push all non-empty assigned dates to the ddates array for the route
-          if (assignedDates.length > 0) {
-            routes[row["route"]].ddate.push(...assignedDates);
-          }
-      })
-      .on('end', () => {
-          // Convert routes to an array of route objects
-           deliveryPath = Object.values(routes);
-    
-          console.log(deliveryPath);
-      });
-  
+let routes = {};
+
+fs.createReadStream("data.csv")
+  .pipe(csv())
+  .on("data", (row) => {
+    // Split the "ddate" string into an array of dates
+    let assignedDates = row["ddate"]
+      .split("\n")
+      .filter((date) => date.trim() !== "");
+
+    // If the route does not exist in routes, initialize it
+    if (!routes[row["route"]]) {
+      routes[row["route"]] = {
+        route: row["route"],
+        postcode: [],
+        ddate: [],
+      };
+    }
+
+    // Push the current postcode to the postcodes array for the route, only if it's not empty
+    if (row["postcode"].trim() !== "") {
+      routes[row["route"]].postcode.push(row["postcode"]);
+    }
+
+    // Push all non-empty assigned dates to the ddates array for the route
+    if (assignedDates.length > 0) {
+      routes[row["route"]].ddate.push(...assignedDates);
+    }
+  })
+  .on("end", () => {
+    // Convert routes to an array of route objects
+    deliveryPath = Object.values(routes);
+
+    console.log(deliveryPath);
+  });
 
 let deliveryDataArray = [];
 fs.createReadStream("delivery.csv")
@@ -76,7 +77,6 @@ fs.createReadStream("delivery.csv")
 const processData = (data) => {
   // console.log(data);
 };
-
 
 async function getInformation(req, res) {
   const message = req.body.message;
@@ -98,14 +98,9 @@ async function getInformation(req, res) {
     { name: "region", property: "region" },
     { name: "rural", property: "rural" },
     { name: "charge", property: "charge" },
-
-
-
   ];
 
   for (const prop of properties) {
-    
-    
     const matchingData1 = dataArray.find(
       (d) => message.includes(d.name) && message.includes("dimension")
     );
@@ -114,49 +109,33 @@ async function getInformation(req, res) {
 
     const matchingData3 = dataArray.find((d) => d.sku === message);
 
-
-    // const areaTocharge = deliveryPath.find((d) => d.postcode.toLowerCase() === message.toLowerCase() || message.toLowerCase().includes(d.postcode.toLowerCase()));
-    // console.log("area to charge", areaTocharge);
-
-
-
-
-    const areaTocharge = dataArray.find((d) => d.area === message)
+    const areaTocharge = dataArray.find((d) => d.area === message);
     console.log("area to charge", areaTocharge);
 
-
-
-    const codeTocharge = dataArray.find((d) => d.code === message)
+    const codeTocharge = dataArray.find((d) => d.code === message);
 
     const areaTo_delivery = deliveryPath.find((d) => message.includes(d.route));
-
+    //  const areaTo_charge = deliveryPath.find((d) => d.postcode.toLowerCase() === message.toLowerCase() || message.toLowerCase().includes(d.postcode.toLowerCase()));
+    //  console.log("area to charge", areaTo_charge);
 
     if (matchingData2) {
       res.json({
         botResponse: `\n\n${matchingData2.name} of : ${matchingData2.description}`,
       });
       return;
-    } 
-    
-    
-    else if (matchingData3) {
+    } else if (matchingData3) {
       res.json({
         botResponse: `\n\n${matchingData3.name} of : ${matchingData3.description}`,
       });
       return;
     }
-    
-      
 
-    
-    else if (codeTocharge) {
-      res.json({
-        botResponse: `\n\n${codeTocharge.code} of : ${codeTocharge.charge}`,
-      });
-      return;
-    }
-    
-    
+    // else if (codeTocharge) {
+    //   res.json({
+    //     botResponse: `\n\n${codeTocharge.code} of : ${codeTocharge.charge}`,
+    //   });
+    //   return;
+    // }
     else if (matchingData1) {
       const dimensions = {
         width: matchingData1.width,
@@ -167,241 +146,245 @@ async function getInformation(req, res) {
         botResponse: `\n\nWidth: ${dimensions.width}, Height: ${dimensions.height}, Length: ${dimensions.length}`,
       });
       return;
-    }
-    else if (areaTo_delivery) {
+    } else if (areaTo_delivery) {
       // Convert the strings in ddates to Date objects
-      let deliveryDates = areaTo_delivery.ddate.map(date => new Date(date));
-      
+      let deliveryDates = areaTo_delivery.ddate.map((date) => new Date(date));
+
       // Get today's date at midnight for comparison
       let today = new Date();
       today.setHours(0, 0, 0, 0);
-    
+
       // Filter for dates that are today or in the future
-      let futureDates = deliveryDates.filter(date => date >= today);
-    
+      let futureDates = deliveryDates.filter((date) => date >= today);
+
       // Sort the dates in ascending order
       futureDates.sort((a, b) => a - b);
-    
+
       // Take the next 3 dates
       let nextThreeDates = futureDates.slice(0, 3);
-    
+
       // Convert the dates back to strings in the format YYYY-MM-DD
-      nextThreeDates = nextThreeDates.map(date => date.toISOString().split('T')[0]);
-    
+      nextThreeDates = nextThreeDates.map(
+        (date) => date.toISOString().split("T")[0]
+      );
+
       res.json({
-        botResponse: `\n\n Yes we ship to ${areaTo_delivery.route} and Our next delivery dates are : ${nextThreeDates.join(', ')}`,
+        botResponse: `\n\n Yes we ship to ${
+          areaTo_delivery.route
+        } and Our next delivery dates are : ${nextThreeDates.join(", ")}`,
       });
       return;
     }
-    const weightData = fs.readFileSync("weight.json", 'utf8');
+
+    const weightData = fs.readFileSync("weight.json", "utf8");
     const parsedWeightData = JSON.parse(weightData);
     const retrievedWeight = parsedWeightData.weight;
     const retrievedPrice = parsedWeightData.price;
-        
-    if (message.includes("Shipping") && retrievedWeight && retrievedPrice || codeTocharge) {
 
-
-      
-      
-      const weightData = fs.readFileSync("weight.json", 'utf8');
+    if (
+      (message.includes("Shipping") && retrievedWeight && retrievedPrice) ||
+      codeTocharge
+    ) {
+      const weightData = fs.readFileSync("weight.json", "utf8");
       const parsedWeightData = JSON.parse(weightData);
       const retrievedWeight = parsedWeightData.weight;
-      const priceData = fs.readFileSync("weight.json", 'utf8');
+      const priceData = fs.readFileSync("weight.json", "utf8");
       const parsedPriceData = JSON.parse(priceData);
       const retrievedPrice = parsedPriceData.price;
       const printconvertedint = parseInt(retrievedPrice?.trim(), 10);
 
-
-      if(codeTocharge?.code){
-
-        var deliveryPrice = getDeliveryPrice(codeTocharge.delivery, retrievedWeight);
-
+      if (codeTocharge?.code) {
+        var deliveryPrice = getDeliveryPrice(
+          codeTocharge.delivery,
+          retrievedWeight
+        );
+      } else {
+        deliveryPrice = getDeliveryPrice(message, retrievedWeight);
       }
-      else  {
-
-         deliveryPrice = getDeliveryPrice(message, retrievedWeight);
-
-      }
-
 
       const convertedintdelivery = parseInt(deliveryPrice?.trim(), 10);
       const total_price = printconvertedint + convertedintdelivery;
-    
+
       function getDeliveryPrice(location, weight) {
-        const deliveryRule = deliveryDataArray.find(rule => {
+        const deliveryRule = deliveryDataArray.find((rule) => {
           return (
             rule.location === location &&
-            ((rule.operator === '<' && weight < rule['weight-dl']) ||
-              (rule.operator === '=' && weight == rule['weight-dl']))
+            ((rule.operator === "<" && weight < rule["weight-dl"]) ||
+              (rule.operator === "=" && weight == rule["weight-dl"]))
           );
         });
-    
+
         if (deliveryRule) {
           return deliveryRule.deliveryPrice;
         } else {
           return `No delivery price found for location ${location} and weight ${weight}`;
         }
       }
-    
-      if(codeTocharge?.charge == '39'){
 
+      if (codeTocharge?.charge == "39" && retrievedPrice !== undefined) {
         const rural_charge = codeTocharge.charge;
         const conv_rural_charge = parseInt(rural_charge?.trim(), 10);
 
-      const response = {
-        botResponse: `\n\nPrice ${retrievedPrice} For Weight ${retrievedWeight} Deliver Charge ${deliveryPrice} for rural area extra charge added ${codeTocharge.charge}  Total Price ${total_price+conv_rural_charge}`,
-      };
-    
-      // Write an empty JSON object to weight.json
-      fs.writeFileSync('weight.json', JSON.stringify({}));
-    
-      return res.json(response);
-      
+        const response = {
+          botResponse: `\n\nPppppprice ${retrievedPrice} For Weight ${retrievedWeight} Deliver Charge ${deliveryPrice} for rural area extra charge added ${
+            codeTocharge.charge
+          }  Total Price ${total_price + conv_rural_charge}`,
+        };
+
+        // Write an empty JSON object to weight.json
+        fs.writeFileSync("weight.json", JSON.stringify({}));
+
+        return res.json(response);
+      }
+
+      if (codeTocharge?.charge == "39" && retrievedPrice === undefined) {
+        const rural_charge = codeTocharge.charge;
+        const conv_rural_charge = parseInt(rural_charge?.trim(), 10);
+
+        const response = {
+          botResponse: `\n\n What is you product name ?`,
+        };
+
+        // Write an empty JSON object to weight.json
+        fs.writeFileSync("weight.json", JSON.stringify({}));
+
+        return res.json(response);
+      }
+
+      if (codeTocharge?.charge == "0"  && retrievedPrice !== undefined) {
+        const rural_charge = codeTocharge.charge;
+        const conv_rural_charge = parseInt(rural_charge?.trim(), 10);
+
+        const response = {
+          botResponse: `\n\nPrice ${retrievedPrice} For Weight ${retrievedWeight} Deliver Charge ${deliveryPrice}  Total Price ${total_price}`,
+        };
+
+        // Write an empty JSON object to weight.json
+        fs.writeFileSync("weight.json", JSON.stringify({}));
+
+        return res.json(response);
+      }
+
+
+      if (codeTocharge?.charge == "0"  && retrievedPrice === undefined) {
+        const rural_charge = codeTocharge.charge;
+        const conv_rural_charge = parseInt(rural_charge?.trim(), 10);
+
+        const response = {
+          botResponse: `\n\n What is you product name ?`,
+        };
+
+        // Write an empty JSON object to weight.json
+        fs.writeFileSync("weight.json", JSON.stringify({}));
+
+        return res.json(response);
+      }
+
+
+
+      // if(codeTocharge?.charge == "undifined")
+      else {
+        const response = {
+          botResponse: `\n\nPrice ${retrievedPrice} For Weight ${retrievedWeight} Deliver Charge ${deliveryPrice} Total Price ${total_price}`,
+        };
+
+        // Write an empty JSON object to weight.json
+        fs.writeFileSync("weight.json", JSON.stringify({}));
+
+        return res.json(response);
+      }
     }
-    if(codeTocharge?.charge == '0'){
 
-      const rural_charge = codeTocharge.charge;
-      const conv_rural_charge = parseInt(rural_charge?.trim(), 10);
-
-    const response = {
-      botResponse: `\n\nPrice ${retrievedPrice} For Weight ${retrievedWeight} Deliver Charge ${deliveryPrice}  Total Price ${total_price}`,
-    };
-  
-    // Write an empty JSON object to weight.json
-    fs.writeFileSync('weight.json', JSON.stringify({}));
-  
-    return res.json(response);
-    
-  }
-
-
-
-    // if(codeTocharge?.charge == "undifined")
-    else
-    {
-
-      const response = {
-        botResponse: `\n\nPrice ${retrievedPrice} For Weight ${retrievedWeight} Deliver Charge ${deliveryPrice} Total Price ${total_price}`,
-      };
-    
-      // Write an empty JSON object to weight.json
-      fs.writeFileSync('weight.json', JSON.stringify({}));
-    
-      return res.json(response);
-      
-    }
-
-
-    }
-      
-    if (message.includes("Shipping") && retrievedWeight && retrievedPrice || areaTocharge) {
-
-
-      
-      
-      const weightData = fs.readFileSync("weight.json", 'utf8');
+    if (
+      (message.includes("Shipping") && retrievedWeight && retrievedPrice) ||
+      areaTocharge
+    ) {
+      const weightData = fs.readFileSync("weight.json", "utf8");
       const parsedWeightData = JSON.parse(weightData);
       const retrievedWeight = parsedWeightData.weight;
-      const priceData = fs.readFileSync("weight.json", 'utf8');
+      const priceData = fs.readFileSync("weight.json", "utf8");
       const parsedPriceData = JSON.parse(priceData);
       const retrievedPrice = parsedPriceData.price;
       const printconvertedint = parseInt(retrievedPrice?.trim(), 10);
 
-
-      if(areaTocharge?.area){
-
-        var deliveryPrice = getDeliveryPrice(areaTocharge.delivery, retrievedWeight);
-
+      if (areaTocharge?.area) {
+        var deliveryPrice = getDeliveryPrice(
+          areaTocharge.delivery,
+          retrievedWeight
+        );
+      } else {
+        deliveryPrice = getDeliveryPrice(message, retrievedWeight);
       }
-      else  {
-
-         deliveryPrice = getDeliveryPrice(message, retrievedWeight);
-
-      }
-
 
       const convertedintdelivery = parseInt(deliveryPrice?.trim(), 10);
       const total_price = printconvertedint + convertedintdelivery;
-    
+
       function getDeliveryPrice(location, weight) {
-        const deliveryRule = deliveryDataArray.find(rule => {
+        const deliveryRule = deliveryDataArray.find((rule) => {
           return (
             rule.location === location &&
-            ((rule.operator === '<' && weight < rule['weight-dl']) ||
-              (rule.operator === '=' && weight == rule['weight-dl']))
+            ((rule.operator === "<" && weight < rule["weight-dl"]) ||
+              (rule.operator === "=" && weight == rule["weight-dl"]))
           );
         });
-    
+
         if (deliveryRule) {
           return deliveryRule.deliveryPrice;
         } else {
           return `No delivery price found for location ${location} and weight ${weight}`;
         }
       }
-    
-      if(areaTocharge?.charge == '39'){
 
+      if (areaTocharge?.charge == "39") {
         const rural_charge = areaTocharge.charge;
         const conv_rural_charge = parseInt(rural_charge?.trim(), 10);
 
-      const response = {
-        botResponse: `\n\nPrice ${retrievedPrice} For Weight ${retrievedWeight} Deliver Charge ${deliveryPrice} for rural area extra charge added ${areaTocharge.charge}  Total Price ${total_price+conv_rural_charge}`,
-      };
-    
-      // Write an empty JSON object to weight.json
-      fs.writeFileSync('weight.json', JSON.stringify({}));
-    
-      return res.json(response);
-      
-    }
-    if(areaTocharge?.charge == '0'){
+        const response = {
+          botResponse: `\n\nPrice ${retrievedPrice} For Weight ${retrievedWeight} Deliver Charge ${deliveryPrice} for rural area extra charge added ${
+            areaTocharge.charge
+          }  Total Price ${total_price + conv_rural_charge}`,
+        };
 
-      const rural_charge = areaTocharge.charge;
-      const conv_rural_charge = parseInt(rural_charge?.trim(), 10);
+        // Write an empty JSON object to weight.json
+        fs.writeFileSync("weight.json", JSON.stringify({}));
 
-    const response = {
-      botResponse: `\n\nPrice ${retrievedPrice} For Weight ${retrievedWeight} Deliver Charge ${deliveryPrice} Total Price ${total_price}`,
-    };
-  
-    // Write an empty JSON object to weight.json
-    fs.writeFileSync('weight.json', JSON.stringify({}));
-  
-    return res.json(response);
-    
-  }
+        return res.json(response);
+      }
+      if (areaTocharge?.charge == "0") {
+        const rural_charge = areaTocharge.charge;
+        const conv_rural_charge = parseInt(rural_charge?.trim(), 10);
 
+        const response = {
+          botResponse: `\n\nPrice ${retrievedPrice} For Weight ${retrievedWeight} Deliver Charge ${deliveryPrice} Total Price ${total_price}`,
+        };
 
+        // Write an empty JSON object to weight.json
+        fs.writeFileSync("weight.json", JSON.stringify({}));
 
+        return res.json(response);
+      }
 
+      // if(codeTocharge?.charge == "undifined")
+      else {
+        const response = {
+          botResponse: `\n\nPrice ${retrievedPrice} For Weight ${retrievedWeight} Deliver Charge ${deliveryPrice} Total Price ${total_price}`,
+        };
 
+        // Write an empty JSON object to weight.json
+        fs.writeFileSync("weight.json", JSON.stringify({}));
 
-    // if(codeTocharge?.charge == "undifined")
-    else
-    {
-
-      const response = {
-        botResponse: `\n\nPrice ${retrievedPrice} For Weight ${retrievedWeight} Deliver Charge ${deliveryPrice} Total Price ${total_price}`,
-      };
-    
-      // Write an empty JSON object to weight.json
-      fs.writeFileSync('weight.json', JSON.stringify({}));
-    
-      return res.json(response);
-      
-    }
-
-
+        return res.json(response);
+      }
     }
 
     if (message.includes("Shipping") && !retrievedWeight && !retrievedPrice) {
-     
       const bayOfPlentyData = deliveryDataArray.filter(
         (d) => d.location === message
       );
       if (bayOfPlentyData.length === 0) {
         return;
       }
-  
+
       // Find the minimum and maximum values of the deliveryPrice property
       const deliveryPrices = bayOfPlentyData.reduce(
         (acc, d) => {
@@ -419,7 +402,7 @@ async function getInformation(req, res) {
         },
         { minPrice: Infinity, maxPrice: -Infinity }
       );
-  
+
       // Return bot response with highest and lowest deliveryPrice
       return res.json({
         botResponse:
@@ -433,7 +416,7 @@ async function getInformation(req, res) {
           ".  Please enter here product name",
       });
     }
-     
+
     const itemName = dataArray.find((d) => message.includes(d.name));
 
     const queries = properties.filter((p) => message.includes(p.name));
@@ -464,11 +447,9 @@ async function getInformation(req, res) {
     //         .status(500)
     //         .send({ error: "Could not generate text completion" });
     //     }
-      
+
     // }
 
-
-    
     const result = queries
       .map((q) => {
         const data = dataArray.find((d) => d.name === itemName.name);
@@ -480,50 +461,49 @@ async function getInformation(req, res) {
       .filter((r) => r !== null);
 
     // console.log("result data", result);
-    if  (result.length === 0) {
-
+    if (result.length === 0) {
       return res.status(400).json({ error: "No matching data found" });
     }
 
     if (result[0]?.hasOwnProperty("price")) {
-      let prop_weight = parseInt(itemName.weight.trim(),10)
+      let prop_weight = parseInt(itemName.weight.trim(), 10);
       let prop_price = itemName.price;
       // const conv_rural_charge = parseInt(rural_charge?.trim(), 10);
 
-
-     console.log(typeof prop_weight)
+      console.log(typeof prop_weight);
       tiggerDetaile(prop_weight, prop_price);
 
       return;
     }
 
-
-
     function tiggerDetaile(prop_weight, prop_price) {
       console.log("successfully get the weight", prop_weight);
       console.log("successfully get the price", prop_price);
-      fs.writeFileSync("weight.json", JSON.stringify({weight: prop_weight, price: prop_price}));
+      fs.writeFileSync(
+        "weight.json",
+        JSON.stringify({ weight: prop_weight, price: prop_price })
+      );
 
-      res.json({ botResponse: `\n\n` + "Please tell me your location or area or area code" });
+      res.json({
+        botResponse:
+          `\n\n` + "Please tell me your location or area or area code",
+      });
       console.log(message);
-      if(prop_weight != "undifined"){
-
-      }
-      else{
+      if (prop_weight != "undifined") {
+      } else {
         console.log(getDeliveryPrice(location, prop_weight)); // Output: 40
-
-
       }
     }
     function getDeliveryPrice(location, weight) {
       // Find the delivery rule that matches the location and weight
-      const deliveryRule = deliveryDataArray.find(rule => {
-        return rule.location === location && (
-          (rule.operator === '<' && weight < rule['weight-dl']) ||
-          (rule.operator === '=' && weight == rule['weight-dl'])
+      const deliveryRule = deliveryDataArray.find((rule) => {
+        return (
+          rule.location === location &&
+          ((rule.operator === "<" && weight < rule["weight-dl"]) ||
+            (rule.operator === "=" && weight == rule["weight-dl"]))
         );
       });
-      
+
       // If a matching rule was found, return the delivery price
       if (deliveryRule) {
         return deliveryRule.deliveryPrice;
@@ -536,14 +516,7 @@ async function getInformation(req, res) {
     }, "");
 
     return res.json({ botResponse: `\n\n` + response });
-    
-
-
   }
-
-
-
-
 }
 
 module.exports = {
