@@ -330,10 +330,16 @@ async function getInformation(req, res) {
         const rural_charge = codeTocharge.charge;
         const conv_rural_charge = parseInt(rural_charge?.trim(), 10);
 
+        const fragile_charge = parseInt( codeTocharge.fragile?.trim(),10);
+
+        console.log("fragile charge",fragile_charge)
+
+
+
         const response = {
           botResponse: `\n\nPppppprice ${retrievedPrice} For Weight ${retrievedWeight} Deliver Charge ${deliveryPrice} for rural area extra charge added ${
             codeTocharge.charge
-          }  Total Price ${total_price + conv_rural_charge}`,
+          }  and also added here fragile charge ${fragile_charge} and Total Price ${total_price + conv_rural_charge+fragile_charge}`,
         };
 
         // Write an empty JSON object to weight.json
