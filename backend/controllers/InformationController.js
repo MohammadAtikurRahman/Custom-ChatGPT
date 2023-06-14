@@ -100,6 +100,7 @@ async function getInformation(req, res) {
     { name: "region", property: "region" },
     { name: "rural", property: "rural" },
     { name: "charge", property: "charge" },
+
   ];
 
   for (const prop of properties) {
@@ -118,6 +119,17 @@ async function getInformation(req, res) {
     const codeTocharge = dataArray.find((d) => d.code === message);
 
     const areaTo_delivery = deliveryPath.find((d) => message.includes(d.route));
+    console.log("area head of delivery",areaTo_delivery)
+
+    const areaTo_code = deliveryPath.find((path) => path.postcode.some(code => message.includes(code)));
+
+    // If areaTo_code is found, log it. Otherwise, log a not found message.
+    if(areaTo_code) {
+        console.log("Found route: ", areaTo_code.route);
+        console.log("Associated postcodes: ", areaTo_code.postcode);
+    } else {
+        console.log("Postcode not found in any route.");
+    }
 
 
     //  const areaTo_charge = deliveryPath.find((d) => d.postcode.toLowerCase() === message.toLowerCase() || message.toLowerCase().includes(d.postcode.toLowerCase()));
@@ -151,7 +163,12 @@ async function getInformation(req, res) {
         botResponse: `\n\nWidth: ${dimensions.width}, Height: ${dimensions.height}, Length: ${dimensions.length}`,
       });
       return;
-    } else if (areaTo_delivery) {
+    } 
+    
+    
+    
+    
+    else if (areaTo_delivery) {
       // Convert the strings in ddates to Date objects
       let deliveryDates = areaTo_delivery.ddate.map((date) => new Date(date));
 
@@ -180,7 +197,38 @@ async function getInformation(req, res) {
       });
       return;
     }
+    else if (areaTo_code && message.includes("postcode")) {
 
+      console.log("happen here",areaTo_code)
+
+      // Convert the strings in ddates to Date objects
+      let deliveryDates = areaTo_code.ddate.map((date) => new Date(date));
+
+      // Get today's date at midnight for comparison
+      let today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      // Filter for dates that are today or in the future
+      let futureDates = deliveryDates.filter((date) => date >= today);
+
+      // Sort the dates in ascending order
+      futureDates.sort((a, b) => a - b);
+
+      // Take the next 3 dates
+      let nextThreeDates = futureDates.slice(0, 3);
+
+      // Convert the dates back to strings in the format YYYY-MM-DD
+      nextThreeDates = nextThreeDates.map(
+        (date) => date.toISOString().split("T")[0]
+      );
+
+      res.json({
+        botResponse: `\n\n Yes we ship to ${
+          areaTo_code.route
+        } and Our next delivery dates are : ${nextThreeDates.join(", ")}`,
+      });
+      return;
+    }
   
 
 
@@ -496,6 +544,7 @@ async function getInformation(req, res) {
       .filter((r) => r !== null);
 
     // console.log("result data", result);
+
     if (result.length === 0) {
       if (
         message.includes("when") ||
@@ -506,27 +555,30 @@ async function getInformation(req, res) {
         let prop_weight = parseInt(itemName.weight.trim(), 10);
         let prop_price = itemName.price;
         // const conv_rural_charge = parseInt(rural_charge?.trim(), 10);
-
+    
         console.log(typeof prop_weight);
-
+    
         const response = {
-          botResponse: `\n\n What is you postcode?`,
+          botResponse: `\n\n What is your postcode?`,
         };
-
-          postcode();
-
+    
+        // postcode(); // Assuming this function sets the postcode, not defined in your given code
+    
+        // Write the response to post.json
+        fs.writeFile('post.json', JSON.stringify(response), (err) => {
+          if (err) {
+            console.error('There was an error writing the file: ', err);
+          } else {
+            console.log('File has been written');
+          }
+        });
+    
         return res.json(response);
       }
     }
+    
 
-    async function postcode(){
-
-      console.log("function calling")
-
-
-
-      
-    }
+   
 
     if (
       result[0]?.hasOwnProperty("price") ||

@@ -477,7 +477,7 @@ function App() {
         <br />
         {showProductFaq && (
 
-        <h1>FAQ Categories</h1>
+        <h1>IDIYA ChatGPT</h1>
 
         )
 }
