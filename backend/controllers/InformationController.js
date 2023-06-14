@@ -336,16 +336,30 @@ async function getInformation(req, res) {
 
 
 
+      
+
+        if(fragile_charge){    
         const response = {
           botResponse: `\n\nPppppprice ${retrievedPrice} For Weight ${retrievedWeight} Deliver Charge ${deliveryPrice} for rural area extra charge added ${
             codeTocharge.charge
           }  and also added here fragile charge ${fragile_charge} and Total Price ${total_price + conv_rural_charge+fragile_charge}`,
         };
-
-        // Write an empty JSON object to weight.json
         fs.writeFileSync("weight.json", JSON.stringify({}));
 
         return res.json(response);
+      }else {
+        const response = {
+          botResponse: `\n\nPppppprice ${retrievedPrice} For Weight ${retrievedWeight} Deliver Charge ${deliveryPrice} for rural area extra charge added ${
+            codeTocharge.charge
+          }  and Total Price ${total_price + conv_rural_charge}`,
+        };
+        fs.writeFileSync("weight.json", JSON.stringify({}));
+
+        return res.json(response);
+      }
+
+        // Write an empty JSON object to weight.json
+        
       }
 
       if (codeTocharge?.charge == "39" && retrievedPrice === undefined) {
