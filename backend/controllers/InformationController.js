@@ -197,7 +197,7 @@ async function getInformation(req, res) {
       });
       return;
     }
-    else if (areaTo_code && message.includes("postcode")) {
+    else if (areaTo_code &&  message.includes("ship" )  || message.includes("shipped" )  ) {
 
       console.log("happen here",areaTo_code)
 
