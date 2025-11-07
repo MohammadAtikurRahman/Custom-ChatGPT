@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "string-similarity": "^4.0.4"
+    "string-similarity": "9.0.4"
   }
 }
